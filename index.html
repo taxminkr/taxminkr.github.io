@@ -28,11 +28,11 @@
 <script src="js/early.js?v=20261106f"></script>
 <link rel="stylesheet" href="fonts/pretendard/pretendard.css">
 <link rel="stylesheet" href="css/tm.css?v=20261110a">
-<link rel="stylesheet" href="css/bd.css?v=20261110e">
+<link rel="stylesheet" href="css/bd.css?v=20261111a">
 <script src="js/config.js?v=20261106f" defer></script>
 <script src="js/tags.js?v=20261106f" defer></script>
 <script src="js/tm.js?v=20261110a" defer></script>
-<script src="js/bd.js?v=20261110e" defer></script>
+<script src="js/bd.js?v=20261111a" defer></script>
 </head>
 <body class="bd" data-page="apply" data-pg="home">
 <a class="skip" href="#main">본문으로 바로 가기</a>
@@ -61,7 +61,7 @@
         <button type="button" class="ap-btn ap-btn-b" data-ap-open="hero">상담 신청하기</button>
         <a class="ap-btn ap-btn-k" href="https://pf.kakao.com/_Mxojqs/chat" data-kakao="hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6c-5 0-9 3.1-9 7 0 2.5 1.7 4.7 4.2 5.9l-.9 3.5c-.1.4.4.7.7.4l4.2-2.8h.8c5 0 9-3.1 9-7s-4-7-9-7z" fill="currentColor"/></svg>카카오로 상담</a>
       </div>
-      <p class="ap-trust">상담은 세무사가 직접</p>
+      <p class="ap-trust">전화 상담은 대표 세무사가 직접</p>
       <p class="ap-off">상담 시간 밖이에요 · 평일 10시 이후 전화드려요</p>
     </div>
   </div>
@@ -89,11 +89,6 @@
       </div>
     </div>
   </div>
-  <button type="button" class="bd-hs-ar bd-hs-prev" data-bd-prev aria-label="이전 화면"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4.5L7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <button type="button" class="bd-hs-ar bd-hs-next" data-bd-next aria-label="다음 화면"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5l7.5 7.5L9 19.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <div class="ap-w bd-hs-ui">
-    <button type="button" class="bd-hs-pp" data-bd-pause aria-label="자동 넘김 멈춤" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13M16 5.5v13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></button>
-  </div>
 </section>
 
 <section class="bd-intro" aria-labelledby="bd-intro-h"><div class="ap-w">
@@ -103,10 +98,10 @@
   <p class="bd-intro-d" data-bd-rv>홈택스 수임 동의만 해 주시면 카드 <span class="nw">매출·세금계산서·현금영수증은</span> 저희가 직접 확인해요.<br>그 밖의 영수증만 카톡으로 사진을 찍어 보내 주세요.</p>
   <p class="bd-intro-go" data-bd-rv><button type="button" class="ap-btn bd-btn-k" data-ap-open="intro">상담 신청 바로가기</button></p>
   <ul class="bd-facts" data-bd-rv>
-    <li><p class="bd-fact-v num"><small>월</small><b data-bd-count="5">5</b><small>만원부터</small></p><p class="bd-fact-l">개인사업자 기장료 <span class="nw">(부가세 별도)</span></p></li>
+    <li><p class="bd-fact-v num"><small>월</small><b>5</b><small>만원부터</small></p><p class="bd-fact-l">개인사업자 기장료 <span class="nw">(부가세 별도)</span></p></li>
     <li><p class="bd-fact-v num"><b data-bd-count="10">10</b><small>초</small></p><p class="bd-fact-l">상담 신청에 걸리는 시간</p></li>
+    <li><p class="bd-fact-v num"><b>1:1</b></p><p class="bd-fact-l">전화 상담은 <span class="nw">대표 세무사가 직접</span></p></li>
     <li><p class="bd-fact-v num"><b data-bd-count="0" data-bd-from="9">0</b><small>번</small></p><p class="bd-fact-l">사무실에 오셔야 하는 횟수</p></li>
-    <li><p class="bd-fact-v num"><b data-bd-count="3">3</b><small>단계</small></p><p class="bd-fact-l">신청 · 전화 상담 · 시작</p></li>
   </ul>
 </div>
 <div class="bd-mq" data-bd-mq aria-hidden="true">
@@ -129,19 +124,18 @@
   <div class="bd-car" data-bd-car data-bd-rv>
     <button type="button" class="bd-car-ar bd-car-prev" data-bd-car-prev aria-label="이전 서비스"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4.5L7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <ul class="bd-car-tr" data-bd-car-tr tabindex="0" aria-label="택스민이 맡는 일">
-      <li class="bd-card"><span class="bd-card-n num">01</span><span class="bd-card-ph"><img src="img/3d/card-receipt.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>장부 작성</b><span class="bd-card-d">매출·매입을 복식부기 장부로 정리해요</span></li>
-      <li class="bd-card"><span class="bd-card-n num">02</span><span class="bd-card-ph"><img src="img/3d/card-receipt-scan.webp" alt="" width="960" height="537" loading="lazy" decoding="async"></span><b>영수증 정리</b><span class="bd-card-d">카톡으로 사진만 보내 주세요</span></li>
-      <li class="bd-card"><span class="bd-card-n num">03</span><span class="bd-card-ph"><img src="img/3d/card-calendar.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>부가세·소득세 신고</b><span class="bd-card-d">신고 일정을 미리 알려 드려요</span></li>
-      <li class="bd-card"><span class="bd-card-n num">04</span><span class="bd-card-ph"><img src="img/3d/card-payroll.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>월급 신고</b><span class="bd-card-d">직원·알바 원천세 신고까지 맡아요</span></li>
-      <li class="bd-card"><span class="bd-card-n num">05</span><span class="bd-card-ph"><img src="img/3d/card-report.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>매출 보고서</b><span class="bd-card-d">매달 매출 보고서를 받아 보세요</span></li>
-      <li class="bd-card"><span class="bd-card-n num">06</span><span class="bd-card-ph"><img src="img/3d/card-consult.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>세무사 상담</b><span class="bd-card-d">카톡·전화로 세무사가 직접 답해요</span></li>
-      <li class="bd-card"><span class="bd-card-n num">07</span><span class="bd-card-ph"><img src="img/3d/card-partner.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>노무·법무 관리</b><span class="bd-card-d">협업 노무사·법무사가 맡아요</span></li>
+      <li class="bd-card"><span class="bd-card-ph"><img src="img/3d/card-receipt.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>장부 작성</b><span class="bd-card-d">매출·매입을 복식부기 장부로 정리해요</span></li>
+      <li class="bd-card"><span class="bd-card-ph"><img src="img/3d/card-receipt-scan.webp" alt="" width="960" height="537" loading="lazy" decoding="async"></span><b>영수증 정리</b><span class="bd-card-d">카톡으로 사진만 보내 주세요</span></li>
+      <li class="bd-card"><span class="bd-card-ph"><img src="img/3d/card-calendar.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>부가세·소득세 신고</b><span class="bd-card-d">신고 일정을 미리 알려 드려요</span></li>
+      <li class="bd-card"><span class="bd-card-ph"><img src="img/3d/card-payroll.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>월급 신고</b><span class="bd-card-d">직원·알바 원천세 신고까지 맡아요</span></li>
+      <li class="bd-card"><span class="bd-card-ph"><img src="img/3d/card-report.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>매출 보고서</b><span class="bd-card-d">매달 매출 보고서를 받아 보세요</span></li>
+      <li class="bd-card"><span class="bd-card-ph"><img src="img/3d/card-consult.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>세무사 상담</b><span class="bd-card-d">카톡·전화로 세무사가 직접 답해요</span></li>
+      <li class="bd-card"><span class="bd-card-ph"><img src="img/3d/card-partner.webp" alt="" width="900" height="678" loading="lazy" decoding="async"></span><b>노무·법무 관리</b><span class="bd-card-d">협업 노무사·법무사가 맡아요</span></li>
     </ul>
     <button type="button" class="bd-car-ar bd-car-next" data-bd-car-next aria-label="다음 서비스"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5l7.5 7.5L9 19.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
   <div class="bd-band-tx" data-bd-rv>
-    <p class="bd-en">TAX, ALL IN ONE</p>
-    <h2 class="bd-h bd-h-w" id="bd-band-h">장부부터 신고까지,<br>택스민 하나로 이어져요</h2>
+    <h2 class="bd-h bd-h-w" id="bd-band-h">장부부터 신고까지,<br>한 곳에 맡기세요</h2>
     <p class="bd-band-d">장부·신고·월급·보고서는 택스민이, <span class="nw">노무·법무는</span> 협업 <span class="nw">노무사·법무사가</span> 맡아요.</p>
     <a class="ap-btn bd-btn-k" href="service.html">서비스 더보기</a>
   </div>
@@ -172,7 +166,7 @@
   <h2 class="bd-h bd-h-c" id="bd-how-h" data-bd-rv>상담 신청 뒤 이렇게 진행돼요</h2>
   <ol class="bd-steps" data-bd-rv>
     <li><span class="bd-step-n num" aria-hidden="true">01</span><h3>상담 신청</h3><p>번호만 남기면 돼요</p></li>
-    <li><span class="bd-step-n num" aria-hidden="true">02</span><h3>전화 상담</h3><p><span class="nw">평일 10:00–17:30</span>에 기장료를 알려 드려요</p></li>
+    <li><span class="bd-step-n num" aria-hidden="true">02</span><h3>전화 상담</h3><p>대표 세무사가 직접 전화드려 <span class="nw">기장료를 알려 드려요</span></p></li>
     <li><span class="bd-step-n num" aria-hidden="true">03</span><h3>수임 동의 후 시작</h3><p>자료와 질문은 카톡으로 주고받아요</p></li>
   </ol>
 </div></section>
@@ -181,8 +175,8 @@
   <h2 class="bd-h bd-h-c" id="bd-price-h" data-bd-rv>기장료는 이렇게 정해져요</h2>
   <p class="bd-price-c" data-bd-rv>월 5만원은 작년 매출 기본 구간(업종별 3억~9억원 이하) · <span class="nw">직원·알바 3명 이하</span> 기준이에요</p>
   <ul class="bd-plans">
-    <li class="bd-plan" data-bd-rv><p class="bd-plan-k">개인사업자</p><p class="bd-plan-s"><span class="nw">직원·알바 3명까지</span> 같은 금액</p><p class="bd-plan-p"><span class="num">월 <b data-bd-count="5">5</b>만원부터</span> <span class="bd-plan-v">부가세 별도</span></p><ul class="bd-plan-l"><li>매출·매입 장부 정리</li><li>부가가치세 신고</li><li>직원·알바 월급 신고(원천세)</li><li>매달 매출 보고서</li><li>카톡·전화 세무 상담</li></ul><button type="button" class="ap-btn ap-btn-b" data-ap-open="plan" data-biz="개인사업자">상담 신청하기</button></li>
-    <li class="bd-plan bd-plan-d" data-bd-rv><p class="bd-plan-k">법인사업자</p><p class="bd-plan-s">장부·거래량을 보고 확정</p><p class="bd-plan-p"><span class="num">월 <b data-bd-count="10">10</b>만원부터</span> <span class="bd-plan-v">부가세 별도</span></p><ul class="bd-plan-l"><li>매출·매입 장부 정리</li><li>부가가치세 신고</li><li>카톡·전화 세무 상담</li></ul><button type="button" class="ap-btn bd-btn-w" data-ap-open="plan" data-biz="법인사업자">상담 신청하기</button></li>
+    <li class="bd-plan bd-plan-d" data-bd-rv><p class="bd-plan-k">개인사업자</p><p class="bd-plan-s"><span class="nw">직원·알바 3명까지</span> 같은 금액</p><p class="bd-plan-p"><span class="num">월 <b>5</b>만원부터</span> <span class="bd-plan-v">부가세 별도</span></p><ul class="bd-plan-l"><li>매출·매입 장부 정리</li><li>부가가치세 신고</li><li>직원·알바 월급 신고(원천세)</li><li>매달 매출 보고서</li><li>카톡·전화 세무 상담</li></ul><button type="button" class="ap-btn ap-btn-b" data-ap-open="plan" data-biz="개인사업자">상담 신청하기</button></li>
+    <li class="bd-plan" data-bd-rv><p class="bd-plan-k">법인사업자</p><p class="bd-plan-s">장부·거래량을 보고 확정</p><p class="bd-plan-p"><span class="num">월 <b>10</b>만원부터</span> <span class="bd-plan-v">부가세 별도</span></p><ul class="bd-plan-l"><li>매출·매입 장부 정리</li><li>부가가치세 신고</li><li>카톡·전화 세무 상담</li></ul><button type="button" class="ap-btn ap-btn-l" data-ap-open="plan" data-biz="법인사업자">상담 신청하기</button></li>
   </ul>
   <p class="bd-price-n">종합소득세(법인은 법인세) 신고 수수료는 별도예요 · 작년 매출이 기본 구간을 넘거나 직원이 4명 이상이면 달라져요</p>
   <p class="bd-price-calc"><button type="button" class="ap-btn ap-btn-l" data-open-calc="ap-price">우리 가게 기장료 계산하기</button></p>
