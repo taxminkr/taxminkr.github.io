@@ -31,7 +31,12 @@
   };
   if (rv) {
     root.classList.add('bd-rv');
-    $$('[data-bd-count]').forEach(function (b) { b.textContent = b.getAttribute('data-bd-from') || '0'; });
+    /* 올라가는 숫자는 눈으로만 — 화면 읽기 프로그램에는 처음부터 마지막 값(10초·0번)을 읽어 준다 */
+    $$('[data-bd-count]').forEach(function (b) {
+      var s = doc.createElement('span'); s.className = 'bd-sr'; s.textContent = b.textContent;
+      b.setAttribute('aria-hidden', 'true'); b.parentNode.insertBefore(s, b);
+      b.textContent = b.getAttribute('data-bd-from') || '0';
+    });
     var io = new IntersectionObserver(function (es) {
       var k = 0;
       es.forEach(function (en) {
@@ -53,11 +58,17 @@
     var slides = $$('[data-bd-slide]', hero), n = slides.length, i = 0, DUR = 6000, timer = 0, vis = true, hold = false;
     var cur = $('[data-bd-cur]', hero), prog = $('[data-bd-prog]', hero), pp = $('[data-bd-pause]', hero);
     var mark = function () {
+      /* 초점이 지금 장면 안에 있었으면(키보드 좌우로 넘길 때) 새 장면의 첫 단추로 옮긴다 — 숨은 장면에 남아 사라지지 않게 */
+      var a = doc.activeElement, had = !!a && a !== hero && hero.contains(a);
       slides.forEach(function (s, j) {
         s.classList.toggle('on', j === i);
         if (j === i) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
       });
       if (cur) cur.textContent = '0' + (i + 1);
+      if (had && !slides[i].contains(a)) {
+        var t = $('a, button', slides[i]);
+        if (t) { try { t.focus({ preventScroll: true }); } catch (x) { t.focus(); } }
+      }
     };
     var running = function () { return !calm && !paused && vis && !hold && !doc.hidden && !dlgOpen(); };
     var restart = function () {
@@ -103,6 +114,7 @@
 
   /* ── ③ 흐르는 사진 띠: 한 벌 더 붙여 끊김 없이 */
   var mq = $('[data-bd-mq]');
+  if (mq && calm) mq.tabIndex = -1;   /* 움직임 줄이기: 옆으로 미는 띠가 되는데, 꾸밈(aria-hidden)이라 Tab 이 멈추지 않게 */
   if (mq && !calm) {
     var mtr = $('.bd-mq-tr', mq);
     $$('li', mtr).forEach(function (li) { mtr.appendChild(li.cloneNode(true)); });
@@ -143,15 +155,21 @@
     var C = window.TM || {}, ENDPOINT = C.endpoint || '';
     var f = $('[data-bd-form]', bar), tel = f.elements.tel, ok = f.elements.ok, go = $('button[type=submit]', f);
     var msg = $('[data-bd-msg]', bar), pop = $('[data-bd-pop]', bar), more = $('[data-bd-more]', bar), done = $('[data-bd-done]', bar);
-    var TELRE = /^(010\d{8}|01[16789]\d{7,8})$/, busy = false, mt = 0;
+    var TELRE = /^(010\d{8}|01[16789]\d{7,8})$/, busy = false;
+    var TEL_BAD = '휴대폰 번호를 확인해 주세요. 예) 010-1234-5678', SEND_BAD = '보내지 못했어요. 잠시 뒤 다시 눌러 보시거나 카톡·전화로 상담해 주세요';
     var digits = function (v) { var d = String(v || '').replace(/\D/g, ''); return /^8210/.test(d) ? '0' + d.slice(2) : d; };
-    var say = function (t) {
-      clearTimeout(mt); msg.textContent = t; msg.hidden = !t;
+    if (!msg.id) msg.id = 'bd-bar-msg';
+    /* 안내 글은 저절로 사라지지 않는다(고칠 때까지 보임) · 잘못된 칸과 이어 준다 */
+    var say = function (t, field) {
+      msg.textContent = t; msg.hidden = !t;
+      [tel, ok].forEach(function (x) { x.removeAttribute('aria-invalid'); x.removeAttribute('aria-describedby'); });
+      if (t && field) { field.setAttribute('aria-invalid', 'true'); field.setAttribute('aria-describedby', msg.id); }
       if (pop && t) { pop.hidden = true; more.setAttribute('aria-expanded', 'false'); }
-      if (t) mt = setTimeout(function () { msg.hidden = true; }, 5000);
     };
     setTimeout(function () { bar.classList.add('on'); }, calm ? 0 : 700);
+    ok.addEventListener('change', function () { if (!msg.hidden) say(''); });
     tel.addEventListener('input', function () {
+      if (!msg.hidden) say('');
       var d = digits(tel.value).slice(0, 11); if (!/^01/.test(d)) return;
       var mid = d.length === 10 ? 6 : 7;
       tel.value = d.length < 4 ? d : d.length <= mid ? d.slice(0, 3) + '-' + d.slice(3) : d.slice(0, 3) + '-' + d.slice(3, mid) + '-' + d.slice(mid);
@@ -159,13 +177,18 @@
     if (more) more.addEventListener('click', function () {
       var on = pop.hidden; pop.hidden = !on; more.setAttribute('aria-expanded', on ? 'true' : 'false'); if (on) say('');
     });
-    doc.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && pop && !pop.hidden) { pop.hidden = true; more.setAttribute('aria-expanded', 'false'); } });
+    doc.addEventListener('keydown', function (ev) {
+      if (ev.key !== 'Escape' || !pop || pop.hidden) return;
+      var inPop = pop.contains(doc.activeElement);
+      pop.hidden = true; more.setAttribute('aria-expanded', 'false');
+      if (inPop) more.focus();   /* 안내 글 안에 있던 초점이 사라지지 않게 '보기' 단추로 */
+    });
     f.addEventListener('submit', function (ev) {
       ev.preventDefault();
       if (busy) return;
-      if (!TELRE.test(digits(tel.value))) { say('휴대폰 번호를 다시 확인해 주세요'); tel.focus(); return; }
-      if (!ok.checked) { say('[필수] 개인정보 수집·이용 동의에 체크해 주세요'); ok.focus(); return; }
-      if (!ENDPOINT) { say('보내지 못했어요. 카톡이나 전화로 상담해 주세요'); return; }
+      if (!TELRE.test(digits(tel.value))) { say(TEL_BAD, tel); tel.focus(); return; }
+      if (!ok.checked) { say('[필수] 개인정보 수집·이용 동의에 체크해 주세요', ok); ok.focus(); return; }
+      if (!ENDPOINT) { say(SEND_BAD); return; }
       var biz = f.elements.biz.value, ind = f.elements.ind.value;
       var data = {
         type: 'lead', '요청': '전화 상담 예약', '이름': '(호칭 없음)', '연락처': tel.value.trim(), '통화 편한 시간': '언제든',
@@ -181,12 +204,15 @@
         .then(function (r) { return r.text(); })
         .then(function (t) {
           idle(); t = String(t || '').trim();
-          if (t === 'bad') { say('휴대폰 번호를 다시 확인해 주세요'); tel.focus(); return; }
-          if (t !== 'ok' && t !== 'dup' && t !== 'held') { say('보내지 못했어요. 카톡이나 전화로 상담해 주세요'); return; }
+          if (t === 'bad') { say(TEL_BAD, tel); tel.focus(); return; }
+          if (t !== 'ok' && t !== 'dup' && t !== 'held') { say(SEND_BAD); return; }
           try { if (typeof window.TM_TRACK === 'function') window.TM_TRACK('form_submit', {}); } catch (x) {}
-          f.hidden = true; done.hidden = false;
+          /* 어느 번호로 접수됐는지 보여 주고(잘못 친 번호를 알아채게), 초점을 완료 글로 옮긴다 */
+          var ds = $('span', done); if (ds) ds.textContent = '· 평일 10:00~17:30에 전화드릴게요 (' + tel.value.trim() + ')';
+          f.hidden = true; done.hidden = false; done.tabIndex = -1;
+          try { done.focus({ preventScroll: true }); } catch (x) { done.focus(); }
         })
-        .catch(function () { idle(); say('보내지 못했어요. 카톡이나 전화로 상담해 주세요'); });
+        .catch(function () { idle(); say(SEND_BAD); });
     });
   })();
 })();

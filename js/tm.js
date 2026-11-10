@@ -490,7 +490,7 @@
   doc.addEventListener('focusin', function (ev) { if (ev.target.matches && ev.target.matches('input, textarea')) { typing = true; dockSync(); } });
   doc.addEventListener('focusout', function () { typing = false; dockSync(); });
 
-  /* 상담 시간(평일 10:00–17:30, 한국 시간) 밖이면 고정 바의 '전화'를 '전화 예약'(번호 남기기)으로 바꾼다 */
+  /* 상담 시간(평일 10:00~17:30, 한국 시간) 밖이면 고정 바의 '전화'를 '전화 예약'(번호 남기기)으로 바꾼다 */
   (function () {
     var k = new Date(Date.now() + 9 * 36e5), d = k.getUTCDay(), m = k.getUTCHours() * 60 + k.getUTCMinutes();
     if (d >= 1 && d <= 5 && m >= 600 && m < 1050) return;
@@ -619,7 +619,7 @@
           if (tip) tip.hidden = true;   /* 접수 뒤엔 '거의 다 됐어요!' 말풍선을 거둠 */
           if (bar) bar.style.width = '100%';
           form.outerHTML = '<div class="consult done" role="status" tabindex="-1"><div class="ok">' + CK + '</div><h2>접수됐어요</h2>' +
-            '<p><span class="nw">평일 10:00–17:30</span> 사이에 <span class="nw">' + esc(tel) + '</span>로 전화드릴게요</p>' +
+            '<p><span class="nw">평일 10:00~17:30</span> 사이에 <span class="nw">' + esc(tel) + '</span>로 전화드릴게요</p>' +
             '<a class="btn btn-primary btn-block" href="' + KAKAO + '" data-kakao="done" data-copy>' + KK + '카톡으로도 바로 묻기</a></div>';
           var dn = $('.consult.done'); if (dn) { try { dn.focus(); } catch (x) {} }   /* 초점이 사라지지 않게 접수 안내로 */
         })
@@ -762,7 +762,7 @@
         if (!calcR && !val('rev')) { show('2', true); return; }
         if (!calcR && !val('emp')) { show('3', true); return; }
         fail.hidden = true;
-        if (!TELRE.test(digitsOf(tel.value))) { telErr('휴대폰 번호를 다시 확인해 주세요'); tel.focus(); return; }
+        if (!TELRE.test(digitsOf(tel.value))) { telErr('휴대폰 번호를 확인해 주세요. 예) 010-1234-5678'); tel.focus(); return; }
         if (!ok.checked) { say(eOk, ok, '[필수] 동의에 체크해 주세요'); ok.focus(); return; }
         if (!ENDPOINT) { fail.hidden = false; return; }
         var ex = est(), R = calcR || fee();
@@ -785,10 +785,10 @@
           .then(function (r) { return r.text(); })
           .then(function (t) {
             clearTimeout(to); idle(); t = String(t || '').trim();
-            if (t === 'bad') { telErr('휴대폰 번호를 다시 확인해 주세요'); tel.focus(); return; }
+            if (t === 'bad') { telErr('휴대폰 번호를 확인해 주세요. 예) 010-1234-5678'); tel.focus(); return; }
             if (t !== 'ok' && t !== 'dup' && t !== 'held') { fail.hidden = false; return; }
             track('form_submit', {});
-            var ds = $('[data-done-s]', card); if (ds) ds.textContent = '평일 10:00–17:30에 ' + (val('way') === '문자' ? '문자드릴게요' : '전화드릴게요');
+            var ds = $('[data-done-s]', card); if (ds) ds.textContent = '평일 10:00~17:30에 ' + (val('way') === '문자' ? '문자드릴게요' : '전화드릴게요') + ' (' + tel.value.trim() + ')';   /* 어느 번호로 접수됐는지 보여 줌 */
             f.hidden = true; done.hidden = false; if (alt) alt.hidden = true;
             if (tip) tip.hidden = true;
             if (lb) lb.style.width = '100%';
