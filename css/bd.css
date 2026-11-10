@@ -331,3 +331,6 @@
   .bd .bd-card, .bd .bd-ic, .bd .bd-ic-ph img, .bd .bd-card-ph img { transition: none; }
   .bd .bd-mq { overflow-x: auto; }
 }
+
+/* 31차(2026-11-10 사용자): 큰 화면의 01/03 진행 막대는 숨김(멈춤 단추만 남김) */
+.bd .bd-hs-no { display: none; }
