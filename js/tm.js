@@ -1,7 +1,7 @@
 /* 택스민 랜딩 동작: 출처 기록 · 전환 신호 · 첫 화면 시연(영상 + 3장면 자동 넘김) · 계산기 · 흐름띠 · 숫자 세기 ·
    전화 상담(페이지 안 폼) · 카톡(PC 안내) · 아래 고정 버튼.
    요금 규칙은 택스민 요금 등급표(개인사업자, 직전 연도 매출 기준)와 같다:
-   기본 월 4만(직원 없음)·5만(1~3명)·6만(4~5명) / 중간 월 7~8만 / 성실신고확인 월 12~15만 / 법인 월 10만부터 — 모두 부가세 별도.
+   기본 월 5만(직원 3명 이하)·6만(4~5명) / 중간 월 7~8만 / 성실신고확인 월 12~15만 / 법인 월 10만부터 — 모두 부가세 별도.
    카톡은 쿼리 없는 채널 채팅 주소를 같은 탭에서 연다(앱 안 브라우저·구글 팝업 규정). PC 는 카카오 로그인이 필요해 안내 창을 먼저 보인다.
    움직임 줄이기 설정·검색 로봇·화면 캡처에서는 영상·자동 넘김·흐름띠·숫자 세기를 모두 하지 않는다(처음부터 다 보임).
    js-rv(등장 준비)·tm-off(상담 시간 밖)는 첫 그림 전에 js/early.js 가 붙인다. */
@@ -83,6 +83,7 @@
     try { if (typeof window.TM_CONV === 'function') window.TM_CONV(name, p); } catch (x) {}
     if (/^(kakao_click|tel_click|form_submit|calc_complete)$/.test(name)) hit(name, anon);
   }
+  window.TM_TRACK = track;   /* bd.js(아래 신청 바)가 전환을 같은 길로 보냄 */
   if (!bot && !sget('tm_view_' + PAGE)) { sset('tm_view_' + PAGE, '1'); hit('view'); }
 
   /* ── 알림 띠 · 복사(성공했을 때만 '복사했어요') */
@@ -300,7 +301,7 @@
     };
     var compute = function () {
       var g = IND_G[S.ind];
-      var R = { ind: IND_NAME[S.ind] || '-', rev: '-', emp: '-', tier: '', price: '월 4만원부터', won: [40000], why: '', from: true, corp: false, done: false };
+      var R = { ind: IND_NAME[S.ind] || '-', rev: '-', emp: '-', tier: '', price: '월 5만원부터', won: [50000], why: '', from: true, corp: false, done: false };
       if (!S.ind) return R;
       if (g === 'X') { R.corp = true; R.tier = '법인'; R.price = '월 10만원부터'; R.won = [100000]; R.why = '법인은 장부 상태와 거래량을 보고 상담 때 확정해요.'; R.done = true; return R; }
       var bb = BAND[g];
@@ -309,7 +310,7 @@
       var t = S.rev === 'mid' ? 'P' : S.rev === 'hi' ? 'S' : 'L';
       if (t === 'L' && S.emp === '6') { t = 'P'; R.why = '직원·알바가 6명 이상이면 중간 구간이에요.'; }
       R.from = !(S.rev && S.emp);
-      if (t === 'L') { R.tier = '기본 구간'; if (S.emp === '5') { R.price = '월 6만원'; R.won = [60000]; } else if (S.emp === '3') { R.price = '월 5만원'; R.won = [50000]; } else { R.price = R.from ? '월 4만원부터' : '월 4만원'; R.won = [40000]; } }
+      if (t === 'L') { R.tier = '기본 구간'; if (S.emp === '5') { R.price = '월 6만원'; R.won = [60000]; } else { R.price = R.from ? '월 5만원부터' : '월 5만원'; R.won = [50000]; } }
       else if (t === 'P') { R.tier = '중간 구간'; R.price = '월 7~8만원'; R.won = [70000, 80000]; if (!R.why) R.why = '작년 매출이 ' + bb.lo + '을 넘으면 중간 구간이에요.'; }
       else { R.tier = '성실신고확인 구간'; R.price = '월 12~15만원'; R.won = [120000, 150000]; R.why = '작년 매출이 ' + bb.hi + ' 이상이면 성실신고확인 대상이라 이 구간이에요.'; }
       /* 중간·성실 구간의 직원 수 상한은 아직 정하지 않음 → 6명 이상이면 상담 때 확정(규정 검수 11/4) */
@@ -681,8 +682,8 @@
         if (val('biz') === '법인사업자') return ['월 10만원부터', '장부·거래량을 보고 상담 때 정해요'];
         var r = val('rev'), m = val('emp'), small = r === '올해 시작' || r === '3억 이하';
         if (r === '10억 이상') return ['월 7~15만원', '업종·매출 구간에 따라 상담 때 정해요'];
-        if (small) return m === '1~4명' ? ['월 5~6만원', '직원 1~3명 월 5만원 · 4명 월 6만원'] : m === '5명 이상' ? ['월 6만원부터', '직원 수에 따라 상담 때 정해요'] : ['월 4만원', '종합소득세 신고 수수료 별도'];
-        return m === '1~4명' ? ['월 5~15만원', '업종에 따라 달라져요(매출이 크면 성실신고 구간)'] : m === '5명 이상' ? ['월 6~15만원', '업종·직원 수에 따라 상담 때 정해요'] : ['월 4~15만원', '업종에 따라 달라져요(매출이 크면 성실신고 구간)'];
+        if (small) return m === '1~4명' ? ['월 5~6만원', '직원 1~3명 월 5만원 · 4명 월 6만원'] : m === '5명 이상' ? ['월 6만원부터', '직원 수에 따라 상담 때 정해요'] : ['월 5만원', '종합소득세 신고 수수료 별도'];
+        return m === '1~4명' ? ['월 5~15만원', '업종에 따라 달라져요(매출이 크면 성실신고 구간)'] : m === '5명 이상' ? ['월 6~15만원', '업종·직원 수에 따라 상담 때 정해요'] : ['월 5~15만원', '업종에 따라 달라져요(매출이 크면 성실신고 구간)'];
       };
       var estSync = function () { var x = est(); if (estP) estP.textContent = x[0]; if (estS) estS.textContent = x[1]; };
       var say = function (el, inp, msg) { el.textContent = msg; el.hidden = !msg; if (msg) inp.setAttribute('aria-invalid', 'true'); else inp.removeAttribute('aria-invalid'); };
