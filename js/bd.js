@@ -10,7 +10,6 @@
   var calm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var IO = 'IntersectionObserver' in window;
   var rv = IO && !calm && root.classList.contains('js-rv');
-  if (/[?&]tone=calm\b/.test(location.search)) doc.body.classList.add('bd-calm');   /* 차분한 톤 비교판 — 고르신 뒤 지울 것 */
   var paused = false;                       /* 멈춤 단추 — 넘김·사진 띠·카드 넘김을 함께 멈춤(WCAG 2.2.2) */
   var dlgOpen = function () { return !!doc.querySelector('dialog[open]'); };
   var syncs = [];

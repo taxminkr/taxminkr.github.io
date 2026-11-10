@@ -336,7 +336,7 @@
 /* ═══ 32차(2026-11-10 사용자 2차 의견) ═══
    ① (취소 — 33차: 3D 그래픽 배경은 사용자가 '사진 느낌이 낫다'고 해서 사진으로 되돌림)  ② 01/03 진행 막대 없앰(멈춤 단추만)
    ③ 서비스 소개·요금제·자주 묻는 질문 쪽도 같은 틀(위쪽 사진 띠 · 카드 · 엇갈린 업종 카드)
-   ④ 차분한 톤 비교판: 주소 뒤에 ?tone=calm 을 붙이면 .bd-calm 이 붙는다(고르신 뒤 한쪽만 남길 것). */
+   ④ 차분한 톤(34차에 기본으로 확정 — 비교판 코드 삭제). */
 
 /* ── 큰 화면: 진행 막대를 뺀 뒤의 자리 맞춤 */
 .bd .bd-hs-ui { bottom: 14px; }
@@ -415,22 +415,22 @@
   .bd .bd-sub::after { background: linear-gradient(90deg, rgba(8, 15, 38, .9) 0%, rgba(8, 15, 38, .66) 38%, rgba(8, 15, 38, .14) 72%, rgba(8, 15, 38, 0) 100%); }
 }
 
-/* ── ④ 차분한 톤 비교판(?tone=calm): 아래 바를 남색으로 낮추고, 노란 단추·파란 큰 숫자를 가라앉힘 */
-.bd-calm .bd-hs-cta .ap-btn-k, .bd-calm .ap-band-cta .ap-btn-k { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .72); }
-.bd-calm .bd-hs-cta .ap-btn-k:hover, .bd-calm .ap-band-cta .ap-btn-k:hover { background: rgba(255, 255, 255, .12); }
-.bd-calm .bd-hs-t { font-weight: 700; }
-.bd-calm .bd-fact-v b { color: #0B1530; font-weight: 700; }
-.bd-calm .bd-facts { border-top-width: 1px; }
-.bd-calm .bd-band { background: #0E1E57; }
-.bd-calm .bd-plan-p, .bd-calm .bd-step-n { font-weight: 700; }
+/* ── ④ 차분한 톤(34차 확정): 아래 바를 남색으로 낮추고, 노란 단추·파란 큰 숫자를 가라앉힘 */
+.bd .bd-hs-cta .ap-btn-k, .bd .ap-band-cta .ap-btn-k { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .72); }
+.bd .bd-hs-cta .ap-btn-k:hover, .bd .ap-band-cta .ap-btn-k:hover { background: rgba(255, 255, 255, .12); }
+.bd .bd-hs-t { font-weight: 700; }
+.bd .bd-fact-v b { color: #0B1530; font-weight: 700; }
+.bd .bd-facts { border-top-width: 1px; }
+.bd .bd-band { background: #0E1E57; }
+.bd .bd-plan-p, .bd .bd-step-n { font-weight: 700; }
 @media (min-width: 960px) {
-  .bd-calm .bd-bar { background: #0B1530; box-shadow: 0 -1px 0 rgba(255, 255, 255, .08); }
-  .bd-calm .bd-bar-in { height: 68px; }
-  .bd-calm .bd-bar-ic { display: none; }
-  .bd-calm .bd-bar-tel b { font-size: 19px; line-height: 24px; font-weight: 700; }
-  .bd-calm .bd-bar-f select, .bd-calm .bd-bar-f input[type="tel"], .bd-calm .bd-bar-go { height: 44px; }
-  .bd-calm .bd-bar-go { background: #2554F0; }
-  .bd-calm .bd-bar-go:hover { background: #1C43D1; }
-  .bd-calm .bd-bar-ck input { accent-color: #2554F0; }
-  .bd-calm .ft { padding-bottom: 116px; }
+  .bd .bd-bar { background: #0B1530; box-shadow: 0 -1px 0 rgba(255, 255, 255, .08); }
+  .bd .bd-bar-in { height: 68px; }
+  .bd .bd-bar-ic { display: none; }
+  .bd .bd-bar-tel b { font-size: 19px; line-height: 24px; font-weight: 700; }
+  .bd .bd-bar-f select, .bd .bd-bar-f input[type="tel"], .bd .bd-bar-go { height: 44px; }
+  .bd .bd-bar-go { background: #2554F0; }
+  .bd .bd-bar-go:hover { background: #1C43D1; }
+  .bd .bd-bar-ck input { accent-color: #2554F0; }
+  .bd .ft { padding-bottom: 116px; }
 }
