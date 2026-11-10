@@ -97,17 +97,6 @@
       if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) go(i + (dx < 0 ? 1 : -1));
     });
     hero.addEventListener('pointercancel', function () { down = false; });
-    /* PC: 마우스를 따라 배경 그래픽이 살짝 움직임(변수만 바꾸고 실제 움직임은 CSS transform) */
-    if (!calm && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      var raf = 0, mx = 0, my = 0;
-      hero.addEventListener('pointermove', function (ev) {
-        var r = hero.getBoundingClientRect();
-        mx = (ev.clientX - r.left) / r.width - 0.5; my = (ev.clientY - r.top) / r.height - 0.5;
-        if (raf) return;
-        raf = requestAnimationFrame(function () { raf = 0; hero.style.setProperty('--bd-px', mx.toFixed(3)); hero.style.setProperty('--bd-py', my.toFixed(3)); });
-      });
-      hero.addEventListener('pointerleave', function () { hero.style.setProperty('--bd-px', '0'); hero.style.setProperty('--bd-py', '0'); });
-    }
     if (IO) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; restart(); }, { threshold: 0.25 }).observe(hero);
     syncs.push(restart);
     mark(); restart();
