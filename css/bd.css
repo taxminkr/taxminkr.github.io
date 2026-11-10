@@ -511,5 +511,5 @@ html.tm-off .bd[data-page="apply"] .bd-hero .ap-trust { display: block; }
   /* 아래 바가 68px 로 낮아진 뒤 남던 흰 틈 없앰 */
   .bd .bd-hero { height: clamp(520px, calc(100vh - 76px - 68px), 760px); }
   /* 자주 묻는 질문 쪽: 위 사진 띠와 질문 목록 사이 여백 */
-  body.bd[data-pg="faq"] main .ap-faq { padding: 80px 0 96px; }
+  body.bd[data-pg="faq"] #faq { padding: 80px 0 96px; }   /* tm.css 의 #faq 규칙이 우선해서 id 로 지정 */
 }
