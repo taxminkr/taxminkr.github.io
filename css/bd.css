@@ -563,7 +563,7 @@ html:has(> body.bd) { scroll-padding-bottom: 96px; }
 /* 종이색 바탕 위 보조 글은 따뜻한 회색 하나로(차가운 회색과 섞이던 것) */
 .bd .bd-ind-d, .bd .bd-steps p { color: var(--bd-text-2); }
 /* 사진 위 작은 글: 밝은 구역에서도 읽히게 */
-.bd .bd-hs-n, .bd .bd-sub-d, .bd .bd-vat { text-shadow: 0 1px 10px rgba(8, 15, 38, .5); }
+.bd .bd-hs-n, .bd .bd-sub-d, .bd .bd-vat { text-shadow: 0 1px 2px rgba(0, 0, 0, .45); }
 
 /* 모서리: 바깥 = 안 + 여백 */
 .bd .bd-card-ph { border-radius: 10px; }
