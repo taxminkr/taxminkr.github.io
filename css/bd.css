@@ -604,3 +604,14 @@ html:has(> body.bd) { scroll-padding-bottom: 96px; }
   .bd .bd-bar-ck, .bd .bd-bar-tel { min-height: 44px; }
   .bd .bd-bar-more { min-height: 44px; min-width: 44px; }
 }
+
+/* ── 39차: 첫 화면 사진을 같은 장면의 짧은 영상으로(확대됐다 풀리던 움직임은 뺌). 영상은 사진 위에 겹쳐 재생되면 나타남 */
+.js-rv .bd-hs.on .bd-hs-pic img { animation: none; }
+.bd .bd-hs-pic video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 30%; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
+.bd .bd-hs-pic video.is-on { opacity: 1; }
+@media (min-width: 960px) {
+  .bd .bd-hs-pic video { object-position: 60% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bd .bd-hs-pic video { display: none; }
+}

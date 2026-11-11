@@ -52,10 +52,32 @@
     $$('[data-bd-rv]').forEach(function (el) { io.observe(el); });
   }
 
+  /* ── 광고 키워드 맞춤: 주소의 k(또는 검색광고가 붙여 주는 검색어)에 따라 첫 화면 첫 줄만 바꾼다.
+        정해 둔 문구만 쓰고, 주소에 든 글자를 화면에 그대로 넣지는 않는다 */
+  (function () {
+    var eb = $('[data-bd-kw-eb]'); if (!eb) return;
+    var q; try { q = new URLSearchParams(location.search); } catch (e) { return; }
+    var k = (q.get('k') || '').toLowerCase(), w = q.get('n_keyword') || q.get('n_query') || q.get('utm_term') || '';
+    var EB = { corp: '법인 세무 기장', food: '음식점·카페 세무 기장', shop: '쇼핑몰·스마트스토어 세무 기장', free: '프리랜서·유튜버 세무 기장', mfg: '제조·건설·IT 세무 기장', move: '' };
+    var RULES = [['corp', /법인/], ['move', /변경|바꾸|옮기|이관/], ['food', /음식|식당|카페|요식|외식|배달|프랜차이즈/],
+      ['shop', /쇼핑몰|스토어|오픈마켓|전자상거래|도소매|셀러|구매대행/], ['free', /프리랜서|유튜버|크리에이터|인플루언서/], ['mfg', /제조|건설|인테리어/]];
+    if (!EB.hasOwnProperty(k)) { k = ''; for (var r = 0; r < RULES.length && !k; r++) if (RULES[r][1].test(w)) k = RULES[r][0]; }
+    if (!k) return;
+    root.setAttribute('data-bd-k', k);
+    if (!EB[k]) return;
+    eb.textContent = EB[k];
+    var sr = $('[data-bd-kw-sr]'); if (sr) sr.textContent = EB[k].replace('세무 기장', '세무기장') + ' 기장료 ';
+    if (k === 'corp') {
+      var nm = $('[data-bd-kw-num]'), nt = $('[data-bd-kw-n]');
+      if (nm) nm.textContent = '월 10만원부터';
+      if (nt) nt.textContent = '법인세 신고 수수료 별도 · 장부와 거래량을 보고 상담 때 정해요';
+    }
+  })();
+
   /* ── ① 큰 화면 넘김 */
   var hero = $('[data-bd-hero]');
   if (hero) (function () {
-    var slides = $$('[data-bd-slide]', hero), n = slides.length, i = 0, DUR = 6000, timer = 0, vis = true, hold = false;
+    var slides = $$('[data-bd-slide]', hero), n = slides.length, i = root.getAttribute('data-bd-k') === 'move' ? 2 : 0, DUR = 6000, timer = 0, vis = true, hold = false;
     var cur = $('[data-bd-cur]', hero), prog = $('[data-bd-prog]', hero), pp = $('[data-bd-pause]', hero);
     var mark = function () {
       /* 초점이 지금 장면 안에 있었으면(키보드 좌우로 넘길 때) 새 장면의 첫 단추로 옮긴다 — 숨은 장면에 남아 사라지지 않게 */
@@ -65,10 +87,34 @@
         if (j === i) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
       });
       if (cur) cur.textContent = '0' + (i + 1);
+      if (vReady) playV();
       if (had && !slides[i].contains(a)) {
         var t = $('a, button', slides[i]);
         if (t) { try { t.focus({ preventScroll: true }); } catch (x) { t.focus(); } }
       }
+    };
+    /* 배경 영상: 사진 위에 같은 장면의 짧은 영상을 겹친다. 지금 보이는 장면 것만, 쪽이 다 뜬 뒤에 불러온다.
+       움직임 줄이기·데이터 절약·자동 재생이 막힌 곳에서는 사진 그대로 둔다 */
+    var cn = navigator.connection, lite = calm || !root.classList.contains('js-rv') || !!(cn && (cn.saveData || /2g/.test(cn.effectiveType || '')));
+    var wide = window.matchMedia ? window.matchMedia('(min-width: 960px)') : null, vReady = false;
+    var vids = slides.map(function (s) {
+      var v = lite ? null : $('video[data-bd-v]', s);
+      if (v) v.addEventListener('playing', function () { v.classList.add('is-on'); });
+      return v;
+    });
+    var playV = function () {
+      vids.forEach(function (v, k) {
+        if (!v) return;
+        if (k !== i) {
+          if (v.getAttribute('src')) setTimeout(function () { if (k !== i) { v.pause(); v.classList.remove('is-on'); } }, 950);
+          return;
+        }
+        v.muted = true; v.defaultPlaybackRate = 0.8;
+        if (!v.getAttribute('src')) v.src = v.getAttribute('data-bd-v') + (wide && wide.matches ? '' : '-m') + '.mp4';
+        else { try { v.currentTime = 0; } catch (x) {} }
+        v.playbackRate = 0.8;
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      });
     };
     var running = function () { return !calm && !paused && vis && !hold && !doc.hidden && !dlgOpen(); };
     var restart = function () {
@@ -110,6 +156,8 @@
     if (IO) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; restart(); }, { threshold: 0.25 }).observe(hero);
     syncs.push(restart);
     mark(); restart();
+    var vGo = function () { vReady = true; playV(); };
+    if (doc.readyState === 'complete') vGo(); else window.addEventListener('load', vGo);
   })();
 
   /* ── ③ 흐르는 사진 띠: 한 벌 더 붙여 끊김 없이 */
