@@ -615,3 +615,16 @@ html:has(> body.bd) { scroll-padding-bottom: 96px; }
 @media (prefers-reduced-motion: reduce) {
   .bd .bd-hs-pic video { display: none; }
 }
+
+/* ── 41차: 흐르는 사진 아래에 업종 이름(작게). 사진 크기·모서리는 그대로 두고 칸 아래에 한 줄만 더함 */
+.bd .bd-mq-tr li { height: auto; border-radius: 0; overflow: visible; background: none; text-align: center; }
+.bd .bd-mq-tr img { height: 236px; border-radius: 20px; background: var(--bd-sand); }
+.bd .bd-mq-tr b { display: block; margin-top: 10px; font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: -.3px; color: var(--bd-ink); white-space: nowrap; }
+@media (min-width: 720px) {
+  .bd .bd-mq-tr img { height: 300px; border-radius: 24px; }
+  .bd .bd-mq-tr b { margin-top: 12px; font-size: 14px; line-height: 20px; }
+}
+@media (min-width: 960px) {
+  .bd .bd-mq-tr img { height: 344px; border-radius: 28px; }
+  .bd .bd-mq-tr b { margin-top: 14px; font-size: 15px; line-height: 22px; }
+}

@@ -58,13 +58,12 @@
     var eb = $('[data-bd-kw-eb]'); if (!eb) return;
     var q; try { q = new URLSearchParams(location.search); } catch (e) { return; }
     var k = (q.get('k') || '').toLowerCase(), w = q.get('n_keyword') || q.get('n_query') || q.get('utm_term') || '';
-    var EB = { corp: '법인 세무 기장', food: '음식점·카페 세무 기장', shop: '쇼핑몰·스마트스토어 세무 기장', free: '프리랜서·유튜버 세무 기장', mfg: '제조·건설·IT 세무 기장', move: '' };
-    var RULES = [['corp', /법인/], ['move', /변경|바꾸|옮기|이관/], ['food', /음식|식당|카페|요식|외식|배달|프랜차이즈/],
+    var EB = { corp: '법인 세무 기장', food: '음식점·카페 세무 기장', shop: '쇼핑몰·스마트스토어 세무 기장', free: '프리랜서·유튜버 세무 기장', mfg: '제조·건설·IT 세무 기장' };
+    var RULES = [['corp', /법인/], ['food', /음식|식당|카페|요식|외식|배달|프랜차이즈/],
       ['shop', /쇼핑몰|스토어|오픈마켓|전자상거래|도소매|셀러|구매대행/], ['free', /프리랜서|유튜버|크리에이터|인플루언서/], ['mfg', /제조|건설|인테리어/]];
     if (!EB.hasOwnProperty(k)) { k = ''; for (var r = 0; r < RULES.length && !k; r++) if (RULES[r][1].test(w)) k = RULES[r][0]; }
     if (!k) return;
     root.setAttribute('data-bd-k', k);
-    if (!EB[k]) return;
     eb.textContent = EB[k];
     var sr = $('[data-bd-kw-sr]'); if (sr) sr.textContent = EB[k].replace('세무 기장', '세무기장') + ' 기장료 ';
     if (k === 'corp') {
@@ -77,7 +76,7 @@
   /* ── ① 큰 화면 넘김 */
   var hero = $('[data-bd-hero]');
   if (hero) (function () {
-    var slides = $$('[data-bd-slide]', hero), n = slides.length, i = root.getAttribute('data-bd-k') === 'move' ? 2 : 0, DUR = 6000, timer = 0, vis = true, hold = false;
+    var slides = $$('[data-bd-slide]', hero), n = slides.length, i = 0, DUR = 6000, timer = 0, vis = true, hold = false;
     var cur = $('[data-bd-cur]', hero), prog = $('[data-bd-prog]', hero), pp = $('[data-bd-pause]', hero);
     var mark = function () {
       /* 초점이 지금 장면 안에 있었으면(키보드 좌우로 넘길 때) 새 장면의 첫 단추로 옮긴다 — 숨은 장면에 남아 사라지지 않게 */
