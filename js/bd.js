@@ -109,10 +109,11 @@
           if (v.getAttribute('src')) setTimeout(function () { if (k !== i) { v.pause(); v.classList.remove('is-on'); } }, 950);
           return;
         }
-        v.muted = true; v.defaultPlaybackRate = 0.8;
+        var rate = parseFloat(v.getAttribute('data-bd-rate')) || 1;
+        v.muted = true; v.defaultPlaybackRate = rate;
         if (!v.getAttribute('src')) v.src = v.getAttribute('data-bd-v') + (wide && wide.matches ? '' : '-m') + '.mp4';
         else { try { v.currentTime = 0; } catch (x) {} }
-        v.playbackRate = 0.8;
+        v.playbackRate = rate;
         var p = v.play(); if (p && p.catch) p.catch(function () {});
       });
     };
