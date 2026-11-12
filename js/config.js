@@ -7,8 +7,13 @@ window.TM = {
   endpoint: 'https://script.google.com/macros/s/AKfycbxk6_zDmGd_aj9bfhUwitYn-3rVxdYVI9JQ9tuUpjGZn5TlRgt86-tV7uZ88HVkZmpt4A/exec',
   hitBeacon: true,
   ga4: 'G-3QN21HDBPJ',        /* 예: 'G-XXXXXXXXXX' (새 도메인용 GA4 속성) */
-  gads: '',         /* 예: 'AW-XXXXXXXXX' (구글 광고) */
-  gadsLabels: {},   /* 예: { kakao_click: '라벨', tel_click: '라벨', form_submit: '라벨' } */
+  gads: 'AW-18554274766',   /* 구글 광고 계정 382-975-1705 */
+  gadsLabels: {             /* 구글 광고 전환 액션 라벨 */
+    kakao_click: 'HGJaCOqCmrcdEM6Hr49F',    /* 카톡 상담 클릭 */
+    tel_click: 'ny3pCO2CmrcdEM6Hr49F',      /* 전화 버튼 클릭 */
+    form_submit: '-23eCPCCmrcdEM6Hr49F',    /* 전화 상담 예약 */
+    calc_complete: '2mzsCPOCmrcdEM6Hr49F'   /* 기장료 계산 완료 */
+  },
   naverWa: '',      /* 네이버 검색광고 전환 추적 계정 값(설치 안내 메일) */
   naverConv: {      /* 전환 이름 → 네이버 전환 유형(설치 안내 메일 기준으로 맞춤) */
     form_submit: 'lead',
