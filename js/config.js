@@ -6,7 +6,7 @@ window.TM = {
   /* 전화 상담 예약 → 구글 Apps Script → 사무소 시트·메일(기존 당근 랜딩과 같은 접수처) */
   endpoint: 'https://script.google.com/macros/s/AKfycbxk6_zDmGd_aj9bfhUwitYn-3rVxdYVI9JQ9tuUpjGZn5TlRgt86-tV7uZ88HVkZmpt4A/exec',
   hitBeacon: true,
-  ga4: '',          /* 예: 'G-XXXXXXXXXX' (새 도메인용 GA4 속성) */
+  ga4: 'G-3QN21HDBPJ',        /* 예: 'G-XXXXXXXXXX' (새 도메인용 GA4 속성) */
   gads: '',         /* 예: 'AW-XXXXXXXXX' (구글 광고) */
   gadsLabels: {},   /* 예: { kakao_click: '라벨', tel_click: '라벨', form_submit: '라벨' } */
   naverWa: '',      /* 네이버 검색광고 전환 추적 계정 값(설치 안내 메일) */
