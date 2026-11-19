@@ -58,9 +58,9 @@
     var eb = $('[data-bd-kw-eb]'); if (!eb) return;
     var q; try { q = new URLSearchParams(location.search); } catch (e) { return; }
     var k = (q.get('k') || '').toLowerCase(), w = q.get('n_keyword') || q.get('n_query') || q.get('utm_term') || '';
-    var EB = { corp: '법인 세무 기장', food: '음식점·카페 세무 기장', shop: '쇼핑몰·스마트스토어 세무 기장', free: '프리랜서·유튜버 세무 기장', mfg: '제조·건설·IT 세무 기장' };
+    var EB = { corp: '법인 세무 기장', food: '음식점·카페 세무 기장', shop: '쇼핑몰·스마트스토어 세무 기장', free: '프리랜서·유튜버 세무 기장', mfg: '제조·건설·IT 세무 기장', local: '강서구·마곡 세무 기장' };
     var RULES = [['corp', /법인/], ['food', /음식|식당|카페|요식|외식|배달|프랜차이즈/],
-      ['shop', /쇼핑몰|스토어|오픈마켓|전자상거래|도소매|셀러|구매대행/], ['free', /프리랜서|유튜버|크리에이터|인플루언서/], ['mfg', /제조|건설|인테리어/]];
+      ['shop', /쇼핑몰|스토어|오픈마켓|전자상거래|도소매|셀러|구매대행/], ['free', /프리랜서|유튜버|크리에이터|인플루언서/], ['mfg', /제조|건설|인테리어/], ['local', /강서|마곡/]];
     if (!EB.hasOwnProperty(k)) { k = ''; for (var r = 0; r < RULES.length && !k; r++) if (RULES[r][1].test(w)) k = RULES[r][0]; }
     if (!k) return;
     root.setAttribute('data-bd-k', k);
