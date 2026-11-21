@@ -439,7 +439,15 @@
   var pcDlg = $('#kk-pc'), rsvDlg = $('#rsv-dlg');
   function openDlg(d) { if (!d) return; if (typeof d.showModal === 'function') { if (!d.open) d.showModal(); } else d.setAttribute('open', ''); }
   function closeDlg(d) { if (!d) return; if (typeof d.close === 'function') d.close(); else d.removeAttribute('open'); }
-  [pcDlg, cdlg, rsvDlg].forEach(function (d) { if (d) d.addEventListener('click', function (ev) { if (ev.target === d || ev.target.closest('[data-close]')) closeDlg(d); }); });
+  /* 바깥을 눌러 닫기: closedby 를 아는 브라우저는 그 기능으로, 모르면 '누른 곳·뗀 곳이 둘 다 창 밖'일 때만 닫는다.
+     예전엔 눌린 요소가 창 자신인지로 판단해, 번호 칸 글자를 끌어 고르다 밖에서 떼면 창이 닫히고 입력이 사라졌다 */
+  function lightDismiss(d) {
+    if (window.HTMLDialogElement && 'closedBy' in HTMLDialogElement.prototype) { d.setAttribute('closedby', 'any'); return; }
+    var out = function (e) { var r = d.getBoundingClientRect(); return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom; }, pressedOut = false;
+    d.addEventListener('pointerdown', function (e) { pressedOut = out(e); });
+    d.addEventListener('pointerup', function (e) { if (pressedOut && out(e)) closeDlg(d); pressedOut = false; });
+  }
+  [pcDlg, cdlg, rsvDlg].forEach(function (d) { if (d) { lightDismiss(d); d.addEventListener('click', function (ev) { if (ev.target.closest('[data-close]')) closeDlg(d); }); } });
 
   /* ── 클릭: 카톡·전화·기타 */
   doc.addEventListener('click', function (ev) {
@@ -834,7 +842,8 @@
       apDlg.scrollTop = 0;
       barSync();
     };
-    apDlg.addEventListener('click', function (ev) { if (ev.target === apDlg || ev.target.closest('[data-close]')) closeDlg(apDlg); });
+    lightDismiss(apDlg);
+    apDlg.addEventListener('click', function (ev) { if (ev.target.closest('[data-close]')) closeDlg(apDlg); });
     apDlg.addEventListener('close', barSync);
     doc.addEventListener('click', function (ev) {
       var o = ev.target.closest('[data-ap-open]');
