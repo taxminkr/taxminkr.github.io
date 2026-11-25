@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내 기장 설계 | 택스민</title>
+<meta name="description" content="사업자 형태·업종·작년 매출과 우리 가게 상황에 답하면 내 기장 설계안과 월 기장료가 바로 나와요. 모든 설계는 기본 월 4만원(부가세 별도)에서 시작해요.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://taxminlp.com/build.html">
+<meta name="naver-site-verification" content="fba8605beef3c46e015243e88556d97275d92d8c">
+<meta name="theme-color" content="#050608">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="택스민(세무회계 민)">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="내 기장 설계 | 택스민">
+<meta property="og:description" content="사업자 형태·업종·작년 매출과 우리 가게 상황에 답하면 내 기장 설계안과 월 기장료가 바로 나와요. 기본 월 4만원부터(부가세 별도)">
+<meta property="og:url" content="https://taxminlp.com/build.html">
+<meta property="og:image" content="https://taxminlp.com/img/og-v11.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TAXMIN 우리 가게에 필요한 만큼만. 기장료도 딱 그만큼만.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
+<script src="js/lead.js" defer></script>
+<script src="js/config.js?v=20261106f" defer></script>
+<script src="js/tags.js?v=20261106f" defer></script>
+<script src="js/track.js?v=20261126a" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --ink:#020617; --ink-2:#191B1F; --sub:#5B6270; --mute:#646B77; --line:#E6E8EC; --soft:#F6F7F9; --stage:#EEF1F5;
+  --blue:#2554F0; --bar:76px; --pad:40px; --w:1280px;
+  --font:"Manrope","Pretendard Variable",Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-bottom:calc(var(--bar) + 16px)}
+h1,h2,h3{text-wrap:balance}
+body{font-family:var(--font);color:var(--ink);background:#fff;font-size:16px;line-height:1.55;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;padding-bottom:var(--bar)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:disabled{cursor:default}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+[hidden]{display:none!important}
+svg.i{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* 머리 */
+header{position:sticky;top:0;z-index:50;height:64px;background:#fff;box-shadow:0 1px 0 var(--line)}
+.hd{height:100%;display:flex;align-items:center;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-size:21px;letter-spacing:-.01em}
+.logo b{font-weight:800}.logo span{font-weight:300}
+.logo::before{content:"";width:28px;height:28px;flex:none;background:url(img/logo_t.svg) center/contain no-repeat}
+.hd .sep{width:1px;height:16px;background:var(--line)}
+.hd .cur{font-size:15px;font-weight:600;color:var(--sub)}
+.hd .x{margin-left:auto;font-size:14px;font-weight:600;color:var(--sub)}
+
+/* 설계 한 화면: 왼쪽 답하기 · 오른쪽 설계안 */
+.mk{display:grid;grid-template-columns:minmax(0,1fr) 384px;gap:56px;align-items:start;padding-top:36px;padding-bottom:56px}
+h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-height:1.25}
+.lead{font-size:15px;color:var(--sub);margin-top:6px}
+.form{margin-top:24px;border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:132px minmax(0,1fr);gap:20px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line)}
+.row > h2{font-size:16px;font-weight:700;padding-top:10px;display:flex;align-items:flex-start;gap:12px;color:var(--ink)}
+.row > h2 b{flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #C5CAD3;position:relative;transition:background-color .2s,box-shadow .2s}
+/* 안 답한 단계는 빈 동그라미, 답하면 파랗게 채워지고 체크(숫자 없음) */
+.row > h2 b::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.6 5.2l1.6 1.6 3.2-3.4' fill='none' stroke='%23fff' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/15px no-repeat;opacity:0;transition:opacity .2s}
+.row.done > h2 b{background:var(--blue);box-shadow:none}
+.row.done > h2 b::after{opacity:1}
+.row:not(.done) .done-t{display:none}
+.seg{display:grid;gap:8px}
+.seg.c2{grid-template-columns:repeat(2,minmax(0,1fr))} .seg.c3{grid-template-columns:repeat(3,minmax(0,1fr))} .seg.c6{grid-template-columns:repeat(auto-fit,minmax(min(100%,84px),1fr))}
+.ch{min-height:46px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line);font-size:15px;font-weight:600;color:var(--sub);display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 10px;min-width:0;text-align:center;line-height:1.25;transition:box-shadow .15s,color .15s}
+.ch small{font-size:13px;font-weight:500;color:var(--mute)}
+.ch svg.i{color:var(--mute);transition:color .15s}
+.ch[aria-pressed=true]{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+.ch[aria-pressed=true] svg.i{color:var(--blue)}
+.seg.c6 .ch{font-size:14px;min-height:42px;padding:4px 6px}
+.note{font-size:13px;color:var(--mute);margin-top:8px}
+.note b{color:var(--ink);font-weight:600}
+.why{margin-top:10px;font-size:13px;color:var(--mute)}
+.why summary{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-weight:600;color:var(--sub);list-style:none}
+.why summary::-webkit-details-marker{display:none}
+.why summary::before{content:"?";width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px currentColor;font:700 11px/18px Manrope,sans-serif;text-align:center;flex:none}
+.why p{margin-top:4px;padding-left:24px}
+/* 우리 가게 상황 질문 */
+.qs{display:grid;gap:16px}
+.q h3{font-size:15px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
+.seg.st{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
+.step{display:flex;align-items:stretch;min-height:46px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .15s}
+.step.on{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.step .pm{width:44px;flex:none;font-size:20px;font-weight:500;color:var(--sub);line-height:1}
+.step .pm:disabled{color:#C5CAD3}
+.step .n{flex:1;min-width:0;font-size:15px;font-weight:600;color:var(--sub);white-space:nowrap}
+.step.on .n{color:var(--ink)}
+
+/* 설계안(견적서) */
+/* 설계안은 키가 화면보다 커서 따라붙지 않고 그대로 흐름(금액은 아래 띠에 늘 보임) */
+.side{min-width:0}
+.rc{scroll-margin-top:80px;padding:22px 24px 18px;box-shadow:0 0 0 1px var(--line),0 18px 48px rgba(2,6,23,.07);font-variant-numeric:tabular-nums;background:#fff}
+.rc-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;color:var(--mute);padding:10px 0 8px;border-top:3px solid var(--ink);border-bottom:1px dashed #CDD2DA}
+.rc-h b{font-family:Manrope,sans-serif;font-size:14px;font-weight:800;color:var(--ink)} .rc-h b span{font-weight:300}
+.rc-ttl{font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-top:14px;line-height:1.35}
+.rc-d{font-size:12px;color:var(--mute);margin-top:2px}
+.sit{margin:18px 0 6px;padding:11px 13px;background:var(--soft);border-radius:6px}
+.sit:has(ul:empty){display:none}
+.sit h3{font-size:12px;font-weight:700;color:var(--sub);margin-bottom:4px}
+.rc ul,.stk{list-style:none}
+.rc .sit li{display:block;font-size:13px;color:var(--ink-2);padding:2px 0 2px 12px;position:relative;line-height:1.5}
+.rc .sit li::before{content:"";position:absolute;left:0;top:.68em;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+/* 내 기장료 쌓기: 기본 4만원에서 고른 것마다 한 줄(금액 + 까닭) */
+.stk-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:16px;padding-bottom:8px;border-bottom:1px solid var(--ink);font-size:14px;font-weight:700;color:var(--ink)}
+.stk-h small{font-size:12px;font-weight:500;color:var(--mute)}
+.stk li{display:grid;grid-template-columns:62px minmax(0,1fr);gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line)}
+.stk .a{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:15px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.stk .l{display:block;font-size:14px;font-weight:600;color:var(--ink);line-height:1.4}
+.stk .w{display:block;font-size:12.5px;color:var(--sub);line-height:1.5;margin-top:1px}
+.stk li.q .a,.stk li.off .a{color:#B4BAC4;font-weight:500}
+.stk li.q .l{color:var(--ink-2);font-weight:500}
+.stk li.q .w{color:var(--mute)}
+.stk li.off .l{text-decoration:line-through;text-decoration-color:#9AA1AC;color:#8A919C;font-weight:500}
+.stk li.off .w{color:var(--mute)}
+.stk li.hint{display:block;font-size:13px;color:var(--mute);border:1px dashed #CDD2DA;border-radius:6px;padding:9px 12px;margin:8px 0}
+.stk li.new{animation:blkIn .42s cubic-bezier(.2,.7,.3,1) both;overflow:hidden}
+.stk li.new .a{animation:amtIn .9s ease}
+@keyframes blkIn{from{opacity:0;max-height:0;padding-block:0;transform:translateY(-8px)}to{opacity:1;max-height:160px}}
+@keyframes amtIn{0%,40%{color:var(--blue)}}
+.stk-t{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-top:12px;font-size:13px;font-weight:600;color:var(--ink-2);background:#fff}
+.stk-t small{display:block;font-size:12px;font-weight:500;color:var(--mute)}
+.stk-t b{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:36px;font-weight:700;color:var(--ink);letter-spacing:-.03em;line-height:1.05;border-bottom:3px double var(--ink);padding-bottom:2px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.stk-t b small{display:inline;font-family:var(--font);font-size:15px;font-weight:600;color:var(--ink);margin-left:2px}
+/* 한 줄 요약: 월 8만원 = 기본 4 + 매출 3 + 직원 1 (휴대폰 위 띠 · 넓은 화면 붙는 줄) */
+.sl-in{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
+.sl-t{flex:none;font-family:Manrope,"Pretendard Variable",sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.sl-t small{font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:0;margin-left:1px}
+.sl-eq{flex:none;font-size:15px;color:#9AA1AC}
+.sl-c{flex:1;min-width:0;display:flex;align-items:center;gap:3px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;position:relative;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent);padding-right:16px}
+.sl-c::-webkit-scrollbar{display:none}
+.sl-c .cp{flex:none;font-size:12.5px;font-weight:600;color:var(--ink-2);background:var(--soft);border-radius:4px;padding:3px 6px;line-height:1.35;transition:background-color .4s,color .4s}
+.sl-c .cp.hot{background:#E3EAFE;color:var(--blue)}
+.sl-c i{flex:none;font-style:normal;font-size:12px;color:#9AA1AC}
+.sl-c .emp{font-size:12.5px;color:var(--mute)}
+.pin{display:none}
+.rc-y{font-size:13px;color:var(--sub);margin-top:10px;text-align:right}
+.yr{margin-top:16px;border-top:1px dashed #CDD2DA;padding-top:12px}
+.yr h3{font-size:13px;font-weight:700;color:var(--ink-2)}
+.rc .dues li{display:block;padding:8px 0 8px 20px;position:relative;border-bottom:1px solid var(--line);font-size:13px;line-height:1.5}
+.rc .dues li::before{content:"";position:absolute;left:1px;top:12px;width:11px;height:6px;border-left:1.5px solid var(--blue);border-bottom:1.5px solid var(--blue);transform:rotate(-45deg)}
+.rc .dues b{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+.rc .dues span{display:block;color:var(--sub)}
+.rc-n{font-size:12px;color:var(--mute);margin-top:12px;line-height:1.6}
+.bump{animation:bump .45s ease}
+@keyframes bump{40%{transform:translateY(-3px);color:var(--blue)}}
+.own{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.own .send{grid-column:1/-1;background:var(--blue);color:#fff;box-shadow:none;font-weight:700;min-height:46px}
+.own button{min-height:42px;border-radius:6px;box-shadow:inset 0 0 0 1px #C9CED6;font-size:14px;font-weight:600;background:#fff;padding:4px 8px}
+.own-msg{font-size:12px;color:var(--sub);margin-top:6px;overflow-wrap:anywhere}
+.own-msg:empty{display:none}
+.ask{border:0;margin-top:22px;border-top:1px solid var(--ink);padding-top:12px}
+.ask legend{float:left;width:100%;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.ask .chk{clear:both;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.ask label{display:flex;align-items:center;gap:8px;min-height:40px;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:600;color:var(--sub);cursor:pointer}
+.ask label:has(input:checked){box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+.ask input{width:16px;height:16px;flex:none;accent-color:var(--blue)}
+.ask .hi{position:relative}.ask .hi label{padding-right:36px}.ask .hi .qi{position:absolute;right:10px;top:50%;margin:-9px 0 0}
+.ask .note{line-height:1.6}
+
+/* 아래 설계 띠 */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--bar);background:#fff;box-shadow:0 -1px 0 var(--line);transition:transform .25s ease,visibility 0s}
+/* 넓은 화면: 오른쪽 설계안이 보이는 동안은 띠를 내려 둠(설계안·질문을 가리지 않게) */
+.bar.away{transform:translateY(110%);visibility:hidden;transition:transform .25s ease,visibility 0s .25s}
+.bar .flash{color:var(--blue)!important}
+.bar .wrap{height:100%;display:flex;align-items:center;gap:20px}
+.bar .m{flex:1;min-width:0;font-size:13px;color:var(--mute)}
+.bar .m b{display:block;font-size:16px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .t{text-align:right;font-size:13px;color:var(--mute);line-height:1.2;min-width:0}
+.bar .t i{font-style:normal}
+.bar .t .ms{display:none}
+.bar .t b{display:flex;align-items:center;justify-content:flex-end;gap:4px;font-family:Manrope,"Pretendard Variable",sans-serif;font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+.bar .t b span{display:inline-block}
+.bar .t .cv{display:none;width:18px;height:18px;color:var(--mute)}
+.bar .go.line{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px #C9CED6}
+.bar .go .sm{display:none}
+.bar .go{height:50px;padding:0 24px;border-radius:6px;background:var(--blue);color:#fff;font-weight:700;display:flex;align-items:center;white-space:nowrap;transition:background .2s}
+/* 고를 때마다 알림: 화면 읽기 프로그램에만 읽힘. 눈에 보이는 알림은 띠 안의 요약 자리에 2초(본문을 가리지 않게) */
+.toast{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* 휴대폰 전용(내 상황 띠·단계 이동) — 넓은 화면에서는 숨김. 휴대폰 배치는 맨 아래 @media (max-width:720px) */
+.me-wrap,.wz-next{display:none}
+
+/* 설계서 보내기 창 */
+.ldg{border:0;padding:0;margin:auto;width:min(460px,calc(100% - 32px));max-height:calc(100svh - 32px);overflow:auto;border-radius:12px;background:#fff;color:#020617;box-shadow:0 24px 64px rgba(2,6,23,.22)}
+.ldg::backdrop{background:rgba(2,6,23,.5)}
+.ldg form{padding:26px 26px 22px;display:grid;gap:13px;font-family:"Manrope","Pretendard Variable",Pretendard,system-ui,sans-serif}
+.ldg h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.ldg .lead-s{font-size:14px;color:#5B6270;margin-top:-6px;line-height:1.6}
+.ldg label,.ldg legend{display:grid;gap:6px;font-size:14px;font-weight:600;color:#191B1F}
+.ldg label small,.ldg legend small{font-weight:500;color:#646B77}
+.ldg fieldset{border:0;display:grid;gap:6px;min-width:0}
+.ldg legend{display:block;margin-bottom:6px}
+.ldg input:not([type=checkbox]):not([type=radio]),.ldg select,.ldg textarea{height:46px;border:1px solid #D5D9E0;border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff;width:100%}
+.ldg textarea{height:auto;min-height:64px;padding:10px 12px;resize:vertical}
+.ldg input:focus-visible,.ldg select:focus-visible,.ldg textarea:focus-visible{outline:2px solid #2554F0;outline-offset:1px;border-color:#2554F0}
+.ldg .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:end}
+.ldg .rad{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ldg .rad label{display:flex;align-items:center;justify-content:center;gap:6px;height:46px;border-radius:8px;box-shadow:inset 0 0 0 1px #D5D9E0;font-weight:600;cursor:pointer}
+.ldg .rad label:has(input:checked){box-shadow:inset 0 0 0 1.5px #020617}
+.ldg .rad input{accent-color:#2554F0}
+.ldg .agree{grid-template-columns:20px 1fr;align-items:start;font-weight:500;line-height:1.5}
+.ldg .agree input{width:18px;height:18px;margin-top:2px;accent-color:#2554F0}
+.ldg .agree small{display:block;font-size:12px;color:#646B77;margin-top:4px}
+.lead-rc{border:1px solid #E6E8EC;border-radius:8px;padding:12px 14px;background:#F6F7F9;font-size:13px;color:#5B6270;font-variant-numeric:tabular-nums}
+.lead-rc b{display:block;font-size:14px;color:#020617;margin-bottom:4px}
+.lead-rc p{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.lead-rc p em{font-style:normal;color:#020617;font-weight:600;white-space:nowrap}
+.lead-rc p small{display:block;font-size:12px;color:#646B77}
+.lead-rc p.x em{color:#646B77;font-weight:500}
+.lead-rc .tt{border-top:1px solid #CDD2DA;margin-top:6px;padding-top:6px;color:#020617;font-weight:600}
+.lead-rc .cap{display:block;font-size:12px;color:#646B77;margin-top:6px}
+.ldg .lead-msg{font-size:14px;font-weight:600;color:#C2410C;line-height:1.55}
+.ldg .lead-msg:empty{display:none}
+.ldg .lead-b{display:grid;grid-template-columns:1fr 1.6fr;gap:8px;position:sticky;bottom:0;margin:0 -26px -22px;padding:12px 26px 18px;background:#fff;box-shadow:0 -1px 0 #E6E8EC}
+.ldg .err{font-size:13px;font-weight:600;color:#C2410C;line-height:1.4}
+.ldg .err:empty{display:none}
+.ldg [aria-invalid=true]{border-color:#C2410C!important}
+.ldg .more summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:14px;font-weight:600;color:#191B1F}
+.ldg .more summary::-webkit-details-marker{display:none}
+.ldg .more summary::before{content:"+";width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px #9AA1AC;font:600 14px/18px Manrope,sans-serif;text-align:center;align-self:center}
+.ldg .more[open] summary::before{content:"\2212"}
+.ldg .more summary small{font-size:12px;font-weight:500;color:#646B77}
+.ldg .more-b{display:grid;gap:13px;margin-top:12px}
+.ldg .lead-b button{height:48px;border-radius:6px;font:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ldg .b-line{background:#fff;color:#020617;border:0;box-shadow:inset 0 0 0 1px #C9CED6}
+.ldg .b-fill{background:#2554F0;color:#fff;border:0}
+
+/* 아래: 구간·모니터링 설명 */
+.care-sec{background:var(--soft);padding:8px 0 40px}
+.care{margin-top:72px;border-top:1px solid var(--ink)}
+.care-hd{display:grid;grid-template-columns:5fr 7fr;gap:56px;padding:44px 0 28px}
+.care-hd h2{font-size:26px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.care-hd p{font-size:15px;color:var(--sub);line-height:1.75;max-width:560px}
+.care-hd p b{color:var(--ink);font-weight:600}
+.law-wrap{margin-bottom:28px;overflow-x:auto}
+.law{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.law caption{text-align:left;font-size:13px;font-weight:600;color:var(--mute);padding-bottom:12px}
+.law th,.law td{padding:16px 20px;text-align:left;border-bottom:1px solid #DDE1E7}
+.law thead th{font-size:13px;font-weight:600;color:var(--sub);background:var(--soft);border-top:1px solid var(--ink)}
+.law tbody th{font-weight:600;color:var(--ink)}
+.law td{font-family:Manrope,"Pretendard Variable",sans-serif;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.law td:last-child{color:var(--blue)}
+.fine{font-size:12px;color:var(--mute);margin-top:10px}
+.mon{margin:8px 0 40px;background:var(--stage);border-radius:4px;padding:28px}
+.mon-bar{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--sub);padding:0 4px 16px}
+.mon-bar b{font-family:Manrope,sans-serif;font-weight:800;font-size:15px;color:var(--ink)}
+.mon-bar b span{font-weight:300}
+.mon-bar em{font-style:normal;margin-left:auto;font-family:Manrope,"Pretendard Variable",sans-serif;font-weight:600}
+.mon-body{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+.mon-main,.mon-side{background:#fff;border:1px solid #DDE1E7;padding:22px 24px}
+.mon-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.mon-h small{display:block;font-size:12px;color:var(--mute)}
+.mon-h strong{display:block;font-size:19px;font-weight:700;letter-spacing:-.02em;margin-top:4px}
+.tag{font-style:normal;font-size:12px;font-weight:700;padding:0;white-space:nowrap}
+.tag.near{color:#C2410C}
+.tag.ok{color:#1B7F4B}
+.tag.wait{color:var(--sub)}
+.chart{display:block;width:100%;height:auto;margin:14px 0 6px}
+.chart .ax line{stroke:#E6E8EC}
+.chart text{font:600 14px Manrope,"Pretendard Variable",sans-serif;fill:var(--mute)}
+.chart .yl text{text-anchor:end}
+.chart .xl text{text-anchor:middle}
+.chart .lim{stroke:#C2410C;stroke-dasharray:5 5}
+.chart .lim-t{fill:#C2410C;text-anchor:end}
+.chart .area{fill:rgba(37,84,240,.08)}
+.chart .act{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-linejoin:round}
+.chart .fc{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-dasharray:4 5}
+.chart .pt{fill:var(--blue)}
+.chart .fc-pt{fill:#fff;stroke:var(--blue);stroke-width:2}
+.chart .lg text{fill:var(--sub)}
+.mon-k{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:6px}
+.mon-k div{padding:14px 0 0}
+.mon-k div+div{padding-left:16px;border-left:1px solid var(--line)}
+.mon-k small{display:block;font-size:12px;color:var(--mute)}
+.mon-k b{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nw{white-space:nowrap}
+.mon-side{display:grid;gap:18px;align-content:start}
+.ai{font-size:14px;line-height:1.65;color:var(--ink-2);border-top:2px solid var(--blue);padding:12px 0 0}
+.ai b{display:block;font-size:12px;color:var(--blue);margin-bottom:4px}
+.flow{list-style:none}
+.flow li{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--mute);padding:9px 0 9px 20px;position:relative;border-bottom:1px dashed var(--line)}
+.flow li::before{content:"";position:absolute;left:2px;top:50%;width:8px;height:8px;margin-top:-4px;transform:rotate(45deg);border:1.5px solid #C5CAD3;box-sizing:border-box}
+.flow li.done{color:var(--ink-2)}
+.flow li.done::before{background:var(--ink);border-color:var(--ink)}
+.flow li.now{color:var(--blue);font-weight:600}
+.flow li.now::before{background:var(--blue);border-color:var(--blue)}
+.flow span{font-size:12px;font-family:Manrope,"Pretendard Variable",sans-serif;font-weight:600}
+.list{list-style:none;border-top:1px solid var(--line)}
+.list li{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.mon figcaption{font-size:12px;color:var(--mute);margin-top:14px;padding:0 4px}
+@media (max-width:1200px){.mon-body{grid-template-columns:1fr}}
+.care-steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #DDE1E7}
+.care-steps li{padding:28px 24px 8px 0;position:relative;min-width:0}
+.care-steps li+li{padding-left:24px;border-left:1px solid #DDE1E7}
+.care-steps b{font-family:Manrope,sans-serif;font-size:13px;font-weight:700;color:var(--blue)}
+.care-steps h3{font-size:17px;font-weight:600;margin-top:14px;color:var(--ink)}
+.care-steps p{font-size:14px;color:var(--sub);margin-top:8px;line-height:1.7}
+.care-sec .care{margin-top:0;border-top:0}
+.foot{font-size:12px;color:var(--mute);padding:28px 0 8px;border-top:1px solid #DDE1E7;margin-top:56px}
+.foot a,.ldg .agree a{text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.ldg .lead-msg.ok{color:#1B7F4B}
+
+@media (hover:hover){
+.ch:hover,.ask label:hover{box-shadow:inset 0 0 0 1px #B9BFC8}
+.ch[aria-pressed=true]:hover,.ask label:has(input:checked):hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.step .pm:not(:disabled):hover{color:var(--ink)}
+.own button:not(.send):hover{background:var(--soft)}
+.own .send:hover{background:#1B44D6}
+.bar .go:hover{background:#1B44D6}
+.bar .go.line:hover{background:var(--soft)}
+}
+@media (min-width:1025px) and (max-height:980px){
+  .mk{padding-top:20px}.form{margin-top:14px}.mk > div > .lead{margin-top:2px}
+  .row{padding:12px 0}.note{margin-top:6px}.qs{gap:12px}.q h3{margin-bottom:6px}
+}
+@media (min-width:1025px) and (max-height:720px){
+  h1{font-size:26px}.mk > div > .lead{display:none}
+  .ch{min-height:42px}.step{min-height:42px}
+}
+@media (max-width:1024px){
+  :root{--pad:28px}
+  .mk{grid-template-columns:1fr;gap:28px}
+  .side{max-width:600px}
+}
+/* 화면 높이가 넉넉하면 고르는 칸이 따라오고 긴 설계안만 내려감 */
+@media (min-width:1025px) and (min-height:880px){.mk > div:first-child{position:sticky;top:72px}}
+/* 넓은 화면: '=' 줄은 화면 아래로 밀려나지 않게 붙고, 위로 지나가면 맨 위에 한 줄 요약이 붙음 → 월 기장료가 늘 보임 */
+@media (min-width:1025px){
+  .stk-t{position:sticky;bottom:0;z-index:2;padding-bottom:10px;margin-bottom:-10px}
+  .pin{display:block;position:sticky;top:72px;height:0;z-index:6}
+  .pin button{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;height:52px;padding:0 18px;border-radius:8px;background:#fff;box-shadow:0 0 0 1px var(--line),0 10px 28px rgba(2,6,23,.1);text-align:left;opacity:0;transform:translateY(-6px);visibility:hidden;transition:opacity .2s,transform .2s,visibility 0s .2s}
+  .pin.on button{opacity:1;transform:none;visibility:visible;transition:opacity .2s,transform .2s}
+}
+@media (max-width:640px){
+  :root{--pad:20px}
+  .hd .sep,.hd .cur{display:none}
+  .mk{padding-top:24px}
+  h1{font-size:26px}
+  .row{grid-template-columns:1fr;gap:10px;padding:16px 0}
+  .row > h2{padding-top:0}
+  .seg.c3{grid-template-columns:repeat(2,minmax(0,1fr))} .seg.c6{grid-template-columns:repeat(3,1fr)}
+  .rc{padding:20px 18px 16px}
+  .bar .m{display:none} .bar .t{text-align:left;flex:1} .bar .t b{font-size:24px;justify-content:flex-start}
+  .bar .t .lb{display:none} .bar .t .ms{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar .go{height:46px;padding:0 16px;font-size:14px}
+  .care-hd{grid-template-columns:1fr;gap:12px}
+  .mon{padding:16px}
+  .mon-main,.mon-side{padding:18px 16px}
+  .mon-k b{font-size:12px}
+  .law{min-width:0;font-size:13px}
+  .law th,.law td{padding:12px 8px}
+  .law thead th{font-size:12px}
+  .chart text{font-size:25px}
+  .chart .yl text:first-child{display:none}
+  .chart .lg,.chart .xl text:nth-child(2){display:none}
+  .mon-k div+div{padding-left:10px}
+  .care-steps{grid-template-columns:1fr 1fr}
+  .care-steps li:nth-child(3){padding-left:0;border-left:0}
+  .care-steps li:nth-child(n+3){border-top:1px solid #DDE1E7}
+  .ldg form{padding:22px 18px 18px}
+  .ldg .lead-b{margin:0 -18px -18px;padding:12px 18px 14px}
+}
+@media (max-width:400px){.bar .go .lg{display:none}.bar .go .sm{display:inline}.bar .wrap{gap:8px}.bar .go{padding:0 12px}.ldg .two{grid-template-columns:1fr}}
+@media (max-width:360px){.seg.c2 .ch,.seg.c3 .ch{font-size:14px;gap:6px;padding:4px 6px}.ch svg.i{width:20px;height:20px}.seg.st{grid-template-columns:1fr}.ask .chk{grid-template-columns:1fr}}
+/* ── 휴대폰(720px 이하): 한 화면에 한 단계씩 옆으로 넘기는 설계. 위 '내 상황' 띠는 늘 보임 ── */
+@media (max-width:720px){
+  body{padding-bottom:0}
+  body.wz-last{padding-bottom:var(--bar)}
+  header{height:56px}
+  .me-wrap{display:block;position:sticky;top:56px;z-index:45;background:#fff;box-shadow:0 1px 0 var(--line)}
+  /* 위 한 줄(키 고정 52px): 펼치면 바로 아래로 쌓기 전체가 내려옴 */
+  .sl{display:flex;align-items:center;gap:8px;width:100%;height:52px;padding:0 var(--pad);text-align:left}
+  .sl > svg.i{width:18px;height:18px;stroke-width:2;color:var(--sub);transform:rotate(180deg);transition:transform .2s}
+  .sl[aria-expanded=true] > svg.i{transform:none}
+  .sheet{position:absolute;left:0;right:0;top:52px;z-index:3;max-height:calc(100svh - 124px);overflow:auto;overscroll-behavior:contain;padding:2px var(--pad) 20px;background:#fff;box-shadow:0 1px 0 var(--line),0 20px 40px rgba(2,6,23,.16);animation:shIn .22s ease}
+  @keyframes shIn{from{opacity:0;transform:translateY(-8px)}}
+  .sheet .stk-h{margin-top:8px}
+  .sheet .stk-t b{font-size:30px}
+  .sh-sit{margin-top:14px;padding:10px 12px;background:var(--soft);border-radius:6px;font-size:13px;color:var(--ink-2);line-height:1.5}
+  .sh-sit b{display:block;font-size:12px;color:var(--sub)}
+  .sh-go{display:block;width:100%;height:48px;margin-top:12px;border-radius:10px;box-shadow:inset 0 0 0 1px #C9CED6;font-size:15px;font-weight:700;color:var(--ink)}
+  .sheet-bg{position:fixed;inset:0;z-index:44;background:rgba(2,6,23,.32)}
+  .wz-steps{display:grid;grid-template-columns:auto repeat(5,minmax(0,1fr));gap:6px;padding:0 var(--pad) 6px}
+  .wz-steps button{display:flex;flex-direction:column;justify-content:flex-end;gap:5px;min-height:36px;padding-bottom:3px;font-size:12px;font-weight:600;color:var(--mute);white-space:nowrap}
+  .wz-steps button::before{content:"";height:3px;border-radius:2px;background:var(--line);transition:background-color .25s}
+  .wz-steps button.done{color:var(--ink-2)}
+  .wz-steps button.done::before{background:#9AA1AC}
+  .wz-steps button[aria-current=step]{color:var(--blue);font-weight:700}
+  .wz-steps button[aria-current=step]::before{background:var(--blue)}
+  .wz-steps .back{flex-direction:row;align-items:center;justify-content:flex-start;gap:0;padding:0 6px 0 0;margin-left:-4px;font-size:13px;color:var(--ink-2)}
+  .wz-steps .back::before{display:none}
+  .wz-steps .back svg.i{width:18px;height:18px;stroke-width:2;transform:rotate(-90deg)}
+  .wz-steps .back:disabled{color:#C5CAD3}
+  .rc{box-shadow:0 0 0 1px var(--line)}
+  /* 단계 화면: 옆으로 늘어선 칸을 밀어서 하나만 보여 줌(높이는 지금 단계에 맞춤) */
+  .wzv{overflow:hidden;transition:height .25s ease}
+  .mk{display:flex;align-items:flex-start;gap:0;max-width:none;padding:0;transition:transform .25s ease}
+  .wzv.still,.wzv.still .mk{transition:none}
+  .mk > div:first-child,.form{display:contents}
+  .mk h1,.mk .lead{display:none}
+  .row,.side{flex:0 0 100%;min-width:0;padding:24px var(--pad) 32px}
+  .row{display:block;border:0}
+  .row > h2{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.3;padding:0;margin-bottom:16px;outline-offset:4px}
+  .row > h2 b{display:none}
+  .ch{min-height:56px;border-radius:10px;font-size:16px}
+  #type{grid-template-columns:1fr}
+  #type .ch{min-height:72px;justify-content:flex-start;gap:14px;padding:0 20px;font-size:17px}
+  #type .ch svg.i{width:28px;height:28px}
+  #biz,#sales{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #biz .ch{min-height:64px;justify-content:flex-start;padding:6px 14px;text-align:left}
+  #sales .ch{min-height:56px;font-size:16px}
+  .qs{gap:24px}
+  .q h3{font-size:16px;margin-bottom:10px}
+  .step{min-height:56px;border-radius:10px}
+  .wz-next{display:block;width:100%;height:54px;margin-top:28px;border-radius:10px;background:var(--blue);color:#fff;font-size:16px;font-weight:700}
+  .own .send{display:none}
+  .bar{display:none}
+  body.wz-last .bar{display:block}
+  .bar .m,.bar .t{display:none}
+  .bar .wrap{gap:8px}
+  .bar .go{flex:1;justify-content:center;height:50px;padding:0 12px;font-size:15px}
+  .bar .go .lg{display:none}.bar .go .sm{display:inline}
+  .bar .go.line{flex:1.7;background:var(--blue);color:#fff;box-shadow:none}
+  .bar a.go{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px #C9CED6}
+  body:not(.wz-last) .care-sec{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-property:opacity,color,background-color,border-color!important;scroll-behavior:auto!important}.toast{transform:none}}
+/* 종이로 저장: 설계안 종이만 */
+@media print{
+  @page{margin:14mm}
+  body{padding:0;background:#fff}
+  header,.bar,.toast,.care-sec,.me-wrap,.sheet-bg,.mk > div:first-child,.side > :not(.rc),dialog{display:none!important}
+  .wzv{height:auto!important;overflow:visible!important}.mk{transform:none!important}
+  .mk{display:block;padding:0;max-width:none}
+  .side{max-width:520px;margin:0 auto}
+  .rc{box-shadow:0 0 0 1px #CDD2DA;-webkit-print-color-adjust:exact;print-color-adjust:exact;break-inside:avoid}
+  .stk li.new,.stk li.new .a{animation:none}
+  .stk-t{position:static}
+}
+</style>
+</head>
+<body data-page="v11-build">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- 설계 아이콘 한 벌: 24 격자 · 선 1.5 · 둥근 끝 · 채움 없음 · currentColor -->
+  <symbol id="b-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></symbol>
+  <symbol id="b-corp" viewBox="0 0 24 24"><path d="M3.5 20h17"/><path d="M5.5 20V5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15"/><path d="M14.5 9.5h3a1 1 0 0 1 1 1V20"/><path d="M8.5 8h3M8.5 11.5h3M8.5 15h3"/></symbol>
+  <symbol id="b-food" viewBox="0 0 24 24"><path d="M4.5 9h11v4.5a4.5 4.5 0 0 1-4.5 4.5H9a4.5 4.5 0 0 1-4.5-4.5z"/><path d="M15.5 10.5h1.25a2.25 2.25 0 0 1 0 4.5H15.5"/><path d="M8 3.5V6M12 3.5V6"/><path d="M4 20.5h13"/></symbol>
+  <symbol id="b-shop" viewBox="0 0 24 24"><path d="M5.5 8h13l-.9 11.6a1 1 0 0 1-1 .9H7.4a1 1 0 0 1-1-.9z"/><path d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/></symbol>
+  <symbol id="b-service" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 18.5h18"/></symbol>
+  <symbol id="b-make" viewBox="0 0 24 24"><path d="M3.5 20h17"/><path d="M4.5 20v-9l5 3v-3l5 3V5h5v15"/></symbol>
+  <symbol id="b-it" viewBox="0 0 24 24"><path d="M8.5 7.5 4 12l4.5 4.5M15.5 7.5 20 12l-4.5 4.5M13.5 5.5l-3 13"/></symbol>
+  <symbol id="b-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.75 9.75a2.25 2.25 0 1 1 3.1 2.08c-.55.25-.85.7-.85 1.3v.37"/><path d="M12 16.25h.01"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+</svg>
+
+<header><div class="wrap hd">
+  <a class="logo" href="index.html" aria-label="TAXMIN 메인으로"><b>TAX<span>MIN</span></b></a>
+  <span class="sep"></span><span class="cur">내 기장 설계</span>
+  <a class="x" href="index.html">나가기</a>
+</div></header>
+
+<!-- 휴대폰에서만 보임: 내 기장료 한 줄(월 8만원 = 기본 4 + 매출 3 …, 누르면 아래로 펼쳐짐) + 단계 이름 막대 -->
+<div class="me-wrap">
+  <button type="button" class="sl" id="me" aria-expanded="false" aria-controls="sheet"><span class="sl-in" id="mel"></span><span class="sr">, 내 기장료 쌓기 펼치기</span><svg class="i" aria-hidden="true"><use href="#i-up"/></svg></button>
+  <div class="sheet" id="sheet" hidden>
+    <p class="stk-h">내 기장료 쌓기<small>고를 때마다 한 줄씩 쌓여요</small></p>
+    <ol class="stk" id="shstk"></ol>
+    <p class="stk-t"><span>= 예상 월 기장료<small>부가세 별도</small></span><b class="js-tot"></b></p>
+    <p class="sh-sit"><b id="shsith">사장님 상황</b><span id="shsit"></span></p>
+    <button type="button" class="sh-go" id="shgo">설계안 전체 보기</button>
+  </div>
+  <nav class="wz-steps" id="wzs" aria-label="설계 단계">
+    <button type="button" class="back" id="wzback"><svg class="i" aria-hidden="true"><use href="#i-up"/></svg>이전</button>
+    <button type="button" data-step="0">형태</button><button type="button" data-step="1">업종</button><button type="button" data-step="2">매출</button><button type="button" data-step="3">상황</button><button type="button" data-step="4">설계안</button>
+  </nav>
+</div>
+<div class="sheet-bg" id="sheetbg" hidden></div>
+
+<main>
+<div class="wzv" id="wzv">
+<section class="wrap mk" aria-labelledby="mh1">
+  <div>
+    <h1 id="mh1">우리 가게 기장, 직접 설계해 보세요.</h1>
+    <p class="lead">하나씩 답할 때마다 내 설계안에 한 줄씩 쌓여요. 기본은 월 4만원이에요.</p>
+    <div class="form">
+      <div class="row" id="r-type"><h2 id="h-type"><b aria-hidden="true"></b>사업자 형태<span class="sr done-t">, 답함</span></h2>
+        <div><div class="seg c2" id="type" role="group" aria-labelledby="h-type"></div><p class="note" id="tnote">고르기 전에는 개인사업자 기준으로 보여 드려요.</p></div></div>
+      <div class="row" id="r-biz"><h2 id="h-biz"><b aria-hidden="true"></b>업종<span class="sr done-t">, 답함</span></h2>
+        <div><div class="seg c3" id="biz" role="group" aria-labelledby="h-biz"></div>
+          <details class="why"><summary>같은 매출인데 업종마다 금액이 왜 달라요?</summary><p>장부·신고 의무가 생기는 법정 매출 기준이 업종마다 달라서, 같은 매출이라도 챙길 일이 달라져요.</p></details></div></div>
+      <div class="row" id="r-sales"><h2 id="h-sales"><b aria-hidden="true"></b>작년 매출<span class="sr done-t">, 답함</span></h2>
+        <div><div class="seg c6" id="sales" role="group" aria-labelledby="h-sales"></div><p class="note" id="snote"></p></div></div>
+      <div class="row" id="r-sit"><h2 id="h-sit"><b aria-hidden="true"></b><span id="h-sit-t">우리 가게 상황</span><span class="sr done-t">, 답함</span></h2>
+        <div class="qs">
+          <div class="q"><h3><span id="q-staff">직원이 있으세요?</span><button type="button" class="qi" data-qi="pay"></button></h3>
+            <div class="seg st" role="group" aria-labelledby="q-staff">
+              <button type="button" class="ch" data-g="staff" data-v="none" aria-pressed="false">없어요</button>
+              <div class="step" id="stepper"><button type="button" class="pm" data-g="staff" data-v="dec" aria-label="직원 한 명 줄이기">−</button><button type="button" class="n" data-g="staff" data-v="pick" aria-pressed="false" id="stepn">직원 있어요</button><button type="button" class="pm" data-g="staff" data-v="inc" aria-label="직원 한 명 늘리기">+</button></div>
+            </div>
+            <p class="note" id="staffnote"></p></div>
+          <div class="q" id="q-co-wrap"><h3><span id="q-co">대표가 둘 이상인가요?</span><button type="button" class="qi" data-qi="co"></button></h3>
+            <div class="seg c2" role="group" aria-labelledby="q-co">
+              <button type="button" class="ch" data-g="co" data-i="0" aria-pressed="false">아니요, 혼자예요</button>
+              <button type="button" class="ch" data-g="co" data-i="1" aria-pressed="false" id="co-yes"></button>
+            </div></div>
+          <div class="q"><h3><span id="q-cpa">장부를 누가 볼까요?</span><button type="button" class="qi" data-qi="cpa"></button></h3>
+            <div class="seg c2" role="group" aria-labelledby="q-cpa">
+              <button type="button" class="ch" data-g="cpa" data-i="0" aria-pressed="false">전담 담당자 + 세무사 검토</button>
+              <button type="button" class="ch" data-g="cpa" data-i="1" aria-pressed="false" id="cpa-yes"></button>
+            </div></div>
+          <button type="button" class="wz-next" id="wznext">다음</button>
+        </div></div>
+    </div>
+  </div>
+  <aside class="side" aria-label="내 기장 설계안">
+    <!-- 넓은 화면: 아래로 내려 '=' 줄이 위로 사라지면 맨 위에 한 줄로 붙음 -->
+    <div class="pin" id="pin"><button type="button" id="pinb" tabindex="-1" aria-hidden="true"><span class="sl-in" id="pinl"></span></button></div>
+    <div class="rc" id="rc">
+      <p class="rc-h"><b>TAX<span>MIN</span></b><span>기장 설계안 · 월 · 부가세 별도</span></p>
+      <h2 class="rc-ttl" id="rcttl"></h2>
+      <p class="rc-d" id="rcd"></p>
+      <p class="stk-h">내 기장료 쌓기<small>고를 때마다 한 줄씩 쌓여요</small></p>
+      <ol class="stk" id="stk"></ol>
+      <p class="stk-t" id="stkt"><span>= 예상 월 기장료<small>부가세 별도</small></span><b class="js-tot"></b></p>
+      <div class="sit"><h3 id="sit-h">사장님 상황</h3><ul id="sit"></ul></div>
+      <div class="yr"><h3>맡기시면 저희가 챙기는 신고</h3><ul class="dues" id="dues"></ul><p class="rc-y" id="rcy"></p></div>
+      <p class="rc-n" id="rcn"></p>
+    </div>
+    <div class="own"><button type="button" class="send" data-lead>이 설계안 보내기</button><button type="button" id="copy">이 설계 링크 복사</button><button type="button" id="print">종이로 저장</button></div>
+    <p class="own-msg" id="ownmsg" role="status"></p>
+    <fieldset class="ask"><legend>상담 때 같이 물어볼 것</legend>
+      <div class="chk" id="help"></div>
+      <p class="note">증여·상속은 세무사가 직접, 법무·노무는 법무사·변호사·노무사를 연결해 드려요. 청약·대출·정책자금은 받을 수 있는지 함께 알아봐 드려요(중개는 하지 않아요). 비용은 상담 때 먼저 알려 드려요. 체크한 것은 ‘이 설계 링크 복사’와 ‘설계안 보내기’에 함께 담겨요.</p>
+    </fieldset>
+  </aside>
+</section>
+</div>
+
+<section class="care-sec" aria-labelledby="care-h">
+  <div class="wrap">
+  <div class="care">
+    <div class="care-hd">
+      <h2 id="care-h">왜 구간이 있나요?</h2>
+      <p>매출이 커지면 장부 양과 신고 일이 늘고, 법이 정한 의무도 달라집니다. <b>기장료 구간은 사무소가 업종별 거래량을 보고 나눈 요금 기준</b>이라 아래 법정 기준과 숫자가 달라요. 아래 같은 법정 의무는 기장료 구간과 상관없이 모두 챙겨 드려요. 법인은 매출과 상관없이 복식부기 장부와 법인세 신고, 1년 4번의 부가세 신고를 챙겨야 해서 사업 규모 금액이 따로 붙어요.</p>
+    </div>
+    <div class="law-wrap">
+      <table class="law">
+        <caption>개인사업자 매출에 따라 달라지는 의무</caption>
+        <thead><tr><th scope="col">업종</th><th scope="col">복식부기 의무</th><th scope="col">성실신고 확인 대상</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">도소매·농업·부동산매매 등</th><td>3억원 이상</td><td>15억원 이상</td></tr>
+          <tr><th scope="row">음식·숙박·제조·건설·정보통신(IT) 등</th><td>1억 5천만원 이상</td><td>7억 5천만원 이상</td></tr>
+          <tr><th scope="row">서비스·부동산임대 등</th><td>7,500만원 이상</td><td>5억원 이상</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">복식부기 의무는 직전 연도, 성실신고 확인은 그해 수입금액 기준 · 소득세법 기준을 줄여 적은 것으로, 업종 세부 구분과 예외는 상담 때 확인해 드려요. 법인은 매출과 상관없이 복식부기 장부를 써요.</p>
+    </div>
+
+    <div class="care-hd">
+      <h2>한 번 정한 기장료로 끝나나요?</h2>
+      <p>아니요. AI가 매달 매출을 지켜보고, 사업 규모에 맞는 서비스로 맞춰 드려요. <b>서비스와 기장료는 사장님이 동의하신 뒤에만 바뀝니다.</b></p>
+    </div>
+    <figure class="mon">
+      <div class="mon-bar"><b>TAX<span>MIN</span></b><span>매출 모니터링</span><em>2026년 11월</em></div>
+      <div class="mon-body">
+        <div class="mon-main">
+          <div class="mon-h"><div><small id="mon-who">예시 스튜디오 B · 서비스업 · 개인</small><strong>올해 누적 매출 <span class="nw" id="mon-sum">4억 1,800만원</span></strong></div><span class="tag near">구간 근접</span></div>
+          <svg class="chart" id="mon-chart" viewBox="0 0 560 220" role="img" aria-label="예시 거래처의 월별 누적 매출 그래프. 11월까지 4억 1,800만원, AI 연말 예상 4억 6,000만원, 성실신고 확인 기준 5억원의 92%">
+            <g class="ax"><line x1="40" y1="190" x2="540" y2="190"/><line x1="40" y1="127" x2="540" y2="127"/><line x1="40" y1="64.1" x2="540" y2="64.1"/></g>
+            <g class="yl"><text x="32" y="193">0</text><text x="32" y="130" id="mon-y1">2억</text><text x="32" y="67" id="mon-y2">4억</text></g>
+            <g class="xl"><text x="40" y="208">1월</text><text x="265" y="208">6월</text><text x="535" y="208">12월</text></g>
+            <line class="lim" x1="40" y1="32.6" x2="540" y2="32.6"/><text class="lim-t" x="540" y="24" id="mon-lim">성실신고 확인 기준 5억원</text>
+            <polygon class="area" points="40,190 40,179.9 85,169.5 130,158.5 175,147.2 220,135.5 265,123.9 310,111.6 355,99.3 400,86.4 445,72.9 490,58.4 490,190"/>
+            <polyline class="act" points="40,179.9 85,169.5 130,158.5 175,147.2 220,135.5 265,123.9 310,111.6 355,99.3 400,86.4 445,72.9 490,58.4"/>
+            <polyline class="fc" points="490,58.4 535,45.2"/>
+            <circle class="pt" cx="490" cy="58.4" r="4"/><circle class="pt fc-pt" cx="535" cy="45.2" r="4"/>
+            <g class="lg"><line x1="48" y1="16" x2="68" y2="16" class="act"/><text x="74" y="20">실제 누적</text><line x1="136" y1="16" x2="156" y2="16" class="fc"/><text x="162" y="20">AI 예상</text></g>
+          </svg>
+          <div class="mon-k">
+            <div><small>11월까지 누적</small><b id="mon-k1">4억 1,800만원</b></div>
+            <div><small>AI 연말 예상</small><b id="mon-k2">4억 6,000만원</b></div>
+            <div><small id="mon-k3">연말 예상 ÷ 기준 5억</small><b>92%</b></div>
+          </div>
+        </div>
+        <div class="mon-side">
+          <p class="ai"><b>AI 알림</b>이 추세면 내년에 성실신고 확인 대상이 될 수 있어요. 신고 준비 범위가 넓어지니 미리 상담을 잡아 두세요.</p>
+          <ol class="flow">
+            <li class="done">AI 구간 알림<span>11/20</span></li>
+            <li class="done">담당자 확인<span>11/21</span></li>
+            <li class="now">세무사 상담<span>12/3 예정</span></li>
+            <li>사장님 동의<span>대기</span></li>
+            <li>서비스 조정<span>동의 뒤</span></li>
+          </ol>
+          <ul class="list">
+            <li><span>예시 카페 A</span><em class="tag ok">안정 48%</em></li>
+            <li><span id="mon-b">예시 스튜디오 B</span><em class="tag near">예상 92%</em></li>
+            <li><span>예시 쇼핑몰 C</span><em class="tag wait">동의 대기</em></li>
+          </ul>
+        </div>
+      </div>
+      <figcaption><span id="mon-corp" hidden>법인은 성실신고 확인 대상이 아니라서, 위는 개인사업자 예시예요. · </span>내부 모니터링 화면 예시 · 위에서 고른 업종에 맞춰 바뀌어요 · 거래처와 숫자는 설명을 위해 만든 예시이고, 실제 화면과 다를 수 있어요.</figcaption>
+    </figure>
+    <ol class="care-steps">
+      <li><b>01</b><h3>AI 매출 모니터링</h3><p>홈택스로 들어오는 카드·현금영수증·세금계산서 매출을 AI가 매달 모아 연말 매출을 예상해요.</p></li>
+      <li><b>02</b><h3>구간 알림</h3><p>예상 매출이 복식부기 의무나 성실신고 확인 기준에 가까워지면 담당자가 먼저 확인해요.</p></li>
+      <li><b>03</b><h3>세무사 상담</h3><p>달라지는 신고 의무와 절세 방법, 법인 전환이 필요한지까지 세무사가 직접 설명해요.</p></li>
+      <li><b>04</b><h3>동의 뒤에만 변경</h3><p>사장님이 동의하신 경우에만 서비스와 기장료를 바꾸고, 바뀌는 달 전에 금액을 먼저 알려 드려요.</p></li>
+    </ol>
+  </div>
+  <p class="foot">전화 상담 <a href="tel:050714457729">0507-1445-7729</a> · <a href="privacy.html">개인정보처리방침</a></p>
+  </div>
+</section>
+</main>
+
+<p class="toast" id="toast" role="status" aria-live="polite"></p>
+<div class="bar"><div class="wrap">
+  <p class="m"><span>내 설계</span><b id="bm"></b></p>
+  <button type="button" class="t" id="bprice" aria-haspopup="dialog"><span class="lb">예상 월 기장료<i> · 부가세 별도</i></span><span class="ms" id="bms"></span><b><span id="bt"></span><svg class="i cv" aria-hidden="true"><use href="#i-up"/></svg></b></button>
+  <button type="button" class="go line" data-lead><span class="lg">설계안 보내기</span><span class="sm">이 설계안 보내기</span></button>
+  <a class="go" href="https://pf.kakao.com/_Mxojqs/chat" target="_blank" rel="noopener"><span class="lg">카톡으로 상담받기</span><span class="sm">카톡 상담</span></a>
+</div></div>
+
+<!-- 접수: js/lead.js 의 window.TaxminLead.send() 로 보냄. 접수 성공은 js/track.js 가 form_submit 으로 셈 -->
+<dialog class="ldg" id="lead" aria-labelledby="lead-h">
+  <form id="leadf" novalidate>
+    <h2 id="lead-h">설계안 보내기</h2>
+    <p class="lead-s">이 설계안을 보고 평일 10:00~17:30 사이에 먼저 연락드려요.</p>
+    <div class="lead-rc" id="leadrc"></div>
+    <label>이름 또는 상호<input name="name" autocomplete="name" required aria-describedby="e-name"><small class="err" id="e-name"></small></label>
+    <label>연락처<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required pattern="[0-9\- ]{9,14}" aria-describedby="e-tel"><small class="err" id="e-tel"></small></label>
+    <label>편한 연락 시간<select name="when"><option>언제든 괜찮아요</option><option>오전(10~12시)</option><option>오후(13~17시)</option></select></label>
+    <details class="more"><summary>더 적기 <small>(선택) 시작 희망 달 · 지금 맡긴 곳 · 꼭 물어볼 것</small></summary><div class="more-b">
+    <div class="two">
+      <label><span>시작 희망 달 <small>(선택)</small></span><select name="start" id="startm"></select></label>
+      <fieldset><legend>지금 맡긴 곳 <small>(선택)</small></legend><div class="rad"><label><input type="radio" name="now" value="있음">있음</label><label><input type="radio" name="now" value="없음">없음</label></div></fieldset>
+    </div>
+    <label><span>꼭 물어볼 것 <small>(선택)</small></span><textarea name="ask" rows="2" maxlength="300" placeholder="예: 직원 4대보험을 처음 신고해요"></textarea></label>
+    </div></details>
+    <label class="agree"><input type="checkbox" name="agree" required aria-describedby="e-agree"><span>상담 연락을 위해 이름·연락처를 받는 데 동의해요 (필수)<small>받는 것: 이름 또는 상호·연락처·연락 시간(적으신 경우 시작 희망 달·맡긴 곳 여부·물어볼 것과 이 설계안) · 쓰는 곳: 상담 연락 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡이나 전화(<a href="tel:050714457729">0507-1445-7729</a>)로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span></label>
+    <label class="agree ad"><input type="checkbox" name="adConsent"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 동의해요 (선택)<small>받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요</small></span></label>
+    <small class="err" id="e-agree"></small>
+    <p class="lead-msg" role="status" aria-live="polite"></p>
+    <div class="lead-b"><button type="button" class="b-line" data-close>닫기</button><button type="submit" class="b-fill">이 설계안으로 상담 요청</button></div>
+  </form>
+</dialog>
+
+<script src="js/svc-help.js"></script>
+<script>
+// ★ 기준표(초안) — 숫자·품목만 바꾸면 화면 전체가 따라 바뀜. 단위 만원/월, 부가세 별도.
+//   사용자 11/25: 모든 견적은 기본 4만원에서 시작 → 일반 개인 5 · 매출 큰 개인 7 · 법인 10.
+//   서비스 추가: 월별 매출 보고서 0원 · 인건비(4대보험 포함) 3명까지 1만원, 4명부터 상담 · 공동사업장 1만원.
+//   종합소득세·법인세 신고는 기본 포함이 아니라 '수수료 별도 · 신고 전 안내'.
+const START = 4;
+const SIZE = {lite:['일반 개인',0], std:['매출 큰 개인',3], corp:['법인',6]}; // 사업 규모 더하기(lite·std·corp = 메인 모델 소개의 택스민 라이트·택스민·택스민 법인)
+const TYPES = [['개인','개인사업자','b-person'],['법인','법인사업자','b-corp']];
+// [이름, 기본 매출 구간(억원), 아이콘, 법정 기준 묶음(LAW)] — IT 는 제조·건설과 같은 구간, '내 업종이 없어요'는 가장 일반적인 구간(5억)으로 보고 상담 때 확인
+const BIZ = [['음식점·카페',5,'b-food','m'],['도소매·쇼핑몰',9,'b-shop','w'],['서비스·프리랜서',3,'b-service','s'],['제조·건설',5,'b-make','m'],['IT·소프트웨어',5,'b-it','m'],['내 업종이 없어요',5,'b-q','m']];
+const SALES = [['올해 시작',1],['1억 미만',1],['1억~3억',3],['3억~5억',5],['5억~10억',10],['10억 이상',20,true]]; // 구간 윗선(억원), true = 끝이 열린 칸(상담 때 확정)
+const SALES_LO = [0,0,1,3,5,10]; // 구간 아랫선(억원)
+const OPTS = [
+  {k:'rep', t:'월별 매출 보고서', d:'매달 매출·매입 흐름을 한 장으로', p:0, ic:'o-rep', best:true},
+  {k:'pay', t:'인건비 신고 (4대보험 포함)', d:'직원 월급·4대보험 신고', p:1, ic:'o-pay', best:true},
+  {k:'co',  t:'공동사업장', d:'대표가 둘 이상인 사업장', p:1, ic:'o-co', only:'개인'},
+  {k:'cpa', t:'세무사 직접 담당', d:'담당자 대신 세무사가 장부·신고를 직접 맡아요', p:3, ic:'o-cpa'},
+];
+const HELP = [['inh','증여·상속'],['law','법무'],['lab','노무'],['loan','청약·대출·정책자금']]; // 함께 상담(금액 따로, 상담 때 안내)
+// 아래 '왜 구간이 있나요' 표와 같은 숫자(억원) — 표를 고치면 여기도 같이
+const LAW = {w:{book:3, sure:15}, m:{book:1.5, sure:7.5}, s:{book:0.75, sure:5}};
+
+// 사업 규모·금액 계산
+function scale(sel){ const r = SALES[sel.sales][1] / BIZ[sel.biz][1]; return r<=1?0 : r<=2?1 : r<=4?2 : 3; } // 0 기본 구간, 1 2배, 2 4배, 3 넘음
+function sizeOf(sel){ return sel.type==='법인' ? 'corp' : scale(sel)===0 ? 'lite' : 'std'; }
+function calc(sel){
+  const m = sizeOf(sel), sc = scale(sel);
+  const lines = [['기본 4가지', START]];
+  if (SIZE[m][1]) lines.push(['사업 규모 · ' + SIZE[m][0], SIZE[m][1]]);
+  const up = m==='corp' ? [0,2,4,4][sc] : m==='std' ? [0,0,2,2][sc] : 0;
+  if (up) lines.push(['작년 매출 ' + SALES[sel.sales][0], up]);
+  OPTS.forEach(o=>{ if (sel.opt[o.k] && (!o.only || o.only===sel.type)) lines.push([o.t + (o.k==='pay' ? (sel.big ? ' · 4명 이상' : ' · 3명까지') : ''), o.p]); });
+  return {m, sc, up, lines, total: lines.reduce((s,l)=>s+l[1],0), ask: (m!=='lite' && (sc===3 || !!SALES[sel.sales][2])) || (!!sel.opt.pay && sel.big)};
+}
+// self-check
+// 매출 칸 번호: 0 올해 시작 · 1 1억 미만 · 2 1~3억 · 3 3~5억 · 4 5~10억 · 5 10억 이상
+const S = o=>Object.assign({type:'개인',biz:0,sales:2,opt:{},big:false,help:{}},o);
+console.assert(calc(S()).total===4 && calc(S({sales:0})).total===4 && calc(S({type:'법인'})).total===10 && calc(S({sales:4})).total===7, '일반 개인 4 · 법인 10 · 매출 큰 개인 7');
+console.assert(calc(S({opt:{rep:1,pay:1}})).total===5 && calc(S({opt:{rep:1,pay:1,co:1}})).total===6 && calc(S({opt:{cpa:1}})).total===7, 'BEST 둘 = 5 · 공동사업장 1 · 세무사 직접 담당 3');
+console.assert(calc(S({type:'법인',opt:{co:1}})).total===10, '법인은 공동사업장 없음');
+console.assert(calc(S({opt:{pay:1},big:true})).ask && !calc(S({opt:{pay:1}})).ask, '인건비 4명 이상은 상담');
+console.assert(calc(S({sales:5})).total===9 && calc(S({sales:5})).ask && calc(S({type:'법인',biz:1,sales:5})).total===14 && !calc(S({sales:4})).ask, '10억 이상은 만원부터');
+console.assert(calc(S({biz:1,sales:3})).total===4 && calc(S({biz:1,sales:4})).total===7, '도소매 3~5억은 기본 구간 안, 5~10억은 넘음');
+console.assert(calc(S()).lines.length===1, '일반 개인은 사업 규모 줄 없음');
+console.assert(calc(S({biz:4,sales:4})).total===calc(S({biz:3,sales:4})).total && calc(S({biz:5,sales:4})).total===calc(S({biz:0,sales:4})).total, 'IT = 제조·건설 · 내 업종이 없어요 = 5억 구간');
+
+// 화면 상태: 아무것도 안 고른 채로 시작(null = 아직 안 고름). 사업자 형태는 안 고르면 개인 기준.
+const blank = () => ({type:null, biz:null, sales:null, staff:null, co:null, cpa:null, help:{}});
+const sel = blank();
+const T = s => s.type || '개인';
+const toCalc = (s, b, x) => ({type:T(s), biz:b, sales:x, opt:{pay:s.staff>0, co:!!s.co, cpa:!!s.cpa}, big:s.staff>=4, help:s.help});
+// 업종·매출을 아직 안 골랐으면 가능한 경우 중 가장 낮은 금액을 '부터'로 보여 줌
+function est(s){
+  const bs = s.biz==null ? BIZ.map((_,i)=>i) : [s.biz], xs = s.sales==null ? SALES.map((_,i)=>i) : [s.sales];
+  const all = bs.flatMap(b=>xs.map(x=>calc(toCalc(s,b,x))));
+  const r = all.reduce((a,c)=> c.total<a.total ? c : a);
+  return Object.assign({}, r, {ask: all.some(c=>c.ask || c.total!==r.total), open: s.biz==null || s.sales==null});
+}
+console.assert(est(blank()).total===4 && est(blank()).ask, '빈 시작 = 4만원부터');
+console.assert(est(Object.assign(blank(),{type:'법인'})).total===10 && est(Object.assign(blank(),{type:'법인'})).ask, '법인만 고르면 10만원부터');
+console.assert(est(Object.assign(blank(),{sales:0})).total===4 && !est(Object.assign(blank(),{sales:0})).ask, '올해 시작 개인은 업종과 상관없이 4만원');
+console.assert(est(Object.assign(blank(),{biz:0,sales:2,staff:2,cpa:true})).total===8, '음식 1~3억 + 직원 + 세무사 직접 = 8');
+
+// 억원 → '1억 5천만원'(표와 같은 꼴) / '4억 1,800만원'(모니터링 꼴)
+function eok(v, comma){ const man = Math.round(v*10000), e = Math.floor(man/10000), r = man%10000;
+  const rs = !r ? '' : (!comma && e && r%1000===0) ? r/1000 + '천만원' : r.toLocaleString('ko-KR') + '만원';
+  return e ? e + '억' + (rs ? ' ' + rs : '원') : rs; }
+console.assert(eok(1.5)==='1억 5천만원' && eok(0.75)==='7,500만원' && eok(15)==='15억원' && eok(4.18,1)==='4억 1,800만원' && eok(4.6,1)==='4억 6,000만원', '억원 글자');
+
+// 링크에 담는 것: 고른 것만
+function share(s){ const p = new URLSearchParams();
+  if (s.type) p.set('t', s.type==='법인' ? 'c' : 'i');
+  if (s.biz!=null) p.set('b', s.biz); if (s.sales!=null) p.set('s', s.sales); if (s.staff!=null) p.set('e', s.staff);
+  if (s.co!=null) p.set('co', +s.co); if (s.cpa!=null) p.set('cpa', +s.cpa);
+  const h = HELP.filter(x=>s.help[x[0]]).map(x=>x[0]); if (h.length) p.set('h', h.join('.'));
+  return p.toString(); }
+function restore(q, s){ const num = (k, max) => { const v = q.get(k); return v!==null && /^\d{1,2}$/.test(v) && +v<=max ? +v : null; };
+  const t = q.get('t'); if (t==='c') s.type = '법인'; else if (t==='i') s.type = '개인';
+  let v; if ((v = num('b', BIZ.length-1))!==null) s.biz = v; if ((v = num('s', SALES.length-1))!==null) s.sales = v;
+  if ((v = num('e', 10))!==null) s.staff = v; if ((v = num('co', 1))!==null) s.co = !!v; if ((v = num('cpa', 1))!==null) s.cpa = !!v;
+  (q.get('h')||'').split('.').forEach(k=>{ if (HELP.some(x=>x[0]===k)) s.help[k] = true; }); }
+(() => { const a = {type:'법인',biz:4,sales:3,staff:6,co:null,cpa:true,help:{lab:true}}, b = blank(); restore(new URLSearchParams(share(a)), b);
+  console.assert(JSON.stringify(a)===JSON.stringify(b), '설계 링크 저장·복원'); })();
+
+const $ = id => document.getElementById(id);
+const P = k => OPTS.find(o=>o.k===k).p;
+const bizName = i => i===5 ? '일반 업종' : BIZ[i][0]; // 설계안·안내 글에 쓰는 업종 이름
+const BIZ_SHORT = ['음식점·카페','도소매','서비스','제조·건설','IT','업종 확인'];
+const BIZ_PLAN = ['음식점·카페','도소매·쇼핑몰','서비스 사업','제조·건설 사업','IT 사업','우리 가게'];
+const MON = [['예시 식당 B','음식점업'],['예시 상점 B','도소매업'],['예시 스튜디오 B','서비스업'],['예시 공방 B','제조업'],['예시 개발사 B','IT'],['예시 가게 B','업종 예시']];
+
+// 고르는 칸 그리기
+const chip = (g, i, label, ic) => `<button type="button" class="ch" data-g="${g}" data-i="${i}" aria-pressed="false">${ic?`<svg class="i" aria-hidden="true"><use href="#${ic}"/></svg>`:''}${label}</button>`;
+$('type').innerHTML = TYPES.map((t,i)=>chip('type', i, t[1], t[2])).join('');
+$('biz').innerHTML = BIZ.map((b,i)=>chip('biz', i, b[0], b[2])).join('');
+$('sales').innerHTML = SALES.map((s,i)=>chip('sales', i, s[0])).join('');
+$('help').innerHTML = HELP.map(h=>`<div class="hi"><label><input type="checkbox" value="${h[0]}">${h[1]}</label>${QI.btn(h[0])}</div>`).join('');
+$('co-yes').innerHTML = `예, 공동사업장 <small>+${P('co')}만원</small>`;
+$('cpa-yes').innerHTML = `세무사가 직접 <small>+${P('cpa')}만원</small>`;
+
+document.querySelector('.form').addEventListener('click', e=>{
+  const c = e.target.closest('[data-g]'); if (!c || c.disabled) return;
+  const g = c.dataset.g, i = +c.dataset.i; let what;
+  if (g==='type'){ sel.type = TYPES[i][0]; what = TYPES[i][1]; }
+  else if (g==='biz'){ sel.biz = i; what = '업종 ' + BIZ[i][0]; }
+  else if (g==='sales'){ sel.sales = i; what = '작년 매출 ' + SALES[i][0]; }
+  else if (g==='staff'){ const v = c.dataset.v, n = sel.staff || 0;
+    sel.staff = v==='none' ? 0 : v==='inc' ? Math.min(10, n+1) : v==='dec' ? Math.max(1, n-1) : Math.max(1, n);
+    what = sel.staff ? `직원 ${sel.staff}명` : '직원 없음'; }
+  else if (g==='co'){ sel.co = i===1; what = sel.co ? '공동사업장' : '대표 혼자'; }
+  else if (g==='cpa'){ sel.cpa = i===1; what = sel.cpa ? '세무사가 직접' : '담당자 + 세무사 검토'; }
+  draw(what);
+  // 휴대폰: 하나만 고르는 단계는 고르고 잠깐 뒤 다음 단계로
+  const at = ['type','biz','sales'].indexOf(g);
+  if (at>=0 && phone.matches){ clearTimeout(advT); advT = setTimeout(()=> go(at+1), 250); }
+});
+$('help').addEventListener('change', e=>{ sel.help[e.target.value] = e.target.checked; });
+
+// 설계안 줄 만들기 — 금액은 모두 calc() 에서 옴
+function rows(r){
+  const R = [], bn = sel.biz!=null ? bizName(sel.biz) : '';
+  const opt = k => r.lines.find(l=>l[0].startsWith(OPTS.find(o=>o.k===k).t));
+  R.push({k:'base', l:'기본 4가지', v:START + '만원', p:START, base:true});
+  if (r.open) R.push({k:'hint', hint: sel.biz==null && sel.sales==null ? '업종과 작년 매출을 고르면 여기에 한 줄씩 생겨요' : sel.biz==null ? '업종을 고르면 구간이 정해져요' : '작년 매출을 고르면 구간이 정해져요'});
+  r.lines.slice(1).filter(l=>!OPTS.some(o=>l[0].startsWith(o.t))).forEach(l=>{
+    if (l[0].startsWith('사업 규모')) R.push({k:'size'+r.m+bn, l: r.m==='corp' ? '법인사업자' : bn ? bn + ' 큰 매출 구간' : '매출이 큰 구간', p:l[1]});
+    else R.push({k:'up'+l[0], l:l[0], p:l[1]});
+  });
+  if (!r.open && r.m==='lite') R.push({k:'lite'+bn, l:bn + ' 기장료 기본 구간', v:'기본에 포함', nt:true});
+  if (sel.staff===0) R.push({k:'payoff', l:'인건비 신고', off:'직원이 없어 뺐어요'});
+  else if (sel.staff>0) R.push({k:'pay', l:'인건비 신고 · 4대보험 포함', p:opt('pay')[1], sub:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}${sel.staff>=4 ? ' · 4명부터는 상담 때 확정' : ''}`});
+  if (T(sel)==='개인'){
+    if (sel.co===false) R.push({k:'cooff', l:'공동사업장', off:'대표가 혼자라 뺐어요'});
+    else if (sel.co) R.push({k:'co', l:'공동사업장 · 대표 둘 이상', p:opt('co')[1]});
+  }
+  R.push(sel.cpa ? {k:'who1', l:'누가 보나요 · 세무사가 직접', p:opt('cpa')[1]} : {k:'who0', l:'누가 보나요 · 담당자 작성 → 세무사 검토', v:'기본', nt:true});
+  console.assert(R.reduce((s,x)=>s+(x.p||0),0)===r.total, '설계안 줄 합계 = 월 기장료');
+  return R;
+}
+
+// 내 기장료 쌓기: 고른 것마다 한 줄(금액 + 까닭). 금액은 위 rows() 줄을 고른 것별로 묶기만 함(새로 계산하지 않음)
+// c = 한 줄 요약에 쓰는 짧은 이름, q = 더하지 않는 줄(회색), off = 뺀 줄(취소선)
+const BASE_WHY = {개인:'장부·부가세 신고·전담 담당자·세무사 검토·월별 매출 보고서', 법인:'법인 장부·부가세 신고·전담 담당자·세무사 검토·월별 매출 보고서'};
+function stack(r, R){
+  const corp = T(sel)==='법인', B = [], amt = f => R.filter(f).reduce((s,x)=>s+(x.p||0),0);
+  B.push({k:'base', c:'기본', p:amt(x=>x.base), l:'기본', w:BASE_WHY[T(sel)]});
+  if (corp) B.push({k:'corp', c:'법인', p:amt(x=>x.k.startsWith('sizecorp')), l:'법인사업자', w:'매출과 상관없이 복식부기 장부·법인세·부가세 1년 4번을 챙겨요'});
+  else if (sel.type) B.push({k:'indiv', q:true, l:'개인사업자', w:'기본에서 시작해요'});
+  if (sel.biz!=null) B.push({k:'biz'+sel.biz, q:true, l:BIZ[sel.biz][0], w: sel.biz===5 ? '업종은 상담 때 확인해요 · 지금은 5억원 구간으로 봐요' : `업종으로 구간 기준만 정해요 · 기본 구간 작년 매출 ${BIZ[sel.biz][1]}억원 이하`});
+  if (sel.sales!=null){
+    const p = amt(x=>x.k.startsWith('sizestd') || x.k.startsWith('up')), open = sel.biz==null;
+    const law = !corp && !open && sel.sales ? ' · ' + shortSit(sel).split(' · ')[0] : '';
+    const lim = open ? '' : `기본 구간(${BIZ[sel.biz][1]}억원 이하)`;
+    const w = sel.sales===0 ? '작년 매출이 없어 기본 구간으로 봐요'
+      : open ? '업종을 고르면 구간이 정해져요'
+      : p ? `${lim}을 넘어 장부·신고 일이 늘어요${law}${r.ask && r.m!=='lite' && (r.sc===3 || SALES[sel.sales][2]) ? ' · 상담 때 확정' : ''}`
+      : `${lim} 안이라 더하지 않아요${law}`;
+    B.push(Object.assign({k:'sales'+sel.sales+'-'+p, l: sel.sales ? '작년 매출 ' + SALES[sel.sales][0] : '올해 시작', w}, p ? {c:'매출', p} : {q:true}));
+  }
+  const hint = R.find(x=>x.hint); if (hint) B.push({k:'hint', hint:hint.hint});
+  if (sel.staff===0) B.push({k:'payoff', off:true, l:'인건비 신고', w:'직원이 없어 뺐어요'});
+  else if (sel.staff>0) B.push({k:'pay', c:'직원', p:amt(x=>x.k==='pay'), l:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}`, w:'매달 인건비 신고(4대보험 포함)' + (sel.staff>=4 ? ' · 4명부터는 상담 때 확정' : ' · 3명까지 같은 금액')});
+  if (!corp){
+    if (sel.co===false) B.push({k:'cooff', off:true, l:'공동사업장', w:'혼자 운영이라 뺐어요'});
+    else if (sel.co) B.push({k:'co', c:'공동', p:amt(x=>x.k==='co'), l:'공동사업장', w:'대표가 둘 이상 · 소득을 나눠 각자 신고해요'});
+  }
+  if (sel.cpa) B.push({k:'cpa', c:'세무사', p:amt(x=>x.k==='who1'), l:'세무사가 장부를 직접', w:'담당자 대신 세무사가 장부·신고를 직접 맡아요'});
+  else if (sel.cpa===false) B.push({k:'cpa0', q:true, l:'담당자 작성 → 세무사 검토', w:'기본에 들어 있어요'});
+  console.assert(B.reduce((s,b)=>s+(b.p||0),0)===r.total, '기장료 쌓기 합계 = 월 기장료');
+  return B;
+}
+const QK = {base:'base', pay:'pay', payoff:'pay', co:'co', cooff:'co', cpa:'cpa', cpa0:'review'}; // 쌓기 줄 → '?' 설명(js/svc-help.js)
+const stackHTML = (B, prev) => B.map(b=> b.hint ? `<li class="hint">${b.hint}</li>`
+  : `<li class="${[b.q && 'q', b.off && 'off', prev && !prev.has(b.k) && 'new'].filter(Boolean).join(' ')}"><b class="a">${b.p ? (b.k==='base' ? '' : '+') + b.p + '만원' : '–'}</b><span><span class="l">${b.l}${QI.btn(QK[b.k] || '')}</span><span class="w">${b.w}</span></span></li>`).join('');
+// 한 줄 요약: 월 8만원 = 기본 4 + 매출 3 + 직원 1
+const lineHTML = (B, prev) => { const c = B.filter(b=>b.p);
+  return `<b class="sl-t">월 <span class="js-tot"></span></b><span class="sl-eq">=</span><span class="sl-c">`
+    + c.map((b,i)=>(i ? '<i>+</i>' : '') + `<span class="cp${prev && !prev.has(b.k) ? ' hot' : ''}">${b.c} ${b.p}</span>`).join('')
+    + (c.length===1 ? '<span class="emp">· 고를 때마다 쌓여요</span>' : '') + '</span>'; };
+
+// 사장님 상황: '왜 구간이 있나요' 표의 법정 기준만 씀
+function situation(){
+  const L = [], corp = T(sel)==='법인';
+  if (!corp){
+    if (sel.biz!=null && sel.sales!=null){
+      const g = LAW[BIZ[sel.biz][3]], lo = SALES_LO[sel.sales], hi = SALES[sel.sales][2] ? Infinity : SALES[sel.sales][1];
+      if (sel.sales===0) L.push('올해 시작이라 작년 매출 기준이 없어요 · 장부 종류는 상담 때 확인해요');
+      else {
+        L.push(hi<=g.book ? `작년 매출로 보면 간편장부 대상이에요 (법정 복식부기 기준 ${eok(g.book)})`
+          : lo>=g.book ? `복식부기 의무 대상 구간이에요 (법정 기준 ${eok(g.book)} 이상)`
+          : `법정 복식부기 기준(${eok(g.book)})이 이 구간 안에 있어요`);
+        L.push(hi<g.sure ? `성실신고 확인 기준(${eok(g.sure)})까지 최소 ${eok(g.sure-hi)} 남았어요`
+          : hi===g.sure ? `성실신고 확인 기준(${eok(g.sure)}) 바로 아래 구간이에요`
+          : lo>=g.sure ? `성실신고 확인 기준(${eok(g.sure)}) 이상 구간이에요 · 상담 때 확인해요`
+          : `성실신고 확인 기준(${eok(g.sure)})이 이 구간 안에 있어요`);
+      }
+    } else L.push('업종과 작년 매출을 고르면 장부 기준과 성실신고 확인 기준까지 남은 구간을 알려 드려요');
+  } else L.push('법인은 매출과 상관없이 복식부기 장부를 써요');
+  // 신고 일정은 아래 '맡기시면 저희가 챙기는 신고'에(간이·일반은 묻지 않음)
+  if (sel.biz===1) L.push('스마트스토어·오픈마켓 매출과 판매 수수료도 장부에 함께 정리해요'); // 확인 필요: 사무소 확인 뒤 확정
+  if (sel.biz===5) L.push('업종은 상담 때 확인해요 · 지금은 음식·제조 기준으로 보여 드려요');
+  return L;
+}
+// 펼친 칸의 사장님 상황 한 줄(위 situation() 과 같은 법정 기준)
+function shortSit(s){
+  if (T(s)==='법인') return '복식부기 장부 · 부가세 1년 4번 · 법인세 3월';
+  if (s.biz==null || s.sales==null) return s.type || s.biz!=null || s.sales!=null || s.staff!=null || s.co!=null || s.cpa!=null ?'업종과 매출을 고르면 장부 기준이 보여요' : '하나씩 고르면 여기에 내 상황이 쌓여요';
+  if (s.sales===0) return '올해 시작 · 장부 종류는 상담 때 확인해요';
+  const g = LAW[BIZ[s.biz][3]], lo = SALES_LO[s.sales], hi = SALES[s.sales][2] ? Infinity : SALES[s.sales][1];
+  return (hi<=g.book ? '간편장부 대상' : lo>=g.book ? '복식부기 대상' : '복식부기 기준이 이 구간 안')
+    + ' · ' + (hi<g.sure ? `성실신고 기준까지 최소 ${eok(g.sure-hi)}` : hi===g.sure ? '성실신고 기준 바로 아래' : lo>=g.sure ? '성실신고 확인 대상 구간' : '성실신고 기준이 이 구간 안');
+}
+console.assert(shortSit(Object.assign(blank(),{biz:0,sales:3}))==='복식부기 대상 · 성실신고 기준까지 최소 2억 5천만원'
+  && shortSit(Object.assign(blank(),{biz:1,sales:2}))==='간편장부 대상 · 성실신고 기준까지 최소 12억원'
+  && shortSit(Object.assign(blank(),{biz:2,sales:4}))==='복식부기 대상 · 성실신고 확인 대상 구간'
+  && shortSit(Object.assign(blank(),{biz:0,sales:4})).endsWith('성실신고 기준이 이 구간 안'), '휴대폰 한 줄 상황');
+
+function title(){
+  if (!sel.type && sel.biz==null && sel.sales==null && sel.staff==null && sel.co==null && sel.cpa==null) return '우리 가게 기장 설계안';
+  const pre = (sel.staff>0 ? '직원 있는 ' : '') + (T(sel)==='개인' && sel.co ? '동업하는 ' : '');
+  const noun = sel.biz!=null ? BIZ_PLAN[sel.biz] : '우리 가게';
+  return pre + (T(sel)==='법인' ? (sel.biz!=null ? BIZ_SHORT[sel.biz] + ' 법인' : '우리 법인') : noun) + ' 기장 설계안';
+}
+function summary(){
+  return [sel.type, sel.biz!=null && BIZ_SHORT[sel.biz], sel.sales!=null && (sel.sales ? '작년 ' + SALES[sel.sales][0] : '올해 시작'),
+    sel.staff!=null && (sel.staff ? `직원 ${sel.staff}명` : '직원 없음'), T(sel)==='개인' && sel.co && '공동사업장', sel.cpa && '세무사 직접'].filter(Boolean).join(' · ');
+}
+
+function drawMon(){
+  const i = sel.biz ?? 2, g = LAW[BIZ[i][3]], f = g.sure/5, a = eok(4.18*f, 1), b = eok(4.6*f, 1);
+  $('mon-who').textContent = `${MON[i][0]} · ${MON[i][1]} · 개인`;
+  $('mon-b').textContent = MON[i][0];
+  $('mon-sum').textContent = $('mon-k1').textContent = a;
+  $('mon-k2').textContent = b;
+  $('mon-y1').textContent = 2*f + '억'; $('mon-y2').textContent = 4*f + '억';
+  $('mon-lim').textContent = `성실신고 확인 기준 ${eok(g.sure)}`;
+  $('mon-k3').textContent = `연말 예상 ÷ 기준 ${eok(g.sure).replace(/원$/,'')}`;
+  $('mon-corp').hidden = T(sel)!=='법인';
+  $('mon-chart').setAttribute('aria-label', `예시 거래처의 월별 누적 매출 그래프. 11월까지 ${a}, AI 연말 예상 ${b}, 성실신고 확인 기준 ${eok(g.sure)}의 92%`);
+}
+
+let lastTotal = null, lastKeys = null, toastT;
+function bump(el){ el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+// 알림: 화면 읽기 프로그램에는 #toast 로, 눈에는 띠 안의 요약 자리에 2초 동안(본문 위로 뜨지 않음)
+function barText(t){ const sm = summary(); $('bm').textContent = t || sm || '아직 고른 게 없어요'; $('bms').textContent = t || sm || '내 설계안 보기'; $('bm').classList.toggle('flash', !!t); $('bms').classList.toggle('flash', !!t); }
+function toast(t){ $('toast').textContent = t; barText(t); clearTimeout(toastT); toastT = setTimeout(()=> barText(), 2000); }
+const today = (d => `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`)(new Date());
+let R = [], hotT, countRaf;
+// 월 기장료 숫자: 바뀌면 0.4초 동안 세어 올라감(동작 줄이기면 바로)
+const calm = matchMedia('(prefers-reduced-motion: reduce)');
+function showTotal(to, unit, from){
+  cancelAnimationFrame(countRaf);
+  const put = v => document.querySelectorAll('.js-tot').forEach(el=> el.innerHTML = `${v}<small>${unit}</small>`);
+  if (from==null || from===to || calm.matches) return put(to);
+  const t0 = performance.now(), tick = now => { const k = Math.min(1, (now-t0)/420); put(Math.round(from + (to-from)*(1-Math.pow(1-k,3)))); if (k<1) countRaf = requestAnimationFrame(tick); };
+  put(from); countRaf = requestAnimationFrame(tick);
+}
+
+// 설계를 처음 마치면 전환 신호 한 번(js/track.js 의 TM_TRACK 이 있을 때만 — 없으면 아무것도 안 함)
+var calcSent = false;
+function calcDone(){ if (calcSent || typeof window.TM_TRACK !== 'function') return; calcSent = true; const r = est(sel); window.TM_TRACK('calc_complete', {tier: r.open ? '-' : SIZE[r.m][0], price: $('bt').textContent}); }
+function draw(what){
+  const r = est(sel), corp = T(sel)==='법인';
+  // 고른 칸 표시
+  document.querySelectorAll('.form .ch[data-i]').forEach(c=>{ const g = c.dataset.g, i = +c.dataset.i;
+    const on = g==='type' ? TYPES[i][0]===sel.type : g==='co' ? sel.co!=null && (i===1)===sel.co : g==='cpa' ? sel.cpa!=null && (i===1)===sel.cpa : sel[g]===i;
+    c.setAttribute('aria-pressed', on); });
+  document.querySelector('[data-v=none]').setAttribute('aria-pressed', sel.staff===0);
+  $('stepper').classList.toggle('on', sel.staff>0);
+  $('stepn').setAttribute('aria-pressed', sel.staff>0);
+  $('stepn').textContent = sel.staff>0 ? `직원 ${sel.staff}명${sel.staff>=10?' 이상':''}` : '직원 있어요';
+  document.querySelector('[data-v=dec]').disabled = !(sel.staff>1);
+  document.querySelector('[data-v=inc]').disabled = sel.staff>=10;
+  $('staffnote').textContent = sel.staff>=4 ? '4명부터는 인원에 따라 상담 때 금액을 정해요.' : `있으면 인건비 신고(4대보험 포함) +${P('pay')}만원 · 3명까지 같은 금액이에요.`;
+  $('q-co-wrap').hidden = corp;
+  $('tnote').hidden = !!sel.type;
+  // 답한 단계 체크(넓은 화면 동그라미 · 휴대폰 단계 막대)
+  const done = [!!sel.type, sel.biz!=null, sel.sales!=null, sel.staff!=null && sel.cpa!=null && (corp || sel.co!=null)];
+  ['r-type','r-biz','r-sales','r-sit'].forEach((id,i)=> $(id).classList.toggle('done', done[i]));
+  if (what && done[0] && done[1] && done[2] && !matchMedia('(max-width:720px)').matches) calcDone();
+  document.querySelectorAll('#wzs [data-step]').forEach((b,i)=> b.classList.toggle('done', !!done[i]));
+  // 매출 아래 한 줄
+  const b = sel.biz!=null ? [bizName(sel.biz), BIZ[sel.biz][1]] : null, upT = r.up ? ` · 매출 구간 +${r.up}만원` : '', askT = r.m!=='lite' && (r.sc===3 || (sel.sales!=null && SALES[sel.sales][2])) ? ' · 상담 때 확정' : '';
+  $('snote').innerHTML = r.open ? (corp ? `법인은 <b>사업 규모 +${SIZE.corp[1]}만원</b>부터예요 · 업종과 매출을 고르면 구간이 정해져요` : '업종과 매출을 고르면 어느 구간인지 바로 알려 드려요')
+    : corp ? `법인은 <b>사업 규모 +${SIZE.corp[1]}만원</b>${upT}${askT}`
+    : r.m==='lite' ? `기장료 기본 구간(사무소 요금 기준) · ${b[0]} 작년 매출 ${b[1]}억원 이하 → 이 안이라 <b>사업 규모 금액이 붙지 않아요</b>`
+    : `기장료 기본 구간(사무소 요금 기준) · ${b[0]} 작년 매출 ${b[1]}억원 이하 → 이 구간을 ${SALES_LO[sel.sales] < b[1] ? '넘을 수 있어' : '넘어'} <b>${b[0]} 큰 매출 구간 +${SIZE.std[1]}만원</b>${upT}${askT}`;
+  // 설계안
+  const unit = r.ask ? '만원부터' : '만원';
+  const place = corp ? '회사' : '가게';
+  $('mh1').textContent = `우리 ${place} 기장, 직접 설계해 보세요.`;
+  $('h-sit-t').textContent = `우리 ${place} 상황`;
+  $('sit-h').textContent = $('shsith').textContent = corp ? '대표님 상황' : '사장님 상황';
+  $('rcttl').textContent = title();
+  $('rcd').textContent = today + (summary() ? ' · ' + summary() : ' · 아직 고른 게 없어요');
+  $('sit').innerHTML = situation().map(t=>`<li>${t}</li>`).join('');
+  // 내 기장료 쌓기(설계안 · 휴대폰 펼친 칸 · 한 줄 요약) — 새로 생긴 줄만 자라며 들어옴
+  const prev = lastKeys; R = rows(r);
+  const B = stack(r, R), sh = stackHTML(B, prev), ln = lineHTML(B, prev);
+  $('stk').innerHTML = $('shstk').innerHTML = sh;
+  $('mel').innerHTML = $('pinl').innerHTML = ln;
+  lastKeys = new Set(B.map(x=>x.k));
+  showTotal(r.total, unit, lastTotal);
+  $('shsit').textContent = shortSit(sel);
+  // 새 칸은 잠깐 파랗게, 한 줄 요약에서 보이게 밀어 줌
+  clearTimeout(hotT);
+  document.querySelectorAll('.sl-c').forEach(box=>{ const h = box.querySelector('.hot'); if (h && h.offsetLeft + h.offsetWidth > box.clientWidth - 16) box.scrollLeft = h.offsetLeft + h.offsetWidth - box.clientWidth + 16; });
+  hotT = setTimeout(()=>{ document.querySelectorAll('.cp.hot').forEach(h=> h.classList.remove('hot')); document.querySelectorAll('.sl-c').forEach(box=> box.scrollTo({left:0, behavior: calm.matches ? 'auto' : 'smooth'})); }, 1400);
+  $('rcy').textContent = `월 ${r.total}${unit} × 12개월 = 연 ${r.total*12}${unit} (부가세 별도)`;
+  $('rcn').textContent = `예상 금액이며 상담 때 확정해요.${r.ask ? ' ‘부터’가 붙은 금액은 상담 때 정해요.' : ''} ${corp ? '법인세' : '종합소득세'} 신고 수수료는 장부 상태에 따라 달라요.`;
+  // 맡기시면 저희가 챙기는 신고 — 간이·일반은 묻지 않고 저희가 확인
+  const staffNote = sel.staff>0 ? '' : ' · 직원이 있을 때만', D = [];
+  if (sel.staff!==0) D.push(['매달 인건비 신고', '원천세·4대보험' + staffNote], ['연말정산·지급명세서', '2~3월' + staffNote]);
+  D.push(corp ? ['부가세 신고', '1년 4번 · 1월·4월·7월·10월'] : ['부가세 신고', '과세 유형(일반·간이)은 저희가 확인해서 맞춰요']);
+  D.push(corp ? ['3월 법인세 신고', '신고 전에 금액을 먼저 알려 드리고, 동의하신 뒤에 진행해요'] : ['5월 종합소득세 신고', '신고 전에 금액을 먼저 알려 드리고, 동의하신 뒤에 진행해요']);
+  $('dues').innerHTML = D.map(d=>`<li><b>${d[0]}</b><span>${d[1]}</span></li>`).join('');
+  // 아래 띠
+  barText();
+  $('bt').textContent = r.total + unit;
+  if (lastTotal!==null && lastTotal!==r.total) bump($('bt'));
+  lastTotal = r.total;
+  drawMon();
+  if (what){
+    const add = B.find(x=>!x.hint && prev && !prev.has(x.k));
+    toast(add ? (add.off ? `설계안에서 뺐어요 · ${add.l}` : add.p ? `설계안에 추가 · ${add.l} +${add.p}만원` : `설계안에 반영 · ${add.l}`) : `설계안에 반영 · ${what}`);
+  }
+}
+
+// 메인에서 build.html?p=new|staff|big|corp|help|co (옛 ?model=lite|std|corp · ?type=법인) 로 들어오면 그 조건을 미리 골라 둠
+const q = new URLSearchParams(location.search), qp = q.get('p') || {lite:'', std:'big', corp:'corp'}[q.get('model')] || '';
+if (qp==='corp' || q.get('type')==='법인') sel.type = '법인';
+if (qp==='new') sel.sales = 0;                       // 새로 연 가게: 올해 시작
+if (qp==='staff') sel.staff = 1;                     // 직원 있는 가게: 인건비 신고
+if (qp==='big'){ sel.biz = 0; sel.sales = 4; }       // 매출이 커진 가게: 음식점 5억~10억원
+if (qp==='co') sel.co = true;                        // 동업하는 가게: 공동사업장
+if (qp==='shop') sel.biz = 1;                        // 온라인 판매: 도소매·쇼핑몰
+if (qp==='help') HELP.forEach(h=> sel.help[h[0]] = true); // 기장 밖의 일까지: 상담 때 물어볼 것 넷
+restore(q, sel);                                     // '이 설계 링크 복사'로 만든 링크
+document.querySelectorAll('#help input').forEach(i=> i.checked = !!sel.help[i.value]);
+draw();
+
+// 휴대폰(720px 이하): 한 화면에 한 단계씩 — 형태 → 업종 → 매출 → 상황 → 설계안. 넓은 화면에서는 아무것도 안 함
+const phone = matchMedia('(max-width:720px)'), wzv = $('wzv'), mk = wzv.firstElementChild;
+const panes = [$('r-type'), $('r-biz'), $('r-sales'), $('r-sit'), document.querySelector('.side')];
+const stepBtns = [...document.querySelectorAll('#wzs [data-step]')];
+let step = 0, advT;
+const fit = () => { wzv.style.height = phone.matches ? panes[step].offsetHeight + 'px' : ''; };
+function go(n, still){
+  const on = phone.matches, moved = n!==step;
+  step = Math.max(0, Math.min(panes.length-1, n)); clearTimeout(advT); sheet(false);
+  wzv.classList.toggle('still', !!still);
+  mk.style.transform = on ? `translateX(${-step*100}%)` : '';
+  panes.forEach((p,i)=> p.inert = on && i!==step); // 안 보이는 단계는 눌리거나 읽히지 않게
+  document.body.classList.toggle('wz-last', on && step===panes.length-1);
+  if (on && !still && step===panes.length-1) calcDone();
+  $('wzback').disabled = step===0;
+  stepBtns.forEach((b,i)=> i===step ? b.setAttribute('aria-current','step') : b.removeAttribute('aria-current'));
+  fit();
+  if (on && !still && moved){
+    if (window.scrollY > 0) window.scrollTo({top:0});
+    const h = panes[step].querySelector('h2'); h.tabIndex = -1; h.focus({preventScroll:true});
+  }
+  if (still) requestAnimationFrame(()=> requestAnimationFrame(()=> wzv.classList.remove('still')));
+}
+const ro = new ResizeObserver(fit); panes.forEach(p=> ro.observe(p));
+phone.addEventListener('change', ()=> go(step, true));
+$('wzback').addEventListener('click', ()=> go(step-1));
+stepBtns.forEach((b,i)=> b.addEventListener('click', ()=> go(i)));
+$('wznext').addEventListener('click', ()=> go(4));
+// 위 한 줄을 누르면 쌓기 전체가 아래로 펼쳐짐(바깥·Esc·다시 누르면 닫힘)
+function sheet(open){ if (!$('sheet').hidden === open) return; $('sheet').hidden = $('sheetbg').hidden = !open; $('me').setAttribute('aria-expanded', open); }
+$('me').addEventListener('click', ()=> sheet($('sheet').hidden));
+$('sheetbg').addEventListener('click', ()=> sheet(false));
+$('shgo').addEventListener('click', ()=> go(4));
+document.addEventListener('keydown', e=>{ if (e.key==='Escape' && !$('sheet').hidden){ sheet(false); $('me').focus(); } });
+// 옆으로 밀어도 넘어감(세로 스크롤과 헷갈리지 않게 가로로 충분히 밀었을 때만)
+let tx = null, ty = 0;
+wzv.addEventListener('touchstart', e=>{ const t = e.touches[0]; tx = e.touches.length===1 ? t.clientX : null; ty = t.clientY; }, {passive:true});
+wzv.addEventListener('touchend', e=>{
+  if (tx===null || !phone.matches) return;
+  const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; tx = null;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5*Math.abs(dy) && !e.target.closest('input,textarea')) go(step + (dx<0 ? 1 : -1));
+}, {passive:true});
+// 메인 바로가기(?p=…)·설계 링크로 들어오면 고른 채로 설계안부터, 그냥 들어오면 첫 단계부터
+go(['p','model','type','t','b','s','e','co','cpa','h'].some(k=> q.has(k)) ? 4 : 0, true);
+
+// 링크 복사 · 종이로 저장
+$('copy').addEventListener('click', async ()=>{
+  const qs = share(sel), url = location.origin + location.pathname + (qs ? '?' + qs : ''), m = $('ownmsg');
+  try { await navigator.clipboard.writeText(url); m.textContent = '링크를 복사했어요. 고른 것만 담겨요.'; }
+  catch { m.textContent = '복사가 안 돼서 링크를 여기에 둘게요: ' + url; }
+});
+$('print').addEventListener('click', ()=> window.print());
+
+// 띠의 금액을 누르면 설계안으로(휴대폰에서는 띠 대신 위 '내 상황'을 누름)
+const rc = $('rc');
+$('bprice').addEventListener('click', ()=> rc.scrollIntoView({block:'start'}));
+// 넓은 화면(1025px~): 오른쪽 설계안이 화면에 보이면 아래 띠를 내림 — 질문·설계안을 가리지 않음
+const bar = document.querySelector('.bar'), wide = matchMedia('(min-width:1025px)');
+let rcSeen = false;
+const setBar = () => bar.classList.toggle('away', wide.matches && rcSeen);
+new IntersectionObserver(([e])=>{ rcSeen = e.isIntersecting; setBar(); }).observe(rc);
+wide.addEventListener('change', setBar);
+// 넓은 화면: '=' 줄이 머리띠 위로 지나가면 설계안 맨 위에 한 줄 요약을 붙임(누르면 쌓기로)
+new IntersectionObserver(([e])=> $('pin').classList.toggle('on', !e.isIntersecting && e.boundingClientRect.top < 72), {rootMargin:'-72px 0px 0px 0px'}).observe($('stkt'));
+$('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'}));
+
+// 설계서 보내기 창
+(() => {
+  const d = $('lead'), f = $('leadf'), msg = f.querySelector('.lead-msg');
+  const now = new Date();
+  $('startm').innerHTML = '<option value="">아직 몰라요</option>' + [0,1,2,3].map(k=>{ const t = new Date(now.getFullYear(), now.getMonth()+k, 1); return `<option>${t.getFullYear()}년 ${t.getMonth()+1}월</option>`; }).join('');
+  let from = null;
+  const sendBtn = f.querySelector('[type=submit]'), sendT = sendBtn.textContent;
+  const esc = t => t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const req = [...f.elements].filter(el=> el.required);
+  const why = el => el.name==='tel' ? (el.value.trim() ? '연락처를 숫자로 적어 주세요. 예: 010-1234-5678' : '연락처를 적어 주세요.') : el.name==='agree' ? '동의에 체크해 주세요.' : '이름 또는 상호를 적어 주세요.';
+  const mark = (el, show) => { const bad = !el.checkValidity(); if (!bad || show){ el.setAttribute('aria-invalid', bad); $('e-'+el.name).textContent = bad ? why(el) : ''; } };
+  f.addEventListener('input', e=>{ if (req.includes(e.target)){ mark(e.target, e.target.getAttribute('aria-invalid')==='true'); msg.textContent = ''; } }); // 고치는 즉시 오류 글을 지움
+  document.querySelectorAll('[data-lead]').forEach(b=> b.addEventListener('click', ()=>{
+    from = b; msg.textContent = ''; msg.classList.remove('ok'); sendBtn.disabled = false; sendBtn.textContent = sendT; req.forEach(el=>{ el.removeAttribute('aria-invalid'); $('e-'+el.name).textContent = ''; });
+    const h = HELP.filter(x=>sel.help[x[0]]).map(x=>x[1]), r = est(sel), corp = T(sel)==='법인';
+    // 화면의 설계안과 같은 줄: 기본·보고서·구간·서비스(+부가 설명)·신고 수수료 안내
+    $('leadrc').innerHTML = `<b>${esc($('rcttl').textContent)}</b>`
+      + R.filter(x=>!x.hint && !x.off).map(x=>`<p><span>${x.l}${x.sub ? `<small>${x.sub}</small>` : ''}</span><em>${x.v || (x.base ? x.p + '만원' : '+' + x.p + '만원')}</em></p>`
+        + (x.base ? `<p><span>월별 매출 보고서</span><em>기본 포함</em></p>` : '')).join('')
+      + `<p class="x"><span>${corp ? '법인세 신고' : '종합소득세 신고'}</span><em>신고 전 금액 안내</em></p>`
+      + `<p class="tt"><span>예상 월 기장료</span><em>${$('bt').textContent}</em></p>`
+      + (r.ask ? `<span class="cap">‘부터’가 붙은 금액은 상담 때 정해요.</span>` : '')
+      + (h.length ? `<span class="cap">상담 때 같이 물어볼 것 · ${h.join(', ')}</span>` : '')
+      + `<span class="cap">이 설계안이 함께 전달돼요</span>`;
+    d.showModal(); (f.elements.name.value ? f.elements.tel : f.elements.name).focus();
+  }));
+  f.querySelector('[data-close]').addEventListener('click', ()=> d.close());
+  d.addEventListener('close', ()=>{ if (from) from.focus(); });
+  d.addEventListener('click', e=>{ if (e.target === d) d.close(); }); // 바깥을 누르면 닫힘
+  // 보내는 설계안 글(화면의 설계안과 같은 줄)
+  const lines = () => [$('rcttl').textContent, summary() || '아직 고른 게 없어요',
+    ...R.filter(x=>!x.hint && !x.off).flatMap(x=>[`${x.l} · ${x.v || (x.base ? x.p + '만원' : '+' + x.p + '만원')}${x.sub ? ' (' + x.sub + ')' : ''}`, ...(x.base ? ['월별 매출 보고서 · 기본 포함'] : [])]),
+    `${T(sel)==='법인' ? '법인세 신고' : '종합소득세 신고'} · 신고 전 금액 안내`, `예상 월 기장료 · ${$('bt').textContent} (부가세 별도)`];
+  const FALLBACK = '카톡이나 전화(0507-1445-7729)로 상담받아 주세요.';
+  f.addEventListener('submit', async e=>{
+    e.preventDefault();
+    req.forEach(el=> mark(el, true));
+    const bad = req.find(el=> !el.checkValidity());
+    if (bad){ bad.focus(); return; }
+    const L = window.TaxminLead;
+    if (!L || typeof L.send!=='function'){ msg.textContent = '지금은 온라인으로 보낼 수 없어요. ' + FALLBACK; return; }
+    const el = f.elements, utm = {};
+    new URLSearchParams(location.search).forEach((v,k)=>{ if (k.startsWith('utm_')) utm[k] = v; });
+    sendBtn.disabled = true; sendBtn.textContent = '보내는 중…'; msg.classList.remove('ok'); msg.textContent = '';
+    let res;
+    // js/lead.js 가 읽는 칸(tel·agree·when·startMonth·current·message·plan·ind·rev·emp·tier·price)과 처음 정한 칸(phone·consent·summary·choices·extras…)을 함께 보냄
+    const help = HELP.filter(x=>sel.help[x[0]]).map(x=>x[1]), ask = el.ask.value.trim(), sum = lines(), r = est(sel);
+    try {
+      res = await L.send({name: el.name.value.trim(), phone: el.tel.value.trim(), tel: el.tel.value.trim(), consent: el.agree.checked, agree: el.agree.checked, adConsent: !!(el.adConsent && el.adConsent.checked),
+        summary: sum, plan: sum.join(' / '), choices: share(sel),
+        extras: {when: el.when.value, start: el.start.value, now: el.now.value, ask, help},
+        when: el.when.value, startMonth: el.start.value, current: el.now.value,
+        message: [ask, help.length && '상담 때 같이 물어볼 것: ' + help.join(', ')].filter(Boolean).join(' · '),
+        ind: sel.biz!=null ? bizName(sel.biz) : '', rev: sel.sales!=null ? SALES[sel.sales][0] : '', emp: sel.staff!=null ? (sel.staff ? `${sel.staff}명` : '없음') : '',
+        tier: r.open ? '' : SIZE[r.m][0], price: $('bt').textContent,
+        page: 'build', ua: navigator.userAgent, ref: document.referrer, utm});
+    } catch { res = null; }
+    const ok = !!(res && res.ok), fe = !ok && res && res.field && f.elements[res.field];
+    if (fe){ fe.setAttribute('aria-invalid', true); $('e-'+res.field).textContent = res.message; fe.focus(); }
+    msg.textContent = fe ? '' : (res && res.message) ||(ok ? '보냈어요. 평일 10:00~17:30 사이에 먼저 연락드려요.' : '보내지 못했어요. ' + FALLBACK);
+    msg.classList.toggle('ok', ok);
+    sendBtn.textContent = ok ? '보냈어요' : sendT; sendBtn.disabled = ok; // 보낸 뒤에는 두 번 보내지 않게
+  });
+})();
+</script>
+</body>
+</html>

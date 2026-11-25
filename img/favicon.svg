@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="2.44 3.19 200.62 200.62"><rect x="2.44" y="3.19" width="200.62" height="200.62" rx="44.14" fill="#0B1530"/><path d="M36 134V94a24 24 0 0 1 48 0v40M84 94c0-13 10.5-21 23-21c8 0 13.5 4 19 9.5L141 97" fill="none" stroke="#FFFFFF" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/><path d="M136 129L170 95" fill="none" stroke="#4F86FF" stroke-width="26" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4A78FF"/>
+      <stop offset="1" stop-color="#1D3FE6"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="30" fill="url(#g1)"/>
+  <!-- t: stem + toggle crossbar (ON) -->
+  <path d="M50 22 V72 Q50 92 70 92 H78" fill="none" stroke="#fff" stroke-width="17" stroke-linecap="round"/>
+  <rect x="29" y="37" width="66" height="24" rx="12" fill="#fff"/>
+  <circle cx="83" cy="49" r="7" fill="#1F44E8"/>
+</svg>
