@@ -57,7 +57,23 @@ header{position:sticky;top:0;z-index:50;height:64px;background:#fff;box-shadow:0
 .logo b{font-weight:800}.logo span{font-weight:300}
 .logo::before{content:"";width:28px;height:28px;flex:none;background:url(img/logo_t.svg) center/contain no-repeat}
 .hd .sep{width:1px;height:16px;background:var(--line)}
-.hd .cur{font-size:15px;font-weight:600;color:var(--sub)}
+.hd .cur{font-size:15px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:8px;min-width:0}
+/* 맨 위 '만드는 중' 안내(11/26): 답할수록 제목줄 아래 파란 줄이 차고, 다 하면 체크와 '완성' */
+.bs-i{position:relative;width:8px;height:8px;flex:none;border-radius:50%;background:var(--blue);animation:bsP 1.4s ease-in-out infinite}
+@keyframes bsP{50%{opacity:.35;transform:scale(.7)}}
+.bs-bar{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue);transform-origin:0 50%;transform:scaleX(var(--p,.04));transition:transform .6s cubic-bezier(.16,1,.3,1)}
+body.built .hd .cur{color:var(--blue);font-weight:700}
+body.built .bs-i{width:18px;height:18px;animation:bsPop .5s cubic-bezier(.34,1.56,.64,1) both}
+body.built .bs-i::after{content:"";position:absolute;left:6.5px;top:3.5px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+@keyframes bsPop{from{transform:scale(.3)}}
+.built-msg{display:flex;gap:12px;align-items:center;margin:-2px 0 16px;padding:14px 16px;border-radius:10px;background:#EEF2FF;color:var(--ink)}
+.built-msg[hidden]{display:none}
+.built-msg svg{flex:none;width:30px;height:30px;color:var(--blue)}
+.built-msg b{display:block;font-size:16px;font-weight:700;letter-spacing:-.02em}
+.built-msg span{display:block;font-size:13px;color:var(--ink-2);margin-top:2px;text-wrap:balance}
+body.built .built-msg{animation:bmIn .55s cubic-bezier(.16,1,.3,1) both}
+@keyframes bmIn{from{opacity:0;transform:translateY(8px) scale(.98)}}
+@media (prefers-reduced-motion:reduce){.bs-i,body.built .bs-i,body.built .built-msg{animation:none}.bs-bar{transition:none}}
 .hd .x{margin-left:auto;font-size:14px;font-weight:600;color:var(--sub)}
 
 /* 설계 한 화면: 왼쪽 답하기 · 오른쪽 설계안 */
@@ -75,7 +91,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .row:not(.done) .done-t{display:none}
 .seg{display:grid;gap:8px}
 .seg.c2{grid-template-columns:repeat(2,minmax(0,1fr))} .seg.c3{grid-template-columns:repeat(3,minmax(0,1fr))} .seg.c6{grid-template-columns:repeat(auto-fit,minmax(min(100%,84px),1fr))}
-.ch{min-height:46px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line);font-size:15px;font-weight:600;color:var(--sub);display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 10px;min-width:0;text-align:center;line-height:1.25;transition:box-shadow .15s,color .15s}
+.ch{text-wrap:balance;min-height:46px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line);font-size:15px;font-weight:600;color:var(--sub);display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 10px;min-width:0;text-align:center;line-height:1.25;transition:box-shadow .15s,color .15s}
 .ch small{font-size:13px;font-weight:500;color:var(--mute)}
 .ch svg.i{color:var(--mute);transition:color .15s}
 .ch[aria-pressed=true]{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
@@ -123,7 +139,9 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .stk li.q .a,.stk li.off .a{color:#B4BAC4;font-weight:500}
 .stk li.q .l{color:var(--ink-2);font-weight:500}
 .stk li.q .w{color:var(--mute)}
-.stk li.off .l{text-decoration:line-through;text-decoration-color:#9AA1AC;color:#8A919C;font-weight:500}
+/* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
+:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go):not(:disabled):active{scale:.97}
+.stk li.off .l{text-decoration:line-through;text-decoration-color:#9AA1AC;color:var(--sub);font-weight:500}
 .stk li.off .w{color:var(--mute)}
 .stk li.hint{display:block;font-size:13px;color:var(--mute);border:1px dashed #CDD2DA;border-radius:6px;padding:9px 12px;margin:8px 0}
 .stk li.new{animation:blkIn .42s cubic-bezier(.2,.7,.3,1) both;overflow:hidden}
@@ -203,7 +221,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .ldg label small,.ldg legend small{font-weight:500;color:#646B77}
 .ldg fieldset{border:0;display:grid;gap:6px;min-width:0}
 .ldg legend{display:block;margin-bottom:6px}
-.ldg input:not([type=checkbox]):not([type=radio]),.ldg select,.ldg textarea{height:46px;border:1px solid #D5D9E0;border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff;width:100%}
+.ldg input:not([type=checkbox]):not([type=radio]),.ldg select,.ldg textarea{font-size:16px!important;height:46px;border:1px solid #D5D9E0;border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff;width:100%}
 .ldg textarea{height:auto;min-height:64px;padding:10px 12px;resize:vertical}
 .ldg input:focus-visible,.ldg select:focus-visible,.ldg textarea:focus-visible{outline:2px solid #2554F0;outline-offset:1px;border-color:#2554F0}
 .ldg .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:end}
@@ -346,7 +364,8 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 }
 @media (max-width:640px){
   :root{--pad:20px}
-  .hd .sep,.hd .cur{display:none}
+  .hd .sep,.logo b{display:none}
+  .hd{gap:12px}.hd .cur{font-size:13.5px;letter-spacing:-.02em}
   .mk{padding-top:24px}
   h1{font-size:26px}
   .row{grid-template-columns:1fr;gap:10px;padding:16px 0}
@@ -469,9 +488,9 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 
 <header><div class="wrap hd">
   <a class="logo" href="index.html" aria-label="TAXMIN 메인으로"><b>TAX<span>MIN</span></b></a>
-  <span class="sep"></span><span class="cur">내 기장 설계</span>
+  <span class="sep"></span><span class="cur"><i class="bs-i" aria-hidden="true"></i><span id="bst">나만의 기장 서비스, 만들어 볼까요?</span></span>
   <a class="x" href="index.html">나가기</a>
-</div></header>
+</div><i class="bs-bar" id="bsbar" aria-hidden="true"></i><p class="sr" id="bslive" role="status" aria-live="polite"></p></header>
 
 <!-- 휴대폰에서만 보임: 내 기장료 한 줄(월 8만원 = 기본 4 + 매출 3 …, 누르면 아래로 펼쳐짐) + 단계 이름 막대 -->
 <div class="me-wrap">
@@ -530,6 +549,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
     <!-- 넓은 화면: 아래로 내려 '=' 줄이 위로 사라지면 맨 위에 한 줄로 붙음 -->
     <div class="pin" id="pin"><button type="button" id="pinb" tabindex="-1" aria-hidden="true"><span class="sl-in" id="pinl"></span></button></div>
     <div class="rc" id="rc">
+      <p class="built-msg" id="builtmsg" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.3l3 3 6-6.3"/></svg><span><b>대표님만의 기장 서비스가 완성됐어요</b><span>보내 두시면 상담 때 여기서부터 이어서 봐요.</span></span></p>
       <p class="rc-h"><b>TAX<span>MIN</span></b><span>기장 설계안 · 월 · 부가세 별도</span></p>
       <h2 class="rc-ttl" id="rcttl"></h2>
       <p class="rc-d" id="rcd"></p>
@@ -544,7 +564,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
     <p class="own-msg" id="ownmsg" role="status"></p>
     <fieldset class="ask"><legend>상담 때 같이 물어볼 것</legend>
       <div class="chk" id="help"></div>
-      <p class="note">증여·상속은 세무사가 직접, 법무·노무는 법무사·변호사·노무사를 연결해 드려요. 청약·대출·정책자금은 받을 수 있는지 함께 알아봐 드려요(중개는 하지 않아요). 비용은 상담 때 먼저 알려 드려요. 체크한 것은 ‘이 설계 링크 복사’와 ‘설계안 보내기’에 함께 담겨요.</p>
+      <p class="note">증여·상속은 세무사가 직접, 법무·노무는 법무사·변호사·노무사를 연결해 드려요. 청약·대출·정책자금은 받을 수 있는지 함께 살펴보고, 상품 안내와 필요한 정보를 드려요. 비용은 상담 때 먼저 알려 드려요. 체크한 것은 ‘이 설계 링크 복사’와 ‘설계안 보내기’에 함께 담겨요.</p>
     </fieldset>
   </aside>
 </section>
@@ -658,7 +678,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
   </form>
 </dialog>
 
-<script src="js/svc-help.js"></script>
+<script src="js/svc-help.js?v=20261126b"></script>
 <script>
 // ★ 기준표(초안) — 숫자·품목만 바꾸면 화면 전체가 따라 바뀜. 단위 만원/월, 부가세 별도.
 //   사용자 11/25: 모든 견적은 기본 4만원에서 시작 → 일반 개인 5 · 매출 큰 개인 7 · 법인 10.
@@ -773,7 +793,7 @@ document.querySelector('.form').addEventListener('click', e=>{
   draw(what);
   // 휴대폰: 하나만 고르는 단계는 고르고 잠깐 뒤 다음 단계로
   const at = ['type','biz','sales'].indexOf(g);
-  if (at>=0 && phone.matches){ clearTimeout(advT); advT = setTimeout(()=> go(at+1), 250); }
+  if (at>=0 && phone.matches){ clearTimeout(advT); advT = setTimeout(()=> go(at+1), 400); }
 });
 $('help').addEventListener('change', e=>{ sel.help[e.target.value] = e.target.checked; });
 
@@ -909,6 +929,19 @@ const today = (d => `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')
 let R = [], hotT, countRaf;
 // 월 기장료 숫자: 바뀌면 0.4초 동안 세어 올라감(동작 줄이기면 바로)
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
+// 맨 위 '만드는 중' → '완성'(넓은 화면: 네 칸 다 답함 · 휴대폰: 설계안 단계에 오면)
+let wzAt = 0, wasBuilt = false, lastDone = [];
+const BS = ['나만의 기장 서비스, 만들어 볼까요?', '나만의 기장 서비스를 만드는 중이에요', '나만의 기장 서비스를 만드는 중이에요', '거의 다 됐어요, 하나만 더요'];
+function bstate(done){
+  if (done) lastDone = done;
+  const k = lastDone.filter(Boolean).length, built = k===4 || wzAt===4;
+  document.body.classList.toggle('built', built);
+  $('bst').textContent = built ? '대표님만의 기장 서비스 완성!' : BS[k];
+  $('bsbar').style.setProperty('--p', built ? 1 : Math.max(.04, k/4));
+  $('builtmsg').hidden = !built;
+  if (built && !wasBuilt) $('bslive').textContent = '대표님만의 기장 서비스가 완성됐어요.';
+  wasBuilt = built;
+}
 function showTotal(to, unit, from){
   cancelAnimationFrame(countRaf);
   const put = v => document.querySelectorAll('.js-tot').forEach(el=> el.innerHTML = `${v}<small>${unit}</small>`);
@@ -940,6 +973,7 @@ function draw(what){
   ['r-type','r-biz','r-sales','r-sit'].forEach((id,i)=> $(id).classList.toggle('done', done[i]));
   if (what && done[0] && done[1] && done[2] && !matchMedia('(max-width:720px)').matches) calcDone();
   document.querySelectorAll('#wzs [data-step]').forEach((b,i)=> b.classList.toggle('done', !!done[i]));
+  bstate(done);
   // 매출 아래 한 줄
   const b = sel.biz!=null ? [bizName(sel.biz), BIZ[sel.biz][1]] : null, upT = r.up ? ` · 매출 구간 +${r.up}만원` : '', askT = r.m!=='lite' && (r.sc===3 || (sel.sales!=null && SALES[sel.sales][2])) ? ' · 상담 때 확정' : '';
   $('snote').innerHTML = r.open ? (corp ? `법인은 <b>사업 규모 +${SIZE.corp[1]}만원</b>부터예요 · 업종과 매출을 고르면 구간이 정해져요` : '업종과 매출을 고르면 어느 구간인지 바로 알려 드려요')
@@ -1015,6 +1049,7 @@ function go(n, still){
   document.body.classList.toggle('wz-last', on && step===panes.length-1);
   if (on && !still && step===panes.length-1) calcDone();
   $('wzback').disabled = step===0;
+  wzAt = on ? step : 0; bstate();
   stepBtns.forEach((b,i)=> i===step ? b.setAttribute('aria-current','step') : b.removeAttribute('aria-current'));
   fit();
   if (on && !still && moved){
@@ -1029,7 +1064,7 @@ $('wzback').addEventListener('click', ()=> go(step-1));
 stepBtns.forEach((b,i)=> b.addEventListener('click', ()=> go(i)));
 $('wznext').addEventListener('click', ()=> go(4));
 // 위 한 줄을 누르면 쌓기 전체가 아래로 펼쳐짐(바깥·Esc·다시 누르면 닫힘)
-function sheet(open){ if (!$('sheet').hidden === open) return; $('sheet').hidden = $('sheetbg').hidden = !open; $('me').setAttribute('aria-expanded', open); }
+function sheet(open){ if (!$('sheet').hidden === open) return; $('sheet').hidden = $('sheetbg').hidden = !open; $('me').setAttribute('aria-expanded', open); wzv.inert = open; document.querySelector('.bar').inert = open; }
 $('me').addEventListener('click', ()=> sheet($('sheet').hidden));
 $('sheetbg').addEventListener('click', ()=> sheet(false));
 $('shgo').addEventListener('click', ()=> go(4));
@@ -1060,7 +1095,7 @@ $('bprice').addEventListener('click', ()=> rc.scrollIntoView({block:'start'}));
 const bar = document.querySelector('.bar'), wide = matchMedia('(min-width:1025px)');
 let rcSeen = false;
 const setBar = () => bar.classList.toggle('away', wide.matches && rcSeen);
-new IntersectionObserver(([e])=>{ rcSeen = e.isIntersecting; setBar(); }).observe(rc);
+new IntersectionObserver(([e])=>{ rcSeen = e.isIntersecting; setBar(); }).observe(document.querySelector('.own'));
 wide.addEventListener('change', setBar);
 // 넓은 화면: '=' 줄이 머리띠 위로 지나가면 설계안 맨 위에 한 줄 요약을 붙임(누르면 쌓기로)
 new IntersectionObserver(([e])=> $('pin').classList.toggle('on', !e.isIntersecting && e.boundingClientRect.top < 72), {rootMargin:'-72px 0px 0px 0px'}).observe($('stkt'));

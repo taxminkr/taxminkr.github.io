@@ -74,11 +74,15 @@ header.on .hd-tel{color:var(--ink)}
 
 /* 1 첫 화면 — 장면 1(필요한 것만 고르는 기장) ↔ 장면 2(대표세무사 직접 상담) 7초마다. TAXMIN 글자·단추는 고정, 앞 장면이 사라진 뒤 다음이 나옴(겹침 없음) */
 .hero{position:relative;height:calc(100svh - 64px);margin-top:64px;min-height:580px;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;background:#06080B}
-.bg{position:absolute;inset:0;opacity:0;transition:opacity .4s ease}
-.bg.on{opacity:1;transition-delay:.4s}
-.bg video{width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(.6);animation:heroPush 20s ease-in-out infinite alternate}
-@keyframes heroPush{from{transform:scale(1.08)}to{transform:scale(1)}}
-.hero.still .bg video{animation-play-state:paused}
+.bg{position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .3s ease,transform .3s ease}
+.bg.on{opacity:1;transform:none;transition:opacity .35s ease .3s,transform 1s cubic-bezier(.16,1,.3,1) .3s}
+/* 장면 안 구도: 넓게(shotA) → 중간에 끊어 가깝게(shotB, JS 가 .cut). 오른쪽 아래(AI 표시) 모서리를 기준으로 당겨 표시가 늘 보임 */
+.bg video{width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(.6);transform-origin:100% 100%}
+.hero .bg.on video{animation:shotA 3.6s linear both}
+.hero .bg.on.cut video{animation:shotB 3.6s linear both}
+@keyframes shotA{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes shotB{from{transform:scale(1.3)}to{transform:scale(1.36)}}
+.hero.still .bg video,.hero.still .bg.on video{animation:none}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 58% 44% at 50% 52%,rgba(5,6,8,.82),rgba(5,6,8,.25) 75%,rgba(5,6,8,.15)),linear-gradient(180deg,rgba(5,6,8,.25),rgba(5,6,8,0) 25%,rgba(5,6,8,0) 60%,rgba(5,6,8,.8))}
 .hero .in{position:relative;z-index:2;padding:0 20px;display:grid;justify-items:center}
 .hero .kicker{font-size:18px;font-weight:600;color:var(--blue-on-dark)}
@@ -88,8 +92,8 @@ header.on .hd-tel{color:var(--ink)}
 .nm .sh{animation:nmSh 1.3s cubic-bezier(.45,0,.2,1) .4s both}
 @keyframes nmSh{from{transform:translateX(0)}to{transform:translateX(860px)}}
 .hero h1,.hero .h1{font-size:clamp(28px,3.4vw,44px);font-weight:700;line-height:1.3;letter-spacing:-.02em}
-.alt{display:grid}.alt>*{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s .3s}
-.alt>.on{opacity:1;visibility:visible;transition:opacity .45s ease .32s,visibility 0s}
+.alt{display:grid}.alt>*{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease,visibility 0s .3s}
+.alt>.on{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease .32s,transform .7s cubic-bezier(.16,1,.3,1) .32s,visibility 0s}
 .hero .sub{font-size:16px;color:rgba(255,255,255,.75);margin-top:20px;line-height:1.7;text-wrap:balance}
 .hero .sub b{color:#fff;font-weight:600}
 .hero .sub span{display:inline-block}
@@ -100,7 +104,7 @@ header.on .hd-tel{color:var(--ink)}
   .hero{height:auto;min-height:0;display:block;padding-top:75vw}
   .hero .bg{inset:0;overflow:hidden}
   .hero .bg::before{content:"";position:absolute;inset:-48px;background:var(--poster) center 30%/cover no-repeat;filter:blur(28px) saturate(1.2) brightness(.55)}
-  .hero .bg video{position:absolute;inset:0 0 auto;height:75vw;object-position:var(--pos,50% 50%);animation:none;filter:saturate(.95) brightness(.88);
+  .hero .bg video{position:absolute;inset:0 0 auto;height:75vw;object-position:var(--pos,50% 50%);filter:saturate(.95) brightness(.88);
     -webkit-mask:linear-gradient(to top,transparent,#000 34%);mask:linear-gradient(to top,transparent,#000 34%)}
   /* 휴대폰: 두 장면 모두 아래를 같은 방식으로 흐리게(네모·경계선 자국 없음). 2번 영상의 AI 표시는 파일에 그대로 있고 PC 에서는 그대로 보임 */
   .hero::after{background:linear-gradient(180deg,rgba(6,8,11,0) calc(75vw - 8px),rgba(6,8,11,.42) calc(75vw + 72px),rgba(6,8,11,.6) 72%,rgba(6,8,11,.78))}
@@ -135,6 +139,10 @@ header.on .hd-tel{color:var(--ink)}
 .st-slide .cap h3{font-size:clamp(22px,2vw,30px);font-weight:600;line-height:1.4;letter-spacing:-.02em}
 .st-slide .cap h3 em{font-style:normal;color:var(--blue-on-dark)}
 .st-slide .cap p{font-size:15px;color:var(--black-sub);line-height:1.75;margin-top:14px}
+.st-go{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;font-weight:700;color:#fff;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--blue-on-dark)}
+.st-go:hover{color:var(--blue-on-dark)}
+/* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
+:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go):not(:disabled):active{scale:.97}
 .board{width:100%;border:1px solid var(--black-line);border-radius:14px;padding:22px 26px;background:rgba(255,255,255,.02);font-size:14px}
 .bd-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--black-line);color:var(--black-sub);font-size:13px}
 .bd-h b{color:#fff;font-size:15px;font-weight:600}
@@ -145,9 +153,11 @@ header.on .hd-tel{color:var(--ink)}
 .rows{list-style:none}
 .rows li{display:grid;grid-template-columns:1fr auto minmax(84px,auto);gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);transition:opacity .4s}
 .rows li .p{text-align:right;font-variant-numeric:tabular-nums;color:var(--black-sub);white-space:nowrap}
-.rows li.off{opacity:.6}
 .rows li.off .n{text-decoration:line-through}
-.rows li.dim{opacity:.5}
+/* 흐린 줄도 글자는 읽히게(대비 4.5:1↑) — 흐림은 스위치에만 */
+.rows li.off .n,.rows li.dim .n{color:rgba(255,255,255,.62)}
+.rows li.off .p,.rows li.dim .p{color:rgba(255,255,255,.55)}
+.rows li.off .tg,.rows li.dim .tg{opacity:.6}
 .tg{width:38px;height:22px;border-radius:11px;border:1px solid rgba(255,255,255,.35);position:relative;transition:background .3s,border-color .3s}
 .tg::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.55);transition:transform .3s,background .3s}
 .tg.on{background:var(--blue);border-color:var(--blue)}
@@ -240,7 +250,8 @@ header.on .hd-tel{color:var(--ink)}
 .pf-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--edge);padding:56px var(--edge) 12px;scrollbar-width:none}
 .pf-track::-webkit-scrollbar{display:none}
 .pf-track figure{flex:0 0 260px;margin:0;scroll-snap-align:start}
-.pf-img{display:block;width:260px;aspect-ratio:9/15;border-radius:12px;overflow:hidden;background:#C9D6E3;box-shadow:inset 0 0 0 1px var(--line)}
+.pf-img{position:relative;display:block;width:260px;aspect-ratio:9/15;border-radius:12px;overflow:hidden;background:#C9D6E3;box-shadow:inset 0 0 0 1px var(--line)}
+.pf-img::after{content:"크게 보기";position:absolute;right:10px;bottom:10px;padding:4px 8px;border-radius:4px;background:rgba(2,6,23,.72);color:#fff;font-size:12px;font-weight:600}
 .pf-img img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
 .pf-track figcaption{font-size:13px;color:var(--sub);line-height:1.55;margin-top:12px}
 .pf-track figcaption b{display:block;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
@@ -307,7 +318,7 @@ details p{padding:0 0 18px;font-size:15px;color:var(--sub);line-height:1.75}
 .ldg h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
 .ldg .lead-s{font-size:14px;color:#5B6270;margin-top:-6px;line-height:1.6}
 .ldg label{display:grid;gap:6px;font-size:14px;font-weight:600;color:#191B1F}
-.ldg input:not([type=checkbox]),.ldg select{height:46px;border:1px solid #D5D9E0;border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff}
+.ldg input:not([type=checkbox]),.ldg select{font-size:16px!important;height:46px;border:1px solid #D5D9E0;border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff}
 .ldg input:focus-visible,.ldg select:focus-visible{outline:2px solid #2554F0;outline-offset:1px;border-color:#2554F0}
 .ldg .agree{grid-template-columns:20px 1fr;align-items:start;font-weight:500;line-height:1.5}
 .ldg .agree input{width:18px;height:18px;margin-top:2px;accent-color:#2554F0}
@@ -442,14 +453,14 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
 <!-- 1 첫 화면 -->
 <section class="hero" aria-labelledby="h1">
   <!-- --poster: 휴대폰에서 글 뒤에 흐리게 까는 그림 · --pos: 휴대폰 4:3 자를 때 위치(계획도 장면은 오른쪽 끝 — Veo 표시가 잘리지 않게) -->
-  <div class="bg on" aria-hidden="true" style="--poster:url(img/hero_meet.jpg);--pos:55% 50%"><video src="img/hero_meet.mp4" poster="img/hero_meet.jpg" muted loop playsinline preload="auto"></video></div>
-  <div class="bg veo" aria-hidden="true" style="--poster:url(img/hero_plan.jpg);--pos:100% 50%"><video src="img/hero_plan.mp4" poster="img/hero_plan.jpg" muted loop playsinline preload="metadata"></video></div>
+  <div class="bg on" aria-hidden="true" style="--poster:url(img/hero_meet.jpg);--pos:55% 50%"><video src="img/hero_meet.mp4" poster="img/hero_meet.jpg" muted playsinline preload="auto"></video></div>
+  <div class="bg veo" aria-hidden="true" style="--poster:url(img/hero_plan.jpg);--pos:100% 50%"><video src="img/hero_plan.mp4" poster="img/hero_plan.jpg" muted playsinline preload="auto"></video></div>
   <div class="in">
-    <div class="alt" data-alt><p class="kicker on">“필요한 것만 고르는” 신개념 기장 서비스</p><p class="kicker" aria-hidden="true">대표세무사 직접 상담</p></div>
+    <div class="alt" data-alt><p class="kicker on">기장도 이제, 맞춤 설계</p><p class="kicker" aria-hidden="true">대표세무사 직접 상담</p></div>
     <svg class="nm" viewBox="70 4 460 104" aria-hidden="true"><defs><linearGradient id="nmg" x1="0" x2="1"><stop offset="0" stop-color="#7D9BFF" stop-opacity="0"/><stop offset=".5" stop-color="#6F8FFF"/><stop offset="1" stop-color="#7D9BFF" stop-opacity="0"/></linearGradient><clipPath id="nmc"><text x="300" y="100" text-anchor="middle"><tspan font-weight="800">TAX</tspan><tspan font-weight="300">MIN</tspan></text></clipPath></defs><text class="t" x="300" y="100" text-anchor="middle"><tspan font-weight="800">TAX</tspan><tspan font-weight="300">MIN</tspan></text><g clip-path="url(#nmc)"><rect class="sh" x="-220" y="0" width="180" height="124" fill="url(#nmg)"/></g></svg>
     <div class="alt" data-alt>
-      <div class="on"><h1 id="h1"><span class="sr-only">택스민, </span>우리 가게에 필요한 만큼만.<br>기장료도 딱 그만큼만.</h1>
-      <p class="sub"><span>안 쓰는 서비스까지 묶어 내던 기장료, 이제 고르세요.</span><br><span>장부와 신고는 담당자가, 마지막 확인은 세무사가 해요.</span></p></div>
+      <div class="on"><h1 id="h1"><span class="sr-only">택스민, </span>우리 가게 기장,<br>내가 직접 설계해요.</h1>
+      <p class="sub"><span>필요한 서비스만 켜면 기장료가 바로 보여요.</span><br><span>장부와 신고는 담당자가, 마지막 확인은 세무사가 해요.</span></p></div>
       <div aria-hidden="true"><p class="h1">첫 상담부터<br>대표세무사가 직접.</p>
       <p class="sub"><span>기장 문의 상담은 대표세무사가 직접 응대하고,</span><br><span>시작부터 방향을 확실하게 잡아드려요.</span></p></div>
     </div>
@@ -554,7 +565,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
         <li><b>종합소득세·법인세 신고</b><p>수수료는 장부 상태에 따라 달라요. 신고 전에 금액을 먼저 알려 드리고, 동의하신 뒤에 진행해요.</p></li>
         <li><b>증여·상속</b><p>가족에게 재산을 넘기는 일, 세무사가 직접 상담해요.</p></li>
         <li><b>법무 · 노무</b><p>등기·계약은 법무사·변호사, 근로계약·분쟁은 노무사를 연결해 드려요.</p></li>
-        <li><b>청약 · 대출 · 정책자금</b><p>청약 자격, 사업자 대출, 소상공인 정책자금까지 받을 수 있는지 함께 알아봐 드려요. 신청은 사장님이 직접 하시고, 중개는 하지 않아요.</p></li>
+        <li><b>청약 · 대출 · 정책자금</b><p>청약 자격, 사업자 대출, 소상공인 정책자금까지 받을 수 있는지 함께 알아보고, 상품 안내와 필요한 정보를 드려요.</p></li>
       </ul></div>
     </div>
   </div>
@@ -578,11 +589,11 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     <div class="head"><h2 class="big" id="pf-h">세무 밖의 일도<br>함께 챙겨 드려요.</h2><p class="lead">대출이 필요할 때 어떤 상품이 있는지 안내하고 필요한 정보를 드려요. 은행이 사장님 소득을 어떻게 보는지, 장부의 소득 구조를 어떻게 정리하면 되는지도 사장님 장부를 기준으로 짚어 드려요.</p></div>
   </div>
   <div class="pf-track" id="pftrack" tabindex="0" role="region" aria-labelledby="pf-h">
-    <figure><a class="pf-img" href="img/proof_1c.jpg" target="_blank" rel="noopener" aria-label="크게 보기"><img src="img/proof_1c.jpg" alt="보금자리론·디딤돌대출과 은행 대출의 차이를 설명한 대화" loading="lazy"></a><figcaption><b>정책대출 기준 안내</b>보금자리론·디딤돌대출과 은행 대출의 차이, 소득 신고 방향까지</figcaption></figure>
-    <figure><a class="pf-img" href="img/proof_2.jpg" target="_blank" rel="noopener" aria-label="크게 보기"><img src="img/proof_2.jpg" alt="DSR과 DTI 기준을 설명한 대화" loading="lazy"></a><figcaption><b>DSR·DTI 미리 점검</b>어느 기준을 쓰느냐에 따라 필요한 소득이 달라져요</figcaption></figure>
-    <figure><a class="pf-img" href="img/proof_3.jpg" target="_blank" rel="noopener" aria-label="크게 보기"><img src="img/proof_3.jpg" alt="중도금 대출을 잘 받았다는 고객의 감사 인사" loading="lazy"></a><figcaption><b>"중도금 대출 잘 받았어요"</b>상담 뒤 고객이 보내 준 인사</figcaption></figure>
-    <figure><a class="pf-img" href="img/proof_4.jpg" target="_blank" rel="noopener" aria-label="크게 보기"><img src="img/proof_4.jpg" alt="오래 함께한 대표님의 감사 인사" loading="lazy"></a><figcaption><b>"항상 감사드려요"</b>오래 함께한 대표님의 인사</figcaption></figure>
-    <figure><a class="pf-img" href="img/proof_5.jpg" target="_blank" rel="noopener" aria-label="크게 보기"><img src="img/proof_5.jpg" alt="소상공인 정책자금 접수 일정을 안내한 대화" loading="lazy"></a><figcaption><b>소상공인 정책자금 안내</b>접수 날짜와 업종에 따라 유리한 곳까지</figcaption></figure>
+    <figure><a class="pf-img" href="img/proof_1c.jpg" target="_blank" rel="noopener" aria-label="크게 보기: 정책대출 기준 안내"><img src="img/proof_1c.jpg" alt="보금자리론·디딤돌대출과 은행 대출의 차이를 설명한 대화" loading="lazy"></a><figcaption><b>정책대출 기준 안내</b>보금자리론·디딤돌대출과 은행 대출의 차이, 소득 신고 방향까지</figcaption></figure>
+    <figure><a class="pf-img" href="img/proof_2.jpg" target="_blank" rel="noopener" aria-label="크게 보기: DSR·DTI 미리 점검"><img src="img/proof_2.jpg" alt="DSR과 DTI 기준을 설명한 대화" loading="lazy"></a><figcaption><b>DSR·DTI 미리 점검</b>어느 기준을 쓰느냐에 따라 필요한 소득이 달라져요</figcaption></figure>
+    <figure><a class="pf-img" href="img/proof_3.jpg" target="_blank" rel="noopener" aria-label="크게 보기: 중도금 대출 잘 받았어요"><img src="img/proof_3.jpg" alt="중도금 대출을 잘 받았다는 고객의 감사 인사" loading="lazy"></a><figcaption><b>"중도금 대출 잘 받았어요"</b>상담 뒤 고객이 보내 준 인사</figcaption></figure>
+    <figure><a class="pf-img" href="img/proof_4.jpg" target="_blank" rel="noopener" aria-label="크게 보기: 항상 감사드려요"><img src="img/proof_4.jpg" alt="오래 함께한 대표님의 감사 인사" loading="lazy"></a><figcaption><b>"항상 감사드려요"</b>오래 함께한 대표님의 인사</figcaption></figure>
+    <figure><a class="pf-img" href="img/proof_5.jpg" target="_blank" rel="noopener" aria-label="크게 보기: 소상공인 정책자금 안내"><img src="img/proof_5.jpg" alt="소상공인 정책자금 접수 일정을 안내한 대화" loading="lazy"></a><figcaption><b>소상공인 정책자금 안내</b>접수 날짜와 업종에 따라 유리한 곳까지</figcaption></figure>
   </div>
   <p class="pf-note">실제로 나눈 대화예요 · 이름과 사진은 가렸어요</p>
 
@@ -599,7 +610,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
       <details><summary>한 번 정한 기장료로 끝나나요?</summary><p>아니요. AI가 매달 매출을 모아 연말 매출을 예상하고, 매출이 늘어 신고 방식이 바뀌기 전에 담당자가 먼저 확인해요. 달라지는 의무와 절세 방법, 법인 전환까지 세무사가 설명하고, 사장님이 동의하신 경우에만 서비스와 기장료를 바꿔요.</p></details>
       <details><summary>종합소득세·법인세 신고도 해 주나요?</summary><p>네. 신고 수수료는 장부 상태에 따라 달라서, 신고 전에 금액을 먼저 알려 드리고 동의하신 뒤에 진행해요.</p></details>
       <details><summary>기장 말고 증여·상속, 법무·노무도 물어볼 수 있나요?</summary><p>네. 증여·상속은 세무사가 직접 상담하고, 등기·계약 같은 법무와 근로계약·분쟁 같은 노무는 법무사·변호사·노무사를 연결해 드려요. 비용은 일마다 따로이고, 상담 때 먼저 알려 드려요.</p></details>
-      <details><summary>청약이나 대출, 정책자금도 물어볼 수 있나요?</summary><p>네. 청약 자격, 사업자 대출, 소상공인 정책자금을 받을 수 있는지 사장님 상황에 맞춰 함께 알아봐 드려요. 신청은 사장님이 직접 하시고, 저희가 대출을 중개하거나 결과를 약속하지는 않아요.</p></details>
+      <details><summary>청약이나 대출, 정책자금도 물어볼 수 있나요?</summary><p>네. 청약 자격, 사업자 대출, 소상공인 정책자금을 받을 수 있는지 사장님 상황에 맞춰 함께 알아보고, 상품 안내와 필요한 정보를 드려요.</p></details>
       <details><summary>중간에 직원이 늘면 어떻게 되나요?</summary><p>인건비 신고(4대보험 포함)는 직원 3명까지 월 1만원이고, 4명부터는 상담 때 정해요. 바뀌는 달 전에 금액을 먼저 알려 드려요.</p></details>
     </div>
     <div>
@@ -645,7 +656,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
   </form>
 </dialog>
 
-<script src="js/svc-help.js"></script>
+<script src="js/svc-help.js?v=20261126b"></script>
 <script src="js/lead.js"></script>
 <script>
 // 견적판 예시 — build.html 기준과 같은 숫자(만원/월, 부가세 별도):
@@ -670,7 +681,7 @@ const boardHTML = () => `<div class="board" aria-hidden="true">
   <div class="bd-h"><b>우리 가게 기장 설계안</b><span>음식점·카페 · 개인사업자</span></div>
   <ul class="rows">${ROWS.map(r=>`<li><span class="n">${r.n}</span><span class="tg ${r.lock?'lock':'on'}"></span><span class="p">${r.first ? r.v+'만원' : r.v ? '+'+r.v+'만원' : r.v===0 ? '기본 포함' : r.p}</span></li>`).join('')}</ul>
   <div class="bd-f"><div><p class="k">예상 월 기장료 · 부가세 별도</p><p class="total">${BASE}<small>만원</small></p></div><p class="saved">안 쓰는 서비스를 끄니<br>월 2만원이 빠졌어요<i>예시 계산</i></p></div></div>`;
-$('track').innerHTML = CAPS.map((c,i)=>`<article class="st-slide" aria-label="3장 가운데 ${i+1}장"><div class="cap"><small>${c.s}</small><h3>${c.h}</h3><p>${c.p}</p></div>${boardHTML()}</article>`).join('');
+$('track').innerHTML = CAPS.map((c,i)=>`<article class="st-slide" aria-label="3장 가운데 ${i+1}장"><div class="cap"><small>${c.s}</small><h3>${c.h}</h3><p>${c.p}</p><a class="st-go" href="build.html">직접 켜고 꺼 보기</a></div>${boardHTML()}</article>`).join('');
 // 카드 한 장의 견적판을 s 단계로 그림(0 기본만 · 1 옵션 켬 · 2 둘 끔)
 function setStep(card, s){
   const opt = s>=1, cut = s>=2;
@@ -690,16 +701,21 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 // 잔상 금지(11/25 사용자): 앞 영상이 먼저 어두워진 뒤(.4s) 다음 영상이 나옴 — 겹치는 순간 없음.
 // 멈춤 단추는 없앰(11/26 사용자). 움직임 줄임 설정이면 첫 장면 그림만(영상 재생·장면 넘김 없음).
 const hero = document.querySelector('.hero'), bgs = [...hero.querySelectorAll('.bg')], vids = bgs.map(b => b.querySelector('video')), alts = [...hero.querySelectorAll('[data-alt]')];
-const DUR = 7000;
+// 11/26: 7초 타이머 대신 영상이 끝나면 다음 장면(중간에 잘려 다시 재생되던 문제). 재생이 막힌 기기는 9초 뒤 넘김.
 let cur = 0, paused = reduce, seen = true, timer = 0;
 function show(i){
-  const oi = cur; bgs[oi].classList.remove('on'); setTimeout(() => { if (cur !== oi) vids[oi].pause(); }, 600);
-  vids[i].currentTime = 0; bgs[i].classList.add('on');
+  const oi = cur; bgs[oi].classList.remove('on'); setTimeout(() => { if (cur !== oi){ vids[oi].pause(); bgs[oi].classList.remove('cut'); } }, 600);
+  vids[i].currentTime = 0; bgs[i].classList.remove('cut'); bgs[i].classList.add('on');
   alts.forEach(a => [...a.children].forEach((el, k) => { el.classList.toggle('on', k === i); el.toggleAttribute('aria-hidden', k !== i); }));
-  cur = i; play();
+  cur = i; play(); arm();
 }
-function arm(){ clearTimeout(timer); if (!paused && seen) timer = setTimeout(() => { show((cur + 1) % bgs.length); arm(); }, DUR); }
+const next = () => show((cur + 1) % bgs.length);
+function arm(){ clearTimeout(timer); if (!paused && seen) timer = setTimeout(() => { const v = vids[cur]; if (v.paused || v.readyState < 3) next(); else arm(); }, 9000); }
 function play(){ const v = vids[cur]; if (!paused && seen) v.play().catch(() => {}); else v.pause(); }
+vids.forEach((v, k) => {
+  v.addEventListener('ended', () => { if (k === cur) next(); });
+  v.addEventListener('timeupdate', () => { if (k === cur && v.duration && v.currentTime > v.duration / 2) bgs[k].classList.add('cut'); });
+});
 new IntersectionObserver(([e]) => { seen = e.isIntersecting; play(); arm(); }).observe(hero);
 hero.classList.toggle('still', paused); play(); arm();
 })();
@@ -772,14 +788,15 @@ watchLv(); new MutationObserver(watchLv).observe(panel, {childList:true});
 // 저절로 넘김 도우미: 보이는 동안만, 마우스를 올리거나 키보드 초점이 있으면 멈춤, 움직임 줄이기 설정이면 쓰지 않음
 function autoAdvance(box, ms, step){
   if (reduce) return;
-  let t = 0, seen = false, hov = false, foc = false;
-  const arm = () => { clearInterval(t); if (seen && !hov && !foc) t = setInterval(step, ms); };
+  let t = 0, seen = false, hov = false, foc = false, stop = false;
+  const arm = () => { clearInterval(t); if (seen && !hov && !foc && !stop) t = setInterval(step, ms); };
   new IntersectionObserver(([e]) => { seen = e.isIntersecting; arm(); }, {threshold:.35}).observe(box);
   box.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse'){ hov = true; arm(); } });
   box.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse'){ hov = false; arm(); } });
   box.addEventListener('focusin', () => { foc = true; arm(); });
   box.addEventListener('focusout', e => { if (!box.contains(e.relatedTarget)){ foc = false; arm(); } });
-  box.addEventListener('pointerdown', arm); // 손으로 넘기면 그때부터 다시 셈
+  // 한 번 손대면(누르기·휠·키) 다시는 저절로 넘기지 않음 — 읽던 내용이 바뀌지 않게(WCAG 2.2.2)
+  ['pointerdown','wheel','keydown','touchstart'].forEach(ev => box.addEventListener(ev, () => { stop = true; clearInterval(t); }, {once:true, passive:true}));
   return arm;
 }
 // 이런 사장님께: 6초마다 다음 상황으로
