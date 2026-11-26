@@ -515,7 +515,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     <div class="a-l">
       <h2 class="big" id="a-h">한 번 맡은 거래처는,<br>끝까지 확실하게.</h2>
       <p class="hook">가격은 낮게, 서비스는 높게.<br>책임질 수 있는 만큼만 받습니다.</p>
-      <figure class="a-pic"><video class="lv" src="img/v_about.mp4" poster="img/v_about.jpg" muted loop playsinline preload="none" aria-label="서류를 한 줄씩 적어 가며 확인하는 손"></video></figure>
+      <figure class="a-pic"><video class="lv" src="img/v_about.mp4?v=3" poster="img/v_about.jpg?v=3" muted loop playsinline preload="none" aria-label="서류를 한 줄씩 적어 가며 확인하는 손"></video></figure>
     </div>
     <div class="a-r">
       <p><b>세무사 2명, 직원 2명. 1:1로 짝을 이룬, 작지만 강한 사무실이에요.</b>세무사와 담당자가 1:1로 일하는 사무실은 흔하지 않아요. 택스민은 담당자 한 명마다 세무사 한 명이 짝을 이뤄, 장부 한 권 한 권을 함께 보고 세무사가 직접 검증해요.</p>
@@ -829,7 +829,7 @@ function showModel(i){
   panel.innerHTML = `<div><span class="tag">${m.tag}</span><h3>${m.h}</h3><p class="who">${m.who}</p>
     <ul class="inc">${m.inc.map(x=>`<li class="${x[2]?'x':''}"><div class="inc-n">${x[0]}${QI.btn(QI.key(x[0]))}</div><span>${x[1]}</span></li>`).join('')}</ul>
     <a class="btn" href="build.html?p=${m.k}">이 상황으로 설계하기</a></div>
-    <div class="fit-pic">${m.img ? `<img src="${m.img}" alt="" loading="lazy">` : `<video class="lv" src="img/v_${m.k}.mp4?v=2" poster="img/v_${m.k}.jpg?v=2" muted loop playsinline preload="none" aria-hidden="true"></video>`}</div>`;
+    <div class="fit-pic">${m.img ? `<img src="${m.img}" alt="" loading="lazy">` : `<video class="lv" src="img/v_${m.k}.mp4?v=3" poster="img/v_${m.k}.jpg?v=3" muted loop playsinline preload="none" aria-hidden="true"></video>`}</div>`;
 }
 tabs.addEventListener('click', e=>{ const b=e.target.closest('[role=tab]'); if(b) showModel(+b.dataset.i); });
 tabs.addEventListener('keydown', e=>{ const n0 = FITS.length, i=[...tabs.children].findIndex(b=>b.getAttribute('aria-selected')==='true');
@@ -873,7 +873,7 @@ function slideNext(track){
 }
 autoAdvance($('track'), 7500, () => slideNext($('track'))); // 카드 안 흐름(약 6초)을 다 본 뒤 넘김
 autoAdvance($('pftrack'), 3500, () => slideNext($('pftrack')));
-FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg?v=2`; }); // 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음
+FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg?v=3`; }); // 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음
 // 휴대폰 아래 고정 단추: 첫 화면이 화면에서 위로 벗어나면 보임(넓은 화면은 CSS 로 숨김)
 (() => {
   const bar = $('mcta'), hero = document.querySelector('.hero');
