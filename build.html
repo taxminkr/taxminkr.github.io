@@ -119,14 +119,10 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .step.on .n{color:var(--ink)}
 
 /* 옵션판(11/26) */
-.cfg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:24px}
-.cf{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:60px;padding:8px 34px 8px 14px;border-radius:12px;box-shadow:inset 0 0 0 1px #D5D9E0;background:#fff;cursor:pointer;transition:box-shadow .15s}
-.cf small{font-size:12px;font-weight:600;color:var(--mute)}
-.cf select{appearance:none;-webkit-appearance:none;width:100%;border:0;padding:0;background:none;font:inherit;font-size:16px;font-weight:700;color:var(--blue);cursor:pointer;text-overflow:ellipsis}
-.cf select:focus{outline:none}
-.cf::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border:solid var(--sub);border-width:0 2px 2px 0;transform:translateY(-75%) rotate(45deg);pointer-events:none}
-.cf.set{box-shadow:inset 0 0 0 1.5px var(--ink)}.cf.set select{color:var(--ink)}
-.cf:focus-within{outline:2px solid var(--blue);outline-offset:2px}
+.cfg{margin-top:22px;border-top:1px solid var(--line)}
+.cg{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.cg-h{padding-top:12px;font-size:15px;font-weight:700;color:var(--ink)}
+.cg .seg.c6{grid-template-columns:repeat(6,minmax(0,1fr))}
 .cfg + .note{margin-top:10px}
 .board{margin-top:18px;padding:4px 22px 0;border-radius:16px;background:#fff;box-shadow:0 0 0 1px var(--line),0 18px 48px rgba(2,6,23,.06)}
 .bd-hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:14px 0 12px;border-bottom:1.5px solid var(--ink)}
@@ -162,6 +158,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .done-n{margin-top:8px;font-size:13px;color:var(--mute);text-align:center}
 @media (hover:hover){.cf:hover{box-shadow:inset 0 0 0 1.5px #9AA1AC}.cf.set:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}.done-go:hover{background:#1B44D6}.sw:hover{filter:brightness(.96)}}
 @media (prefers-reduced-motion:reduce){.opt.pop{animation:none}}
+@media (max-width:360px){.bd-hd span{display:none}}
 
 /* 설계안(견적서) */
 /* 설계안은 키가 화면보다 커서 따라붙지 않고 그대로 흐름(금액은 아래 띠에 늘 보임) */
@@ -459,8 +456,11 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
   .rc{box-shadow:0 0 0 1px var(--line)}
   /* 옵션판 휴대폰: 한 화면에 위아래로. 설계서는 '설계 완료' 뒤에 나옴 */
   .mk{padding-top:20px}
-  .cfg{grid-template-columns:1fr 1fr}
-  #cf-sales{grid-column:1/-1}
+  .cg{grid-template-columns:1fr;gap:8px;padding:12px 0 14px}
+  .cg-h{padding-top:0;font-size:14px;color:var(--ink-2)}
+  #biz{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #biz .ch{justify-content:flex-start;padding:6px 12px}
+  .cg .seg.c6{grid-template-columns:repeat(3,minmax(0,1fr))}
   .board{padding:2px 16px 0;border-radius:14px}
   .opt{gap:6px 12px;padding:14px 0}
   .o-t b{font-size:15.5px}
@@ -533,10 +533,11 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
     <h1 id="mh1">우리 가게 기장, 직접 설계해 보세요.</h1>
     <p class="lead">스위치를 켜고 끌 때마다 기장료가 바로 바뀌어요. 기본은 월 4만원이에요.</p>
     <!-- 11/26 사용자: 설문지 대신 옵션판(자동차 옵션처럼 직접 켜고 끔). 위 칩 3개는 기본 금액만 정함 -->
-    <div class="cfg" role="group" aria-label="기본 정보">
-      <label class="cf" id="cf-type"><small>사업자 형태</small><select id="f-type"><option value="">형태 고르기</option></select></label>
-      <label class="cf" id="cf-biz"><small>업종</small><select id="f-biz"><option value="">업종 고르기</option></select></label>
-      <label class="cf" id="cf-sales"><small>작년 매출</small><select id="f-sales"><option value="">매출 고르기</option></select></label>
+    <!-- 11/26 사용자: 펼치는 목록은 '짜침' → 바로 누르는 단추 -->
+    <div class="cfg">
+      <div class="cg"><h2 class="cg-h" id="h-type">사업자 형태</h2><div class="seg c2" id="type" role="group" aria-labelledby="h-type"></div></div>
+      <div class="cg"><h2 class="cg-h" id="h-biz">업종</h2><div class="seg c3" id="biz" role="group" aria-labelledby="h-biz"></div></div>
+      <div class="cg"><h2 class="cg-h" id="h-sales">작년 매출</h2><div class="seg c6" id="sales" role="group" aria-labelledby="h-sales"></div></div>
     </div>
     <p class="note" id="snote"></p>
     <section class="board" aria-labelledby="bd-h">
@@ -779,16 +780,16 @@ const MON = [['예시 식당 B','음식점업'],['예시 상점 B','도소매업
 
 // 고르는 칸 그리기
 const chip = (g, i, label, ic) => `<button type="button" class="ch" data-g="${g}" data-i="${i}" aria-pressed="false">${ic?`<svg class="i" aria-hidden="true"><use href="#${ic}"/></svg>`:''}${label}</button>`;
-$('f-type').insertAdjacentHTML('beforeend', TYPES.map((t,i)=>`<option value="${i}">${t[1]}</option>`).join(''));
-$('f-biz').insertAdjacentHTML('beforeend', BIZ.map((b,i)=>`<option value="${i}">${b[0]}</option>`).join(''));
-$('f-sales').insertAdjacentHTML('beforeend', SALES.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join(''));
+$('type').innerHTML = TYPES.map((t,i)=>chip('type', i, t[1], t[2])).join('');
+$('biz').innerHTML = BIZ.map((b,i)=>chip('biz', i, b[0], b[2])).join('');
+$('sales').innerHTML = SALES.map((x,i)=>chip('sales', i, x[0])).join('');
 $('help').innerHTML = HELP.map(h=>`<div class="hi"><label><input type="checkbox" value="${h[0]}">${h[1]}</label>${QI.btn(h[0])}</div>`).join('');
 $('op-co').textContent = `+${P('co')}만원`; $('op-cpa').textContent = `+${P('cpa')}만원`;
 
 // 위 칩 3개(기본 금액)
-['type','biz','sales'].forEach(g=> $('f-'+g).addEventListener('change', e=>{ const v = e.target.value, i = +v;
-  if (g==='type') sel.type = v==='' ? null : TYPES[i][0]; else sel[g] = v==='' ? null : i;
-  draw(v==='' ? '' : g==='type' ? TYPES[i][1] : g==='biz' ? '업종 ' + BIZ[i][0] : '작년 매출 ' + SALES[i][0]); }));
+document.querySelector('.cfg').addEventListener('click', e=>{ const c = e.target.closest('[data-g]'); if (!c) return; const g = c.dataset.g, i = +c.dataset.i;
+  if (g==='type') sel.type = TYPES[i][0]; else sel[g] = i;
+  draw(g==='type' ? TYPES[i][1] : g==='biz' ? '업종 ' + BIZ[i][0] : '작년 매출 ' + SALES[i][0]); });
 // 옵션판: 스위치 켜고 끄기 · 직원 수
 document.querySelector('.board').addEventListener('click', e=>{
   const sw = e.target.closest('.sw'), pm = e.target.closest('.pm');
@@ -962,7 +963,7 @@ function calcDone(){ if (calcSent || typeof window.TM_TRACK !== 'function') retu
 function draw(what){
   const r = est(sel), corp = T(sel)==='법인';
   // 칩 · 스위치 · 직원 수 · 자동으로 붙는 사업 규모 줄
-  [['type', sel.type ? TYPES.findIndex(t=>t[0]===sel.type) : null], ['biz', sel.biz], ['sales', sel.sales]].forEach(([g,v])=>{ const el = $('f-'+g); el.value = v==null ? '' : v; el.closest('.cf').classList.toggle('set', v!=null); });
+  document.querySelectorAll('.cfg .ch[data-i]').forEach(c=>{ const g = c.dataset.g, i = +c.dataset.i; c.setAttribute('aria-pressed', g==='type' ? TYPES[i][0]===sel.type : sel[g]===i); });
   const ON = {pay: sel.staff>0, co: !!sel.co, cpa: !!sel.cpa};
   Object.entries(ON).forEach(([k,on])=>{ $('opt-'+k).classList.toggle('on', on); $('opt-'+k).querySelector('.sw').setAttribute('aria-checked', on); });
   $('opt-co').hidden = corp;
