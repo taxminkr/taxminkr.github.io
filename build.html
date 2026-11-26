@@ -682,11 +682,11 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
   </form>
 </dialog>
 
-<script src="js/svc-help.js?v=20261126b"></script>
+<script src="js/svc-help.js?v=20261126c"></script>
 <script>
 // ★ 기준표(초안) — 숫자·품목만 바꾸면 화면 전체가 따라 바뀜. 단위 만원/월, 부가세 별도.
 //   사용자 11/25: 모든 견적은 기본 4만원에서 시작 → 일반 개인 5 · 매출 큰 개인 7 · 법인 10.
-//   서비스 추가: 월별 매출 보고서 0원 · 인건비(4대보험 포함) 3명까지 1만원, 4명부터 상담 · 공동사업장 1만원.
+//   서비스 추가: 월별 매출 보고서 0원 · 인건비(4대보험 포함) 4명까지 1만원, 5명부터 인원에 따라 더함(상담 때 확정 — 금액 정해지면 여기)  · 공동사업장 1만원.
 //   종합소득세·법인세 신고는 기본 포함이 아니라 '수수료 별도 · 신고 전 안내'.
 const START = 4;
 const SIZE = {lite:['일반 개인',0], std:['매출 큰 개인',3], corp:['법인',6]}; // 사업 규모 더하기(lite·std·corp = 메인 모델 소개의 택스민 라이트·택스민·택스민 법인)
@@ -714,7 +714,7 @@ function calc(sel){
   if (SIZE[m][1]) lines.push(['사업 규모 · ' + SIZE[m][0], SIZE[m][1]]);
   const up = m==='corp' ? [0,2,4,4][sc] : m==='std' ? [0,0,2,2][sc] : 0;
   if (up) lines.push(['작년 매출 ' + SALES[sel.sales][0], up]);
-  OPTS.forEach(o=>{ if (sel.opt[o.k] && (!o.only || o.only===sel.type)) lines.push([o.t + (o.k==='pay' ? (sel.big ? ' · 4명 이상' : ' · 3명까지') : ''), o.p]); });
+  OPTS.forEach(o=>{ if (sel.opt[o.k] && (!o.only || o.only===sel.type)) lines.push([o.t + (o.k==='pay' ? (sel.big ? ' · 5명 이상' : ' · 4명까지') : ''), o.p]); });
   return {m, sc, up, lines, total: lines.reduce((s,l)=>s+l[1],0), ask: (m!=='lite' && (sc===3 || !!SALES[sel.sales][2])) || (!!sel.opt.pay && sel.big)};
 }
 // self-check
@@ -723,7 +723,7 @@ const S = o=>Object.assign({type:'개인',biz:0,sales:2,opt:{},big:false,help:{}
 console.assert(calc(S()).total===4 && calc(S({sales:0})).total===4 && calc(S({type:'법인'})).total===10 && calc(S({sales:4})).total===7, '일반 개인 4 · 법인 10 · 매출 큰 개인 7');
 console.assert(calc(S({opt:{rep:1,pay:1}})).total===5 && calc(S({opt:{rep:1,pay:1,co:1}})).total===6 && calc(S({opt:{cpa:1}})).total===7, 'BEST 둘 = 5 · 공동사업장 1 · 세무사 직접 담당 3');
 console.assert(calc(S({type:'법인',opt:{co:1}})).total===10, '법인은 공동사업장 없음');
-console.assert(calc(S({opt:{pay:1},big:true})).ask && !calc(S({opt:{pay:1}})).ask, '인건비 4명 이상은 상담');
+console.assert(calc(S({opt:{pay:1},big:true})).ask && !calc(S({opt:{pay:1}})).ask, '인건비 5명 이상은 상담');
 console.assert(calc(S({sales:5})).total===9 && calc(S({sales:5})).ask && calc(S({type:'법인',biz:1,sales:5})).total===14 && !calc(S({sales:4})).ask, '10억 이상은 만원부터');
 console.assert(calc(S({biz:1,sales:3})).total===4 && calc(S({biz:1,sales:4})).total===7, '도소매 3~5억은 기본 구간 안, 5~10억은 넘음');
 console.assert(calc(S()).lines.length===1, '일반 개인은 사업 규모 줄 없음');
@@ -733,7 +733,7 @@ console.assert(calc(S({biz:4,sales:4})).total===calc(S({biz:3,sales:4})).total &
 const blank = () => ({type:null, biz:null, sales:null, staff:null, co:null, cpa:null, help:{}});
 const sel = blank();
 const T = s => s.type || '개인';
-const toCalc = (s, b, x) => ({type:T(s), biz:b, sales:x, opt:{pay:s.staff>0, co:!!s.co, cpa:!!s.cpa}, big:s.staff>=4, help:s.help});
+const toCalc = (s, b, x) => ({type:T(s), biz:b, sales:x, opt:{pay:s.staff>0, co:!!s.co, cpa:!!s.cpa}, big:s.staff>=5, help:s.help});
 // 업종·매출을 아직 안 골랐으면 가능한 경우 중 가장 낮은 금액을 '부터'로 보여 줌
 function est(s){
   const bs = s.biz==null ? BIZ.map((_,i)=>i) : [s.biz], xs = s.sales==null ? SALES.map((_,i)=>i) : [s.sales];
@@ -813,7 +813,7 @@ function rows(r){
   });
   if (!r.open && r.m==='lite') R.push({k:'lite'+bn, l:bn + ' 기장료 기본 구간', v:'기본에 포함', nt:true});
   if (sel.staff===0) R.push({k:'payoff', l:'인건비 신고', off:'직원이 없어 뺐어요'});
-  else if (sel.staff>0) R.push({k:'pay', l:'인건비 신고 · 4대보험 포함', p:opt('pay')[1], sub:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}${sel.staff>=4 ? ' · 4명부터는 상담 때 확정' : ''}`});
+  else if (sel.staff>0) R.push({k:'pay', l:'인건비 신고 · 4대보험 포함', p:opt('pay')[1], sub:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}${sel.staff>=5 ? ' · 5명부터 인원에 따라 더해짐(상담 때 확정)' : ''}`});
   if (T(sel)==='개인'){
     if (sel.co===false) R.push({k:'cooff', l:'공동사업장', off:'대표가 혼자라 뺐어요'});
     else if (sel.co) R.push({k:'co', l:'공동사업장 · 대표 둘 이상', p:opt('co')[1]});
@@ -844,7 +844,7 @@ function stack(r, R){
   }
   const hint = R.find(x=>x.hint); if (hint) B.push({k:'hint', hint:hint.hint});
   if (sel.staff===0) B.push({k:'payoff', off:true, l:'인건비 신고', w:'직원이 없어 뺐어요'});
-  else if (sel.staff>0) B.push({k:'pay', c:'직원', p:amt(x=>x.k==='pay'), l:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}`, w:'매달 인건비 신고(4대보험 포함)' + (sel.staff>=4 ? ' · 4명부터는 상담 때 확정' : ' · 3명까지 같은 금액')});
+  else if (sel.staff>0) B.push({k:'pay', c:'직원', p:amt(x=>x.k==='pay'), l:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}`, w:'매달 인건비 신고(4대보험 포함)' + (sel.staff>=5 ? ' · 5명부터 인원에 따라 더해져요(상담 때 확정)' : ' · 4명까지 같은 금액')});
   if (!corp){
     if (sel.co===false) B.push({k:'cooff', off:true, l:'공동사업장', w:'혼자 운영이라 뺐어요'});
     else if (sel.co) B.push({k:'co', c:'공동', p:amt(x=>x.k==='co'), l:'공동사업장', w:'대표가 둘 이상 · 소득을 나눠 각자 신고해요'});
@@ -971,7 +971,7 @@ function draw(what){
   $('stepn').textContent = sel.staff>0 ? `직원 ${sel.staff}명${sel.staff>=10?' 이상':''}` : '직원 있어요';
   document.querySelector('[data-v=dec]').disabled = !(sel.staff>1);
   document.querySelector('[data-v=inc]').disabled = sel.staff>=10;
-  $('staffnote').textContent = sel.staff>=4 ? '4명부터는 인원에 따라 상담 때 금액을 정해요.' : `있으면 인건비 신고(4대보험 포함) +${P('pay')}만원 · 3명까지 같은 금액이에요.`;
+  $('staffnote').textContent = sel.staff>=5 ? '5명부터는 근로기준법이 대부분 적용돼 노무 관리가 늘어요. 인원에 따라 금액이 더해지고(상담 때 확정), 노무사 연결도 함께 안내해요.' : `있으면 인건비 신고(4대보험 포함) +${P('pay')}만원 · 4명까지 같은 금액이에요.`;
   $('q-co-wrap').hidden = corp;
   $('tnote').hidden = !!sel.type;
   // 답한 단계 체크(넓은 화면 동그라미 · 휴대폰 단계 막대)

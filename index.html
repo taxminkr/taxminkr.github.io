@@ -64,12 +64,13 @@ header.on .hd-r{color:var(--sub)}
 .hd-nav{display:flex;gap:22px;padding-right:22px;border-right:1px solid var(--line)}
 .hd-nav a:hover{color:var(--ink)}
 html{scroll-padding-top:72px}
-.hd-btn{height:36px;padding:0 16px;border-radius:6px;display:inline-flex;align-items:center;background:#fff;color:var(--ink);font-weight:700}
+.hd-btn{height:36px;padding:0 16px;white-space:nowrap;border-radius:6px;display:inline-flex;align-items:center;background:#fff;color:var(--ink);font-weight:700}
 header.on .hd-btn{background:var(--ink);color:#fff}
 .hd-tel{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .hd-tel svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
 header.on .hd-tel{color:var(--ink)}
-@media (max-width:1180px){.hd-tel{width:36px;height:36px;justify-content:center;border-radius:6px;box-shadow:inset 0 0 0 1px var(--line)}.hd-tel span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+@media (max-width:1180px){.hd-tel{height:36px;padding:0 12px;justify-content:center;border-radius:6px;box-shadow:inset 0 0 0 1px var(--line)}}
+@media (max-width:370px){.hd-tel svg{display:none}.hd-tel{padding:0 10px}.hd-btn{padding:0 10px;white-space:nowrap}.hd-r{gap:8px!important}.hd-tel,.hd-btn{font-size:13px}}
 .tel{font-weight:700;text-decoration:underline;text-underline-offset:3px;font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* 1 첫 화면 — 장면 1(필요한 것만 고르는 기장) ↔ 장면 2(대표세무사 직접 상담) 7초마다. TAXMIN 글자·단추는 고정, 앞 장면이 사라진 뒤 다음이 나옴(겹침 없음) */
@@ -171,6 +172,19 @@ header.on .hd-tel{color:var(--ink)}
 .bd-f .k{color:var(--black-sub);font-size:13px}
 .total{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;margin-top:6px}
 .total small{font-size:18px;font-weight:600;margin-left:3px}
+.rows li{position:relative}
+.tg::before{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.28);opacity:0;transform:scale(.4);pointer-events:none}
+.tg.tap::before{animation:tgTap .6s cubic-bezier(.2,.7,.3,1)}
+@keyframes tgTap{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(1.6)}}
+.fly{position:absolute;right:0;top:50%;font-style:normal;font-size:13px;font-weight:700;padding:2px 8px;border-radius:999px;pointer-events:none;animation:fly 1.2s cubic-bezier(.2,.7,.3,1) forwards}
+.fly.up{background:rgba(37,84,240,.22);color:#AFC2FF}.fly.down{background:rgba(47,191,113,.2);color:#7BE0A8}
+@keyframes fly{0%{opacity:0;transform:translateY(-30%)}15%{opacity:1;transform:translateY(-110%)}75%{opacity:1;transform:translateY(-150%)}100%{opacity:0;transform:translateY(-190%)}}
+.total .num{display:inline-block}
+.total.up .num{animation:numUp .45s cubic-bezier(.2,.7,.3,1)}.total.down .num{animation:numDown .45s cubic-bezier(.2,.7,.3,1)}
+@keyframes numUp{from{opacity:0;transform:translateY(45%)}}
+@keyframes numDown{from{opacity:0;transform:translateY(-45%)}}
+.total{transition:color .5s}.total.up{color:#AFC2FF}.total.down{color:#7BE0A8}
+@media (prefers-reduced-motion:reduce){.tg.tap::before,.fly,.total .num{animation:none!important}.fly{display:none}}
 .saved{color:var(--save);font-weight:700;font-size:15px;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s;text-align:right}
 .saved.on{opacity:1;transform:none}
 .saved i{display:block;font-style:normal;font-weight:500;font-size:12px;color:var(--black-sub)}
@@ -263,10 +277,14 @@ header.on .hd-tel{color:var(--ink)}
 .models-sec{padding:160px 0;background:#F6F7F9}
 .center{text-align:center}
 .center .lead{font-size:17px;color:var(--sub);margin:24px auto 0;max-width:560px}
-.tabs{display:flex;justify-content:center;gap:12px 32px;margin-top:56px;flex-wrap:wrap}
-.tabs button{display:flex;align-items:center;font-size:17px;font-weight:600;color:var(--mute);padding:8px 0;box-shadow:inset 0 -2px 0 transparent;transition:color .2s,box-shadow .2s}
-.tabs button[aria-selected=true]{color:var(--ink)}
-.tabs button[aria-selected=true]{box-shadow:inset 0 -2px 0 var(--ink)}
+/* 이런 사장님께 탭(11/26): 누를 수 있게 보이는 알약 단추 + 다음 탭까지 남은 시간 줄 */
+.tabs{display:flex;justify-content:center;gap:10px;margin-top:56px;flex-wrap:wrap}
+.tabs button{position:relative;overflow:hidden;display:flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px #D5D9E0;font-size:16px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:background-color .2s,color .2s,box-shadow .2s}
+.tabs button:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;box-shadow:none}
+.tabs.auto button[aria-selected=true]::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--blue-on-dark);transform-origin:0 50%;animation:tabProg var(--tab-ms,6s) linear forwards}
+@keyframes tabProg{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.tabs button:active{scale:.97}
 .panel > div{animation:fitIn .55s cubic-bezier(.2,.7,.2,1)}
 @keyframes fitIn{from{opacity:0;transform:translateX(28px)}}
 .panel{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:48px;background:#fff;border-radius:16px;padding:56px 64px}
@@ -427,7 +445,9 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
   .saved{font-size:13px}
   .total{font-size:30px}
   .tabs{gap:18px}
-  .tabs button{font-size:15px}
+  .tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:40px calc(-1 * var(--pad)) 0;padding:2px var(--pad) 4px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{font-size:15px;min-height:42px;padding:0 16px;flex:none}
   .panel{padding:28px 20px}
   .panel h3{font-size:28px}
   .slip{padding:24px 20px 20px}
@@ -448,7 +468,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
 <header id="hd" class="on">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="TAXMIN 처음으로"><b>TAX<span>MIN</span></b></a>
-    <div class="hd-r"><nav class="hd-nav" aria-label="바로가기"><a href="#about">회사 소개</a><a href="#svc">서비스</a><a href="#faq">자주 묻는 질문</a></nav><a class="txt" href="https://pf.kakao.com/_Mxojqs/chat" target="_blank" rel="noopener">카톡 상담</a><a class="hd-tel" href="tel:050714457729" aria-label="전화 상담 0507-1445-7729"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span>0507-1445-7729</span></a><a class="hd-btn" href="build.html">내 기장 설계</a></div>
+    <div class="hd-r"><nav class="hd-nav" aria-label="바로가기"><a href="#about">회사 소개</a><a href="#svc">서비스</a><a href="#faq">자주 묻는 질문</a></nav><a class="txt" href="https://pf.kakao.com/_Mxojqs/chat" target="_blank" rel="noopener">카톡 상담</a><a class="hd-tel" href="tel:050714457729" ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span>전화 상담</span></a><a class="hd-btn" href="build.html">내 기장 설계</a></div>
   </div>
 </header>
 
@@ -554,7 +574,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
           <p class="sv-up">지난달보다 매출 <b>8% 늘었어요</b></p>
           <div class="sv-pay"><span>인건비 신고 · 직원 3명</span><em>4대보험 포함 · 신고 완료</em></div>
         </div><p class="sv-note">화면은 예시예요.</p><ul>
-        <li><b><span>인건비 신고 (4대보험 포함)<i class="best">추천</i></span></b><p>직원 월급 신고와 4대보험 신고를 함께 해요. 3명까지, 4명부터는 상담 때 정해요.</p></li>
+        <li><b><span>인건비 신고 (4대보험 포함)<i class="best">추천</i></span></b><p>직원 월급 신고와 4대보험 신고를 함께 해요. 4명까지 같은 금액이고, 5명부터는 인원에 따라 더해져요(노무사 연결도 함께 안내).</p></li>
         <li><b>공동사업장</b><p>대표가 둘 이상인 사업장이라면 더해요.</p></li>
         <li><b>세무사가 장부를 직접</b><p>기본은 담당자가 작성하고 세무사가 검토해요. 이걸 더하면 세무사가 장부와 신고를 처음부터 직접 맡아요.</p></li>
       </ul></div>
@@ -615,12 +635,12 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
       <details><summary>종합소득세·법인세 신고도 해 주나요?</summary><p>네. 신고 수수료는 장부 상태에 따라 달라서, 신고 전에 금액을 먼저 알려 드리고 동의하신 뒤에 진행해요.</p></details>
       <details><summary>기장 말고 증여·상속, 법무·노무도 물어볼 수 있나요?</summary><p>네. 증여·상속은 세무사가 직접 상담하고, 등기·계약 같은 법무와 근로계약·분쟁 같은 노무는 법무사·변호사·노무사를 연결해 드려요. 비용은 일마다 따로이고, 상담 때 먼저 알려 드려요.</p></details>
       <details><summary>청약이나 대출, 정책자금도 물어볼 수 있나요?</summary><p>네. 청약 자격, 사업자 대출, 소상공인 정책자금을 받을 수 있는지 사장님 상황에 맞춰 함께 알아보고, 상품 안내와 필요한 정보를 드려요.</p></details>
-      <details><summary>중간에 직원이 늘면 어떻게 되나요?</summary><p>인건비 신고(4대보험 포함)는 직원 3명까지 월 1만원이고, 4명부터는 상담 때 정해요. 바뀌는 달 전에 금액을 먼저 알려 드려요.</p></details>
+      <details><summary>중간에 직원이 늘면 어떻게 되나요?</summary><p>인건비 신고(4대보험 포함)는 직원 4명까지 월 1만원이고, 5명부터는 인원에 따라 금액이 더해져요. 5명부터는 근로기준법이 대부분 적용돼 노무 관리가 늘어나서, 노무사 연결도 함께 안내해요. 바뀌는 달 전에 금액을 먼저 알려 드려요.</p></details>
     </div>
     <div>
       <h3>담당자와 상담</h3>
       <details><summary>담당자는 어떤 사람이 맡나요?</summary><p>기장 경력이 있는 담당자가 맡고, 세무 판단이 필요한 질문은 세무사가 직접 답해요. 담당자 답변도 세무사가 검수해요.</p></details>
-      <details><summary>담당자가 중간에 바뀌지 않나요?</summary><p>개업 후 지금까지 그만둔 직원이 없어요. 처음 담당자가 계속 맡아요.</p></details>      <details><summary>사무실에 가야 하나요?</summary><p>아니요. 상담부터 자료 주고받기까지 카톡으로 끝나고, 필요하면 저희가 전화드려요. 전화로 먼저 물어보셔도 돼요. <a class="tel" href="tel:050714457729">0507-1445-7729</a></p></details>
+      <details><summary>담당자가 중간에 바뀌지 않나요?</summary><p>개업 후 지금까지 그만둔 직원이 없어요. 처음 담당자가 계속 맡아요.</p></details>      <details><summary>사무실에 가야 하나요?</summary><p>아니요. 상담부터 자료 주고받기까지 카톡으로 끝나고, 필요하면 저희가 전화드려요. <a class="tel" href="tel:050714457729">전화로 먼저 물어보셔도 돼요.</a></p></details>
       <details><summary>다른 곳에서 옮겨 오기 어렵지 않나요?</summary><p>홈택스 수임 동의만 다시 해 주시면 돼요. 지난 장부를 받아 오는 일은 저희가 안내해 드려요.</p></details>
     </div>
   </div>
@@ -634,12 +654,12 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
       <a class="go2" href="https://pf.kakao.com/_Mxojqs/chat" target="_blank" rel="noopener">카톡으로 상담받기</a>
       <button type="button" class="go2" data-lead>연락처 남기기</button>
     </div>
-    <p class="note">상담 평일 10:00~17:30 · 카톡 또는 전화 <a class="tel" href="tel:050714457729">0507-1445-7729</a><br>연락처를 남기시면 저희가 전화드려요.</p>
+    <p class="note">상담 평일 10:00~17:30 · 카톡 또는 <a class="tel" href="tel:050714457729">전화 상담</a><br>연락처를 남기시면 저희가 전화드려요.</p>
   </div>
 </section>
 </main>
 
-<footer><div class="wrap"><span>사무소명 세무회계 민 · 사업자번호 546-54-00533 · 대표자 이민기(대표세무사) · 주소 서울시 강서구 공항대로 194, 7층 717~718</span><span>전화 <a class="tel" href="tel:050714457729">0507-1445-7729</a> · <a href="privacy.html">개인정보처리방침</a></span></div></footer>
+<footer><div class="wrap"><span>사무소명 세무회계 민 · 사업자번호 546-54-00533 · 대표자 이민기(대표세무사) · 주소 서울시 강서구 공항대로 194, 7층 717~718</span><span><a class="tel" href="tel:050714457729">전화 상담</a> · <a href="privacy.html">개인정보처리방침</a></span></div></footer>
 
 <div class="mcta" id="mcta"><a href="build.html" data-pos="sticky">기장료 설계해 보기</a></div>
 
@@ -647,7 +667,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
 <dialog class="ldg" id="lead" aria-labelledby="lead-h">
   <form id="leadf" novalidate>
     <h2 id="lead-h">연락처 남기기</h2>
-    <p class="lead-s">남겨 주시면 평일 10:00~17:30 사이에 먼저 연락드려요. 전화로 먼저 물어보셔도 돼요. <a class="tel" href="tel:050714457729">0507-1445-7729</a></p>
+    <p class="lead-s">남겨 주시면 평일 10:00~17:30 사이에 먼저 연락드려요. <a class="tel" href="tel:050714457729">전화로 먼저 물어보셔도 돼요.</a></p>
     <label>이름 또는 상호<input name="name" autocomplete="name" required aria-describedby="e-name"><small class="err" id="e-name"></small></label>
     <label>연락처<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required pattern="[0-9\- ]{9,14}" aria-describedby="e-tel"><small class="err" id="e-tel"></small></label>
     <label>편한 연락 시간<select name="when"><option>언제든 괜찮아요</option><option>오전(10~12시)</option><option>오후(13~17시)</option></select></label>
@@ -660,7 +680,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
   </form>
 </dialog>
 
-<script src="js/svc-help.js?v=20261126b"></script>
+<script src="js/svc-help.js?v=20261126c"></script>
 <script src="js/lead.js"></script>
 <script>
 // 견적판 예시 — build.html 기준과 같은 숫자(만원/월, 부가세 별도):
@@ -684,18 +704,33 @@ const CAPS = [
 const boardHTML = () => `<div class="board" aria-hidden="true">
   <div class="bd-h"><b>우리 가게 기장 설계안</b><span>음식점·카페 · 개인사업자</span></div>
   <ul class="rows">${ROWS.map(r=>`<li><span class="n">${r.n}</span><span class="tg ${r.lock?'lock':'on'}"></span><span class="p">${r.first ? r.v+'만원' : r.v ? '+'+r.v+'만원' : r.v===0 ? '기본 포함' : r.p}</span></li>`).join('')}</ul>
-  <div class="bd-f"><div><p class="k">예상 월 기장료 · 부가세 별도</p><p class="total">${BASE}<small>만원</small></p></div><p class="saved">안 쓰는 서비스를 끄니<br>월 2만원이 빠졌어요<i>예시 계산</i></p></div></div>`;
+  <div class="bd-f"><div><p class="k">예상 월 기장료 · 부가세 별도</p><p class="total"><span class="num">${BASE}</span><small>만원</small></p></div><p class="saved">안 쓰는 서비스를 끄니<br>월 2만원이 빠졌어요<i>예시 계산</i></p></div></div>`;
 $('track').innerHTML = CAPS.map((c,i)=>`<article class="st-slide" aria-label="3장 가운데 ${i+1}장"><div class="cap"><small>${c.s}</small><h3>${c.h}</h3><p>${c.p}</p><a class="st-go" href="build.html">직접 켜고 꺼 보기</a></div>${boardHTML()}</article>`).join('');
-// 카드 한 장의 견적판을 s 단계로 그림(0 기본만 · 1 옵션 켬 · 2 둘 끔)
-function setStep(card, s){
-  const opt = s>=1, cut = s>=2;
-  [...card.querySelectorAll('.rows li')].forEach((li,i)=>{ const r = ROWS[i];
-    li.classList.toggle('dim', !r.lock && !opt);
-    if (r.cut) li.classList.toggle('off', cut);
-    if (!r.lock) li.querySelector('.tg').classList.toggle('on', opt && !(r.cut && cut)); });
-  card.querySelector('.total').innerHTML = (!opt ? BASE : cut ? FULL-2 : FULL) + '<small>만원</small>';
-  card.querySelector('.saved').classList.toggle('on', cut);
+// 카드 한 장의 견적판 그리기(11/26 모션: 스위치를 톡 누르는 표시 · +1만원/−1만원 꼬리표 · 숫자가 굴러 바뀜)
+// st = {rep, pay, co, strike(끈 줄 취소선), saved}
+const RI = {rep:1, pay:2, co:3};
+function paint(card, st, fx){
+  const lis = [...card.querySelectorAll('.rows li')];
+  Object.entries(RI).forEach(([k,i])=>{ const li = lis[i], on = !!st[k], tg = li.querySelector('.tg'), was = tg.classList.contains('on'), r = ROWS[i];
+    tg.classList.toggle('on', on);
+    li.classList.toggle('off', !on && !!r.cut && !!st.strike);
+    li.classList.toggle('dim', !on && !(r.cut && st.strike));
+    if (fx && was !== on){
+      tg.classList.remove('tap'); void tg.offsetWidth; tg.classList.add('tap');
+      if (r.v){ const f = document.createElement('i'); f.className = 'fly ' + (on ? 'up' : 'down'); f.textContent = (on ? '+' : '−') + r.v + '만원'; li.appendChild(f); setTimeout(()=> f.remove(), 1300); }
+    } });
+  const tot = card.querySelector('.total'), n = tot.querySelector('.num'), t = BASE + (st.pay ? 1 : 0) + (st.co ? 1 : 0), old = +n.textContent;
+  n.textContent = t;
+  tot.classList.remove('up','down');
+  if (fx && t !== old){ void tot.offsetWidth; tot.classList.add(t > old ? 'up' : 'down'); clearTimeout(tot._t); tot._t = setTimeout(()=> tot.classList.remove('up','down'), 900); }
+  card.querySelector('.saved').classList.toggle('on', !!st.saved);
 }
+// 카드마다 보여 줄 흐름: 1장 기본 4만원 · 2장 하나씩 켜서 더함 · 3장 둘을 꺼서 2만원 빠짐
+const SEQ = [
+  [{}, {pay:1}, {}],
+  [{}, {rep:1}, {rep:1,pay:1}, {rep:1,pay:1,co:1}],
+  [{rep:1,pay:1,co:1}, {rep:1,co:1,strike:1}, {rep:1,strike:1,saved:1}],
+];
 
 const hd = $('hd');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -730,15 +765,27 @@ hero.classList.toggle('still', paused); play(); arm();
 // 견적 이야기: 카드 세 장을 옆으로 밀어 넘김(손가락·트랙패드·마우스 끌기·키보드 화살표), 저절로 넘어가지 않음
 (() => {
   const track = $('track'), cards = [...track.children];
-  let cutT = 0;
-  cards.forEach((c,i)=> setStep(c, i===2 ? 1 : i));
+  // 보이는 카드만 흐름을 되풀이(한 단계 1.3초, 끝에서 2.4초 쉬고 처음부터). 움직임 줄이기면 끝 장면만
+  const runs = new Map();
+  const stopRun = c => { clearTimeout(runs.get(c)); runs.delete(c); };
+  function run(c, i){
+    const seq = SEQ[i]; let k = 0;
+    if (reduce){ paint(c, seq[seq.length-1]); return; }
+    paint(c, seq[0]);
+    const tick = () => { k++; if (k < seq.length){ paint(c, seq[k], true); runs.set(c, setTimeout(tick, k === seq.length-1 ? 2400 : 1300)); } else { k = 0; paint(c, seq[0]); runs.set(c, setTimeout(tick, 900)); } };
+    runs.set(c, setTimeout(tick, 900));
+  }
+  cards.forEach((c,i)=> paint(c, SEQ[i][reduce ? SEQ[i].length-1 : 0]));
+  let secSeen = false;
   const io = new IntersectionObserver(es=> es.forEach(e=>{
     const c = e.target, i = cards.indexOf(c), on = e.intersectionRatio >= .6;
     if (on === c.classList.contains('on')) return;
-    c.classList.toggle('on', on);
-    if (i === 2){ clearTimeout(cutT); setStep(c, 1); if (on) cutT = setTimeout(()=> setStep(c, 2), reduce ? 0 : 600); } // 켜진 옵션이 꺼지는 순간을 보여 줌
+    c.classList.toggle('on', on); stopRun(c);
+    if (on && secSeen) run(c, i);
   }), {root: track, threshold: [0, .6]});
   cards.forEach(c=> io.observe(c));
+  // 화면 밖이면 멈춤, 들어오면 보이는 카드부터 다시
+  new IntersectionObserver(([e])=>{ secSeen = e.isIntersecting; cards.forEach((c,i)=>{ stopRun(c); if (secSeen && c.classList.contains('on')) run(c, i); }); }, {threshold:.3}).observe(track);
   const go = i => { const c = cards[Math.max(0, Math.min(cards.length - 1, i))]; track.scrollTo({left: c.offsetLeft - cards[0].offsetLeft, behavior: reduce ? 'auto' : 'smooth'}); };
   const nowIdx = () => Math.round(track.scrollLeft / (cards[1].offsetLeft - cards[0].offsetLeft));
   // 마우스로 끌어 넘기기
@@ -759,9 +806,9 @@ const FITS = [
    pick:[['사업자 형태','개인'],['작년 매출','올해 시작'],['서비스 추가','월별 매출 보고서']]},
   {k:'shop', tab:'온라인 판매', tag:'스마트스토어·오픈마켓 · 쇼핑몰', h:'온라인으로 파는 사장님', img:'img/svc_desk.jpg', who:'스마트스토어·오픈마켓으로 들어온 매출과 판매 수수료를 장부에 함께 정리해요. 도소매·쇼핑몰은 기장료 기본 구간이 작년 매출 9억원 이하라, 기본 4가지에서 필요한 것만 더하면 돼요.',
    inc:[['월 매출·매입 관리 · 플랫폼 매출·수수료','기본'],['부가가치세 신고','기본'],['전담 담당자 · 세무사 상담','기본'],['월별 매출 보고서','기본 포함']]},
-  {k:'staff', tab:'직원이 있는 가게', tag:'알바·직원 1~3명', h:'직원 월급 신고까지 맡기고 싶은 사장님', who:'매달 월급 신고와 4대보험 신고를 장부와 함께 챙겨요. 직원이 들어오고 나갈 때도 담당자가 먼저 챙겨요.',
+  {k:'staff', tab:'직원이 있는 가게', tag:'알바·직원 1~4명', h:'직원 월급 신고까지 맡기고 싶은 사장님', who:'매달 월급 신고와 4대보험 신고를 장부와 함께 챙겨요. 직원이 들어오고 나갈 때도 담당자가 먼저 챙겨요.',
    inc:[['기본 4가지 (장부·부가세·담당자·세무사)','기본'],['인건비 신고 (4대보험 포함)','선택'],['월별 매출 보고서','기본 포함']],
-   pick:[['사업자 형태','개인'],['작년 매출','1억~3억'],['서비스 추가','인건비 신고 · 3명까지']]},
+   pick:[['사업자 형태','개인'],['작년 매출','1억~3억'],['서비스 추가','인건비 신고 · 4명까지']]},
   {k:'big', tab:'매출이 커진 가게', tag:'매출이 업종 기본 구간을 넘은 개인', h:'장부 양이 늘고 신고가 복잡해진 사장님', who:'AI가 매달 매출을 지켜보고, 복식부기나 성실신고 같은 의무가 바뀌기 전에 먼저 알려 드려요. 법인 전환이 필요한지도 세무사가 설명해요.',
    inc:[['기본 4가지 (장부·부가세·담당자·세무사)','기본'],['AI 매출 모니터링 · 구간 알림','기본'],['세무사가 장부를 직접','선택']],
    pick:[['사업자 형태','개인'],['작년 매출','5억~10억'],['서비스 추가','세무사가 장부를 직접']]},
@@ -777,6 +824,7 @@ tabs.innerHTML = FITS.map((m,i)=>`<button role="tab" id="tab-${m.k}" aria-contro
 function showModel(i){
   const m = FITS[i];
   [...tabs.children].forEach((b,j)=>{ b.setAttribute('aria-selected', j===i); b.tabIndex = j===i?0:-1; });
+  const sb = tabs.children[i]; if (tabs.scrollWidth > tabs.clientWidth) tabs.scrollTo({left: sb.offsetLeft - tabs.offsetLeft - 20, behavior: reduce ? 'auto' : 'smooth'});
   panel.setAttribute('aria-labelledby', 'tab-'+m.k);
   panel.innerHTML = `<div><span class="tag">${m.tag}</span><h3>${m.h}</h3><p class="who">${m.who}</p>
     <ul class="inc">${m.inc.map(x=>`<li class="${x[2]?'x':''}"><div class="inc-n">${x[0]}${QI.btn(QI.key(x[0]))}</div><span>${x[1]}</span></li>`).join('')}</ul>
@@ -793,23 +841,29 @@ const watchLv = () => document.querySelectorAll('video.lv:not([data-w])').forEac
 watchLv(); new MutationObserver(watchLv).observe(panel, {childList:true});
 
 // 저절로 넘김 도우미: 보이는 동안만, 마우스를 올리거나 키보드 초점이 있으면 멈춤, 움직임 줄이기 설정이면 쓰지 않음
-function autoAdvance(box, ms, step){
+// hoverEl: 마우스를 올리면 잠깐 멈출 곳(기본 box) · onState(running): 도는 중인지 알려 줌(진행 줄용)
+function autoAdvance(box, ms, step, hoverEl = box, onState = () => {}){
   if (reduce) return;
   let t = 0, seen = false, hov = false, foc = false, stop = false;
-  const arm = () => { clearInterval(t); if (seen && !hov && !foc && !stop) t = setInterval(step, ms); };
+  const arm = () => { clearInterval(t); const go = seen && !hov && !foc && !stop; if (go) t = setInterval(step, ms); onState(go); };
   new IntersectionObserver(([e]) => { seen = e.isIntersecting; arm(); }, {threshold:.35}).observe(box);
-  box.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse'){ hov = true; arm(); } });
-  box.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse'){ hov = false; arm(); } });
+  hoverEl.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse'){ hov = true; arm(); } });
+  hoverEl.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse'){ hov = false; arm(); } });
   box.addEventListener('focusin', () => { foc = true; arm(); });
   box.addEventListener('focusout', e => { if (!box.contains(e.relatedTarget)){ foc = false; arm(); } });
-  // 한 번 손대면(누르기·휠·키) 다시는 저절로 넘기지 않음 — 읽던 내용이 바뀌지 않게(WCAG 2.2.2)
-  ['pointerdown','wheel','keydown','touchstart'].forEach(ev => box.addEventListener(ev, () => { stop = true; clearInterval(t); }, {once:true, passive:true}));
+  // 직접 고르면(누르기·키·옆으로 밀기) 다시는 저절로 넘기지 않음 — 읽던 내용이 바뀌지 않게(WCAG 2.2.2).
+  // 화면을 위아래로 스크롤하는 것(휠·세로로 끄는 손가락)은 '고른 것'이 아님 — 11/26 이것 때문에 탭이 전혀 안 넘어갔음
+  const halt = () => { stop = true; arm(); };
+  box.addEventListener('click', halt); box.addEventListener('keydown', halt);
+  let sx = null, sy = 0;
+  box.addEventListener('touchstart', e => { const p = e.touches[0]; sx = p.clientX; sy = p.clientY; }, {passive:true});
+  box.addEventListener('touchend', e => { if (sx === null) return; const p = e.changedTouches[0], dx = Math.abs(p.clientX - sx), dy = Math.abs(p.clientY - sy); sx = null; if (dx > 12 && dx > dy) halt(); }, {passive:true});
   return arm;
 }
 // 이런 사장님께: 6초마다 다음 상황으로
 const fitBox = document.querySelector('.models-sec .wrap');
-const fitArm = autoAdvance(fitBox, 6000, () => { const i = [...tabs.children].findIndex(b => b.getAttribute('aria-selected') === 'true'); showModel((i + 1) % FITS.length); });
-tabs.addEventListener('click', () => fitArm && fitArm());
+const tabAuto = on => { tabs.classList.remove('auto'); if (on){ void tabs.offsetWidth; tabs.classList.add('auto'); } }; // 진행 줄을 처음부터
+autoAdvance(fitBox, 6000, () => { const i = [...tabs.children].findIndex(b => b.getAttribute('aria-selected') === 'true'); showModel((i + 1) % FITS.length); tabAuto(true); }, tabs, tabAuto);
 // 옆으로 넘기는 줄(견적 이야기 카드·상담 기록): 다음 칸으로, 끝이면 처음으로
 function slideNext(track){
   const items = [...track.children].filter(el => el.offsetWidth);
@@ -817,7 +871,7 @@ function slideNext(track){
   const next = track.scrollLeft + gap > max + 4 ? 0 : Math.min(max, Math.round(track.scrollLeft / gap + 1) * gap);
   track.scrollTo({left: next, behavior: 'smooth'});
 }
-autoAdvance($('track'), 5000, () => slideNext($('track')));
+autoAdvance($('track'), 7500, () => slideNext($('track'))); // 카드 안 흐름(약 6초)을 다 본 뒤 넘김
 autoAdvance($('pftrack'), 3500, () => slideNext($('pftrack')));
 FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg`; }); // 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음
 // 휴대폰 아래 고정 단추: 첫 화면이 화면에서 위로 벗어나면 보임(넓은 화면은 CSS 로 숨김)
