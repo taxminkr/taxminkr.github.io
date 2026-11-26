@@ -829,7 +829,7 @@ function showModel(i){
   panel.innerHTML = `<div><span class="tag">${m.tag}</span><h3>${m.h}</h3><p class="who">${m.who}</p>
     <ul class="inc">${m.inc.map(x=>`<li class="${x[2]?'x':''}"><div class="inc-n">${x[0]}${QI.btn(QI.key(x[0]))}</div><span>${x[1]}</span></li>`).join('')}</ul>
     <a class="btn" href="build.html?p=${m.k}">이 상황으로 설계하기</a></div>
-    <div class="fit-pic">${m.img ? `<img src="${m.img}" alt="" loading="lazy">` : `<video class="lv" src="img/v_${m.k}.mp4" poster="img/v_${m.k}.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>`}</div>`;
+    <div class="fit-pic">${m.img ? `<img src="${m.img}" alt="" loading="lazy">` : `<video class="lv" src="img/v_${m.k}.mp4?v=2" poster="img/v_${m.k}.jpg?v=2" muted loop playsinline preload="none" aria-hidden="true"></video>`}</div>`;
 }
 tabs.addEventListener('click', e=>{ const b=e.target.closest('[role=tab]'); if(b) showModel(+b.dataset.i); });
 tabs.addEventListener('keydown', e=>{ const n0 = FITS.length, i=[...tabs.children].findIndex(b=>b.getAttribute('aria-selected')==='true');
@@ -873,7 +873,7 @@ function slideNext(track){
 }
 autoAdvance($('track'), 7500, () => slideNext($('track'))); // 카드 안 흐름(약 6초)을 다 본 뒤 넘김
 autoAdvance($('pftrack'), 3500, () => slideNext($('pftrack')));
-FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg`; }); // 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음
+FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg?v=2`; }); // 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음
 // 휴대폰 아래 고정 단추: 첫 화면이 화면에서 위로 벗어나면 보임(넓은 화면은 CSS 로 숨김)
 (() => {
   const bar = $('mcta'), hero = document.querySelector('.hero');
