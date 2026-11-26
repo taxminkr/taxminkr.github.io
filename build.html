@@ -59,7 +59,7 @@ header{position:sticky;top:0;z-index:50;height:64px;background:#fff;box-shadow:0
 .hd .sep{width:1px;height:16px;background:var(--line)}
 .hd .cur{font-size:15px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:8px;min-width:0}
 /* 맨 위 '만드는 중' 안내(11/26): 답할수록 제목줄 아래 파란 줄이 차고, 다 하면 체크와 '완성' */
-.bs-i{position:relative;width:8px;height:8px;flex:none;border-radius:50%;background:var(--blue);animation:bsP 1.4s ease-in-out infinite}
+.bs-i{position:relative;width:8px;height:8px;flex:none;border-radius:50%;background:var(--blue);animation:bsP 1.4s ease-in-out 3}
 @keyframes bsP{50%{opacity:.35;transform:scale(.7)}}
 .bs-bar{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue);transform-origin:0 50%;transform:scaleX(var(--p,.04));transition:transform .6s cubic-bezier(.16,1,.3,1)}
 body.built .hd .cur{color:var(--blue);font-weight:700}
@@ -68,6 +68,9 @@ body.built .bs-i::after{content:"";position:absolute;left:6.5px;top:3.5px;width:
 @keyframes bsPop{from{transform:scale(.3)}}
 .built-msg{display:flex;gap:12px;align-items:center;margin:-2px 0 16px;padding:14px 16px;border-radius:10px;background:#EEF2FF;color:var(--ink)}
 .built-msg[hidden]{display:none}
+.bm-go{display:inline-flex;align-items:center;min-height:40px;margin-top:8px;padding:0 14px;border-radius:8px;background:var(--blue);color:#fff;font-size:14px;font-weight:700}
+.bm-go:hover{background:#1B44D6}
+@media (max-width:720px){.bm-go{display:none}} /* 휴대폰은 아래 띠에 같은 단추가 늘 있음 */
 .built-msg svg{flex:none;width:30px;height:30px;color:var(--blue)}
 .built-msg b{display:block;font-size:16px;font-weight:700;letter-spacing:-.02em}
 .built-msg span{display:block;font-size:13px;color:var(--ink-2);margin-top:2px;text-wrap:balance}
@@ -140,7 +143,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .stk li.q .l{color:var(--ink-2);font-weight:500}
 .stk li.q .w{color:var(--mute)}
 /* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
-:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go):not(:disabled):active{scale:.97}
+:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go,.bm-go):not(:disabled):active{scale:.97}
 .stk li.off .l{text-decoration:line-through;text-decoration-color:#9AA1AC;color:var(--sub);font-weight:500}
 .stk li.off .w{color:var(--mute)}
 .stk li.hint{display:block;font-size:13px;color:var(--mute);border:1px dashed #CDD2DA;border-radius:6px;padding:9px 12px;margin:8px 0}
@@ -366,6 +369,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
   :root{--pad:20px}
   .hd .sep,.logo b{display:none}
   .hd{gap:12px}.hd .cur{font-size:13.5px;letter-spacing:-.02em}
+  @media (max-width:360px){.hd{gap:8px}.hd .cur{font-size:12.5px;letter-spacing:-.03em}}
   .mk{padding-top:24px}
   h1{font-size:26px}
   .row{grid-template-columns:1fr;gap:10px;padding:16px 0}
@@ -549,7 +553,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
     <!-- 넓은 화면: 아래로 내려 '=' 줄이 위로 사라지면 맨 위에 한 줄로 붙음 -->
     <div class="pin" id="pin"><button type="button" id="pinb" tabindex="-1" aria-hidden="true"><span class="sl-in" id="pinl"></span></button></div>
     <div class="rc" id="rc">
-      <p class="built-msg" id="builtmsg" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.3l3 3 6-6.3"/></svg><span><b>대표님만의 기장 서비스가 완성됐어요</b><span>보내 두시면 상담 때 여기서부터 이어서 봐요.</span></span></p>
+      <div class="built-msg" id="builtmsg" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.3l3 3 6-6.3"/></svg><span><b>대표님만의 기장 서비스가 완성됐어요</b><span>보내 두시면 상담 때 여기서부터 이어서 봐요.</span><button type="button" class="bm-go" data-lead>이 설계안 보내기</button></span></div>
       <p class="rc-h"><b>TAX<span>MIN</span></b><span>기장 설계안 · 월 · 부가세 별도</span></p>
       <h2 class="rc-ttl" id="rcttl"></h2>
       <p class="rc-d" id="rcd"></p>
@@ -931,15 +935,17 @@ let R = [], hotT, countRaf;
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 // 맨 위 '만드는 중' → '완성'(넓은 화면: 네 칸 다 답함 · 휴대폰: 설계안 단계에 오면)
 let wzAt = 0, wasBuilt = false, lastDone = [];
-const BS = ['나만의 기장 서비스, 만들어 볼까요?', '나만의 기장 서비스를 만드는 중이에요', '나만의 기장 서비스를 만드는 중이에요', '거의 다 됐어요, 하나만 더요'];
+const BS = ['나만의 기장 서비스, 만들어 볼까요?', '나만의 기장 서비스 만드는 중이에요', '나만의 기장 서비스 만드는 중이에요', '거의 다 됐어요, 마지막 단계예요', '다 골랐어요, 설계안을 열어 보세요'];
 function bstate(done){
   if (done) lastDone = done;
-  const k = lastDone.filter(Boolean).length, built = k===4 || wzAt===4;
+  // 다 답했을 때만 완성(휴대폰은 거기에 설계안 단계까지 와야)
+  const k = lastDone.filter(Boolean).length, built = k===4 && (wzAt===4 || !matchMedia('(max-width:720px)').matches);
   document.body.classList.toggle('built', built);
   $('bst').textContent = built ? '대표님만의 기장 서비스 완성!' : BS[k];
   $('bsbar').style.setProperty('--p', built ? 1 : Math.max(.04, k/4));
   $('builtmsg').hidden = !built;
   if (built && !wasBuilt) $('bslive').textContent = '대표님만의 기장 서비스가 완성됐어요.';
+  if (!built) $('bslive').textContent = '';
   wasBuilt = built;
 }
 function showTotal(to, unit, from){

@@ -79,13 +79,14 @@ header.on .hd-tel{color:var(--ink)}
 /* 장면 안 구도: 넓게(shotA) → 중간에 끊어 가깝게(shotB, JS 가 .cut). 오른쪽 아래(AI 표시) 모서리를 기준으로 당겨 표시가 늘 보임 */
 .bg video{width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(.6);transform-origin:100% 100%}
 .hero .bg.on video{animation:shotA 3.6s linear both}
-.hero .bg.on.cut video{animation:shotB 3.6s linear both}
+.hero .bg.cut video{animation:shotB 3.6s linear both}
+@keyframes shotBm{from{transform:scale(1.12)}to{transform:scale(1.16)}}
 @keyframes shotA{from{transform:scale(1)}to{transform:scale(1.06)}}
 @keyframes shotB{from{transform:scale(1.3)}to{transform:scale(1.36)}}
 .hero.still .bg video,.hero.still .bg.on video{animation:none}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 58% 44% at 50% 52%,rgba(5,6,8,.82),rgba(5,6,8,.25) 75%,rgba(5,6,8,.15)),linear-gradient(180deg,rgba(5,6,8,.25),rgba(5,6,8,0) 25%,rgba(5,6,8,0) 60%,rgba(5,6,8,.8))}
 .hero .in{position:relative;z-index:2;padding:0 20px;display:grid;justify-items:center}
-.hero .kicker{font-size:18px;font-weight:600;color:var(--blue-on-dark)}
+.hero .kicker{font-size:18px;font-weight:600;color:#fff}
 .nm{display:block;margin:10px auto 18px;height:clamp(50px,6.4vw,88px);width:auto;overflow:visible}
 .nm text{font-family:Manrope,sans-serif;font-size:124px;letter-spacing:-2px}
 .nm .t{fill:#fff}
@@ -110,6 +111,7 @@ header.on .hd-tel{color:var(--ink)}
   .hero::after{background:linear-gradient(180deg,rgba(6,8,11,0) calc(75vw - 8px),rgba(6,8,11,.42) calc(75vw + 72px),rgba(6,8,11,.6) 72%,rgba(6,8,11,.78))}
   .hero .in{padding:8px 20px 52px;text-shadow:0 1px 14px rgba(0,0,0,.35)}
   .hero .kicker{font-size:16px}
+  .hero .bg.cut video{animation-name:shotBm}
   .nm{margin:8px auto 14px}
 }
 
@@ -454,14 +456,15 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
 <section class="hero" aria-labelledby="h1">
   <!-- --poster: 휴대폰에서 글 뒤에 흐리게 까는 그림 · --pos: 휴대폰 4:3 자를 때 위치(계획도 장면은 오른쪽 끝 — Veo 표시가 잘리지 않게) -->
   <div class="bg on" aria-hidden="true" style="--poster:url(img/hero_meet.jpg);--pos:55% 50%"><video src="img/hero_meet.mp4" poster="img/hero_meet.jpg" muted playsinline preload="auto"></video></div>
-  <div class="bg veo" aria-hidden="true" style="--poster:url(img/hero_plan.jpg);--pos:100% 50%"><video src="img/hero_plan.mp4" poster="img/hero_plan.jpg" muted playsinline preload="auto"></video></div>
+  <div class="bg veo" aria-hidden="true" style="--poster:url(img/hero_plan.jpg);--pos:100% 50%"><video src="img/hero_plan.mp4" poster="img/hero_plan.jpg" muted playsinline preload="metadata"></video></div>
   <div class="in">
-    <div class="alt" data-alt><p class="kicker on">기장도 이제, 맞춤 설계</p><p class="kicker" aria-hidden="true">대표세무사 직접 상담</p></div>
+    <h1 id="h1" class="sr-only">택스민, 우리 가게 기장 내가 직접 설계해요. 필요한 서비스만 켜면 기장료가 바로 보여요. 첫 상담부터 대표세무사가 직접 응대해요.</h1>
+    <div class="alt" data-alt aria-hidden="true"><p class="kicker on">기장도 이제, 맞춤 설계</p><p class="kicker">대표세무사 직접 상담</p></div>
     <svg class="nm" viewBox="70 4 460 104" aria-hidden="true"><defs><linearGradient id="nmg" x1="0" x2="1"><stop offset="0" stop-color="#7D9BFF" stop-opacity="0"/><stop offset=".5" stop-color="#6F8FFF"/><stop offset="1" stop-color="#7D9BFF" stop-opacity="0"/></linearGradient><clipPath id="nmc"><text x="300" y="100" text-anchor="middle"><tspan font-weight="800">TAX</tspan><tspan font-weight="300">MIN</tspan></text></clipPath></defs><text class="t" x="300" y="100" text-anchor="middle"><tspan font-weight="800">TAX</tspan><tspan font-weight="300">MIN</tspan></text><g clip-path="url(#nmc)"><rect class="sh" x="-220" y="0" width="180" height="124" fill="url(#nmg)"/></g></svg>
-    <div class="alt" data-alt>
-      <div class="on"><h1 id="h1"><span class="sr-only">택스민, </span>우리 가게 기장,<br>내가 직접 설계해요.</h1>
+    <div class="alt" data-alt aria-hidden="true">
+      <div class="on"><p class="h1">우리 가게 기장,<br>내가 직접 설계해요.</p>
       <p class="sub"><span>필요한 서비스만 켜면 기장료가 바로 보여요.</span><br><span>장부와 신고는 담당자가, 마지막 확인은 세무사가 해요.</span></p></div>
-      <div aria-hidden="true"><p class="h1">첫 상담부터<br>대표세무사가 직접.</p>
+      <div><p class="h1">첫 상담부터<br>대표세무사가 직접.</p>
       <p class="sub"><span>기장 문의 상담은 대표세무사가 직접 응대하고,</span><br><span>시작부터 방향을 확실하게 잡아드려요.</span></p></div>
     </div>
     <a class="go" href="build.html">내 기장 설계하기</a>
@@ -706,7 +709,7 @@ let cur = 0, paused = reduce, seen = true, timer = 0;
 function show(i){
   const oi = cur; bgs[oi].classList.remove('on'); setTimeout(() => { if (cur !== oi){ vids[oi].pause(); bgs[oi].classList.remove('cut'); } }, 600);
   vids[i].currentTime = 0; bgs[i].classList.remove('cut'); bgs[i].classList.add('on');
-  alts.forEach(a => [...a.children].forEach((el, k) => { el.classList.toggle('on', k === i); el.toggleAttribute('aria-hidden', k !== i); }));
+  alts.forEach(a => [...a.children].forEach((el, k) => { el.classList.toggle('on', k === i); }));
   cur = i; play(); arm();
 }
 const next = () => show((cur + 1) % bgs.length);
@@ -714,7 +717,7 @@ function arm(){ clearTimeout(timer); if (!paused && seen) timer = setTimeout(() 
 function play(){ const v = vids[cur]; if (!paused && seen) v.play().catch(() => {}); else v.pause(); }
 vids.forEach((v, k) => {
   v.addEventListener('ended', () => { if (k === cur) next(); });
-  v.addEventListener('timeupdate', () => { if (k === cur && v.duration && v.currentTime > v.duration / 2) bgs[k].classList.add('cut'); });
+  v.addEventListener('timeupdate', () => { if (k === cur && v.duration && v.currentTime > v.duration / 2){ bgs[k].classList.add('cut'); vids[(k + 1) % vids.length].preload = 'auto'; } });
 });
 new IntersectionObserver(([e]) => { seen = e.isIntersecting; play(); arm(); }).observe(hero);
 hero.classList.toggle('still', paused); play(); arm();
