@@ -632,7 +632,7 @@ body.built .pre{display:none}
     </div>
     <div class="own"><button type="button" class="send" data-lead>이 설계안 보내기</button><button type="button" id="copy">이 설계 링크 복사</button><button type="button" id="print">종이로 저장</button></div>
     <p class="own-msg" id="ownmsg" role="status"></p>
-    <fieldset class="ask"><legend>상담 때 같이 물어볼 것</legend>
+    <fieldset class="ask"><legend>기장 상담 외 물어볼 것이 추가로 또 있으실까요?</legend>
       <div class="chk" id="help"></div>
       <p class="note">증여·상속은 세무사가 직접, 법무·노무는 법무사·변호사·노무사를 연결해 드려요. 청약·대출·정책자금은 받을 수 있는지 함께 살펴보고, 상품 안내와 필요한 정보를 드려요. 비용은 상담 때 먼저 알려 드려요. 체크한 것은 ‘이 설계 링크 복사’와 ‘설계안 보내기’에 함께 담겨요.</p>
     </fieldset>
@@ -1200,7 +1200,7 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
       + `<p class="x"><span>${corp ? '법인세 신고' : '종합소득세 신고'}</span><em>신고 전 금액 안내</em></p>`
       + `<p class="tt"><span>예상 월 기장료</span><em>${$('bt').textContent}</em></p>`
       + (r.ask ? `<span class="cap">‘부터’가 붙은 금액은 상담 때 정해요.</span>` : '')
-      + (h.length ? `<span class="cap">상담 때 같이 물어볼 것 · ${h.join(', ')}</span>` : '')
+      + (h.length ? `<span class="cap">기장 외 상담 · ${h.join(', ')}</span>` : '')
       + `<span class="cap">이 설계안이 함께 전달돼요</span>`;
     d.showModal(); (f.elements.name.value ? f.elements.tel : f.elements.name).focus();
   }));
@@ -1230,7 +1230,7 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
         summary: sum, plan: sum.join(' / '), choices: share(sel),
         extras: {when: el.when.value, start: el.start.value, now: el.now.value, ask, help},
         when: el.when.value, startMonth: el.start.value, current: el.now.value,
-        message: [ask, help.length && '상담 때 같이 물어볼 것: ' + help.join(', ')].filter(Boolean).join(' · '),
+        message: [ask, help.length && '기장 외 상담: ' + help.join(', ')].filter(Boolean).join(' · '),
         ind: sel.biz!=null ? bizName(sel.biz) : '', rev: sel.sales!=null ? SALES[sel.sales][0] : '', emp: sel.staff!=null ? (sel.staff ? `${sel.staff}명` : '없음') : '',
         tier: r.open ? '' : SIZE[r.m][0], price: $('bt').textContent,
         page: 'build', ua: navigator.userAgent, ref: document.referrer, utm});
