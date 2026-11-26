@@ -167,6 +167,7 @@ body.built .opt:not(.lock):not(.auto){grid-template-columns:minmax(0,1fr) auto 5
 .pg{height:4px;border-radius:2px;background:#E6E9EE;overflow:hidden}
 .pg-bar{display:block;height:100%;background:var(--blue);transform-origin:0 50%;transform:scaleX(var(--p,.02));transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .pin{display:none!important}
+.side-back{display:none}
 body:not(.built) .side > :not(.pre){display:none}
 body.built .pre{display:none}
 .pre{padding:26px 24px 22px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px var(--line),0 18px 48px rgba(2,6,23,.06)}
@@ -462,7 +463,7 @@ body.built .pre{display:none}
 /* ── 휴대폰(720px 이하): 한 화면에 한 단계씩 옆으로 넘기는 설계. 위 '내 상황' 띠는 늘 보임 ── */
 @media (max-width:720px){
   body{padding-bottom:0}
-  body.built{padding-bottom:var(--bar)}
+  body.at-plan{padding-bottom:var(--bar)}
   header{height:56px}
   .me-wrap{display:block;position:fixed;left:0;right:0;bottom:0;top:auto;z-index:45;padding:0 0 10px;background:#fff;box-shadow:0 -1px 0 var(--line),0 -10px 28px rgba(2,6,23,.07)}
   .me-wrap .pg{border-radius:0;height:4px}
@@ -470,8 +471,30 @@ body.built .pre{display:none}
   .pg-t b{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:18px;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums}
   .me-wrap .sl,.me-wrap .sheet,.sheet-bg{display:none!important}
   body{padding-bottom:72px}
-  body.built .me-wrap{display:none}
+  body.at-plan .me-wrap{display:none}
   .pre{display:none}
+  /* 휴대폰 슬라이드(11/26): 형태 → 업종 → 매출 → 내 기장 서비스 → 설계서, 한 장씩 옆으로 */
+  .wzv{overflow:hidden;transition:height .3s ease}
+  .mk{display:flex;align-items:flex-start;gap:0;max-width:none;padding:0;transition:transform .32s cubic-bezier(.2,.7,.3,1)}
+  .wzv.still,.wzv.still .mk{transition:none}
+  .mk > div:first-child,.cfg{display:contents}
+  .mk h1,.mk .lead{display:none}
+  .cg,.pane-svc,.side{flex:0 0 100%;min-width:0;padding:24px var(--pad) 28px}
+  .cg{display:block;border:0}
+  .cg-h{font-size:22px;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-bottom:16px;outline-offset:4px}
+  #type{grid-template-columns:1fr}
+  #type .ch{min-height:72px;justify-content:flex-start;gap:14px;padding:0 20px;font-size:17px}
+  #type .ch svg.i{width:28px;height:28px}
+  #biz .ch{min-height:64px;font-size:16px}
+  #sales{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #sales .ch{min-height:56px;font-size:16px}
+  #snote{margin-top:14px}
+  .pane-svc .board{margin-top:0}
+  .wz-back{display:inline-flex;align-items:center;height:32px;padding:0 10px 0 4px;margin-left:-6px;border-radius:8px;font-size:14px;font-weight:600;color:var(--ink-2)}
+  .wz-back svg.i{width:18px;height:18px;stroke-width:2;transform:rotate(-90deg)}
+  .wz-back:disabled{visibility:hidden}
+  .side-back{display:inline-flex;align-items:center;gap:2px;height:36px;margin:0 0 10px -6px;padding:0 10px 0 4px;font-size:14px;font-weight:600;color:var(--ink-2)}
+  .side-back svg.i{width:18px;height:18px;stroke-width:2;transform:rotate(-90deg)}
   /* 위 한 줄(키 고정 52px): 펼치면 바로 아래로 쌓기 전체가 내려옴 */
   .sl{display:flex;align-items:center;gap:8px;width:100%;height:52px;padding:0 var(--pad);text-align:left}
   .sl > svg.i{width:18px;height:18px;stroke-width:2;color:var(--sub);transform:rotate(180deg);transition:transform .2s}
@@ -487,26 +510,23 @@ body.built .pre{display:none}
   .rc{box-shadow:0 0 0 1px var(--line)}
   /* 옵션판 휴대폰: 한 화면에 위아래로. 설계서는 '설계 완료' 뒤에 나옴 */
   .mk{padding-top:20px}
-  .cg{grid-template-columns:1fr;gap:8px;padding:12px 0 14px}
-  .cg-h{padding-top:0;font-size:14px;color:var(--ink-2)}
   #biz{grid-template-columns:repeat(2,minmax(0,1fr))}
   #biz .ch{justify-content:flex-start;padding:6px 12px}
-  .cg .seg.c6{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cg .seg.c6{grid-template-columns:repeat(2,minmax(0,1fr))}
   .board{padding:2px 16px 0;border-radius:14px}
   .opt{gap:6px 12px;padding:14px 0}
   .o-t b{font-size:15.5px}
-  body:not(.built) .side{display:none}
   .rc{scroll-margin-top:72px}
   .own .send{display:none}
   .bar{display:none}
-  body.built .bar{display:block}
+  body.at-plan .bar{display:block}
   .bar .m,.bar .t{display:none}
   .bar .wrap{gap:8px}
   .bar .go{flex:1;justify-content:center;height:50px;padding:0 12px;font-size:15px}
   .bar .go .lg{display:none}.bar .go .sm{display:inline}
   .bar .go.line{flex:1.7;background:var(--blue);color:#fff;box-shadow:none}
   .bar a.go{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px #C9CED6}
-  body:not(.built) .care-sec{display:none}
+  body:not(.at-plan) .care-sec{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-property:opacity,color,background-color,border-color!important;scroll-behavior:auto!important}.toast{transform:none}}
 /* 종이로 저장: 설계안 종이만 */
@@ -547,7 +567,7 @@ body.built .pre{display:none}
 <!-- 휴대폰에서만 보임: 내 기장료 한 줄(월 8만원 = 기본 4 + 매출 3 …, 누르면 아래로 펼쳐짐) + 단계 이름 막대 -->
 <div class="me-wrap">
   <div class="pg" aria-hidden="true"><i class="pg-bar js-pgbar"></i></div>
-  <p class="pg-t"><b class="js-pgp">0%</b><span class="js-pgm">설계를 시작해 볼까요?</span></p>
+  <div class="pg-t"><button type="button" class="wz-back" id="wzback" disabled><svg class="i" aria-hidden="true"><use href="#i-up"/></svg>이전</button><b class="js-pgp">0%</b><span class="js-pgm">설계를 시작해 볼까요?</span></div>
   <button type="button" class="sl" id="me" aria-expanded="false" aria-controls="sheet"><span class="sl-in" id="mel"></span><span class="sr">, 내 기장료 쌓기 펼치기</span><svg class="i" aria-hidden="true"><use href="#i-up"/></svg></button>
   <div class="sheet" id="sheet" hidden>
     <p class="stk-h">내 기장료 쌓기<small>고를 때마다 한 줄씩 쌓여요</small></p>
@@ -568,11 +588,11 @@ body.built .pre{display:none}
     <!-- 11/26 사용자: 설문지 대신 옵션판(자동차 옵션처럼 직접 켜고 끔). 위 칩 3개는 기본 금액만 정함 -->
     <!-- 11/26 사용자: 펼치는 목록은 '짜침' → 바로 누르는 단추 -->
     <div class="cfg">
-      <div class="cg"><h2 class="cg-h" id="h-type">사업자 형태</h2><div class="seg c2" id="type" role="group" aria-labelledby="h-type"></div></div>
-      <div class="cg"><h2 class="cg-h" id="h-biz">업종</h2><div class="seg c3" id="biz" role="group" aria-labelledby="h-biz"></div></div>
-      <div class="cg"><h2 class="cg-h" id="h-sales">작년 매출</h2><div class="seg c6" id="sales" role="group" aria-labelledby="h-sales"></div></div>
+      <div class="cg" id="cg-type"><h2 class="cg-h" id="h-type">사업자 형태</h2><div class="seg c2" id="type" role="group" aria-labelledby="h-type"></div></div>
+      <div class="cg" id="cg-biz"><h2 class="cg-h" id="h-biz">업종</h2><div class="seg c3" id="biz" role="group" aria-labelledby="h-biz"></div></div>
+      <div class="cg" id="cg-sales"><h2 class="cg-h" id="h-sales">작년 매출</h2><div><div class="seg c6" id="sales" role="group" aria-labelledby="h-sales"></div><p class="note" id="snote"></p></div></div>
     </div>
-    <p class="note" id="snote"></p>
+    <div class="pane-svc" id="pane-svc">
     <section class="board" aria-labelledby="bd-h">
       <div class="bd-hd"><h2 id="bd-h">내 기장 서비스</h2><span>필요한 것만 켜세요</span></div>
       <div class="opt lock"><div class="o-t"><b><span>기본 4가지</span><button type="button" class="qi" data-qi="base"></button></b><span id="o-base-d">장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서까지</span></div><em class="o-p">4만원</em><span class="o-lk">늘 포함</span></div>
@@ -585,6 +605,7 @@ body.built .pre{display:none}
     </section>
     <button type="button" class="done-go" id="donebtn">설계 완료</button>
     <p class="done-n">누르면 대표님만의 기장 설계서와 월 기장료가 나와요.</p>
+    </div>
   </div>
   <aside class="side" aria-label="내 기장 설계안">
     <!-- 넓은 화면: 아래로 내려 '=' 줄이 위로 사라지면 맨 위에 한 줄로 붙음 -->
@@ -597,6 +618,7 @@ body.built .pre{display:none}
     </div>
     <div class="pin" id="pin"><button type="button" id="pinb" tabindex="-1" aria-hidden="true"><span class="sl-in" id="pinl"></span></button></div>
     <div class="rc" id="rc">
+      <button type="button" class="side-back" id="sideback"><svg class="i" aria-hidden="true"><use href="#i-up"/></svg>서비스 다시 고르기</button>
       <div class="built-msg" id="builtmsg" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.3l3 3 6-6.3"/></svg><span><b>대표님만의 기장 서비스가 완성됐어요</b><span>보내 두시면 상담 때 여기서부터 이어서 봐요.</span><button type="button" class="bm-go" data-lead>이 설계안 보내기</button></span></div>
       <p class="rc-h"><b>TAX<span>MIN</span></b><span>기장 설계안 · 월 · 부가세 별도</span></p>
       <h2 class="rc-ttl" id="rcttl"></h2>
@@ -827,10 +849,12 @@ $('sales').innerHTML = SALES.map((x,i)=>chip('sales', i, x[0])).join('');
 $('help').innerHTML = HELP.map(h=>`<div class="hi"><label><input type="checkbox" value="${h[0]}">${h[1]}</label>${QI.btn(h[0])}</div>`).join('');
 $('op-co').textContent = `+${P('co')}만원`; $('op-cpa').textContent = `+${P('cpa')}만원`;
 
+const phone = matchMedia('(max-width:720px)'); let advT;
 // 위 칩 3개(기본 금액)
 document.querySelector('.cfg').addEventListener('click', e=>{ const c = e.target.closest('[data-g]'); if (!c) return; const g = c.dataset.g, i = +c.dataset.i;
   if (g==='type') sel.type = TYPES[i][0]; else sel[g] = i;
-  draw(g==='type' ? TYPES[i][1] : g==='biz' ? '업종 ' + BIZ[i][0] : '작년 매출 ' + SALES[i][0]); });
+  draw(g==='type' ? TYPES[i][1] : g==='biz' ? '업종 ' + BIZ[i][0] : '작년 매출 ' + SALES[i][0]);
+  if (phone.matches){ clearTimeout(advT); const at = ['type','biz','sales'].indexOf(g); advT = setTimeout(()=> go(at+1), 380); } }); // 휴대폰: 고르면 잠깐 뒤 다음 장
 // 옵션판: 스위치 켜고 끄기 · 직원 수
 document.querySelector('.board').addEventListener('click', e=>{
   const sw = e.target.closest('.sw'), pm = e.target.closest('.pm');
@@ -977,7 +1001,7 @@ const calm = matchMedia('(prefers-reduced-motion: reduce)');
 // 맨 위 '만드는 중' → '완성'(넓은 화면: 네 칸 다 답함 · 휴대폰: 설계안 단계에 오면)
 let finished = false, touched = false, wasBuilt = false, lastDone = [];
 // 한 칸마다 20%: 형태 · 업종 · 매출 · 서비스 켜기 · 설계 완료
-const BS = ['설계를 시작해 볼까요?', '설계하는 중이에요', '설계하는 중이에요', '절반 넘었어요', '설계가 끝나가요, 설계 완료를 눌러 주세요'];
+const BS = ['설계를 시작해 볼까요?', '설계하는 중이에요', '설계하는 중이에요', '필요한 서비스를 켜 주세요. 없으면 설계 완료를 눌러 주세요', '설계가 끝나가요, 설계 완료를 눌러 주세요'];
 function bstate(done){
   if (done) lastDone = done;
   // '설계 완료'를 눌러야 완성(11/26 옵션판)
@@ -1023,7 +1047,7 @@ function draw(what){
     $('o-size').hidden = !add;
     $('o-size-t').textContent = r.m==='corp' ? '법인사업자' : (sel.biz!=null ? bizName(sel.biz) + ' 큰 매출 구간' : '매출이 큰 구간');
     $('o-size-p').textContent = `+${add}만원${r.ask && r.m!=='lite' && (r.sc===3 || r.open || (sel.sales!=null && SALES[sel.sales][2])) ? '부터' : ''}`; }
-  const done = [!!sel.type, sel.biz!=null, sel.sales!=null, touched];
+  const done = [!!sel.type, sel.biz!=null, sel.sales!=null, sel.staff>0 || !!sel.co || !!sel.cpa];
   if (what && done[0] && done[1] && done[2] && !matchMedia('(max-width:720px)').matches) calcDone();
   bstate(done);
   // 매출 아래 한 줄
@@ -1087,12 +1111,38 @@ if (qp) touched = true;                              // 메인 '이 상황으로
 document.querySelectorAll('#help input').forEach(i=> i.checked = !!sel.help[i.value]);
 draw();
 
-// 설계 완료 → 설계서(넓은 화면: 오른쪽 종이로 · 휴대폰: 아래에 설계서가 나타남)
-const phone = matchMedia('(max-width:720px)'), wzv = $('wzv');
+// 휴대폰 슬라이드: 형태 → 업종 → 매출 → 내 기장 서비스 → 설계서(설계 완료 뒤에만). 넓은 화면은 한 화면 그대로
+const wzv = $('wzv'), mk = wzv.firstElementChild;
+const panes = [$('cg-type'), $('cg-biz'), $('cg-sales'), $('pane-svc'), document.querySelector('.side')];
+let step = 0;
+const fit = () => { wzv.style.height = phone.matches ? panes[step].offsetHeight + 'px' : ''; };
+function go(n, still){
+  const on = phone.matches, moved = n!==step;
+  step = Math.max(0, Math.min(finished ? 4 : 3, n)); clearTimeout(advT);
+  wzv.classList.toggle('still', !!still);
+  mk.style.transform = on ? `translateX(${-step*100}%)` : '';
+  panes.forEach((p,i)=> p.inert = on && i!==step);   // 안 보이는 장은 눌리거나 읽히지 않게
+  $('wzback').disabled = step===0;
+  document.body.classList.toggle('at-plan', on && step===4); // 설계서 장: 아래는 보내기 띠
+  fit();
+  if (on && !still && moved){ window.scrollTo({top:0}); const h = panes[step].querySelector('h2') || $('rcttl'); h.tabIndex = -1; h.focus({preventScroll:true}); }
+  if (still) requestAnimationFrame(()=> requestAnimationFrame(()=> wzv.classList.remove('still')));
+}
+new ResizeObserver(fit).observe(wzv); panes.forEach(p=> new ResizeObserver(fit).observe(p));
+phone.addEventListener('change', ()=> go(step, true));
+$('wzback').addEventListener('click', ()=> go(step-1));
+$('sideback').addEventListener('click', ()=> go(3));
+// 옆으로 밀어도 넘어감(세로 스크롤과 헷갈리지 않게 가로로 충분히 밀었을 때만)
+let tx = null, ty = 0;
+wzv.addEventListener('touchstart', e=>{ const t = e.touches[0]; tx = e.touches.length===1 ? t.clientX : null; ty = t.clientY; }, {passive:true});
+wzv.addEventListener('touchend', e=>{ if (tx===null || !phone.matches) return; const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; tx = null;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5*Math.abs(dy)) go(step + (dx<0 ? 1 : -1)); }, {passive:true});
+// 설계 완료 → 설계서(넓은 화면: 오른쪽 종이로 · 휴대폰: 다음 장으로)
 function finish(quiet){
   const first = !finished;
   finished = true; bstate(); calcDone();
   if (first){ const r = est(sel); showTotal(r.total, r.ask ? '만원부터' : '만원', 0); }
+  if (phone.matches){ go(4, quiet); return; }
   if (quiet) return;
   requestAnimationFrame(()=>{ $('rc').scrollIntoView({behavior: calm.matches ? 'auto' : 'smooth', block:'start'}); const h = $('rcttl'); h.tabIndex = -1; h.focus({preventScroll:true}); });
 }
@@ -1104,7 +1154,8 @@ $('sheetbg').addEventListener('click', ()=> sheet(false));
 $('shgo').addEventListener('click', ()=> { sheet(false); finish(); });
 document.addEventListener('keydown', e=>{ if (e.key==='Escape' && !$('sheet').hidden){ sheet(false); $('me').focus(); } });
 // 설계 링크(이 설계 링크 복사)로 들어오면 설계서까지 바로 보여 줌
-if (['t','b','s','e','co','cpa','h'].some(k=> q.has(k))){ touched = true; finish(true); }
+if (['t','b','s','e','co','cpa','h'].some(k=> q.has(k))) finish(true);
+else go(qp ? 3 : 0, true); // 메인 '이 상황으로 설계하기'로 들어오면 서비스 장부터
 
 // 링크 복사 · 종이로 저장
 $('copy').addEventListener('click', async ()=>{
