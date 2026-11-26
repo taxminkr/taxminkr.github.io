@@ -544,7 +544,7 @@ body.built .pre{display:none}
 /* ── 11/26 메인과 같은 디자인 말로 맞춤(마스코트·손그림은 사용자 반려 '웹과 조화 안 됨') ──
    바탕 = 메인 연회색 섹션 · 고르는 단추 = 메인 '이런 사장님께' 탭(고르면 먹색) · 서비스 칸 = 메인 '기장료는 이렇게 정해져요' 어두운 금액판과 같은 스위치 · 단추 = 메인 파란 단추(모서리 8) */
 :root{--black:#050608;--black-line:rgba(255,255,255,.14);--black-sub:rgba(255,255,255,.6);--blue-on-dark:#7D9BFF}
-body,main{background:var(--soft)}
+body,main{background:#fff} /* 11/26 사용자: 흰 바탕 */
 h1{font-weight:600;color:#021A2C}
 .cg-h{color:#021A2C}
 /* 고르는 단추 */
@@ -609,6 +609,12 @@ body:not(.built) .o-lk{justify-self:end}
   .wz-back:disabled{visibility:visible;opacity:.3}
   .bm-p b{font-size:36px}
 }
+/* 이탈 줄이기(11/26): 매출 몰라도 넘어가기 · 흰 바탕에서 카드 구분 */
+.skip{display:none}
+@media (max-width:720px){
+  .skip{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;padding:0 4px;font-size:15px;font-weight:600;color:var(--sub);text-decoration:underline;text-underline-offset:4px}
+  .board{box-shadow:0 0 0 1px #DDE1E7}
+}
 </style>
 </head>
 <body data-page="v11-build">
@@ -656,9 +662,9 @@ body:not(.built) .o-lk{justify-self:end}
     <!-- 11/26 사용자: 설문지 대신 옵션판(자동차 옵션처럼 직접 켜고 끔). 위 칩 3개는 기본 금액만 정함 -->
     <!-- 11/26 사용자: 펼치는 목록은 '짜침' → 바로 누르는 단추 -->
     <div class="cfg">
-      <div class="cg" id="cg-type"><div class="cg-hd"><p class="cg-k" id="h-type">사업자 형태</p><h2 class="cg-q">어떤 사업자로 운영하세요?</h2><p class="cg-d">고르면 바로 다음으로 넘어가요</p></div><div class="seg c2" id="type" role="group" aria-labelledby="h-type"></div></div>
+      <div class="cg" id="cg-type"><div class="cg-hd"><p class="cg-k" id="h-type">사업자 형태</p><h2 class="cg-q">어떤 사업자로 운영하세요?</h2><p class="cg-d">4번이면 끝나요. 가입이나 연락처 없이 바로 봐요</p></div><div class="seg c2" id="type" role="group" aria-labelledby="h-type"></div></div>
       <div class="cg" id="cg-biz"><div class="cg-hd"><p class="cg-k" id="h-biz">업종</p><h2 class="cg-q">어떤 일을 하고 계세요?</h2><p class="cg-d">업종마다 장부를 챙기는 기준이 달라요</p></div><div class="seg c3" id="biz" role="group" aria-labelledby="h-biz"></div></div>
-      <div class="cg" id="cg-sales"><div class="cg-hd"><p class="cg-k" id="h-sales">작년 매출</p><h2 class="cg-q">작년 매출은 어느 정도였나요?</h2><p class="cg-d">올해 문을 열었다면 '올해 시작'을 골라 주세요</p></div><div><div class="seg c6" id="sales" role="group" aria-labelledby="h-sales"></div><p class="note" id="snote"></p></div></div>
+      <div class="cg" id="cg-sales"><div class="cg-hd"><p class="cg-k" id="h-sales">작년 매출</p><h2 class="cg-q">작년 매출은 어느 정도였나요?</h2><p class="cg-d">올해 문을 열었다면 '올해 시작'을 골라 주세요</p></div><div><div class="seg c6" id="sales" role="group" aria-labelledby="h-sales"></div><p class="note" id="snote"></p><button type="button" class="skip" id="skipsales">잘 모르겠어요, 다음으로</button></div></div>
     </div>
     <div class="pane-svc" id="pane-svc">
     <div class="cg-hd svc-hd"><p class="cg-k">내 기장 서비스</p><h2 class="cg-q">필요한 서비스만 켜 주세요</h2><p class="cg-d">더할 게 없으면 바로 설계 완료를 눌러도 돼요</p></div>
@@ -672,7 +678,7 @@ body:not(.built) .o-lk{justify-self:end}
       <div class="opt" id="opt-cpa"><div class="o-t"><b><span id="ot-cpa">세무사가 직접 담당</span><button type="button" class="qi" data-qi="cpa"></button></b><span>담당자 대신 세무사가 장부·신고를 직접 맡아요</span></div><em class="o-p" id="op-cpa">+3만원</em><button type="button" class="sw" role="switch" aria-checked="false" data-o="cpa" aria-labelledby="ot-cpa"></button></div>
       <div class="bd-sum"><span>= 예상 월 기장료<small>부가세 별도</small></span><b class="js-tot"></b></div>
     </section>
-    <button type="button" class="done-go" id="donebtn">설계 완료</button>
+    <button type="button" class="done-go" id="donebtn">설계 완료 · 기장료 보기</button>
     <p class="done-n">누르면 대표님만의 기장 설계서와 월 기장료가 나와요.</p>
     </div>
   </div>
@@ -1071,18 +1077,19 @@ const calm = matchMedia('(prefers-reduced-motion: reduce)');
 // 맨 위 '만드는 중' → '완성'(넓은 화면: 네 칸 다 답함 · 휴대폰: 설계안 단계에 오면)
 let finished = false, touched = false, wasBuilt = false, lastDone = [];
 // 한 칸마다 20%: 형태 · 업종 · 매출 · 서비스 켜기 · 설계 완료
+var curStep = 0; // 휴대폰 지금 장(서비스 장에서는 늘 서비스 안내)
 const BS = ['설계를 시작해 볼까요?', '설계하는 중이에요', '설계하는 중이에요', '필요한 서비스를 켜 주세요. 없으면 설계 완료를 눌러 주세요', '설계가 끝나가요, 설계 완료를 눌러 주세요'];
 function bstate(done){
   if (done) lastDone = done;
   // '설계 완료'를 눌러야 완성(11/26 옵션판)
   const k = lastDone.filter(Boolean).length, built = finished;
   document.body.classList.toggle('built', built);
-  const pct = built ? 100 : k*20, msg = built ? '대표님만의 기장 서비스 완성!' : BS[k];
+  const pct = built ? 100 : k*20, msg = built ? '대표님만의 기장 서비스 완성!' : (curStep===3 && !lastDone[3]) ? BS[3] : BS[k];
   document.querySelectorAll('.js-pgp').forEach(e=> e.textContent = pct + '%');
   document.querySelectorAll('.js-pgm').forEach(e=> e.textContent = msg);
   document.querySelectorAll('.js-pgbar').forEach(e=> e.style.setProperty('--p', Math.max(.02, pct/100)));
   document.querySelectorAll('.pre-l li').forEach((li,i)=> li.classList.toggle('done', i<4 ? !!lastDone[i] : built));
-  $('donebtn').textContent = built ? '설계서 다시 보기' : '설계 완료';
+  $('donebtn').textContent = built ? '설계서 다시 보기' : '설계 완료 · 기장료 보기';
   $('builtmsg').hidden = !built;
   if (built && !wasBuilt) $('bslive').textContent = '대표님만의 기장 서비스가 완성됐어요.';
   if (!built) $('bslive').textContent = '';
@@ -1193,6 +1200,7 @@ function go(n, still){
   mk.style.transform = on ? `translateX(${-step*100}%)` : '';
   panes.forEach((p,i)=> p.inert = on && i!==step);   // 안 보이는 장은 눌리거나 읽히지 않게
   $('wzback').disabled = step===0;
+  curStep = on ? step : 0; bstate();
   document.body.classList.toggle('at-plan', on && step===4); // 설계서 장: 아래는 보내기 띠
   fit();
   if (on && !still && moved){ window.scrollTo({top:0}); const h = panes[step].querySelector('h2') || $('rcttl'); h.tabIndex = -1; h.focus({preventScroll:true}); }
@@ -1202,6 +1210,7 @@ new ResizeObserver(fit).observe(wzv); panes.forEach(p=> new ResizeObserver(fit).
 phone.addEventListener('change', ()=> go(step, true));
 $('wzback').addEventListener('click', ()=> go(step-1));
 $('sideback').addEventListener('click', ()=> go(3));
+$('skipsales').addEventListener('click', ()=> go(3)); // 매출을 몰라도 막히지 않게(금액은 '부터'로)
 // 옆으로 밀어도 넘어감(세로 스크롤과 헷갈리지 않게 가로로 충분히 밀었을 때만)
 let tx = null, ty = 0;
 wzv.addEventListener('touchstart', e=>{ const t = e.touches[0]; tx = e.touches.length===1 ? t.clientX : null; ty = t.clientY; }, {passive:true});
