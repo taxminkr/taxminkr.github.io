@@ -622,6 +622,14 @@ body:not(.built) .o-lk{justify-self:end}
 .rc .stk li.q,.rc .stk li.hint{display:none}
 .o-t > span{margin-top:2px}
 #snote:empty{display:none}
+/* ── 11/26 3차 점검 ──
+   끈 스위치도 테두리가 보이게(흰 바탕 대비 3:1 이상, WCAG 1.4.11) · 설계 전에는 '설계안 보내기' 숨김 · 넓은 화면 진행 %는 오른쪽 카드에만 */
+.sw{background:#fff;box-shadow:inset 0 0 0 1.5px #868E9B}
+.sw::after{background:#868E9B;box-shadow:none;transition:transform .3s cubic-bezier(.2,.7,.3,1),background-color .3s}
+.sw[aria-checked=true]{background:var(--blue);box-shadow:none}
+.sw[aria-checked=true]::after{background:#fff}
+body:not(.built) .bar .go.line{display:none}
+@media (min-width:721px){.bar .m > span{display:none}}
 </style>
 </head>
 <body data-page="v11-build">
@@ -830,7 +838,7 @@ body:not(.built) .o-lk{justify-self:end}
   </form>
 </dialog>
 
-<script src="js/svc-help.js?v=20261126c"></script>
+<script src="js/svc-help.js?v=20261126d"></script>
 <script>
 // ★ 기준표(초안) — 숫자·품목만 바꾸면 화면 전체가 따라 바뀜. 단위 만원/월, 부가세 별도.
 //   사용자 11/25: 모든 견적은 기본 4만원에서 시작 → 일반 개인 5 · 매출 큰 개인 7 · 법인 10.
@@ -972,7 +980,7 @@ function rows(r){
 
 // 내 기장료 쌓기: 고른 것마다 한 줄(금액 + 까닭). 금액은 위 rows() 줄을 고른 것별로 묶기만 함(새로 계산하지 않음)
 // c = 한 줄 요약에 쓰는 짧은 이름, q = 더하지 않는 줄(회색), off = 뺀 줄(취소선)
-const BASE_WHY = {개인:'장부·부가세 신고·전담 담당자·세무사 검토·월별 매출 보고서', 법인:'법인 장부·부가세 신고·전담 담당자·세무사 검토·월별 매출 보고서'};
+const BASE_WHY = {개인:'장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서도 함께', 법인:'법인 장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서도 함께'};
 function stack(r, R){
   const corp = T(sel)==='법인', B = [], amt = f => R.filter(f).reduce((s,x)=>s+(x.p||0),0);
   B.push({k:'base', c:'기본', p:amt(x=>x.base), l:'기본', w:BASE_WHY[T(sel)]});
