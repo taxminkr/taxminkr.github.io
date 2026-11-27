@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>택스민 | 필요한 것만 고르는 기장 · 월 5만원부터</title>
 <meta name="description" content="필요한 것만 고르는 기장 서비스, 택스민. 장부·부가세 신고·전담 담당자·세무사 검토가 기본이고, 직원 3명까지 인건비 신고도 추가 금액 없이 해 드려요. 개인 월 5만원부터 · 법인 월 10만원부터(부가세 별도).">
 <meta name="robots" content="index, follow">
@@ -16,19 +16,21 @@
 <meta property="og:title" content="택스민 | 필요한 것만 고르는 기장 · 월 5만원부터">
 <meta property="og:description" content="장부·부가세 신고·전담 담당자·세무사 검토가 기본. 쓰는 서비스만 골라 더하세요. 개인 월 5만원부터 · 법인 월 10만원부터(부가세 별도)">
 <meta property="og:url" content="https://taxminlp.com/">
-<meta property="og:image" content="https://taxminlp.com/img/og-v12.jpg">
+<meta property="og:image" content="https://taxminlp.com/img/og-v13.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="TAXMIN 우리 가게에 필요한 만큼만. 기장료도 딱 그만큼만.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon-v2.png">
+<!-- 첫 화면 포스터(휴대폰·넓은 화면 같은 그림)를 먼저 받음 -->
+<link rel="preload" as="image" href="img/hero_meet.jpg" fetchpriority="high">
 <script src="js/config.js?v=20261106f" defer></script>
 <script src="js/tags.js?v=20261106f" defer></script>
 <script src="js/track.js?v=20261126a" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"택스민","alternateName":"택스민(세무회계 민)","url":"https://taxminlp.com/"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"AccountingService","name":"택스민(세무회계 민)","legalName":"세무회계 민","url":"https://taxminlp.com/","image":"https://taxminlp.com/img/og-v12.jpg","telephone":"+82-507-1445-7729","description":"필요한 것만 고르는 기장 서비스. 장부 정리·부가세 신고·전담 담당자·세무사 검토가 기본이고, 쓰는 서비스만 더합니다.","priceRange":"개인 월 5만원부터 · 법인 월 10만원부터(부가세 별도)","areaServed":{"@type":"Country","name":"대한민국"},"address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"서울특별시","addressLocality":"강서구","streetAddress":"공항대로 194, 7층 717~718호"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"17:30"}],"makesOffer":[{"@type":"Offer","name":"개인사업자 세무기장","priceSpecification":{"@type":"UnitPriceSpecification","minPrice":50000,"priceCurrency":"KRW","unitText":"월","valueAddedTaxIncluded":false}},{"@type":"Offer","name":"법인 세무기장","priceSpecification":{"@type":"UnitPriceSpecification","minPrice":100000,"priceCurrency":"KRW","unitText":"월","valueAddedTaxIncluded":false}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AccountingService","name":"택스민(세무회계 민)","legalName":"세무회계 민","url":"https://taxminlp.com/","image":"https://taxminlp.com/img/og-v13.jpg","telephone":"+82-507-1445-7729","description":"필요한 것만 고르는 기장 서비스. 장부 정리·부가세 신고·전담 담당자·세무사 검토가 기본이고, 쓰는 서비스만 더합니다.","priceRange":"개인 월 5만원부터 · 법인 월 10만원부터(부가세 별도)","areaServed":{"@type":"Country","name":"대한민국"},"address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"서울특별시","addressLocality":"강서구","streetAddress":"공항대로 194, 7층 717~718호"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"17:30"}],"makesOffer":[{"@type":"Offer","name":"개인사업자 세무기장","priceSpecification":{"@type":"UnitPriceSpecification","minPrice":50000,"priceCurrency":"KRW","unitText":"월","valueAddedTaxIncluded":false}},{"@type":"Offer","name":"법인 세무기장","priceSpecification":{"@type":"UnitPriceSpecification","minPrice":100000,"priceCurrency":"KRW","unitText":"월","valueAddedTaxIncluded":false}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -108,13 +110,14 @@ header.on .hd-tel{color:var(--ink)}
 /* 휴대폰(11/25 2차): 영상을 4:3으로 크게 위에, 그 아래는 검정 대신 '지금 장면' 그림을 흐리고 어둡게 깔아 한 장의 그림처럼.
    흐린 바탕은 .bg 안에 있어 장면과 함께 바뀜(앞 장면이 사라진 뒤 다음 장면 — 겹침 없음). 장면마다 --pos 로 사람·손이 안 잘리게. */
 @media (max-width:700px){
-  .hero{height:auto;min-height:0;display:block;padding-top:75vw}
+  /* 영상 높이 --hv: 세로 휴대폰은 75vw(4:3), 키가 낮은 화면(가로 휴대폰·200% 확대)은 화면 높이의 반까지만 — 제목이 첫 화면 안에 */
+  .hero{--hv:min(75vw,38svh);height:auto;min-height:0;display:block;padding-top:var(--hv)}
   .hero .bg{inset:0;overflow:hidden}
   .hero .bg::before{content:"";position:absolute;inset:-48px;background:var(--poster) center 30%/cover no-repeat;filter:blur(28px) saturate(1.2) brightness(.55)}
-  .hero .bg video{position:absolute;inset:0 0 auto;height:75vw;object-position:var(--pos,50% 50%);filter:saturate(.95) brightness(.88);
+  .hero .bg video{position:absolute;inset:0 0 auto;height:var(--hv);object-position:var(--pos,50% 50%);filter:saturate(.95) brightness(.88);
     -webkit-mask:linear-gradient(to top,transparent,#000 34%);mask:linear-gradient(to top,transparent,#000 34%)}
   /* 휴대폰: 두 장면 모두 아래를 같은 방식으로 흐리게(네모·경계선 자국 없음). 2번 영상의 AI 표시는 파일에 그대로 있고 PC 에서는 그대로 보임 */
-  .hero::after{background:linear-gradient(180deg,rgba(6,8,11,0) calc(75vw - 8px),rgba(6,8,11,.42) calc(75vw + 72px),rgba(6,8,11,.6) 72%,rgba(6,8,11,.78))}
+  .hero::after{background:linear-gradient(180deg,rgba(6,8,11,0) calc(var(--hv) - 8px),rgba(6,8,11,.42) calc(var(--hv) + 72px),rgba(6,8,11,.6) 72%,rgba(6,8,11,.78))}
   .hero .in{padding:8px 20px 52px;text-shadow:0 1px 14px rgba(0,0,0,.35)}
   .hero .kicker{font-size:16px}
   .hero .bg.cut video{animation-name:shotBm}
@@ -149,9 +152,9 @@ header.on .hd-tel{color:var(--ink)}
 .st-slide .cap p{font-size:15px;color:var(--black-sub);line-height:1.75;margin-top:14px}
 .st-go{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;font-weight:700;color:#fff;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--blue-on-dark)}
 /* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
-:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go,.tabs button,.ldg .lead-b button):not(:disabled):active{scale:.96}
+:is(.go,.go2,.btn,.hd-btn,.hd-tel,.mcta a,.ch,.wz-next,.own button,.st-go,.tabs button,.ldg .lead-b button):not(:disabled):active{scale:.96}
 /* 눌림도 0.15초에 부드럽게(색 바뀜은 0.2초 그대로). :root 를 붙여 .hero .go·.end .go2 의 transition 보다 앞서게 */
-@media (prefers-reduced-motion:no-preference){:root :is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go,.tabs button,.ldg .lead-b button){transition-property:scale,background-color,color,box-shadow;transition-duration:.15s,.2s,.2s,.2s;transition-timing-function:ease-out,ease,ease,ease}}
+@media (prefers-reduced-motion:no-preference){:root :is(.go,.go2,.btn,.hd-btn,.hd-tel,.mcta a,.ch,.wz-next,.own button,.st-go,.tabs button,.ldg .lead-b button){transition-property:scale,background-color,color,box-shadow;transition-duration:.15s,.2s,.2s,.2s;transition-timing-function:ease-out,ease,ease,ease}}
 .board{width:100%;border:1px solid var(--black-line);border-radius:14px;padding:22px 26px;background:rgba(255,255,255,.02);font-size:14px}
 .bd-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--black-line);color:var(--black-sub);font-size:13px}
 .bd-h b{color:#fff;font-size:15px;font-weight:600}
@@ -372,7 +375,8 @@ details p{padding:0 0 18px;font-size:15px;color:var(--sub);line-height:1.75}
 .ldg form.done .lead-b{grid-template-columns:1fr}
 
 /* 8 바닥 */
-.end{position:relative;isolation:isolate;background:var(--black) url(img/end_night.jpg) center/cover no-repeat;color:#fff;padding:160px 0 140px;text-align:center}
+.end{position:relative;isolation:isolate;background:var(--black) center/cover no-repeat;color:#fff;padding:160px 0 140px;text-align:center}
+.end.bg-in{background-image:url(img/end_night.jpg)} /* 그 구역이 가까워지면 JS 가 붙임(첫 화면 그림과 통신량을 나누지 않게) */
 .end::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,6,8,.82),rgba(5,6,8,.66) 50%,rgba(5,6,8,.86))}
 .end h2{font-size:clamp(30px,3.4vw,48px);font-weight:600;letter-spacing:-.02em;line-height:1.3}
 .end h2 em{font-style:normal;color:var(--blue-on-dark)}
@@ -690,19 +694,19 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     <h2 id="lead-h">연락처 남기기</h2>
     <p class="lead-s">남겨 주시면 평일 10:00~17:30 사이에 먼저 연락드려요. 주말·공휴일에 남기시면 다음 평일에 연락드려요. <a class="tel" href="tel:050714457729">전화로 먼저 물어보셔도 돼요.</a></p>
     <label>이름 또는 상호<input name="name" autocomplete="name" required aria-describedby="e-name"></label><small class="err" id="e-name"></small>
-    <label>휴대폰 번호<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required pattern="01[016789][0-9\- ]{7,10}" aria-describedby="e-tel"></label><small class="err" id="e-tel"></small>
+    <label>휴대폰 번호<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required pattern="(010[\- ]?[0-9]{4}|01[16789][\- ]?[0-9]{3,4})[\- ]?[0-9]{4}" aria-describedby="e-tel"></label><small class="err" id="e-tel"></small>
     <label>편한 연락 시간<select name="when"><option>언제든 괜찮아요</option><option>오전(10~12시)</option><option>오후(13~17시)</option></select></label>
-    <label class="agree"><input type="checkbox" name="agree" required aria-describedby="e-agree"><span>상담 연락을 위해 이름 또는 상호·휴대폰 번호를 받는 데 <span class="nw">동의해요 (필수)</span><small>함께 받는 것: 편한 연락 시간(고르지 않으면 언제든) · 쓰는 곳: 상담 연락 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡·전화로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span></label>
-    <label class="agree ad"><input type="checkbox" name="adConsent"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 <span class="nw">동의해요 (선택)</span><small>받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요</small></span></label>
+    <label class="agree"><input type="checkbox" name="agree" required aria-describedby="e-agree"><span>상담 연락을 위해 이름 또는 상호·휴대폰 번호를 받는 데 <span class="nw">동의해요 (필수)</span><small>함께 받는 것: 편한 연락 시간(고르지 않으면 언제든) · 쓰는 곳: 기장 상담 연락·기장료 안내 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡·전화로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span></label>
     <small class="err" id="e-agree"></small>
+    <label class="agree ad"><input type="checkbox" name="adConsent"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 <span class="nw">동의해요 (선택)</span><small>받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요 · 구글 광고 전환 측정(<a href="privacy.html#p8" target="_blank" rel="noopener">개인정보처리방침</a> 8번 ④)은 이 동의와 별개로 쿠키로 이뤄져요</small></span></label>
     <p class="lead-sum"></p>
     <p class="lead-msg" role="status" aria-live="polite"></p>
     <div class="lead-b"><button type="button" class="b-line" data-close>닫기</button><button type="submit" class="b-fill">남기기</button></div>
   </form>
 </dialog>
 
-<script src="js/svc-help.js?v=20261128b"></script>
-<script src="js/lead.js?v=20261128c"></script>
+<script src="js/svc-help.js?v=20261128d"></script>
+<script src="js/lead.js?v=20261128d"></script>
 <script>
 // 견적판 예시 — build.html 기준과 같은 숫자(만원/월, 부가세 별도):
 // 기본 5(일반 개인은 사업 규모 금액 없음, 월별 매출 보고서·인건비 신고 직원 3명까지 포함 — 보고서 줄은 잠금) → 직원 4명 1 · 공동사업장 1 을 더하면 7 → 둘을 빼면 5 (정확히 2만원)
@@ -900,19 +904,31 @@ function slideNext(track){
 // shortcut: 넘길 거리는 처음 열 때만 잼 — 창 크기를 바꿔도 다시 걸지 않음
 { const pf = $('pftrack'); pf.addEventListener('focusin', e=>{ const f = e.target.closest('figure'); if (f) pf.scrollTo({left: f.offsetLeft - pf.firstElementChild.offsetLeft, behavior: reduce ? 'auto' : 'smooth'}); }); // Tab 으로 들어온 칸이 보이게
   if (pf.scrollWidth - pf.clientWidth > 4) autoAdvance(pf, 3500, () => slideNext(pf), pf, () => {}, $('pf-stop')); else $('pf-stop').hidden = true; }
-FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg?v=3`; }); // 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음
+// 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음 — 페이지가 다 뜨고 한가할 때(첫 화면 그림이 먼저 오게)
+const idle = f => ('requestIdleCallback' in window) ? requestIdleCallback(f) : setTimeout(f, 1500);
+const preFits = () => idle(() => FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg?v=3`; }));
+if (document.readyState === 'complete') preFits(); else addEventListener('load', preFits, {once:true});
+// 맨 아래 구역 배경: 화면에 가까워지면(아래 800px 앞) 붙임
+{ const endEl = document.querySelector('.end');
+  if (endEl && 'IntersectionObserver' in window){ const eio = new IntersectionObserver(([e]) => { if (e.isIntersecting){ endEl.classList.add('bg-in'); eio.disconnect(); } }, {rootMargin:'0px 0px 800px 0px'}); eio.observe(endEl); }
+  else if (endEl) endEl.classList.add('bg-in'); }
 // 휴대폰 아래 고정 단추: 첫 화면이 화면에서 위로 벗어나면 보임(넓은 화면은 CSS 로 숨김)
 (() => {
-  const bar = $('mcta'), hero = document.querySelector('.hero');
+  const bar = $('mcta'), hero = document.querySelector('.hero'), tail = [document.querySelector('.end'), document.querySelector('footer')].filter(Boolean);
   if (!bar || !hero || !('IntersectionObserver' in window)) return;
-  new IntersectionObserver(([e]) => { const on = !e.isIntersecting && e.boundingClientRect.top < 0; bar.classList.toggle('on', on); document.body.classList.toggle('mcta-on', on); }).observe(hero);
+  // 맨 아래 구역(.end)·바닥글이 보이면 내려감 — 같은 일을 하는 본문 단추가 이미 보이므로
+  let pastHero = false; const tailIn = new Set();
+  const upd = () => { const on = pastHero && !tailIn.size; bar.classList.toggle('on', on); document.body.classList.toggle('mcta-on', on); };
+  new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; upd(); }).observe(hero);
+  const tio = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? tailIn.add(e.target) : tailIn.delete(e.target)); upd(); });
+  tail.forEach(el => tio.observe(el));
 })();
 // 연락처 남기기 창
 (() => {
   const d = document.getElementById('lead'), f = document.getElementById('leadf'), msg = f.querySelector('.lead-msg');
   let from = null;
   const req = [...f.elements].filter(el=> el.required);
-  const why = el => el.name==='tel' ? (el.value.trim() ? '010 등으로 시작하는 휴대폰 번호를 적어 주세요. 예: 010-1234-5678 (일반 전화는 카톡·전화 상담으로)' : '휴대폰 번호를 적어 주세요.') : el.name==='agree' ? '동의에 체크해 주세요.' : '이름 또는 상호를 적어 주세요.';
+  const why = el => el.name==='tel' ? (el.value.trim() ? '010 등으로 시작하는 휴대폰 번호를 적어 주세요. 예: 010-1234-5678' : '휴대폰 번호를 적어 주세요.') : el.name==='agree' ? '상담 연락 동의(필수)에 체크해 주세요.' : '이름 또는 상호를 적어 주세요.';
   const mark = (el, show) => { const bad = !el.checkValidity(); if (!bad || show){ el.setAttribute('aria-invalid', bad); $('e-'+el.name).textContent = bad ? why(el) : ''; } };
   f.addEventListener('input', e=>{ if (req.includes(e.target)){ mark(e.target, e.target.getAttribute('aria-invalid')==='true'); msg.textContent = ''; } }); // 고치는 즉시 오류 글을 지움
   document.querySelectorAll('[data-lead]').forEach(b=> b.addEventListener('click', ()=>{ from = b; msg.textContent = ''; f.classList.remove('done'); req.forEach(el=>{ el.removeAttribute('aria-invalid'); $('e-'+el.name).textContent = ''; }); d.showModal(); f.elements.name.focus(); }));

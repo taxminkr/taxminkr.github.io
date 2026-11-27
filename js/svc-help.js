@@ -78,6 +78,10 @@
       if (open && b !== anchor) { e.preventDefault(); fill(b); place(); return; }
       if (!open) fill(b);
     }, true);
+    /* 초점이 '?' 밖으로 가면 닫음 — 열린 말풍선이 다음 칸을 가리지 않게(WCAG 2.4.11) */
+    document.addEventListener('focusin', function (e) {
+      if (anchor && e.target !== anchor && pop.matches(':popover-open')) pop.hidePopover();
+    });
   }
   /* 처음부터 화면에 있는 빈 '?' 단추 채우기 */
   [].forEach.call(document.querySelectorAll('button.qi[data-qi]:empty'), function (b) {

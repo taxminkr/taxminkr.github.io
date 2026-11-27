@@ -23,6 +23,7 @@
   var TEL = '0507-1445-7729';
   var TIMEOUT = 20000;
   var OTHER = '전화(' + TEL + ')나 카톡으로 연락 주세요.';
+  var TEL_MSG = '010 등으로 시작하는 휴대폰 번호를 적어 주세요. 예: 010-1234-5678';   // index·build 의 why() 와 같은 글(okTel 이 011·016~019 도 받음)
 
   function sget(k, local) { try { return (local ? localStorage : sessionStorage).getItem(k); } catch (e) { return null; } }
   function sset(k, v, local) { try { (local ? localStorage : sessionStorage).setItem(k, v); } catch (e) {} }
@@ -91,8 +92,8 @@
     p = p || {};
     var fail = function (m, field, code) { return Promise.resolve({ ok: false, message: m, field: field, code: code || 'invalid' }); };
     if (busy) return fail('보내는 중이에요. 잠시만 기다려 주세요.', null, 'busy');
-    if (!okTel(p.tel)) return fail('휴대폰 번호를 확인해 주세요. 예: 010-1234-5678', 'tel');
-    if (p.agree !== true) return fail('개인정보 수집·이용에 동의해 주세요.', 'agree');
+    if (!okTel(p.tel)) return fail(TEL_MSG, 'tel');
+    if (p.agree !== true) return fail('상담 연락 동의(필수)에 체크해 주세요.', 'agree');
     if (typeof navigator !== 'undefined' && navigator.onLine === false) return fail('인터넷이 끊겨 있어요. 연결을 확인하고 다시 눌러 주세요.', null, 'offline');
     var data = toData(p), tel = data['연락처'];
     busy = true;
@@ -104,7 +105,7 @@
       .then(function (t) {
         t = String(t || '').trim();
         if (t === 'ok' || t === 'dup' || t === 'held') return done({ ok: true, code: t, message: '접수됐어요. 평일 10:00~17:30 사이에, 주말·공휴일이면 다음 평일에 전화드릴게요. (' + tel + ')' });
-        if (t === 'bad') return done({ ok: false, code: 'bad', field: 'tel', message: '휴대폰 번호를 다시 확인해 주세요. 예: 010-1234-5678' });
+        if (t === 'bad') return done({ ok: false, code: 'bad', field: 'tel', message: TEL_MSG });
         return done({ ok: false, code: 'server', message: '보내지 못했어요. 잠시 뒤 다시 눌러 주시거나 ' + OTHER });
       })
       .catch(function (e) {
