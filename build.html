@@ -117,7 +117,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .step{display:flex;align-items:stretch;min-height:46px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .15s}
 .step.on{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .step .pm{width:44px;flex:none;font-size:20px;font-weight:500;color:var(--sub);line-height:1}
-.step .pm:disabled{color:#C5CAD3}
+.step .pm[aria-disabled=true]{color:#C5CAD3;cursor:default} /* disabled 대신 aria-disabled: 끝값에서도 초점이 단추에 남게 */
 .step .n{flex:1;min-width:0;font-size:15px;font-weight:600;color:var(--sub);white-space:nowrap}
 .step.on .n{color:var(--ink)}
 
@@ -216,7 +216,7 @@ body.built .pre{display:none}
 .stk li.inc .a{color:var(--blue);font-size:13.5px}
 .stk li.q .w{color:var(--mute)}
 /* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
-:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.done-go,.own button,.st-go,.bm-go,.sw,.pm,.ldg .lead-b button,.sh-go,.wz-back,.side-back):not(:disabled):active{scale:.96}
+:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.done-go,.own button,.st-go,.bm-go,.sw,.pm,.ldg .lead-b button,.sh-go,.wz-back,.side-back):not(:disabled):not([aria-disabled=true]):active{scale:.96}
 .stk li.off .l{text-decoration:line-through;text-decoration-color:#9AA1AC;color:var(--sub);font-weight:500}
 .stk li.off .w{color:var(--mute)}
 .stk li.hint{display:block;font-size:13px;color:var(--mute);border:1px dashed #CDD2DA;border-radius:6px;padding:9px 12px;margin:8px 0}
@@ -298,17 +298,17 @@ body.built .pre{display:none}
 .ldg label small,.ldg legend small{font-size:12px;font-weight:500;color:#646B77}
 .ldg fieldset{border:0;display:grid;gap:6px;min-width:0}
 .ldg legend{display:block;margin-bottom:6px}
-.ldg input:not([type=checkbox]):not([type=radio]),.ldg select,.ldg textarea{font-size:16px!important;height:46px;border:1px solid var(--ctl-line);border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff;width:100%}
+.ldg input:not([type=checkbox]):not([type=radio]),.ldg select,.ldg textarea{font-size:16px!important;height:46px;border:1px solid var(--ctl-line);border-radius:6px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff;width:100%}
 .ldg textarea{height:auto;min-height:64px;padding:10px 12px;resize:vertical}
 .ldg input:focus-visible,.ldg select:focus-visible,.ldg textarea:focus-visible{outline:2px solid #2554F0;outline-offset:1px;border-color:#2554F0}
 .ldg .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:end}
 .ldg .rad{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.ldg .rad label{display:flex;align-items:center;justify-content:center;gap:6px;height:46px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--ctl-line);font-weight:600;cursor:pointer}
+.ldg .rad label{display:flex;align-items:center;justify-content:center;gap:6px;height:46px;border-radius:6px;box-shadow:inset 0 0 0 1px var(--ctl-line);font-weight:600;cursor:pointer}
 .ldg .rad label:has(input:checked){box-shadow:inset 0 0 0 1.5px #020617}
 .ldg .rad input{accent-color:#2554F0}
 .ldg .agree{grid-template-columns:20px 1fr;align-items:start;font-weight:500;line-height:1.5}
 .ldg .agree input{width:18px;height:18px;margin-top:2px;accent-color:#2554F0}
-.ldg .agree small{display:block;font-size:12px;color:#646B77;margin-top:4px}
+.ldg .agree-d{display:block;font-size:12px;font-weight:500;line-height:1.5;color:#646B77;margin:-9px 0 0 26px;text-wrap:pretty} /* 체크 칸 이름 밖의 설명(aria-describedby) — 예전 label 안 자리(글 칸 26px·위 4px) 그대로 */
 .lead-rc{border:1px solid #E6E8EC;border-radius:8px;padding:12px 14px;background:#F6F7F9;font-size:13px;color:#5B6270;font-variant-numeric:tabular-nums}
 .lead-rc b{display:block;font-size:14px;color:#020617;margin-bottom:4px}
 .lead-rc p{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
@@ -406,13 +406,13 @@ body.built .pre{display:none}
 .care-steps p{font-size:14px;color:var(--sub);margin-top:8px;line-height:1.7}
 .care-sec .care{margin-top:0;border-top:0}
 .foot{font-size:12px;color:var(--mute);padding:28px 0 8px;border-top:1px solid #DDE1E7;margin-top:56px}
-.foot a,.ldg .agree a{text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.foot a,.ldg .agree-d a{text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
 .ldg .lead-msg.ok{color:#1B7F4B}
 
 @media (hover:hover){
 .ch:hover,.ask label:hover{box-shadow:inset 0 0 0 1.5px var(--ctl-line)}
 .ch[aria-pressed=true]:hover,.ask label:has(input:checked):hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
-.step .pm:not(:disabled):hover{color:var(--ink)}
+.step .pm:not([aria-disabled=true]):hover{color:var(--ink)}
 .own button:not(.send):hover{background:var(--soft)}
 .own .send:hover{background:#1B44D6}
 .bar .go:hover{background:#1B44D6}
@@ -746,7 +746,7 @@ body:not(.built) .bar .go.line{display:none}
   <div class="care">
     <div class="care-hd">
       <h2 id="care-h">왜 구간이 있나요?</h2>
-      <p>매출이 커지면 장부 양과 신고 일이 늘고, 법이 정한 의무도 달라집니다. <b>기장료 구간은 사무소가 업종별 거래량을 보고 나눈 요금 기준</b>이라 아래 법정 기준과 숫자가 달라요. 아래 같은 법정 의무는 기장료 구간과 상관없이 모두 챙겨 드려요. 법인은 매출과 상관없이 복식부기 장부와 법인세 신고, 1년 4번의 부가세 신고를 챙겨야 해서 사업 규모 금액이 따로 붙어요.</p>
+      <p>매출이 커지면 장부 양과 신고 일이 늘고, 법이 정한 의무도 달라집니다. <b>기장료 구간은 사무소가 업종별 거래량을 보고 나눈 요금 기준</b>이라 아래 법정 기준과 숫자가 달라요. 아래 같은 법정 의무는 기장료 구간과 상관없이 모두 챙겨 드려요. 법인은 매출과 상관없이 복식부기 장부와 법인세 신고를 챙기고, 부가세도 예정·확정으로 1년에 여러 번 챙겨야 해서 사업 규모 금액이 따로 붙어요.</p>
     </div>
     <div class="law-wrap">
       <table class="law">
@@ -812,7 +812,7 @@ body:not(.built) .bar .go.line{display:none}
       <li><b>04</b><h3>동의 뒤에만 변경</h3><p>사장님이 동의하신 경우에만 서비스와 기장료를 바꾸고, 바뀌는 달 전에 금액을 먼저 알려 드려요.</p></li>
     </ol>
   </div>
-  <p class="foot">사무소명 세무회계 민 · 사업자번호 546-54-00533 · 대표자 이민기(대표세무사) · 주소 서울시 강서구 공항대로 194, 7층 717~718<br>전화 상담 <a href="tel:050714457729">0507-1445-7729</a> · <a href="privacy.html">개인정보처리방침</a></p>
+  <p class="foot">사무소명 세무회계 민 · 사업자번호 546-54-00533 · 대표자 이민기(대표세무사) · 주소 서울시 강서구 공항대로 194, 7층 717~718호<br>전화 상담 <a href="tel:050714457729">0507-1445-7729</a> · <a href="privacy.html">개인정보처리방침</a></p>
   </div>
 </section>
 </main>
@@ -842,9 +842,11 @@ body:not(.built) .bar .go.line{display:none}
     </div>
     <label><span>꼭 물어볼 <span class="nw">것 <small>(선택)</small></span></span><textarea name="ask" rows="2" maxlength="300" placeholder="예: 직원 4대보험을 처음 신고해요"></textarea></label>
     </div></details>
-    <label class="agree"><input type="checkbox" name="agree" required aria-describedby="e-agree"><span>상담 연락을 위해 이름 또는 상호·휴대폰 번호를 받는 데 <span class="nw">동의해요 (필수)</span><small>함께 받는 것: 편한 연락 시간(고르지 않으면 언제든)·이 설계안, 적으신 경우 시작 희망 달·맡긴 곳 여부·물어볼 것 · 쓰는 곳: 기장 상담 연락·기장료 안내 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡이나 전화(<a href="tel:050714457729">0507-1445-7729</a>)로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span></label>
+    <label class="agree"><input type="checkbox" name="agree" required aria-describedby="lead-agree-d e-agree"><span>상담 연락을 위해 이름 또는 상호·휴대폰 번호를 받는 데 <span class="nw">동의해요 (필수)</span></span></label>
+    <small class="agree-d" id="lead-agree-d">함께 받는 것: 편한 연락 시간(고르지 않으면 언제든)·이 설계안, 적으신 경우 시작 희망 달·맡긴 곳 여부·물어볼 것 · 쓰는 곳: 기장 상담 연락·기장료 안내 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡이나 전화(<a href="tel:050714457729">0507-1445-7729</a>)로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small>
     <small class="err" id="e-agree"></small>
-    <label class="agree ad"><input type="checkbox" name="adConsent"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 <span class="nw">동의해요 (선택)</span><small>받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요 · 구글 광고 전환 측정(<a href="privacy.html#p8" target="_blank" rel="noopener">개인정보처리방침</a> 8번 ④)은 이 동의와 별개로 쿠키로 이뤄져요</small></span></label>
+    <label class="agree ad"><input type="checkbox" name="adConsent" aria-describedby="lead-ad-d"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 <span class="nw">동의해요 (선택)</span></span></label>
+    <small class="agree-d" id="lead-ad-d">받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요 · 구글 광고 전환 측정(<a href="privacy.html#p8" target="_blank" rel="noopener">개인정보처리방침</a> 8번 ④)은 이 동의와 별개로 쿠키로 이뤄져요</small>
     <p class="lead-msg" role="status" aria-live="polite"></p>
     <div class="lead-b"><button type="button" class="b-line" data-close>닫기</button><button type="submit" class="b-fill">이 설계안으로 상담 요청</button></div>
   </form>
@@ -972,9 +974,9 @@ document.querySelector('.board').addEventListener('click', e=>{
     if (o==='pay') sel.staff = on ? Math.max(1, sel.staff||0) : 0; else sel[o] = on;
     touched = true; const row = $('opt-'+o); row.classList.remove('pop'); void row.offsetWidth; row.classList.add('pop');
     draw((on ? '켬 · ' : '끔 · ') + {pay:'인건비 신고', co:'공동사업장', cpa:'세무사 직접 담당'}[o]); }
-  else if (pm && !pm.disabled){ const n = sel.staff || 1; sel.staff = pm.dataset.v==='inc' ? Math.min(10, n+1) : Math.max(1, n-1); draw(`직원 ${sel.staff}명`); }
+  else if (pm && pm.getAttribute('aria-disabled')!=='true'){ const n = sel.staff || 1; sel.staff = pm.dataset.v==='inc' ? Math.min(10, n+1) : Math.max(1, n-1); draw(`직원 ${sel.staff}명`); }
 });
-$('help').addEventListener('change', e=>{ sel.help[e.target.value] = e.target.checked; });
+$('help').addEventListener('change', e=>{ sel.help[e.target.value] = e.target.checked; draw(); }); // 부제·띠의 '함께 상담 N가지'도 따라 바뀌게
 
 // 설계안 줄 만들기 — 금액은 모두 calc() 에서 옴
 function rows(r){
@@ -986,6 +988,9 @@ function rows(r){
     if (l[0].startsWith('사업 규모')) R.push({k:'size'+r.m+bn, l: r.m==='corp' ? '법인사업자' : bn ? bn + ' 큰 매출 구간' : '매출이 큰 구간', p:l[1]});
     else R.push({k:'up'+l[0], l:l[0], p:l[1]});
   });
+  // 걸치는 매출 줄(마지막 사업 규모·매출 줄): 쌓기·보내기 창·보내는 글 모두 '상담 때 확정'
+  const adds = R.filter(x=>x.k.startsWith('sizestd') || x.k.startsWith('up'));
+  if (adds.length && sel.sales!=null && r.ask && r.m!=='lite' && (r.sc===3 || SALES[sel.sales][2] || r.st)) adds[adds.length-1].cf = true;
   if (!r.open && r.m==='lite') R.push({k:'lite'+bn, l:bn + ' 기장료 기본 구간', v:'기본에 포함', nt:true});
   if (sel.staff===0) R.push({k:'payoff', l:'인건비 신고 · 직원이 생겨도 3명까지', v:'추가 금액 없음', nt:true});
   else if (sel.staff>0 && sel.staff<4) R.push({k:'payin', l:`인건비 신고 · 직원 ${sel.staff}명`, v:'추가 금액 없음', nt:true});
@@ -1005,7 +1010,7 @@ const BASE_WHY = {개인:'장부·부가세 신고·전담 담당자·세무사 
 function stack(r, R){
   const corp = T(sel)==='법인', B = [], amt = f => R.filter(f).reduce((s,x)=>s+(x.p||0),0);
   B.push({k:'base', c:'기본', p:amt(x=>x.base), l:'기본', w:BASE_WHY[T(sel)]});
-  if (corp) B.push({k:'corp', c:'법인', p:amt(x=>x.k.startsWith('sizecorp')), l:'법인사업자', w:'매출과 상관없이 복식부기 장부·법인세·부가세 1년 4번을 챙겨요'});
+  if (corp) B.push({k:'corp', c:'법인', p:amt(x=>x.k.startsWith('sizecorp')), l:'법인사업자', w:'매출과 상관없이 쓰는 복식부기 장부와 법인세·부가세 예정·확정을 챙겨요'});
   else if (sel.type) B.push({k:'indiv', q:true, l:'개인사업자', w:'기본에서 시작해요'});
   if (sel.biz!=null) B.push({k:'biz'+sel.biz, q:true, l:BIZ[sel.biz][0], w: sel.biz===5 ? '업종은 상담 때 확인해요 · 지금은 5억원 구간으로 봐요' : `업종으로 구간 기준만 정해요 · 기본 구간 작년 매출 ${BIZ[sel.biz][1]}억원 이하`});
   if (sel.sales!=null){
@@ -1013,10 +1018,9 @@ function stack(r, R){
     const adds = R.filter(x=>x.k.startsWith('sizestd') || x.k.startsWith('up')), open = sel.biz==null;
     const law = !corp && !open && sel.sales ? ' · ' + shortSit(sel).split(' · ')[0] : '';
     const lim = open ? '' : `기본 구간(${BIZ[sel.biz][1]}억원 이하)`;
-    const conf = r.ask && r.m!=='lite' && (r.sc===3 || SALES[sel.sales][2] || r.st) ? ' · 상담 때 확정' : '';
-    if (adds.length) adds.forEach((x,i)=>{ const last = i===adds.length-1, two = x.k.includes('2배');
+    if (adds.length) adds.forEach((x,i)=>{ const last = i===adds.length-1, two = x.k.includes('2배'), conf = x.cf ? ' · 상담 때 확정' : '';
       B.push({k:x.k, c: x.k.startsWith('size') ? '규모' : '매출', p:x.p, l:x.l,
-        w: (x.k.startsWith('size') ? '작년 매출 ' + SALES[sel.sales][0] + ' · ' : '') + (open ? '업종을 고르면 구간이 정해져요' + (last ? conf : '') : (two ? `작년 매출이 기본 구간의 2배(${eok(2*BIZ[sel.biz][1])})를 ${SALES_LO[sel.sales] >= 2*BIZ[sel.biz][1] ? '넘어' : '넘을 수 있어'} 장부·신고 일이 더 늘어요` : `${lim}을 ${SALES_LO[sel.sales] >= BIZ[sel.biz][1] ? '넘어' : '넘을 수 있어'} 장부·신고 일이 늘어요`) + (last ? law + conf : ''))}); });
+        w: (x.k.startsWith('size') ? '작년 매출 ' + SALES[sel.sales][0] + ' · ' : '') + (open ? '업종을 고르면 구간이 정해져요' + conf : (two ? `작년 매출이 기본 구간의 2배(${eok(2*BIZ[sel.biz][1])})를 ${SALES_LO[sel.sales] >= 2*BIZ[sel.biz][1] ? '넘어' : '넘을 수 있어'} 장부·신고 일이 더 늘어요` : `${lim}을 ${SALES_LO[sel.sales] >= BIZ[sel.biz][1] ? '넘어' : '넘을 수 있어'} 장부·신고 일이 늘어요`) + (last ? law : '') + conf)}); });
     else B.push({k:'sales'+sel.sales, q:true, l: sel.sales ? '작년 매출 ' + SALES[sel.sales][0] : '올해 시작',
       w: sel.sales===0 ? '작년 매출이 없어 기본 구간으로 봐요' : open ? '업종을 고르면 구간이 정해져요' : `${lim} 안이라 더하지 않아요${law}`});
   }
@@ -1067,7 +1071,7 @@ function situation(){
 }
 // 펼친 칸의 사장님 상황 한 줄(위 situation() 과 같은 법정 기준)
 function shortSit(s){
-  if (T(s)==='법인') return '복식부기 장부 · 부가세 1년 4번 · 법인세 3월';
+  if (T(s)==='법인') return '복식부기 장부 · 부가세 예정·확정 · 법인세 3월';
   if (s.biz==null || s.sales==null) return s.type || s.biz!=null || s.sales!=null || s.staff!=null || s.co!=null || s.cpa!=null ?'업종과 매출을 고르면 장부 기준이 보여요' : '하나씩 고르면 여기에 내 상황이 쌓여요';
   if (s.sales===0) return '올해 시작 · 장부 종류는 상담 때 확인해요';
   const g = LAW[BIZ[s.biz][3]], lo = SALES_LO[s.sales], hi = SALES[s.sales][2] ? Infinity : SALES[s.sales][1];
@@ -1089,6 +1093,8 @@ function summary(){
   return [sel.type, sel.biz!=null && BIZ_SHORT[sel.biz], sel.sales!=null && (sel.sales ? '작년 ' + SALES[sel.sales][0] : '올해 시작'),
     sel.staff!=null && (sel.staff ? `직원 ${sel.staff}명` : '직원 없음'), T(sel)==='개인' && sel.co && '공동사업장', sel.cpa && '세무사 직접 담당'].filter(Boolean).join(' · ');
 }
+// 부제·띠·보내는 글: 고른 게 상담 항목뿐이면 '함께 상담 N가지'(?p=help), 정말 아무것도 없을 때만 빈 글
+const sumOrHelp = () => { const n = HELP.filter(x=>sel.help[x[0]]).length; return summary() || (n ? `함께 상담 ${n}가지` : ''); };
 
 function drawMon(){
   const i = sel.biz ?? 2, g = LAW[BIZ[i][3]], f = g.sure/5, a = eok(4.18*f, 1), b = eok(4.6*f, 1);
@@ -1106,7 +1112,7 @@ function drawMon(){
 let lastTotal = null, lastKeys = null, toastT;
 function bump(el){ el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
 // 알림: 화면 읽기 프로그램에는 #toast 로, 눈에는 띠 안의 요약 자리에 2초 동안(본문 위로 뜨지 않음)
-function barText(t){ const sm = summary(); $('bm').textContent = t || sm || '아직 고른 게 없어요'; $('bms').textContent = t || sm || '내 설계안 보기'; $('bm').classList.toggle('flash', !!t); $('bms').classList.toggle('flash', !!t); }
+function barText(t){ const sm = sumOrHelp(); $('bm').textContent = t || sm || '아직 고른 게 없어요'; $('bms').textContent = t || sm || '내 설계안 보기'; $('bm').classList.toggle('flash', !!t); $('bms').classList.toggle('flash', !!t); }
 function toast(t){ $('toast').textContent = t; barText(t); clearTimeout(toastT); toastT = setTimeout(()=> barText(), 2000); }
 const today = (d => `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`)(new Date());
 let R = [], hotT, countRaf;
@@ -1139,7 +1145,7 @@ function showTotal(to, unit, from){
   cancelAnimationFrame(countRaf);
   const put = v => document.querySelectorAll('.js-tot').forEach(el=> el.innerHTML = `${v}<small>${unit}</small>`);
   if (from==null || from===to || calm.matches) return put(to);
-  const t0 = performance.now(), tick = now => { const k = Math.min(1, (now-t0)/420); put(Math.round(from + (to-from)*(1-Math.pow(1-k,3)))); if (k<1) countRaf = requestAnimationFrame(tick); };
+  const t0 = performance.now(), tick = now => { const k = Math.min(1, Math.max(0, (now-t0)/420)); /* rAF 시각이 t0 보다 앞설 수 있어 0 아래를 막음(시작값보다 작은 숫자 방지) */ put(Math.round(from + (to-from)*(1-Math.pow(1-k,3)))); if (k<1) countRaf = requestAnimationFrame(tick); };
   put(from); countRaf = requestAnimationFrame(tick);
 }
 
@@ -1155,19 +1161,18 @@ function draw(what){
   $('opt-co').hidden = corp;
   $('o-staff').hidden = !(sel.staff>0);
   $('stepn').textContent = sel.staff>0 ? `${sel.staff}명${sel.staff>=10?' 이상':''}` : '1명';
-  document.querySelector('[data-v=dec]').disabled = !(sel.staff>1);
-  document.querySelector('[data-v=inc]').disabled = sel.staff>=10;
+  document.querySelector('[data-v=dec]').setAttribute('aria-disabled', !(sel.staff>1));
+  document.querySelector('[data-v=inc]').setAttribute('aria-disabled', sel.staff>=10);
   $('op-pay').textContent = sel.staff>=5 ? `+${P('pay')}만원부터` : sel.staff>=4 ? `+${P('pay')}만원` : '추가 금액 없음';
   $('staffnote').textContent = sel.staff>=5 ? '5명부터는 근로기준법이 대부분 적용돼 노무 관리가 늘어요. 노무사 연결도 함께 안내해요.' : sel.staff===4 ? '3명까지는 추가 금액이 없고, 4명은 월 1만원이 더해져요.' : '직원 3명까지는 추가 금액 없이 해 드려요.';
   $('o-base-d').textContent = (corp ? '법인 ' : '') + '장부·부가세·전담 담당자·세무사 검토, 월별 매출 보고서·인건비 신고(직원 3명까지)⁠도 함께';
   const done = [!!sel.type, sel.biz!=null, sel.sales!=null, sel.staff>0 || !!sel.co || !!sel.cpa];
-  if (what && done[0] && done[1] && done[2] && !matchMedia('(max-width:720px)').matches) calcDone();
   bstate(done);
   // 매출 아래 한 줄
   const b = sel.biz!=null ? [bizName(sel.biz), BIZ[sel.biz][1]] : null;
   // 금액은 설계 완료 뒤에만(11/26) — 여기서는 어느 구간인지만
   $('snote').innerHTML = r.open ? '' // 고르기 전에는 비움(11/26 깔끔하게)
-    : corp ? '법인은 매출과 상관없이 복식부기 장부·법인세·부가세 1년 4번을 챙겨요'
+    : corp ? '법인은 매출과 상관없이 쓰는 복식부기 장부와 법인세·부가세 예정·확정을 챙겨요'
     : r.m==='lite' ? `${b[0]} 작년 매출 ${b[1]}억원 이하 → <b>기본 구간</b>이에요`
     : `${b[0]} 기본 구간(작년 매출 ${b[1]}억원 이하)을 ${SALES_LO[sel.sales] < b[1] ? '넘을 수 있어' : '넘어'} <b>장부·신고 일이 늘어요</b>`;
   // 설계안
@@ -1176,13 +1181,13 @@ function draw(what){
   $('mh1').textContent = `우리 ${place} 기장, 직접 설계해 보세요.`;
   $('sit-h').textContent = $('shsith').textContent = corp ? '대표님 상황' : '사장님 상황';
   $('rcttl').textContent = title();
-  $('rcd').textContent = today + (summary() ? ' · ' + summary() : ' · 아직 고른 게 없어요');
+  $('rcd').textContent = today + ' · ' + (sumOrHelp() || '아직 고른 게 없어요');
   $('sit').innerHTML = situation().map(t=>`<li>${t}</li>`).join('');
   // 내 기장료 쌓기(설계안 · 휴대폰 펼친 칸 · 한 줄 요약) — 새로 생긴 줄만 자라며 들어옴
   const prev = lastKeys; R = rows(r);
   // 옵션판의 자동 줄: 사업 규모·작년 매출을 rows() 줄마다 한 줄씩(쌓기와 같은 금액)
   { const adds = R.filter(x=> x.k.startsWith('size') || x.k.startsWith('up')), from = r.ask && r.m!=='lite' && (r.sc===3 || r.open || r.st || (sel.sales!=null && SALES[sel.sales][2])) ? '부터' : '';
-    $('o-size').innerHTML = adds.map((x,i)=>`<div class="opt auto"><div class="o-t"><b><span>${x.l}</span></b><span>고른 형태·매출에 따라 저절로 붙어요</span></div><em class="o-p">+${x.p}만원${i===adds.length-1 ? from : ''}</em><span class="o-lk">자동</span></div>`).join(''); }
+    $('o-size').innerHTML = adds.map((x,i)=>`<div class="opt auto"><div class="o-t"><b><span>${x.l}</span></b><span>고른 형태·매출에 따라 저절로 붙어요</span></div><em class="o-p">+${x.p}만원${i===adds.length-1 && !(r.open && x.k.startsWith('size')) ? from : ''}</em><span class="o-lk">자동</span></div>`).join(''); }
   const B = stack(r, R), sh = stackHTML(B, prev), ln = lineHTML(B, prev);
   $('stk').innerHTML = $('shstk').innerHTML = sh;
   $('mel').innerHTML = $('pinl').innerHTML = ln;
@@ -1198,7 +1203,7 @@ function draw(what){
   // 맡기시면 저희가 챙기는 신고 — 간이·일반은 묻지 않고 저희가 확인
   const staffNote = sel.staff>0 ? '' : ' · 직원이 있을 때만', D = [];
   if (sel.staff!==0) D.push(['매달 인건비 신고', '원천세·4대보험' + staffNote], ['연말정산·지급명세서', '2~3월' + staffNote]);
-  D.push(corp ? ['부가세 신고', '1년 4번 · 1월·4월·7월·10월'] : ['부가세 신고', '과세 유형(일반·간이)은 저희가 확인해서 맞춰요']);
+  D.push(corp ? ['부가세 신고', '예정·확정(1월·4월·7월·10월, 매출이 작으면 예정은 고지 납부)'] : ['부가세 신고', '과세 유형(일반·간이)은 저희가 확인해서 맞춰요']);
   D.push(corp ? ['3월 법인세 신고', '신고 전에 금액을 먼저 알려 드리고, 동의하신 뒤에 진행해요'] : ['5월 종합소득세 신고', '신고 전에 금액을 먼저 알려 드리고, 동의하신 뒤에 진행해요']);
   $('dues').innerHTML = D.map(d=>`<li><b>${d[0]}</b><span>${d[1]}</span></li>`).join('');
   // 아래 띠
@@ -1261,7 +1266,7 @@ wzv.addEventListener('touchend', e=>{ if (tx===null || !phone.matches) return; c
 function finish(quiet){
   const first = !finished;
   finished = true; bstate(); calcDone();
-  if (first){ const r = est(sel); showTotal(r.total, r.ask ? '만원부터' : '만원', 0); }
+  if (first){ const r = est(sel); showTotal(r.total, r.ask ? '만원부터' : '만원', START); } // 기본 금액(START)부터 세어 올림 — 기본보다 작은 숫자가 잠깐도 안 나오게
   if (phone.matches){ go(4, quiet); return; }
   if (quiet) return;
   requestAnimationFrame(()=>{ $('rc').scrollIntoView({behavior: calm.matches ? 'auto' : 'smooth', block:'start'}); const h = $('rcttl'); h.tabIndex = -1; h.focus({preventScroll:true}); });
@@ -1316,10 +1321,10 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
     const h = HELP.filter(x=>sel.help[x[0]]).map(x=>x[1]), r = est(sel), corp = T(sel)==='법인';
     // 화면의 설계안과 같은 줄: 기본·보고서·구간·서비스(+부가 설명)·신고 수수료 안내
     $('leadrc').innerHTML = `<b>${esc($('rcttl').textContent)}</b>`
-      + R.filter(x=>!x.hint && !x.off).map(x=>`<p><span>${x.l}${x.sub ? `<small>${x.sub}</small>` : ''}</span><em>${x.v || (x.base ? x.p + '만원' : '+' + x.p + '만원')}</em></p>`
+      + R.filter(x=>!x.hint && !x.off).map(x=>`<p><span>${x.l}${x.cf ? ' (상담 때 확정)' : ''}${x.sub ? `<small>${x.sub}</small>` : ''}</span><em>${x.v || (x.base ? x.p + '만원' : '+' + x.p + '만원')}</em></p>`
         + (x.base ? `<p><span>월별 매출 보고서</span><em>기본 포함</em></p>` : '')).join('')
       + `<p class="x"><span>${corp ? '법인세 신고' : '종합소득세 신고'}</span><em>신고 전 금액 안내</em></p>`
-      + `<p class="tt"><span>예상 월 기장료</span><em>${$('bt').textContent}</em></p>`
+      + `<p class="tt"><span>예상 월 기장료 · 부가세 별도</span><em>${$('bt').textContent}</em></p>`
       + (r.ask ? `<span class="cap">‘부터’가 붙은 금액은 상담 때 확정해요.</span>` : '')
       + (h.length ? `<span class="cap">기장 외 상담 · ${h.join(', ')}</span>` : '')
       + `<span class="cap">이 설계안이 함께 전달돼요</span>`;
@@ -1329,8 +1334,8 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
   d.addEventListener('close', ()=>{ if (from) from.focus(); });
   d.addEventListener('click', e=>{ if (e.target === d) d.close(); }); // 바깥을 누르면 닫힘
   // 보내는 설계안 글(화면의 설계안과 같은 줄)
-  const lines = () => [$('rcttl').textContent, summary() || '아직 고른 게 없어요',
-    ...R.filter(x=>!x.hint && !x.off).flatMap(x=>[`${x.l} · ${x.v || (x.base ? x.p + '만원' : '+' + x.p + '만원')}${x.sub ? ' (' + x.sub + ')' : ''}`, ...(x.base ? ['월별 매출 보고서 · 기본 포함'] : [])]),
+  const lines = () => [$('rcttl').textContent, sumOrHelp() || '아직 고른 게 없어요',
+    ...R.filter(x=>!x.hint && !x.off).flatMap(x=>[`${x.l} · ${x.v || (x.base ? x.p + '만원' : '+' + x.p + '만원')}${x.cf ? ' (상담 때 확정)' : ''}${x.sub ? ' (' + x.sub + ')' : ''}`, ...(x.base ? ['월별 매출 보고서 · 기본 포함'] : [])]),
     `${T(sel)==='법인' ? '법인세 신고' : '종합소득세 신고'} · 신고 전 금액 안내`, `예상 월 기장료 · ${$('bt').textContent} (부가세 별도)`];
   const FALLBACK = '카톡이나 전화(0507-1445-7729)로 상담받아 주세요.';
   // 결과 글은 아래 고정 단추 줄 바로 위에 있어서, 창을 맨 아래까지 내려 가려지지 않게
