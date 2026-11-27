@@ -22,6 +22,8 @@
 <meta property="og:image:alt" content="TAXMIN 우리 가게에 필요한 만큼만. 기장료도 딱 그만큼만.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <script src="js/config.js?v=20261106f" defer></script>
 <script src="js/tags.js?v=20261106f" defer></script>
 <script src="js/track.js?v=20261126a" defer></script>
@@ -36,13 +38,14 @@
   --ink:#020617; --ink-2:#191B1F; --sub:#5B6270; --mute:#646B77; --line:#E6E8EC;
   --black:#050608; --black-line:rgba(255,255,255,.14); --black-sub:rgba(255,255,255,.6);
   --blue:#2554F0; --blue-on-dark:#7D9BFF; --warn:#E5484D; --save:#2FBF71;
-  --w:1280px; --pad:40px;
+  --w:1280px; --pad:40px; --ctl-line:#868E9B;
   --font:"Manrope","Pretendard Variable",Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
 body{font-family:var(--font);color:var(--ink);background:#fff;font-size:16px;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -62,14 +65,13 @@ header.on .logo{color:var(--ink);--mk:var(--blue)}
 .hd-r{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:600;color:rgba(255,255,255,.8)}
 header.on .hd-r{color:var(--sub)}
 .hd-nav{display:flex;gap:22px;padding-right:22px;border-right:1px solid var(--line)}
-.hd-nav a:hover{color:var(--ink)}
 html{scroll-padding-top:72px}
 .hd-btn{height:36px;padding:0 16px;white-space:nowrap;border-radius:6px;display:inline-flex;align-items:center;background:#fff;color:var(--ink);font-weight:700}
 header.on .hd-btn{background:var(--ink);color:#fff}
 .hd-tel{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .hd-tel svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
 header.on .hd-tel{color:var(--ink)}
-@media (max-width:1180px){.hd-tel{height:36px;padding:0 12px;justify-content:center;border-radius:6px;box-shadow:inset 0 0 0 1px var(--line)}}
+@media (max-width:1180px){.hd-tel{height:36px;padding:0 12px;justify-content:center;border-radius:6px;box-shadow:inset 0 0 0 1px var(--ctl-line)}}
 @media (max-width:370px){.hd-tel svg{display:none}.hd-tel{padding:0 10px}.hd-btn{padding:0 10px;white-space:nowrap}.hd-r{gap:8px!important}.hd-tel,.hd-btn{font-size:13px}}
 .tel{font-weight:700;text-decoration:underline;text-underline-offset:3px;font-variant-numeric:tabular-nums;white-space:nowrap}
 
@@ -136,7 +138,7 @@ header.on .hd-tel{color:var(--ink)}
 .st-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--edge);padding:4px var(--edge) 24px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.28) transparent;cursor:grab;overscroll-behavior-x:contain}
 .st-track::after{content:"";flex:0 0 calc(100% - min(1040px,86%) - 24px)}
 .st-track.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
-.st-slide{flex:0 0 min(1040px,86%);scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;border:1px solid var(--black-line);border-radius:16px;padding:40px 44px;background:rgba(255,255,255,.025);opacity:.4;transition:opacity .45s}
+.st-slide{flex:0 0 min(1040px,86%);scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;border:1px solid var(--black-line);border-radius:16px;padding:40px 44px;background:rgba(255,255,255,.025);opacity:.85;transition:opacity .45s}
 .st-slide.on{opacity:1}
 .st-slide .board{border:0;padding:0;background:none;border-radius:0}
 .st-slide .cap small{display:block;font-size:15px;font-weight:600;color:var(--blue-on-dark);margin-bottom:12px}
@@ -144,9 +146,10 @@ header.on .hd-tel{color:var(--ink)}
 .st-slide .cap h3 em{font-style:normal;color:var(--blue-on-dark)}
 .st-slide .cap p{font-size:15px;color:var(--black-sub);line-height:1.75;margin-top:14px}
 .st-go{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;font-weight:700;color:#fff;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--blue-on-dark)}
-.st-go:hover{color:var(--blue-on-dark)}
 /* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
-:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go):not(:disabled):active{scale:.97}
+:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go,.tabs button):not(:disabled):active{scale:.96}
+/* 눌림도 0.15초에 부드럽게(색 바뀜은 0.2초 그대로). :root 를 붙여 .hero .go·.end .go2 의 transition 보다 앞서게 */
+@media (prefers-reduced-motion:no-preference){:root :is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.wz-next,.own button,.st-go,.tabs button){transition-property:scale,background-color,color,box-shadow;transition-duration:.15s,.2s,.2s,.2s;transition-timing-function:ease-out,ease,ease,ease}}
 .board{width:100%;border:1px solid var(--black-line);border-radius:14px;padding:22px 26px;background:rgba(255,255,255,.02);font-size:14px}
 .bd-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--black-line);color:var(--black-sub);font-size:13px}
 .bd-h b{color:#fff;font-size:15px;font-weight:600}
@@ -228,20 +231,20 @@ header.on .hd-tel{color:var(--ink)}
 .svc-g li b{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:16px;font-weight:600;color:var(--ink)}
 .svc-g li b em{font-style:normal;font-size:13px;font-weight:700;color:var(--blue);white-space:nowrap}
 .svc-g li p{font-size:14px;color:var(--sub);margin-top:6px;line-height:1.65}
-.sv{margin-top:20px;height:288px;border:1px solid var(--line);border-radius:10px;background:#F8F9FB;padding:16px 18px;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;overflow:hidden}
+.sv{margin-top:20px;min-height:296px;border:1px solid var(--line);border-radius:10px;background:#F8F9FB;padding:16px 18px;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;overflow:hidden}
 .sv-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .sv-h b{font-size:14px;font-weight:700;color:var(--ink)}
-.sv-h span{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:11px;font-weight:800;color:var(--blue)}
+.sv-h span{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:12px;font-weight:800;color:var(--blue)}
 .sv-h .ok{font-family:var(--font);font-weight:700;color:#1B7F4B}
 .sv-h .ok::before{content:"✓ "}
 .sv-k{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 0 10px}
-.sv-k small{display:block;font-size:11px;color:var(--mute)}
+.sv-k small{display:block;font-size:12px;color:var(--mute)}
 .sv-k b{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:16px;font-weight:700;color:var(--ink)}
 .sv-l{list-style:none}
 .sv-l li{display:flex;justify-content:space-between;padding:5px 0;border-top:1px dashed var(--line)}
-.sv-l em{font-style:normal;font-size:11px;font-weight:700;color:var(--blue);background:#EEF2FF;padding:1px 7px;border-radius:4px}
+.sv-l em{font-style:normal;font-size:12px;font-weight:700;color:var(--blue);background:#EEF2FF;padding:1px 7px;border-radius:4px}
 .sv-chat{margin-top:10px;background:#FEE500;color:#191919;border-radius:10px 10px 10px 2px;padding:7px 10px;font-size:12px;line-height:1.45}
-.sv-chat i{display:block;font-style:normal;font-size:10px;font-weight:700;opacity:.65}
+.sv-chat i{display:block;font-style:normal;font-size:12px;font-weight:700;opacity:.65}
 .sv-chart{display:flex;align-items:flex-end;gap:5px;height:96px;padding:14px 0 6px;border-bottom:1px solid var(--line)}
 .sv-chart i{flex:1;height:calc(var(--h)*100%);background:#C9D3F5;border-radius:3px 3px 0 0}
 .sv-chart i.now{background:var(--blue)}
@@ -249,21 +252,25 @@ header.on .hd-tel{color:var(--ink)}
 .sv-up b{color:var(--ink)}
 .sv-pay{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 12px}
 .sv-pay span{font-weight:600;color:var(--ink)}
-.sv-pay em{font-style:normal;font-size:11px;font-weight:700;color:#1B7F4B}
+.sv-pay em{font-style:normal;font-size:12px;font-weight:700;color:#1B7F4B}
 .sv-cal{list-style:none;padding-top:6px}
 .sv-cal li{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
 .sv-cal li:last-child{border-bottom:0}
 .sv-cal b{font-family:Manrope,sans-serif;font-size:13px;font-weight:800;color:var(--blue)}
 .sv-cal span{font-weight:600;color:var(--ink)}
-.sv-cal small{display:block;font-size:11px;font-weight:500;color:var(--mute);margin-top:2px}
-.sv-note{font-size:11px;color:var(--mute);margin-top:6px}
+.sv-cal small{display:block;font-size:12px;font-weight:500;color:var(--mute);margin-top:2px}
+.sv-note{font-size:12px;color:var(--mute);margin-top:6px}
 .svc-g .best{font-style:normal;font-family:Manrope,sans-serif;font-size:11px;font-weight:800;color:var(--blue);margin-left:6px;vertical-align:1px}
 
 /* 5-2 실제 상담 기록 */
 .proof{padding:40px 0 160px;overflow:hidden;--edge:max(var(--pad),calc((100% - var(--w))/2 + var(--pad)))}
 .proof .head{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:end}
 .proof .head .lead{font-size:17px;color:var(--sub);line-height:1.75;max-width:560px}
-.pf-note{max-width:var(--w);margin:14px auto 0;padding:0 var(--pad);font-size:12px;color:var(--mute)}
+.pf-note{max-width:var(--w);margin:14px auto 0;padding:0 var(--pad);font-size:12px;color:var(--mute);display:flex;flex-wrap:wrap;align-items:center;gap:0 16px}
+/* 저절로 넘어가는 곳의 멈춤 단추(WCAG 2.2.2) — 움직임 줄이기면 넘김 자체가 없어 숨김 */
+.auto-stop{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:600;color:var(--sub);text-decoration:underline;text-underline-offset:3px}
+.auto-row{text-align:center;margin-top:4px}
+@media (prefers-reduced-motion:reduce){.auto-stop{display:none}}
 .pf-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--edge);padding:56px var(--edge) 12px;scrollbar-width:none}
 .pf-track::-webkit-scrollbar{display:none}
 .pf-track figure{flex:0 0 260px;margin:0;scroll-snap-align:start}
@@ -276,15 +283,13 @@ header.on .hd-tel{color:var(--ink)}
 /* 6 모델(탭) */
 .models-sec{padding:160px 0;background:#F6F7F9}
 .center{text-align:center}
-.center .lead{font-size:17px;color:var(--sub);margin:24px auto 0;max-width:560px}
+.center .lead{font-size:17px;color:var(--sub);margin:24px auto 0;max-width:560px;text-wrap:balance}
 /* 이런 사장님께 탭(11/26): 누를 수 있게 보이는 알약 단추 + 다음 탭까지 남은 시간 줄 */
 .tabs{display:flex;justify-content:center;gap:10px;margin-top:56px;flex-wrap:wrap}
-.tabs button{position:relative;overflow:hidden;display:flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px #D5D9E0;font-size:16px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:background-color .2s,color .2s,box-shadow .2s}
-.tabs button:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.tabs button{position:relative;overflow:hidden;display:flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px var(--ctl-line);font-size:16px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:background-color .2s,color .2s,box-shadow .2s}
 .tabs button[aria-selected=true]{background:var(--ink);color:#fff;box-shadow:none}
 .tabs.auto button[aria-selected=true]::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--blue-on-dark);transform-origin:0 50%;animation:tabProg var(--tab-ms,6s) linear forwards}
 @keyframes tabProg{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.tabs button:active{scale:.97}
 .panel > div{animation:fitIn .55s cubic-bezier(.2,.7,.2,1)}
 @keyframes fitIn{from{opacity:0;transform:translateX(28px)}}
 .panel{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:48px;background:#fff;border-radius:16px;padding:56px 64px}
@@ -322,7 +327,7 @@ header.on .hd-tel{color:var(--ink)}
 /* 7 FAQ */
 .faq{padding:160px 0}
 .faq .wrap{display:grid;grid-template-columns:4fr 4fr 4fr;gap:56px}
-.faq .big{font-family:Manrope,sans-serif;font-size:54px}
+.faq .big{font-size:54px}
 .faq .intro p{color:var(--sub);margin-top:20px;font-size:15px}
 .faq h3{font-size:20px;font-weight:700;color:#384F5E;margin-bottom:12px}
 details{border-bottom:1px solid var(--line)}
@@ -339,7 +344,7 @@ details p{padding:0 0 18px;font-size:15px;color:var(--sub);line-height:1.75}
 .ldg h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
 .ldg .lead-s{font-size:14px;color:#5B6270;margin-top:-6px;line-height:1.6}
 .ldg label{display:grid;gap:6px;font-size:14px;font-weight:600;color:#191B1F}
-.ldg input:not([type=checkbox]),.ldg select{font-size:16px!important;height:46px;border:1px solid #D5D9E0;border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff}
+.ldg input:not([type=checkbox]),.ldg select{font-size:16px!important;height:46px;border:1px solid var(--ctl-line);border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff}
 .ldg input:focus-visible,.ldg select:focus-visible{outline:2px solid #2554F0;outline-offset:1px;border-color:#2554F0}
 .ldg .agree{grid-template-columns:20px 1fr;align-items:start;font-weight:500;line-height:1.5}
 .ldg .agree input{width:18px;height:18px;margin-top:2px;accent-color:#2554F0}
@@ -347,13 +352,14 @@ details p{padding:0 0 18px;font-size:15px;color:var(--sub);line-height:1.75}
 .ldg .lead-sum{font-size:12px;color:#646B77;border-top:1px dashed #CDD2DA;padding-top:10px}
 .ldg .lead-sum:empty{display:none}
 .ldg .lead-msg{font-size:14px;font-weight:600;color:#C2410C;line-height:1.55}
-.ldg .lead-msg:empty{display:none}
+.ldg .lead-msg:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap} /* 화면에서만 숨김 — 알림 칸이 처음부터 있어야 글이 읽힘 */
 .ldg .err{font-size:13px;font-weight:600;color:#C2410C;line-height:1.4}
 .ldg .err:empty{display:none}
+.ldg label + .err{margin-top:-8px}
 .ldg [aria-invalid=true]{border-color:#C2410C!important}
 .ldg .lead-b{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;margin-top:4px}
 .ldg .lead-b button,.ldg .lead-b a{height:48px;border-radius:6px;font:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none}
-.ldg .b-line{background:#fff;color:#020617;border:0;box-shadow:inset 0 0 0 1px #C9CED6}
+.ldg .b-line{background:#fff;color:#020617;border:0;box-shadow:inset 0 0 0 1px var(--ctl-line)}
 .ldg .b-fill{background:#2554F0;color:#fff;border:0}
 .ldg .b-fill[aria-busy=true]{opacity:.7;cursor:progress}
 .ldg .agree small a{color:#2554F0;text-decoration:underline}
@@ -378,16 +384,21 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
 /* 휴대폰 아래 고정 단추: 첫 화면을 지나면 올라오고, 맨 위로 돌아가면 내려감 */
 .mcta{display:none}
 @media (max-width:720px){
-  .mcta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:45;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -1px 0 #E6E8EC;transform:translateY(100%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s}
+  html{scroll-padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+  .mcta{display:grid;grid-template-columns:1fr 112px;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:45;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -1px 0 #E6E8EC;transform:translateY(100%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s}
   .mcta.on{transform:none;visibility:visible;transition:transform .3s ease}
-  .mcta a{display:flex;align-items:center;justify-content:center;height:52px;border-radius:8px;background:var(--blue);color:#fff;font-weight:700;font-size:16px;text-decoration:none}
+  .mcta a{display:flex;align-items:center;justify-content:center;height:52px;border-radius:6px;background:var(--blue);color:#fff;font-weight:700;font-size:16px;text-decoration:none}
+  .mcta a.kk{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ctl-line)}
   body.mcta-on{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
 }
 @media (prefers-reduced-motion:reduce){.mcta,.mcta.on{transition:none}}
 
 @media (hover:hover){
+.hd-nav a:hover{color:var(--ink)}
+.st-go:hover{color:var(--blue-on-dark)}
+.tabs button:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .hero .go:hover{background:#1B44D6}
-.st-slide:not(.on):hover{opacity:.6}
+.st-slide:not(.on):hover{opacity:1}
 .panel .btn:hover{background:#1c2333}
 .end .go2:hover{background:rgba(255,255,255,.08)}
 }
@@ -444,10 +455,10 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
   .bd-f .k{font-size:12px}
   .saved{font-size:13px}
   .total{font-size:30px}
-  .tabs{gap:18px}
-  .tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:40px calc(-1 * var(--pad)) 0;padding:2px var(--pad) 4px;scrollbar-width:none}
-  .tabs::-webkit-scrollbar{display:none}
-  .tabs button{font-size:15px;min-height:42px;padding:0 16px;flex:none}
+  .tabs{flex-wrap:wrap;justify-content:center;gap:8px;margin-top:40px}
+  .tabs button{font-size:15px;min-height:42px;padding:0 16px}
+  .end-b{display:grid;grid-template-columns:1fr;max-width:320px;margin-inline:auto}
+  .end-b > *{width:100%;justify-content:center}
   .panel{padding:28px 20px}
   .panel h3{font-size:28px}
   .slip{padding:24px 20px 20px}
@@ -486,7 +497,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
       <div class="on"><p class="h1">우리 가게 기장,<br>내가 직접 설계해요.</p>
       <p class="sub"><span>필요한 서비스만 켜면 기장료가 바로 보여요.</span><br><span>장부와 신고는 담당자가, 마지막 확인은 세무사가 해요.</span></p></div>
       <div><p class="h1">첫 상담부터<br>대표세무사가 직접.</p>
-      <p class="sub"><span>기장 문의 상담은 대표세무사가 직접 응대하고,</span><br><span>시작부터 방향을 확실하게 잡아드려요.</span></p></div>
+      <p class="sub"><span>기장 문의 상담은 대표세무사가 직접 응대하고,</span><br><span>시작부터 방향을 확실하게 잡아 드려요.</span></p></div>
     </div>
     <a class="go" href="build.html">내 기장 설계하기</a>
   </div>
@@ -497,10 +508,10 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
   <div class="wrap">
     <div>
       <h2 class="big" id="w-h">기장료가 싸면,<br>내 장부는 <em>뒤로 밀리지</em><br>않을까?</h2>
-      <p class="lead">기장료를 낮춘 곳에서 흔히 듣는 이야기들이에요. 택스민은 이 걱정에서 출발했습니다.</p>
+      <p class="lead">기장을 맡기실 때 사장님들이 가장 많이 하시는 걱정이에요. 택스민은 이 걱정에서 출발했습니다.</p>
     </div>
     <div class="grid4">
-      <div><small>담당자</small><h3>담당자가 또 바뀌었대요.<br>처음부터 다시 설명해야 해요.</h3><p>사람이 자주 바뀌면 우리 가게 사정을 아는 사람이 없어져요.</p></div>
+      <div><small>담당자</small><h3>담당자가 또 바뀌면 어쩌죠?<br>처음부터 다시 설명해야 해요.</h3><p>사람이 자주 바뀌면 우리 가게 사정을 아는 사람이 없어져요.</p></div>
       <div><small>답변</small><h3>물어보면 답이<br>믿음직하지 않아요.</h3><p>세법은 가게마다 적용이 달라서, 대충 한 답은 나중에 비용이 돼요.</p></div>
       <div><small>소통</small><h3>연락이 잘 안 되고,<br>신고는 늘 급하게 해요.</h3><p>마감 직전에 자료를 찾느라 장사에 집중하기 어려워요.</p></div>
       <div><small>비용</small><h3>쓰지도 않는 서비스까지<br>한꺼번에 내고 있어요.</h3><p>어떤 서비스에 얼마가 드는지 모른 채 한 묶음으로 내는 경우가 많아요.</p></div>
@@ -515,15 +526,15 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     <div class="a-l">
       <h2 class="big" id="a-h">한 번 맡은 거래처는,<br>끝까지 확실하게.</h2>
       <p class="hook">가격은 낮게, 서비스는 높게.<br>책임질 수 있는 만큼만 받습니다.</p>
-      <figure class="a-pic"><video class="lv" src="img/v_about.mp4?v=3" poster="img/v_about.jpg?v=3" muted loop playsinline preload="none" aria-label="서류를 한 줄씩 적어 가며 확인하는 손"></video></figure>
+      <figure class="a-pic"><video class="lv" src="img/v_about.mp4?v=3" poster="img/v_about.jpg?v=3" muted playsinline preload="none" aria-label="서류를 한 줄씩 적어 가며 확인하는 손"></video></figure>
     </div>
     <div class="a-r">
-      <p><b>세무사 2명, 직원 2명. 1:1로 짝을 이룬, 작지만 강한 사무실이에요.</b>세무사와 담당자가 1:1로 일하는 사무실은 흔하지 않아요. 택스민은 담당자 한 명마다 세무사 한 명이 짝을 이뤄, 장부 한 권 한 권을 함께 보고 세무사가 직접 검증해요.</p>
+      <p><b>세무사 2명, 직원 2명. 1:1로 짝을 이룬, 작지만 강한 사무실이에요.</b>택스민은 담당자 한 명마다 세무사 한 명이 짝을 이뤄, 장부 한 권 한 권을 함께 보고 세무사가 직접 검토해요.</p>
       <p><b>그래서 아무나 받지 않아요.</b>담당자 한 명이 맡는 거래처 수를 정해 두고, 그 수가 차면 더 받지 않아요. 더 받으면 매출은 늘겠지만, 그만큼 사장님 장부를 들여다볼 시간이 줄어들어요. 우리는 시간 쪽을 택했어요.</p>
       <p><b>AI는 거들고, 판단은 사람이 해요.</b>자료를 모으고 나누는 일은 AI에게 맡겼어요. 아낀 시간은 사장님 장부를 한 번 더 보는 데 써요.</p>
       <ul class="facts">
       <li><b>1:1</b><span>세무사와 담당자가 짝을 이뤄요</span></li>
-      <li><b>3<small>단계</small></b><span>AI → 담당자 → 세무사 검증</span></li>
+      <li><b>3<small>단계</small></b><span>AI → 담당자 → 세무사 검토</span></li>
       <li><b>정량</b><span>맡는 수가 차면 더 받지 않아요</span></li>
     </ul>
     </div>
@@ -531,8 +542,8 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
       <div><h3 id="t-h">누가 내 장부를 보나요</h3><p>세무사 2명과 담당 직원 2명이 1:1로 짝을 이뤄요. 사장님 장부는 한 짝이 처음부터 맡아요.</p></div>
       <div>
         <ol class="pairs">
-          <li><small class="no">짝 1</small><span><small>세무사</small><b>대표세무사</b></span><i aria-hidden="true"></i><span><small>담당 직원</small><b>전담 직원</b></span></li>
-          <li><small class="no">짝 2</small><span><small>세무사</small><b>세무사</b></span><i aria-hidden="true"></i><span><small>담당 직원</small><b>전담 직원</b></span></li>
+          <li><small class="no">짝 1</small><span><small>세무사</small><b>대표세무사</b></span><i aria-hidden="true"></i><span><small>담당 직원</small><b>담당자</b></span></li>
+          <li><small class="no">짝 2</small><span><small>세무사</small><b>세무사</b></span><i aria-hidden="true"></i><span><small>담당 직원</small><b>담당자</b></span></li>
         </ol>
         <ul class="roles">
           <li><b>담당 직원</b>장부를 작성하고, 카톡 질문에 답해요.</li>
@@ -556,7 +567,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     <div class="head"><h2 class="big" id="s-h">맡기시면,<br>이만큼 챙겨요.</h2><p class="lead">장부와 부가세, 담당자, 세무사. 이 넷은 늘 기본이에요. 직원 3명까지는 인건비 신고도 추가 금액 없이 해 드려요.</p></div>
     <div class="svc-g">
       <div><h3>기본으로 들어 있어요</h3><div class="sv" aria-hidden="true">
-          <p class="sv-h"><b>11월 장부</b><span class="ok">세무사 검수 완료</span></p>
+          <p class="sv-h"><b>11월 장부</b><span class="ok">세무사 검토 완료</span></p>
           <div class="sv-k"><div><small>매출</small><b>1,842만</b></div><div><small>매입</small><b>678만</b></div><div><small>부가세 예상</small><b>128만</b></div></div>
           <ul class="sv-l"><li><span>카드 매출 정산</span><em>매출</em></li><li><span>스마트스토어 정산</span><em>매출</em></li><li><span>오픈마켓 판매 수수료</span><em>지급수수료</em></li></ul>
           <p class="sv-chat"><i>담당자</i>부가세 자료 다 모였어요. 25일 전에 신고할게요.</p>
@@ -564,7 +575,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
         <li><b>월 매출·매입 관리</b><p>홈택스의 카드·현금영수증·세금계산서를 모아 장부로 정리해요. 쇼핑몰이라면 스마트스토어·오픈마켓 매출과 판매 수수료도 함께 정리해요.</p></li>
         <li><b>부가가치세 신고</b><p>신고부터 납부서 안내까지, 마감 전에 먼저 챙겨요.</p></li>
         <li><b>전담 담당자</b><p>처음 만난 담당자가 계속 맡고, 카톡으로 바로 물어보면 돼요.</p></li>
-        <li><b>세무사 상담·검수</b><p>세무 판단은 세무사가 직접 답하고, 담당자 답변도 세무사가 확인해요.</p></li>
+        <li><b>세무사 검토</b><p>세무 판단은 세무사가 직접 답하고, 담당자 답변도 세무사가 검토해요.</p></li>
         <li><b>AI 매출 모니터링</b><p>매달 매출을 지켜보고, 신고 의무가 바뀌기 전에 먼저 알려 드려요.</p></li>
         <li><b>월별 매출 보고서</b><p>매달 매출·매입 흐름을 한 장으로 받아 봐요. 기본에 들어 있어요.</p></li>
         <li><b>인건비 신고 · 직원 3명까지</b><p>직원 월급 신고와 4대보험 신고를 함께 해요. 3명까지는 추가 금액 없이 해 드려요.</p></li>
@@ -577,7 +588,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
         </div><p class="sv-note">화면은 예시예요.</p><ul>
         <li><b>인건비 신고 · 직원 4명부터</b><p>직원 3명까지는 기본이라 더할 게 없어요. 4명부터 더해지고, 5명부터는 상담 때 정해요(노무사 연결도 함께 안내).</p></li>
         <li><b>공동사업장</b><p>대표가 둘 이상인 사업장이라면 더해요.</p></li>
-        <li><b>세무사가 장부를 직접</b><p>기본은 담당자가 작성하고 세무사가 검토해요. 이걸 더하면 세무사가 장부와 신고를 처음부터 직접 맡아요.</p></li>
+        <li><b>세무사 직접 담당</b><p>기본은 담당자가 작성하고 세무사가 검토해요. 이걸 더하면 세무사가 장부와 신고를 처음부터 직접 맡아요.</p></li>
       </ul></div>
       <div><h3>함께 상담해요</h3><div class="sv" aria-hidden="true">
           <p class="sv-h"><b>상담 일정</b><span>함께 상담</span></p>
@@ -604,6 +615,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
       <p class="lead">우리 가게 상황을 고르면, 무엇을 챙겨 드리는지 보여 드려요.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="사장님 상황" id="tabs"></div>
+    <p class="auto-row"><button type="button" class="auto-stop" id="fit-stop">자동 넘김 멈추기</button></p>
     <div class="panel" role="tabpanel" id="panel"></div>
   </div>
 </section>
@@ -620,7 +632,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     <figure><a class="pf-img" href="img/proof_4.jpg" target="_blank" rel="noopener" aria-label="크게 보기: 항상 감사드려요"><img src="img/proof_4.jpg" alt="오래 함께한 대표님의 감사 인사" loading="lazy"></a><figcaption><b>"항상 감사드려요"</b>오래 함께한 대표님의 인사</figcaption></figure>
     <figure><a class="pf-img" href="img/proof_5.jpg" target="_blank" rel="noopener" aria-label="크게 보기: 소상공인 정책자금 안내"><img src="img/proof_5.jpg" alt="소상공인 정책자금 접수 일정을 안내한 대화" loading="lazy"></a><figcaption><b>소상공인 정책자금 안내</b>접수 날짜와 업종에 따라 유리한 곳까지</figcaption></figure>
   </div>
-  <p class="pf-note">실제로 나눈 대화예요 · 이름과 사진은 가렸어요</p>
+  <p class="pf-note"><span>실제로 나눈 대화예요 · 이름과 사진은 가렸어요</span><button type="button" class="auto-stop" id="pf-stop">자동 넘김 멈추기</button></p>
 
 </section>
 
@@ -631,7 +643,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     <div>
       <h3>기장료와 서비스</h3>
       <details><summary>설계안 금액이 실제 기장료와 같나요?</summary><p>예상 금액이에요. 장부 양이나 업종 특성에 따라 상담 때 달라질 수 있고, 달라지면 까닭을 먼저 말씀드려요. 모든 금액은 부가세 별도예요.</p></details>
-      <details><summary>기장료는 어떻게 정해지나요?</summary><p>기본은 월 5만원이에요(장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서와 직원 3명까지의 인건비 신고 포함). 작년 매출이 업종 기본 구간을 넘은 개인사업자는 2만원, 법인은 5만원이 더해지고, 공동사업장·세무사 직접 담당 같은 서비스는 필요한 것만 더하면 돼요.</p></details>
+      <details><summary>기장료는 어떻게 정해지나요?</summary><p>기본은 월 5만원이에요(장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서와 직원 3명까지의 인건비 신고 포함). 개인사업자는 월 5만원부터, 작년 매출이 업종 기본 구간을 넘으면 월 7만원부터이고, 법인은 월 10만원부터예요. 매출이 더 크면 구간에 따라 더해지고, 공동사업장·세무사 직접 담당 같은 서비스는 필요한 것만 더하면 돼요. 정확한 금액은 '내 기장 설계'에서 바로 보실 수 있어요.</p></details>
       <details><summary>한 번 정한 기장료로 끝나나요?</summary><p>아니요. AI가 매달 매출을 모아 연말 매출을 예상하고, 매출이 늘어 신고 방식이 바뀌기 전에 담당자가 먼저 확인해요. 달라지는 의무와 절세 방법, 법인 전환까지 세무사가 설명하고, 사장님이 동의하신 경우에만 서비스와 기장료를 바꿔요.</p></details>
       <details><summary>종합소득세·법인세 신고도 해 주나요?</summary><p>네. 신고 수수료는 장부 상태에 따라 달라서, 신고 전에 금액을 먼저 알려 드리고 동의하신 뒤에 진행해요.</p></details>
       <details><summary>기장 말고 증여·상속, 법무·노무도 물어볼 수 있나요?</summary><p>네. 증여·상속은 세무사가 직접 상담하고, 등기·계약 같은 법무와 근로계약·분쟁 같은 노무는 법무사·변호사·노무사를 연결해 드려요. 비용은 일마다 따로이고, 상담 때 먼저 알려 드려요.</p></details>
@@ -640,7 +652,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
     </div>
     <div>
       <h3>담당자와 상담</h3>
-      <details><summary>담당자는 어떤 사람이 맡나요?</summary><p>기장 경력이 있는 담당자가 맡고, 세무 판단이 필요한 질문은 세무사가 직접 답해요. 담당자 답변도 세무사가 검수해요.</p></details>
+      <details><summary>담당자는 어떤 사람이 맡나요?</summary><p>기장 경력이 있는 담당자가 맡고, 세무 판단이 필요한 질문은 세무사가 직접 답해요. 담당자 답변도 세무사가 검토해요.</p></details>
       <details><summary>담당자가 중간에 바뀌지 않나요?</summary><p>개업 후 지금까지 그만둔 직원이 없어요. 처음 담당자가 계속 맡아요.</p></details>      <details><summary>사무실에 가야 하나요?</summary><p>아니요. 상담부터 자료 주고받기까지 카톡으로 끝나고, 필요하면 저희가 전화드려요. <a class="tel" href="tel:050714457729">전화로 먼저 물어보셔도 돼요.</a></p></details>
       <details><summary>다른 곳에서 옮겨 오기 어렵지 않나요?</summary><p>홈택스 수임 동의만 다시 해 주시면 돼요. 지난 장부를 받아 오는 일은 저희가 안내해 드려요.</p></details>
     </div>
@@ -649,7 +661,7 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
 
 <section class="end" aria-labelledby="e-h">
   <div class="wrap">
-    <h2 id="e-h">덜 내고,<br><em>더 꼼꼼하게.</em></h2>
+    <h2 id="e-h">필요한 만큼만 내고,<br><em>꼼꼼하게.</em></h2>
     <div class="end-b">
       <a class="go" href="build.html">내 기장 설계하기</a>
       <a class="go2" href="https://pf.kakao.com/_Mxojqs/chat" target="_blank" rel="noopener">카톡으로 상담받기</a>
@@ -662,15 +674,15 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
 
 <footer><div class="wrap"><span>사무소명 세무회계 민 · 사업자번호 546-54-00533 · 대표자 이민기(대표세무사) · 주소 서울시 강서구 공항대로 194, 7층 717~718</span><span><a class="tel" href="tel:050714457729">전화 상담</a> · <a href="privacy.html">개인정보처리방침</a></span></div></footer>
 
-<div class="mcta" id="mcta"><a href="build.html" data-pos="sticky">기장료 설계해 보기</a></div>
+<div class="mcta" id="mcta"><a href="build.html" data-pos="sticky">내 기장 설계하기</a><a class="kk" href="https://pf.kakao.com/_Mxojqs/chat" target="_blank" rel="noopener">카톡 상담</a></div>
 
 <!-- 접수: js/lead.js(taxminlp.com 전화 상담 예약과 같은 구글 Apps Script 접수처·같은 칸 이름)로 보냄. 시트의 '시안' 칸에 custom-main 으로 남음 -->
 <dialog class="ldg" id="lead" aria-labelledby="lead-h">
   <form id="leadf" novalidate>
     <h2 id="lead-h">연락처 남기기</h2>
     <p class="lead-s">남겨 주시면 평일 10:00~17:30 사이에 먼저 연락드려요. <a class="tel" href="tel:050714457729">전화로 먼저 물어보셔도 돼요.</a></p>
-    <label>이름 또는 상호<input name="name" autocomplete="name" required aria-describedby="e-name"><small class="err" id="e-name"></small></label>
-    <label>연락처<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required pattern="[0-9\- ]{9,14}" aria-describedby="e-tel"><small class="err" id="e-tel"></small></label>
+    <label>이름 또는 상호<input name="name" autocomplete="name" required aria-describedby="e-name"></label><small class="err" id="e-name"></small>
+    <label>휴대폰 번호<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required pattern="01[016789][0-9\- ]{7,10}" aria-describedby="e-tel"></label><small class="err" id="e-tel"></small>
     <label>편한 연락 시간<select name="when"><option>언제든 괜찮아요</option><option>오전(10~12시)</option><option>오후(13~17시)</option></select></label>
     <label class="agree"><input type="checkbox" name="agree" required aria-describedby="e-agree"><span>상담 연락을 위해 이름·연락처를 받는 데 동의해요 (필수)<small>받는 것: 이름 또는 상호·연락처·연락 시간 · 쓰는 곳: 상담 연락 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡·전화로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span></label>
     <label class="agree ad"><input type="checkbox" name="adConsent"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 동의해요 (선택)<small>받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요</small></span></label>
@@ -681,14 +693,14 @@ footer .draft{flex-basis:100%;font-size:12px;color:rgba(255,255,255,.4)}
   </form>
 </dialog>
 
-<script src="js/svc-help.js?v=20261127c"></script>
+<script src="js/svc-help.js?v=20261128b"></script>
 <script src="js/lead.js"></script>
 <script>
 // 견적판 예시 — build.html 기준과 같은 숫자(만원/월, 부가세 별도):
-// 기본 5(일반 개인은 사업 규모 금액 없음, 인건비 신고 직원 3명까지 포함) → 보고서 0 · 직원 4명 1 · 공동사업장 1 을 더하면 7 → 둘을 빼면 5 (정확히 2만원)
+// 기본 5(일반 개인은 사업 규모 금액 없음, 월별 매출 보고서·인건비 신고 직원 3명까지 포함 — 보고서 줄은 잠금) → 직원 4명 1 · 공동사업장 1 을 더하면 7 → 둘을 빼면 5 (정확히 2만원)
 const ROWS = [
   {n:'기본 4가지 · 장부·부가세·담당자·세무사', v:5, lock:true, first:true},
-  {n:'월별 매출 보고서', v:0},
+  {n:'월별 매출 보고서', v:0, lock:true},
   {n:'인건비 신고 · 직원 4명', v:1, cut:true},
   {n:'공동사업장', v:1, cut:true},
   {n:'종합소득세 신고', p:'신고 전 금액 안내', lock:true},
@@ -708,8 +720,8 @@ const boardHTML = () => `<div class="board" aria-hidden="true">
   <div class="bd-f"><div><p class="k">예상 월 기장료 · 부가세 별도</p><p class="total"><span class="num">${BASE}</span><small>만원</small></p></div><p class="saved">안 쓰는 서비스를 끄니<br>월 2만원이 빠졌어요<i>예시 계산</i></p></div></div>`;
 $('track').innerHTML = CAPS.map((c,i)=>`<article class="st-slide" aria-label="3장 가운데 ${i+1}장"><div class="cap"><small>${c.s}</small><h3>${c.h}</h3><p>${c.p}</p><a class="st-go" href="build.html">직접 켜고 꺼 보기</a></div>${boardHTML()}</article>`).join('');
 // 카드 한 장의 견적판 그리기(11/26 모션: 스위치를 톡 누르는 표시 · +1만원/−1만원 꼬리표 · 숫자가 굴러 바뀜)
-// st = {rep, pay, co, strike(끈 줄 취소선), saved}
-const RI = {rep:1, pay:2, co:3};
+// st = {pay, co, strike(끈 줄 취소선), saved}
+const RI = {pay:2, co:3};
 function paint(card, st, fx){
   const lis = [...card.querySelectorAll('.rows li')];
   Object.entries(RI).forEach(([k,i])=>{ const li = lis[i], on = !!st[k], tg = li.querySelector('.tg'), was = tg.classList.contains('on'), r = ROWS[i];
@@ -729,8 +741,8 @@ function paint(card, st, fx){
 // 카드마다 보여 줄 흐름: 1장 기본 5만원 · 2장 하나씩 켜서 더함 · 3장 둘을 꺼서 2만원 빠짐
 const SEQ = [
   [{}, {pay:1}, {}],
-  [{}, {rep:1}, {rep:1,pay:1}, {rep:1,pay:1,co:1}],
-  [{rep:1,pay:1,co:1}, {rep:1,co:1,strike:1}, {rep:1,strike:1,saved:1}],
+  [{}, {pay:1}, {pay:1,co:1}],
+  [{pay:1,co:1}, {co:1,strike:1}, {strike:1,saved:1}],
 ];
 
 const hd = $('hd');
@@ -766,14 +778,14 @@ hero.classList.toggle('still', paused); play(); arm();
 // 견적 이야기: 카드 세 장을 옆으로 밀어 넘김(손가락·트랙패드·마우스 끌기·키보드 화살표), 저절로 넘어가지 않음
 (() => {
   const track = $('track'), cards = [...track.children];
-  // 보이는 카드만 흐름을 되풀이(한 단계 1.3초, 끝에서 2.4초 쉬고 처음부터). 움직임 줄이기면 끝 장면만
-  const runs = new Map();
+  // 보이는 카드만 흐름을 한 번 보여 주고(한 단계 1.3초) 마지막 장면에 멈춤 — 다시 보여도 처음부터 돌지 않음(WCAG 2.2.2). 움직임 줄이기면 끝 장면만
+  const runs = new Map(), played = new Set();
   const stopRun = c => { clearTimeout(runs.get(c)); runs.delete(c); };
   function run(c, i){
     const seq = SEQ[i]; let k = 0;
-    if (reduce){ paint(c, seq[seq.length-1]); return; }
+    if (reduce || played.has(c)){ paint(c, seq[seq.length-1]); return; }
     paint(c, seq[0]);
-    const tick = () => { k++; if (k < seq.length){ paint(c, seq[k], true); runs.set(c, setTimeout(tick, k === seq.length-1 ? 2400 : 1300)); } else { k = 0; paint(c, seq[0]); runs.set(c, setTimeout(tick, 900)); } };
+    const tick = () => { k++; paint(c, seq[k], true); if (k < seq.length-1) runs.set(c, setTimeout(tick, 1300)); else { runs.delete(c); played.add(c); } };
     runs.set(c, setTimeout(tick, 900));
   }
   cards.forEach((c,i)=> paint(c, SEQ[i][reduce ? SEQ[i].length-1 : 0]));
@@ -803,16 +815,16 @@ hero.classList.toggle('still', paused); play(); arm();
 // 이런 사장님께(탭) — 금액 대신 누구에게 맞는지, 견적에서 무엇을 고르면 되는지
 const FITS = [
   {k:'new', tab:'새로 연 가게', tag:'올해 시작 · 혼자 운영', h:'이제 막 문을 연 사장님', who:'장부도 신고도 처음이라 무엇부터 챙길지 막막하다면, 기본 4가지로 시작하세요. 첫 부가세 신고부터 담당자가 함께 챙겨요.',
-   inc:[['월 매출·매입 관리','기본'],['부가가치세 신고','기본'],['전담 담당자 · 세무사 상담','기본'],['월별 매출 보고서','기본 포함']],
+   inc:[['월 매출·매입 관리','기본'],['부가가치세 신고','기본'],['전담 담당자 · 세무사 검토','기본'],['월별 매출 보고서','기본 포함']],
    pick:[['사업자 형태','개인'],['작년 매출','올해 시작'],['서비스 추가','월별 매출 보고서']]},
   {k:'shop', tab:'온라인 판매', tag:'스마트스토어·오픈마켓 · 쇼핑몰', h:'온라인으로 파는 사장님', img:'img/svc_desk.jpg', who:'스마트스토어·오픈마켓으로 들어온 매출과 판매 수수료를 장부에 함께 정리해요. 도소매·쇼핑몰은 기장료 기본 구간이 작년 매출 9억원 이하라, 기본 4가지에서 필요한 것만 더하면 돼요.',
-   inc:[['월 매출·매입 관리 · 플랫폼 매출·수수료','기본'],['부가가치세 신고','기본'],['전담 담당자 · 세무사 상담','기본'],['월별 매출 보고서','기본 포함']]},
+   inc:[['월 매출·매입 관리 · 플랫폼 매출·수수료','기본'],['부가가치세 신고','기본'],['전담 담당자 · 세무사 검토','기본'],['월별 매출 보고서','기본 포함']]},
   {k:'staff', tab:'직원이 있는 가게', tag:'알바·직원 1~3명', h:'직원 월급 신고까지 맡기고 싶은 사장님', who:'매달 월급 신고와 4대보험 신고를 장부와 함께 챙겨요. 직원이 들어오고 나갈 때도 담당자가 먼저 챙겨요.',
    inc:[['기본 4가지 (장부·부가세·담당자·세무사)','기본'],['인건비 신고 (4대보험 포함)','기본 포함'],['월별 매출 보고서','기본 포함']],
    pick:[['사업자 형태','개인'],['작년 매출','1억~3억'],['직원 수','3명까지 추가 금액 없이']]},
   {k:'big', tab:'매출이 커진 가게', tag:'매출이 업종 기본 구간을 넘은 개인', h:'장부 양이 늘고 신고가 복잡해진 사장님', who:'AI가 매달 매출을 지켜보고, 복식부기나 성실신고 같은 의무가 바뀌기 전에 먼저 알려 드려요. 법인 전환이 필요한지도 세무사가 설명해요.',
-   inc:[['기본 4가지 (장부·부가세·담당자·세무사)','기본'],['AI 매출 모니터링 · 구간 알림','기본'],['세무사가 장부를 직접','선택']],
-   pick:[['사업자 형태','개인'],['작년 매출','5억~10억'],['서비스 추가','세무사가 장부를 직접']]},
+   inc:[['기본 4가지 (장부·부가세·담당자·세무사)','기본'],['AI 매출 모니터링 · 구간 알림','기본'],['세무사 직접 담당','선택']],
+   pick:[['사업자 형태','개인'],['작년 매출','5억~10억'],['서비스 추가','세무사 직접 담당']]},
   {k:'corp', tab:'법인 대표님', tag:'법인사업자', h:'법인 장부와 법인세를 챙겨야 하는 대표님', who:'법인 장부·부가세·직원 신고를 한 담당자가 챙기고, 법인세 신고는 신고 전에 금액을 먼저 알려 드려요.',
    inc:[['법인 장부','기본'],['부가가치세 신고','기본'],['인건비 신고 (4대보험 포함) · 직원 3명까지','기본 포함'],['법인세 신고','신고 전 안내',1]],
    pick:[['사업자 형태','법인'],['업종 · 작년 매출','우리 가게에 맞게'],['서비스 추가','필요한 것만']]},
@@ -830,32 +842,36 @@ function showModel(i){
   panel.innerHTML = `<div><span class="tag">${m.tag}</span><h3>${m.h}</h3><p class="who">${m.who}</p>
     <ul class="inc">${m.inc.map(x=>`<li class="${x[2]?'x':''}"><div class="inc-n">${x[0]}${QI.btn(QI.key(x[0]))}</div><span>${x[1]}</span></li>`).join('')}</ul>
     <a class="btn" href="build.html?p=${m.k}">이 상황으로 설계하기</a></div>
-    <div class="fit-pic">${m.img ? `<img src="${m.img}" alt="" loading="lazy">` : `<video class="lv" src="img/v_${m.k}.mp4?v=3" poster="img/v_${m.k}.jpg?v=3" muted loop playsinline preload="none" aria-hidden="true"></video>`}</div>`;
+    <div class="fit-pic">${m.img ? `<img src="${m.img}" alt="" loading="lazy">` : `<video class="lv" src="img/v_${m.k}.mp4?v=3" poster="img/v_${m.k}.jpg?v=3" muted playsinline preload="none" aria-hidden="true"></video>`}</div>`;
 }
 tabs.addEventListener('click', e=>{ const b=e.target.closest('[role=tab]'); if(b) showModel(+b.dataset.i); });
 tabs.addEventListener('keydown', e=>{ const n0 = FITS.length, i=[...tabs.children].findIndex(b=>b.getAttribute('aria-selected')==='true');
   const n = e.key==='ArrowRight' ? (i+1)%n0 : e.key==='ArrowLeft' ? (i+n0-1)%n0 : e.key==='Home' ? 0 : e.key==='End' ? n0-1 : -1; if(n<0) return; e.preventDefault(); showModel(n); tabs.children[n].focus(); });
 showModel(0);
-// 영상(.lv): 화면에 40% 넘게 보이면 재생, 벗어나면 멈춤. 탭을 바꿔 새로 생긴 영상도 지켜봄
-const lvIO = new IntersectionObserver(es=> es.forEach(e=>{ const v = e.target; if (reduce) return; if (e.intersectionRatio > .4) v.play().catch(()=>{}); else v.pause(); }), {threshold:[0,.4,.6]});
+// 영상(.lv): 화면에 40% 넘게 보이면 재생, 벗어나면 멈춤. 한 번 끝까지 돌면 마지막 장면에 섬(반복 없음). 탭을 바꿔 새로 생긴 영상도 지켜봄
+const lvIO = new IntersectionObserver(es=> es.forEach(e=>{ const v = e.target; if (reduce) return; if (e.intersectionRatio > .4){ if (!v.ended) v.play().catch(()=>{}); } else v.pause(); }), {threshold:[0,.4,.6]});
 const watchLv = () => document.querySelectorAll('video.lv:not([data-w])').forEach(v=>{ v.dataset.w = 1; lvIO.observe(v); });
 watchLv(); new MutationObserver(watchLv).observe(panel, {childList:true});
 
 // 저절로 넘김 도우미: 보이는 동안만, 마우스를 올리거나 키보드 초점이 있으면 멈춤, 움직임 줄이기 설정이면 쓰지 않음
 // hoverEl: 마우스를 올리면 잠깐 멈출 곳(기본 box) · onState(running): 도는 중인지 알려 줌(진행 줄용)
-function autoAdvance(box, ms, step, hoverEl = box, onState = () => {}){
+// btn: 보이는 '자동 넘김 멈추기' 단추(누르면 멈춤 ↔ 다시 켜기). 단추를 누르거나 초점을 둔 것은 '고른 것'으로 치지 않음
+function autoAdvance(box, ms, step, hoverEl = box, onState = () => {}, btn = null){
   if (reduce) return;
   let t = 0, seen = false, hov = false, foc = false, stop = false;
+  const own = e => !!btn && btn.contains(e.target);
   const arm = () => { clearInterval(t); const go = seen && !hov && !foc && !stop; if (go) t = setInterval(step, ms); onState(go); };
   new IntersectionObserver(([e]) => { seen = e.isIntersecting; arm(); }, {threshold:.35}).observe(box);
   hoverEl.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse'){ hov = true; arm(); } });
   hoverEl.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse'){ hov = false; arm(); } });
-  box.addEventListener('focusin', () => { foc = true; arm(); });
-  box.addEventListener('focusout', e => { if (!box.contains(e.relatedTarget)){ foc = false; arm(); } });
+  box.addEventListener('focusin', e => { foc = !own(e); arm(); });
+  box.addEventListener('focusout', e => { const to = e.relatedTarget; if (!box.contains(to) || (btn && btn.contains(to))){ foc = false; arm(); } });
   // 직접 고르면(누르기·키·옆으로 밀기) 다시는 저절로 넘기지 않음 — 읽던 내용이 바뀌지 않게(WCAG 2.2.2).
   // 화면을 위아래로 스크롤하는 것(휠·세로로 끄는 손가락)은 '고른 것'이 아님 — 11/26 이것 때문에 탭이 전혀 안 넘어갔음
-  const halt = () => { stop = true; arm(); };
+  const setStop = v => { stop = v; if (btn){ btn.textContent = v ? '자동 넘김 다시 켜기' : '자동 넘김 멈추기'; } arm(); };
+  const halt = e => { if (!own(e)) setStop(true); };
   box.addEventListener('click', halt); box.addEventListener('keydown', halt);
+  if (btn) btn.addEventListener('click', () => setStop(!stop));
   let sx = null, sy = 0;
   box.addEventListener('touchstart', e => { const p = e.touches[0]; sx = p.clientX; sy = p.clientY; }, {passive:true});
   box.addEventListener('touchend', e => { if (sx === null) return; const p = e.changedTouches[0], dx = Math.abs(p.clientX - sx), dy = Math.abs(p.clientY - sy); sx = null; if (dx > 12 && dx > dy) halt(); }, {passive:true});
@@ -864,16 +880,16 @@ function autoAdvance(box, ms, step, hoverEl = box, onState = () => {}){
 // 이런 사장님께: 6초마다 다음 상황으로
 const fitBox = document.querySelector('.models-sec .wrap');
 const tabAuto = on => { tabs.classList.remove('auto'); if (on){ void tabs.offsetWidth; tabs.classList.add('auto'); } }; // 진행 줄을 처음부터
-autoAdvance(fitBox, 6000, () => { const i = [...tabs.children].findIndex(b => b.getAttribute('aria-selected') === 'true'); showModel((i + 1) % FITS.length); tabAuto(true); }, tabs, tabAuto);
-// 옆으로 넘기는 줄(견적 이야기 카드·상담 기록): 다음 칸으로, 끝이면 처음으로
+autoAdvance(fitBox, 6000, () => { const i = [...tabs.children].findIndex(b => b.getAttribute('aria-selected') === 'true'); showModel((i + 1) % FITS.length); tabAuto(true); }, tabs, tabAuto, $('fit-stop'));
+// 옆으로 넘기는 줄(상담 기록): 다음 칸으로, 끝에 닿았을 때만 처음으로. 견적 이야기 카드는 손으로만 넘김
 function slideNext(track){
   const items = [...track.children].filter(el => el.offsetWidth);
   const gap = items[1].offsetLeft - items[0].offsetLeft, max = track.scrollWidth - track.clientWidth;
-  const next = track.scrollLeft + gap > max + 4 ? 0 : Math.min(max, Math.round(track.scrollLeft / gap + 1) * gap);
+  const next = track.scrollLeft >= max - 4 ? 0 : Math.min(max, (Math.round(track.scrollLeft / gap) + 1) * gap);
   track.scrollTo({left: next, behavior: 'smooth'});
 }
-autoAdvance($('track'), 7500, () => slideNext($('track'))); // 카드 안 흐름(약 6초)을 다 본 뒤 넘김
-autoAdvance($('pftrack'), 3500, () => slideNext($('pftrack')));
+// shortcut: 넘길 거리는 처음 열 때만 잼 — 창 크기를 바꿔도 다시 걸지 않음
+{ const pf = $('pftrack'); if (pf.scrollWidth - pf.clientWidth > 4) autoAdvance(pf, 3500, () => slideNext(pf), pf, () => {}, $('pf-stop')); else $('pf-stop').hidden = true; }
 FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg?v=3`; }); // 탭 바꿀 때 첫 장면이 바로 뜨게 미리 받음
 // 휴대폰 아래 고정 단추: 첫 화면이 화면에서 위로 벗어나면 보임(넓은 화면은 CSS 로 숨김)
 (() => {
@@ -886,7 +902,7 @@ FITS.forEach(m=>{ const im = new Image(); im.src = m.img || `img/v_${m.k}.jpg?v=
   const d = document.getElementById('lead'), f = document.getElementById('leadf'), msg = f.querySelector('.lead-msg');
   let from = null;
   const req = [...f.elements].filter(el=> el.required);
-  const why = el => el.name==='tel' ? (el.value.trim() ? '연락처를 숫자로 적어 주세요. 예: 010-1234-5678' : '연락처를 적어 주세요.') : el.name==='agree' ? '동의에 체크해 주세요.' : '이름 또는 상호를 적어 주세요.';
+  const why = el => el.name==='tel' ? (el.value.trim() ? '휴대폰 번호를 숫자로 적어 주세요. 예: 010-1234-5678' : '휴대폰 번호를 적어 주세요.') : el.name==='agree' ? '동의에 체크해 주세요.' : '이름 또는 상호를 적어 주세요.';
   const mark = (el, show) => { const bad = !el.checkValidity(); if (!bad || show){ el.setAttribute('aria-invalid', bad); $('e-'+el.name).textContent = bad ? why(el) : ''; } };
   f.addEventListener('input', e=>{ if (req.includes(e.target)){ mark(e.target, e.target.getAttribute('aria-invalid')==='true'); msg.textContent = ''; } }); // 고치는 즉시 오류 글을 지움
   document.querySelectorAll('[data-lead]').forEach(b=> b.addEventListener('click', ()=>{ from = b; msg.textContent = ''; f.classList.remove('done'); req.forEach(el=>{ el.removeAttribute('aria-invalid'); $('e-'+el.name).textContent = ''; }); d.showModal(); f.elements.name.focus(); }));

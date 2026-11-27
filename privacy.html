@@ -8,6 +8,8 @@
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://taxminlp.com/privacy.html">
 <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <script src="js/config.js?v=20261106f" defer></script>
 <script src="js/tags.js?v=20261106f" defer></script>
 <script src="js/track.js?v=20261126a" defer></script>
@@ -29,14 +31,13 @@ header .wrap{height:100%;display:flex;align-items:center;justify-content:space-b
 .logo b{font-weight:800}.logo span{font-weight:300}
 .logo::before{content:"";width:28px;height:28px;flex:none;background:url(img/logo_t.svg) center/contain no-repeat}
 .back{font-size:14px;font-weight:600;color:var(--sub);text-decoration:none;white-space:nowrap}
-.back:hover{color:var(--ink)}
 main{max-width:760px;margin:0 auto;padding:72px 24px 120px}
 h1{font-size:clamp(30px,4vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
 .meta{margin-top:14px;font-size:14px;color:var(--mute)}
 .intro{margin-top:32px;padding:20px 22px;background:var(--soft);border-radius:8px;font-size:15px;color:var(--ink-2)}
 .toc{margin-top:40px;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;font-size:14px;counter-reset:t}
 .toc a{color:var(--sub);text-decoration:none}
-.toc a:hover{color:var(--ink);text-decoration:underline}
+@media (hover:hover){.back:hover{color:var(--ink)}.toc a:hover{color:var(--ink);text-decoration:underline}}
 section{margin-top:56px;scroll-margin-top:84px}
 h2{font-size:20px;font-weight:700;letter-spacing:-.01em;line-height:1.45;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:16px}
 h3{font-size:16px;font-weight:700;margin:22px 0 6px}
@@ -129,7 +130,7 @@ footer a{text-decoration:underline}
     <dl>
       <dt>받는 곳</dt><dd>Google LLC(미국) · 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · 개인정보 문의는 policies.google.com/privacy</dd>
       <dt>넘어가는 항목</dt><dd>1번 필수 동의 항목과 적으신 선택 항목(광고 효과 확인에 동의하시면 그 정보도 함께)</dd>
-      <dt>넘어가는 때·방법</dt><dd>보내기 단추를 누르시는 순간, 암호화된 통신(HTTPS)으로</dd>
+      <dt>넘어가는 때·방법</dt><dd>‘남기기’ 또는 ‘이 설계안으로 상담 요청’ 단추를 누르시는 순간, 암호화된 통신(HTTPS)으로</dd>
       <dt>쓰는 곳·보관</dt><dd>상담 연락을 위한 저장·전달 · 보관 기간은 2번과 같습니다</dd>
       <dt>원하지 않으시면</dt><dd>신청 창 대신 카카오톡이나 전화(<a class="tel" href="tel:050714457729">0507-1445-7729</a>)로 상담하세요. 그러면 구글로 넘어가지 않고, 상담은 똑같이 받으실 수 있습니다.</dd>
     </dl>
@@ -164,7 +165,7 @@ footer a{text-decoration:underline}
     <p>광고 효과를 재려고 다음을 씁니다.</p>
     <p>① 사무소 자체 집계: 페이지를 연 일, 카톡·전화 버튼을 누른 일, 기장 설계를 마친 일, 연락처·설계안을 보낸 일을 들어오신 경로(광고·검색 등)와 함께 사무소 구글 스프레드시트에 숫자로 셉니다. 연락처·설계안을 보낸 일은 광고 효과 확인(선택)에 동의하신 경우에만 경로와 함께 세고, 동의하지 않으시면 경로 없이 횟수만 셉니다. 이름·연락처는 넣지 않습니다.<br>
     ② 들어오신 경로 기억: 처음 들어오신 경로(광고·검색어)를 이 브라우저 저장공간(localStorage)에 30일 동안(30일이 지나면 다음 방문 때 지우고 새로 적습니다), 이번 방문의 경로는 창을 닫으면 지워지는 저장공간(sessionStorage)에 두었다가, 신청 창에서 광고 효과 확인(선택)에 동의하시면 함께 받습니다. 브라우저의 '사이트 데이터 삭제'로 지울 수 있습니다.<br>
-    ③ 구글 애널리틱스(방문 통계): 페이지를 본 일, 카톡·전화 버튼을 누른 일, 기장 설계를 마친 일, 들어오신 경로(광고·검색어), 기기·브라우저 종류, 대략적인 지역을 쿠키로 모아 방문 통계를 냅니다. 이름·연락처는 보내지 않습니다. 받는 곳: Google LLC(미국, 연락처는 4번과 같음) · 넘어가는 때·방법: 페이지를 여실 때 암호화된 통신(HTTPS)으로 · 보관: 구글 애널리틱스 설정에 따라 최대 14개월 뒤 지워집니다.<br>
+    ③ 구글 애널리틱스(방문 통계): 페이지를 본 일, 카톡·전화 버튼을 누른 일, 기장 설계를 마친 일, 연락처·설계안을 보낸 일(이름·연락처 없이), 들어오신 경로(광고·검색어), 기기·브라우저 종류, 대략적인 지역을 쿠키로 모아 방문 통계를 냅니다. 이름·연락처는 보내지 않습니다. 받는 곳: Google LLC(미국, 연락처는 4번과 같음) · 넘어가는 때·방법: 페이지를 여실 때 암호화된 통신(HTTPS)으로 · 보관: 구글 애널리틱스 설정에 따라 최대 14개월 뒤 지워집니다.<br>
     ④ 구글 광고 전환 측정: 구글 광고를 보고 들어오신 경우, 카톡·전화 버튼을 누른 일, 연락처·설계안을 보낸 일, 기장 설계를 마친 일을 광고 클릭 정보(쿠키)와 함께 구글 광고에 알려 어떤 광고가 효과 있었는지 셉니다. 이름·연락처는 보내지 않습니다. 받는 곳: Google LLC(미국, 연락처는 4번과 같음) · 넘어가는 때·방법: 해당 버튼을 누르거나 설계·신청을 마치실 때 암호화된 통신(HTTPS)으로 · 보관: 광고 클릭 쿠키는 브라우저에 최대 90일, 측정 결과는 구글 광고 정책에 따른 기간 동안 보관됩니다.<br>
     ⑤ 네이버 전환 추적: 지금은 쓰지 않습니다. 쓰게 되면 받는 곳(네이버)과 보관 기간을 이 항목에 먼저 적고 시행일을 바꿉니다.</p>
     <p>거부하는 법: 브라우저 설정에서 쿠키·사이트 데이터를 막거나 지울 수 있습니다. 구글 애널리틱스는 구글이 제공하는 차단 부가기능(tools.google.com/dlpage/gaoptout)으로도 막을 수 있습니다. 구글 광고 설정(adssettings.google.com)과 네이버 맞춤형 광고 설정에서 맞춤 광고를 끌 수 있습니다. 막아도 상담은 똑같이 받으실 수 있습니다.</p>
