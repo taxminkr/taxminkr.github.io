@@ -16,7 +16,7 @@
 <meta property="og:title" content="내 기장 설계 | 택스민">
 <meta property="og:description" content="사업자 형태·업종·작년 매출과 우리 가게 상황에 답하면 내 기장 설계안과 월 기장료가 바로 나와요. 개인 월 5만원부터 · 법인 월 10만원부터(부가세 별도)">
 <meta property="og:url" content="https://taxminlp.com/build.html">
-<meta property="og:image" content="https://taxminlp.com/img/og-v11.jpg">
+<meta property="og:image" content="https://taxminlp.com/img/og-v12.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="TAXMIN 우리 가게에 필요한 만큼만. 기장료도 딱 그만큼만.">
@@ -24,7 +24,7 @@
 <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-<script src="js/lead.js" defer></script>
+<script src="js/lead.js?v=20261128c" defer></script>
 <script src="js/config.js?v=20261106f" defer></script>
 <script src="js/tags.js?v=20261106f" defer></script>
 <script src="js/track.js?v=20261126a" defer></script>
@@ -42,10 +42,11 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:76px;scroll-padding-bottom:calc(var(--bar) + 16px)}
 h1,h2,h3{text-wrap:balance}
-p{text-wrap:pretty}
+p,.stk .w,.o-t > span,.ldg .agree > span{text-wrap:pretty}
 body{font-family:var(--font);color:var(--ink);background:#fff;font-size:16px;line-height:1.55;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;padding-bottom:var(--bar)}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a,button,summary,label{-webkit-tap-highlight-color:transparent}
 button:disabled{cursor:default}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .wrap{max-width:var(--w);margin:0 auto;padding:0 var(--pad)}
@@ -132,7 +133,9 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .bd-hd span{font-size:12px;color:var(--mute)}
 .opt{display:grid;grid-template-columns:minmax(0,1fr) auto 52px;align-items:center;gap:8px 14px;padding:16px 0;border-bottom:1px solid var(--line)}
 .opt[hidden]{display:none}
-.o-t b{display:flex;align-items:center;gap:4px;font-size:16px;font-weight:700;color:var(--ink)}
+.o-t b{display:block;font-size:16px;font-weight:700;color:var(--ink)}
+.o-t b > span{padding-right:22px} /* ? 단추 자리(4+18)를 제목 끝에 미리 잡아 둠 → 단추만 혼자 다음 줄로 떨어지지 않음 */
+.o-t b .qi{display:inline-flex;vertical-align:-3px;margin-left:-18px}
 .o-t > span{display:block;margin-top:3px;font-size:13px;line-height:1.45;color:var(--mute)}
 .o-p{font-style:normal;font-size:15px;font-weight:700;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap;transition:color .2s}
 .opt.on .o-p{color:var(--blue)}
@@ -158,7 +161,7 @@ h1{font-size:32px;font-weight:700;letter-spacing:-.02em;color:#021A2C;line-heigh
 .bd-sum b small{font-size:15px;font-weight:700;margin-left:2px}
 .done-go{display:flex;align-items:center;justify-content:center;width:100%;height:56px;margin-top:16px;border-radius:12px;background:var(--blue);color:#fff;font-size:17px;font-weight:700}
 .done-n{margin-top:8px;font-size:13px;color:var(--mute);text-align:center}
-@media (hover:hover){.cf:hover{box-shadow:inset 0 0 0 1.5px #9AA1AC}.cf.set:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}.done-go:hover{background:#1B44D6}.bm-go:hover{background:#1B44D6}.sw:hover{filter:brightness(.96)}}
+@media (hover:hover){.cf:hover{box-shadow:inset 0 0 0 1.5px #9AA1AC}.cf.set:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}.done-go:hover{background:#1B44D6}.bm-go:hover{background:#1B44D6}body.built .done-go:hover{background:var(--soft)}.sw:hover{filter:brightness(.96)}}
 @media (prefers-reduced-motion:reduce){.opt.pop{animation:none}}
 @media (max-width:360px){.bd-hd span{display:none}}
 
@@ -213,7 +216,7 @@ body.built .pre{display:none}
 .stk li.inc .a{color:var(--blue);font-size:13.5px}
 .stk li.q .w{color:var(--mute)}
 /* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
-:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.done-go,.own button,.st-go,.bm-go,.sw,.pm):not(:disabled):active{scale:.96}
+:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.done-go,.own button,.st-go,.bm-go,.sw,.pm,.ldg .lead-b button):not(:disabled):active{scale:.96}
 .stk li.off .l{text-decoration:line-through;text-decoration-color:#9AA1AC;color:var(--sub);font-weight:500}
 .stk li.off .w{color:var(--mute)}
 .stk li.hint{display:block;font-size:13px;color:var(--mute);border:1px dashed #CDD2DA;border-radius:6px;padding:9px 12px;margin:8px 0}
@@ -269,6 +272,7 @@ body.built .pre{display:none}
 .bar .wrap{height:100%;display:flex;align-items:center;gap:20px}
 .bar .m{flex:1;min-width:0;font-size:13px;color:var(--mute)}
 .bar .m b{display:block;font-size:16px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (min-width:721px) and (max-width:1100px){.bar .m b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:14px;line-height:1.35}}
 .bar .t{text-align:right;font-size:13px;color:var(--mute);line-height:1.2;min-width:0}
 .bar .t i{font-style:normal}
 .bar .t .ms{display:none}
@@ -291,7 +295,7 @@ body.built .pre{display:none}
 .ldg h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
 .ldg .lead-s{font-size:14px;color:#5B6270;margin-top:-6px;line-height:1.6}
 .ldg label,.ldg legend{display:grid;gap:6px;font-size:14px;font-weight:600;color:#191B1F}
-.ldg label small,.ldg legend small{font-weight:500;color:#646B77}
+.ldg label small,.ldg legend small{font-size:12px;font-weight:500;color:#646B77}
 .ldg fieldset{border:0;display:grid;gap:6px;min-width:0}
 .ldg legend{display:block;margin-bottom:6px}
 .ldg input:not([type=checkbox]):not([type=radio]),.ldg select,.ldg textarea{font-size:16px!important;height:46px;border:1px solid var(--ctl-line);border-radius:8px;padding:0 12px;font:inherit;font-weight:500;color:#020617;background:#fff;width:100%}
@@ -393,9 +397,10 @@ body.built .pre{display:none}
 .list li{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding:10px 0;border-bottom:1px solid var(--line)}
 .mon figcaption{font-size:12px;color:var(--mute);margin-top:14px;padding:0 4px}
 @media (max-width:1200px){.mon-body{grid-template-columns:1fr}}
-/* 칸이 220px 밑으로 줄지 않게. 선: 모든 칸 위·왼쪽에 긋고, 줄 첫 칸의 왼쪽 선은 바깥(-1px)으로 밀어 잘라 냄 */
-.care-steps{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-left:-24px;overflow:hidden}
-.care-steps li{padding:28px 24px 8px;position:relative;min-width:0;margin-left:-1px;border-top:1px solid #DDE1E7;border-left:1px solid #DDE1E7}
+/* 4단(넓은 화면)·2단(1023 이하)·1단(400 이하). 선: 모든 칸 위·왼쪽에 긋고, 줄 첫 칸은 왼쪽 선·여백 없이 위 상자·바닥글과 같은 x 에서 시작 */
+.care-steps{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.care-steps li{padding:28px 24px 8px;position:relative;min-width:0;border-top:1px solid #DDE1E7;border-left:1px solid #DDE1E7}
+.care-steps li:nth-child(4n+1){padding-left:0;border-left:0}
 .care-steps b{font-family:Manrope,sans-serif;font-size:13px;font-weight:700;color:var(--blue)}
 .care-steps h3{font-size:17px;font-weight:600;margin-top:14px;color:var(--ink)}
 .care-steps p{font-size:14px;color:var(--sub);margin-top:8px;line-height:1.7}
@@ -412,6 +417,8 @@ body.built .pre{display:none}
 .own .send:hover{background:#1B44D6}
 .bar .go:hover{background:#1B44D6}
 .bar a.go:hover{background:var(--soft)}
+.ldg .b-fill:hover{background:#1B44D6}
+.ldg .b-line:hover{background:var(--soft)}
 }
 @media (min-width:1025px) and (max-height:980px){
   .mk{padding-top:20px}.form{margin-top:14px}.mk > div > .lead{margin-top:2px}
@@ -459,8 +466,8 @@ body.built .pre{display:none}
   .ldg form{padding:22px 18px 18px}
   .ldg .lead-b{margin:0 -18px -18px;padding:12px 18px 14px}
 }
-@media (min-width:641px) and (max-width:1023px){.care-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:400px){.care-steps{grid-template-columns:1fr}.mon-k{grid-template-columns:1fr 1fr}.mon-k div:nth-child(3){grid-column:1/-1;padding-left:0;border-left:0;border-top:1px solid var(--line);margin-top:14px}}
+@media (max-width:1023px){.care-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.care-steps li:nth-child(4n+1){padding-left:24px;border-left:1px solid #DDE1E7}.care-steps li:nth-child(2n+1){padding-left:0;border-left:0}}
+@media (max-width:400px){.care-steps{grid-template-columns:1fr}.care-steps li,.care-steps li:nth-child(n){margin-left:0;border-left:0;padding-inline:0}.mon-k{grid-template-columns:1fr 1fr}.mon-k div:nth-child(3){grid-column:1/-1;padding-left:0;border-left:0;border-top:1px solid var(--line);margin-top:14px}}
 @media (max-width:400px){.bar .go .lg{display:none}.bar .go .sm{display:inline}.bar .wrap{gap:8px}.bar .go{padding:0 12px}.ldg .two{grid-template-columns:1fr}}
 @media (max-width:360px){.seg.c2 .ch,.seg.c3 .ch{font-size:14px;gap:6px;padding:4px 6px}.ch svg.i{width:20px;height:20px}.seg.st{grid-template-columns:1fr}.ask .chk{grid-template-columns:1fr}}
 /* ── 휴대폰(720px 이하): 한 화면에 한 단계씩 옆으로 넘기는 설계. 위 '내 상황' 띠는 늘 보임 ── */
@@ -571,6 +578,7 @@ body:not(.built) .o-lk{justify-self:end}
 .board .step{box-shadow:inset 0 0 0 1px var(--ctl-line);border-radius:8px;background:#fff}
 /* 설계 완료: 메인 파란 단추 */
 .done-go{height:52px;border-radius:6px;font-size:16px}
+body.built .done-go{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ctl-line)}
 .pre{border-radius:16px;box-shadow:0 0 0 1px var(--line)}
 @media (max-width:720px){
   .cg-h{font-size:26px;font-weight:600;letter-spacing:-.02em;margin-bottom:20px}
@@ -587,7 +595,7 @@ body:not(.built) .o-lk{justify-self:end}
 .ch-t{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left}
 .ch-t small{font-size:13px;font-weight:500;color:var(--mute)}
 .ch[aria-pressed=true] .ch-t small{color:rgba(255,255,255,.7)}
-.built-msg{display:block;margin:-2px 0 18px;padding:20px 20px 18px;border-radius:12px;background:#EEF2FF}
+.built-msg{display:block;margin:-2px 0 18px;padding:20px 20px 18px;border-radius:6px;background:#EEF2FF}
 .bm-k{font-size:15px;font-weight:700;color:var(--blue)}
 .bm-k .js-who{display:inline;font-size:inherit;color:inherit;margin:0} /* 위 옛 .built-msg span 규칙이 이름만 떼어 내지 않게 */
 .bm-p{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:10px}
@@ -633,7 +641,7 @@ body:not(.built) .o-lk{justify-self:end}
 .sw[aria-checked=true]::after{background:#fff}
 body:not(.built) .bar .go.line{display:none}
 @media (min-width:721px){.bar .m > span{display:none}}
-@media (prefers-reduced-motion:no-preference){:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.done-go,.own button,.st-go,.bm-go,.sw,.pm),.bar .go{transition-property:scale,background-color,color,box-shadow;transition-duration:.15s;transition-timing-function:ease-out}}
+@media (prefers-reduced-motion:no-preference){:is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.done-go,.own button,.st-go,.bm-go,.sw,.pm,.ldg .lead-b button),.bar .go{transition-property:scale,background-color,color,box-shadow;transition-duration:.15s;transition-timing-function:ease-out}}
 </style>
 </head>
 <body data-page="v11-build">
@@ -822,20 +830,20 @@ body:not(.built) .bar .go.line{display:none}
 <dialog class="ldg" id="lead" aria-labelledby="lead-h">
   <form id="leadf" novalidate>
     <h2 id="lead-h">설계안 보내기</h2>
-    <p class="lead-s">이 설계안을 보고 평일 10:00~17:30 사이에 먼저 연락드려요.</p>
+    <p class="lead-s">이 설계안을 보고 평일 10:00~17:30 사이에 먼저 연락드려요. 주말·공휴일에 남기시면 다음 평일에 연락드려요.</p>
     <div class="lead-rc" id="leadrc"></div>
     <label>이름 또는 상호<input name="name" autocomplete="name" required aria-describedby="e-name"></label><small class="err" id="e-name"></small>
     <label>휴대폰 번호<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required pattern="(010[\- ]?[0-9]{4}|01[16789][\- ]?[0-9]{3,4})[\- ]?[0-9]{4}" aria-describedby="e-tel"></label><small class="err" id="e-tel"></small>
     <label>편한 연락 시간<select name="when"><option>언제든 괜찮아요</option><option>오전(10~12시)</option><option>오후(13~17시)</option></select></label>
     <details class="more"><summary>더 적기 <small>(선택) 시작 희망 달 · 지금 맡긴 곳 · 꼭 물어볼 것</small></summary><div class="more-b">
     <div class="two">
-      <label><span>시작 희망 달 <small>(선택)</small></span><select name="start" id="startm"></select></label>
-      <fieldset><legend>지금 맡긴 곳 <small>(선택)</small></legend><div class="rad"><label><input type="radio" name="now" value="있음">있음</label><label><input type="radio" name="now" value="없음">없음</label></div></fieldset>
+      <label><span>시작 희망 <span class="nw">달 <small>(선택)</small></span></span><select name="start" id="startm"></select></label>
+      <fieldset><legend>지금 맡긴 <span class="nw">곳 <small>(선택)</small></span></legend><div class="rad"><label><input type="radio" name="now" value="있음">있음</label><label><input type="radio" name="now" value="없음">없음</label></div></fieldset>
     </div>
-    <label><span>꼭 물어볼 것 <small>(선택)</small></span><textarea name="ask" rows="2" maxlength="300" placeholder="예: 직원 4대보험을 처음 신고해요"></textarea></label>
+    <label><span>꼭 물어볼 <span class="nw">것 <small>(선택)</small></span></span><textarea name="ask" rows="2" maxlength="300" placeholder="예: 직원 4대보험을 처음 신고해요"></textarea></label>
     </div></details>
-    <label class="agree"><input type="checkbox" name="agree" required aria-describedby="e-agree"><span>상담 연락을 위해 이름·연락처를 받는 데 동의해요 (필수)<small>받는 것: 이름 또는 상호·연락처·연락 시간(적으신 경우 시작 희망 달·맡긴 곳 여부·물어볼 것과 이 설계안) · 쓰는 곳: 상담 연락 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡이나 전화(<a href="tel:050714457729">0507-1445-7729</a>)로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span></label>
-    <label class="agree ad"><input type="checkbox" name="adConsent"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 동의해요 (선택)<small>받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요</small></span></label>
+    <label class="agree"><input type="checkbox" name="agree" required aria-describedby="e-agree"><span>상담 연락을 위해 이름 또는 상호·휴대폰 번호를 받는 데 <span class="nw">동의해요 (필수)</span><small>함께 받는 것: 편한 연락 시간(고르지 않으면 언제든)·이 설계안, 적으신 경우 시작 희망 달·맡긴 곳 여부·물어볼 것 · 쓰는 곳: 상담 연락 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 카톡이나 전화(<a href="tel:050714457729">0507-1445-7729</a>)로 상담받을 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span></label>
+    <label class="agree ad"><input type="checkbox" name="adConsent"><span>들어온 경로(광고·검색어)를 광고 효과 확인에 쓰는 데 <span class="nw">동의해요 (선택)</span><small>받는 것: 들어온 경로·광고 이름 · 쓰는 곳: 광고 효과 확인 · 보관: 마지막 상담일부터 1년 · 동의하지 않으셔도 상담에는 아무 차이가 없어요</small></span></label>
     <small class="err" id="e-agree"></small>
     <p class="lead-msg" role="status" aria-live="polite"></p>
     <div class="lead-b"><button type="button" class="b-line" data-close>닫기</button><button type="submit" class="b-fill">이 설계안으로 상담 요청</button></div>
@@ -877,7 +885,8 @@ function calc(sel){
   ups.forEach((on,i)=>{ if (on) lines.push(['작년 매출 ' + SALES[sel.sales][0] + (i ? ' · 기본 구간 2배 넘음' : ' · 기본 구간 넘음'), 2]); });
   const up = ups.filter(Boolean).length*2;
   OPTS.forEach(o=>{ if (sel.opt[o.k] && (!o.only || o.only===sel.type)) lines.push([o.t + (o.k==='pay' ? (sel.big ? ' · 5명 이상' : ' · 4명') : ''), o.p]); });
-  return {m, sc, up, lines, total: lines.reduce((s,l)=>s+l[1],0), ask: (m!=='lite' && (sc===3 || !!SALES[sel.sales][2])) || (!!sel.opt.pay && sel.big)};
+  const st = m==='std' && SALES_LO[sel.sales] < BIZ[sel.biz][1]; // 매출 칸이 기본 구간에 걸침(넘을 수도, 안 넘을 수도)
+  return {m, sc, up, st, lines, total: lines.reduce((s,l)=>s+l[1],0), ask: (m!=='lite' && (sc===3 || !!SALES[sel.sales][2])) || st || (!!sel.opt.pay && sel.big)};
 }
 // self-check
 // 매출 칸 번호: 0 올해 시작 · 1 1억 미만 · 2 1~3억 · 3 3~5억 · 4 5~10억 · 5 10억 이상
@@ -888,6 +897,7 @@ console.assert(calc(S({type:'법인',opt:{co:1}})).total===10, '법인은 공동
 console.assert(calc(S({opt:{pay:1},big:true})).ask && !calc(S({opt:{pay:1}})).ask, '인건비 5명 이상은 상담');
 console.assert(calc(S({sales:5})).total===9 && calc(S({sales:5})).ask && calc(S({type:'법인',biz:1,sales:5})).total===14 && !calc(S({sales:4})).ask, '10억 이상은 만원부터');
 console.assert(calc(S({biz:1,sales:3})).total===5 && calc(S({biz:1,sales:4})).total===7, '도소매 3~5억은 기본 구간 안, 5~10억은 넘음');
+console.assert(calc(S({biz:1,sales:4})).ask && calc(S({biz:1,sales:4})).st && !calc(S({biz:0,sales:4})).st, '도소매 5~10억은 9억 기준에 걸쳐 상담 때 확정 · 음식 5~10억은 넘음');
 console.assert(calc(S()).lines.length===1, '일반 개인은 사업 규모 줄 없음');
 console.assert([0,1,2,3,4,5].every(b=>[0,1,2,3,4,5].every(x=>['개인','법인'].every(t=>calc(S({type:t,biz:b,sales:x})).lines.slice(1).every(l=>l[1]!==4)))), '매출 더하기는 한 줄에 2만원씩만');
 console.assert(calc(S({biz:4,sales:4})).total===calc(S({biz:3,sales:4})).total && calc(S({biz:5,sales:4})).total===calc(S({biz:0,sales:4})).total, 'IT = 제조·건설 · 내 업종이 없어요 = 5억 구간');
@@ -934,7 +944,7 @@ function restore(q, s){ const num = (k, max) => { const v = q.get(k); return v!=
 const $ = id => document.getElementById(id);
 const P = k => OPTS.find(o=>o.k===k).p;
 const bizName = i => i===5 ? '일반 업종' : BIZ[i][0]; // 설계안·안내 글에 쓰는 업종 이름
-const BIZ_SHORT = ['음식점·카페','도소매','서비스','제조·건설','IT','업종 확인'];
+const BIZ_SHORT = ['음식점·카페','도소매','서비스','제조·건설','IT','업종 상담 때 확인'];
 const BIZ_PLAN = ['음식점·카페','도소매·쇼핑몰','서비스 사업','제조·건설 사업','IT 사업','우리 가게'];
 const MON = [['예시 식당 B','음식점업'],['예시 상점 B','도소매업'],['예시 스튜디오 B','서비스업'],['예시 공방 B','제조업'],['예시 개발사 B','IT'],['예시 가게 B','업종 예시']];
 
@@ -1001,10 +1011,10 @@ function stack(r, R){
     const adds = R.filter(x=>x.k.startsWith('sizestd') || x.k.startsWith('up')), open = sel.biz==null;
     const law = !corp && !open && sel.sales ? ' · ' + shortSit(sel).split(' · ')[0] : '';
     const lim = open ? '' : `기본 구간(${BIZ[sel.biz][1]}억원 이하)`;
-    const conf = r.ask && r.m!=='lite' && (r.sc===3 || SALES[sel.sales][2]) ? ' · 상담 때 확정' : '';
+    const conf = r.ask && r.m!=='lite' && (r.sc===3 || SALES[sel.sales][2] || r.st) ? ' · 상담 때 확정' : '';
     if (adds.length) adds.forEach((x,i)=>{ const last = i===adds.length-1, two = x.k.includes('2배');
-      B.push({k:x.k, c: x.k.startsWith('size') ? '규모' : '매출', p:x.p, l: x.k.startsWith('size') ? '매출 큰 개인 · 작년 매출 ' + SALES[sel.sales][0] : x.l,
-        w: open ? '업종을 고르면 구간이 정해져요' + (last ? conf : '') : (two ? `작년 매출이 기본 구간의 2배(${eok(2*BIZ[sel.biz][1])})를 ${SALES_LO[sel.sales] >= 2*BIZ[sel.biz][1] ? '넘어' : '넘을 수 있어'} 장부·신고 일이 더 늘어요` : `${lim}을 넘어 장부·신고 일이 늘어요`) + (last ? law + conf : '')}); });
+      B.push({k:x.k, c: x.k.startsWith('size') ? '규모' : '매출', p:x.p, l:x.l,
+        w: (x.k.startsWith('size') ? '작년 매출 ' + SALES[sel.sales][0] + ' · ' : '') + (open ? '업종을 고르면 구간이 정해져요' + (last ? conf : '') : (two ? `작년 매출이 기본 구간의 2배(${eok(2*BIZ[sel.biz][1])})를 ${SALES_LO[sel.sales] >= 2*BIZ[sel.biz][1] ? '넘어' : '넘을 수 있어'} 장부·신고 일이 더 늘어요` : `${lim}을 ${SALES_LO[sel.sales] >= BIZ[sel.biz][1] ? '넘어' : '넘을 수 있어'} 장부·신고 일이 늘어요`) + (last ? law + conf : ''))}); });
     else B.push({k:'sales'+sel.sales, q:true, l: sel.sales ? '작년 매출 ' + SALES[sel.sales][0] : '올해 시작',
       w: sel.sales===0 ? '작년 매출이 없어 기본 구간으로 봐요' : open ? '업종을 고르면 구간이 정해져요' : `${lim} 안이라 더하지 않아요${law}`});
   }
@@ -1050,7 +1060,7 @@ function situation(){
   } else L.push('법인은 매출과 상관없이 복식부기 장부를 써요');
   // 신고 일정은 아래 '맡기시면 저희가 챙기는 신고'에(간이·일반은 묻지 않음)
   if (sel.biz===1) L.push('스마트스토어·오픈마켓 매출과 판매 수수료도 장부에 함께 정리해요'); // 확인 필요: 사무소 확인 뒤 확정
-  if (sel.biz===5) L.push('업종은 상담 때 확인해요 · 지금은 음식·제조 기준으로 보여 드려요');
+  if (sel.biz===5 && !corp) L.push('업종은 상담 때 확인해요 · 지금은 음식·제조 기준으로 보여 드려요');
   return L;
 }
 // 펼친 칸의 사장님 상황 한 줄(위 situation() 과 같은 법정 기준)
@@ -1071,7 +1081,7 @@ function title(){
   if (!sel.type && sel.biz==null && sel.sales==null && sel.staff==null && sel.co==null && sel.cpa==null) return '우리 가게 기장 설계안';
   const pre = (sel.staff>0 ? '직원 있는 ' : '') + (T(sel)==='개인' && sel.co ? '동업하는 ' : '');
   const noun = sel.biz!=null ? BIZ_PLAN[sel.biz] : '우리 가게';
-  return pre + (T(sel)==='법인' ? (sel.biz!=null ? BIZ_SHORT[sel.biz] + ' 법인' : '우리 법인') : noun) + ' 기장 설계안';
+  return pre + (T(sel)==='법인' ? (sel.biz!=null && sel.biz!==5 ? BIZ_SHORT[sel.biz] + ' 법인' : '우리 법인') : noun) + ' 기장 설계안';
 }
 function summary(){
   return [sel.type, sel.biz!=null && BIZ_SHORT[sel.biz], sel.sales!=null && (sel.sales ? '작년 ' + SALES[sel.sales][0] : '올해 시작'),
@@ -1133,7 +1143,7 @@ function showTotal(to, unit, from){
 
 // 설계를 처음 마치면 전환 신호 한 번(js/track.js 의 TM_TRACK 이 있을 때만 — 없으면 아무것도 안 함)
 var calcSent = false;
-function calcDone(){ if (calcSent || typeof window.TM_TRACK !== 'function') return; calcSent = true; const r = est(sel); window.TM_TRACK('calc_complete', {tier: r.open ? '-' : SIZE[r.m][0], price: $('bt').textContent}); }
+function calcDone(){ if (calcSent || typeof window.TM_TRACK !== 'function') return; calcSent = true; const r = est(sel); window.TM_TRACK('calc_complete', {tier: r.open ? '-' : SIZE[r.m][0], price: r.total + (r.ask ? '만원부터' : '만원')}); }
 function draw(what){
   const r = est(sel), corp = T(sel)==='법인';
   // 칩 · 스위치 · 직원 수 · 자동으로 붙는 사업 규모 줄
@@ -1169,7 +1179,7 @@ function draw(what){
   // 내 기장료 쌓기(설계안 · 휴대폰 펼친 칸 · 한 줄 요약) — 새로 생긴 줄만 자라며 들어옴
   const prev = lastKeys; R = rows(r);
   // 옵션판의 자동 줄: 사업 규모·작년 매출을 rows() 줄마다 한 줄씩(쌓기와 같은 금액)
-  { const adds = R.filter(x=> x.k.startsWith('size') || x.k.startsWith('up')), from = r.ask && r.m!=='lite' && (r.sc===3 || r.open || (sel.sales!=null && SALES[sel.sales][2])) ? '부터' : '';
+  { const adds = R.filter(x=> x.k.startsWith('size') || x.k.startsWith('up')), from = r.ask && r.m!=='lite' && (r.sc===3 || r.open || r.st || (sel.sales!=null && SALES[sel.sales][2])) ? '부터' : '';
     $('o-size').innerHTML = adds.map((x,i)=>`<div class="opt auto"><div class="o-t"><b><span>${x.l}</span></b><span>고른 형태·매출에 따라 저절로 붙어요</span></div><em class="o-p">+${x.p}만원${i===adds.length-1 ? from : ''}</em><span class="o-lk">자동</span></div>`).join(''); }
   const B = stack(r, R), sh = stackHTML(B, prev), ln = lineHTML(B, prev);
   $('stk').innerHTML = $('shstk').innerHTML = sh;
@@ -1230,7 +1240,9 @@ function go(n, still){
   curStep = on ? step : 0; bstate();
   document.body.classList.toggle('at-plan', on && step===4); // 설계안 장: 아래는 보내기 띠
   fit();
-  if (on && !still && moved){ window.scrollTo({top:0}); const h = panes[step].querySelector('h2') || $('rcttl'); h.tabIndex = -1; h.focus({preventScroll:true}); }
+  if (on && !still && moved){ const h = panes[step].querySelector('h2') || $('rcttl'), lid = document.querySelector(step===4 ? '.bar' : '.me-wrap');
+    // 200% 확대처럼 화면이 낮으면 제목이 아래 띠에 가리지 않을 만큼만 내림(세로만 — scrollIntoView 는 옆으로 움직이는 중인 .wzv 까지 밀어 버림)
+    window.scrollTo({top: Math.max(0, h.getBoundingClientRect().bottom + scrollY - (innerHeight - lid.offsetHeight - 16))}); h.tabIndex = -1; h.focus({preventScroll:true}); }
   if (still) requestAnimationFrame(()=> requestAnimationFrame(()=> wzv.classList.remove('still')));
 }
 new ResizeObserver(fit).observe(wzv); panes.forEach(p=> new ResizeObserver(fit).observe(p));
@@ -1278,7 +1290,8 @@ $('bprice').addEventListener('click', ()=>{ rc.scrollIntoView({block:'start', be
 const bar = document.querySelector('.bar'), wide = matchMedia('(min-width:1025px)');
 let rcSeen = false;
 const setBar = () => bar.classList.toggle('away', wide.matches && rcSeen);
-new IntersectionObserver(([e])=>{ rcSeen = e.isIntersecting; setBar(); }).observe(document.querySelector('.own'));
+const seen = new Set(), barIO = new IntersectionObserver(es=>{ es.forEach(e=> e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)); rcSeen = seen.size>0; setBar(); });
+[$('rc'), document.querySelector('.own')].forEach(el=> barIO.observe(el));
 wide.addEventListener('change', setBar);
 // 넓은 화면: '=' 줄이 머리띠 위로 지나가면 설계안 맨 위에 한 줄 요약을 붙임(누르면 쌓기로)
 new IntersectionObserver(([e])=> $('pin').classList.toggle('on', !e.isIntersecting && e.boundingClientRect.top < 72), {rootMargin:'-72px 0px 0px 0px'}).observe($('stkt'));
@@ -1293,7 +1306,7 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
   const sendBtn = f.querySelector('[type=submit]'), sendT = sendBtn.textContent;
   const esc = t => t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const req = [...f.elements].filter(el=> el.required);
-  const why = el => el.name==='tel' ? (el.value.trim() ? '휴대폰 번호를 숫자로 적어 주세요. 예: 010-1234-5678' : '휴대폰 번호를 적어 주세요.') : el.name==='agree' ? '동의에 체크해 주세요.' : '이름 또는 상호를 적어 주세요.';
+  const why = el => el.name==='tel' ? (el.value.trim() ? '010 등으로 시작하는 휴대폰 번호를 적어 주세요. 예: 010-1234-5678 (일반 전화는 카톡·전화 상담으로)' : '휴대폰 번호를 적어 주세요.') : el.name==='agree' ? '동의에 체크해 주세요.' : '이름 또는 상호를 적어 주세요.';
   const mark = (el, show) => { const bad = !el.checkValidity(); if (!bad || show){ el.setAttribute('aria-invalid', bad); $('e-'+el.name).textContent = bad ? why(el) : ''; } };
   f.addEventListener('input', e=>{ if (req.includes(e.target)){ mark(e.target, e.target.getAttribute('aria-invalid')==='true'); msg.textContent = ''; } }); // 고치는 즉시 오류 글을 지움
   document.querySelectorAll('[data-lead]').forEach(b=> b.addEventListener('click', ()=>{
@@ -1322,6 +1335,7 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
   const showMsg = () => { if (msg.textContent) requestAnimationFrame(()=> d.scrollTo({top: d.scrollHeight, behavior: calm.matches ? 'auto' : 'smooth'})); };
   f.addEventListener('submit', async e=>{
     e.preventDefault();
+    if (sendBtn.getAttribute('aria-busy')==='true') return; // 보내는 중 두 번 누르기 막기
     req.forEach(el=> mark(el, true));
     const bad = req.find(el=> !el.checkValidity());
     if (bad){ bad.focus(); return; }
@@ -1329,7 +1343,7 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
     if (!L || typeof L.send!=='function'){ msg.textContent = '지금은 온라인으로 보낼 수 없어요. ' + FALLBACK; showMsg(); return; }
     const el = f.elements, utm = {};
     new URLSearchParams(location.search).forEach((v,k)=>{ if (k.startsWith('utm_')) utm[k] = v; });
-    sendBtn.disabled = true; sendBtn.textContent = '보내는 중…'; msg.classList.remove('ok'); msg.textContent = '';
+    sendBtn.setAttribute('aria-busy', 'true'); sendBtn.textContent = '보내는 중…'; msg.classList.remove('ok'); msg.textContent = '';
     let res;
     // js/lead.js 가 읽는 칸(tel·agree·when·startMonth·current·message·plan·ind·rev·emp·tier·price)과 처음 정한 칸(phone·consent·summary·choices·extras…)을 함께 보냄
     const help = HELP.filter(x=>sel.help[x[0]]).map(x=>x[1]), ask = el.ask.value.trim(), sum = lines(), r = est(sel);
@@ -1345,9 +1359,10 @@ $('pinb').addEventListener('click', ()=> $('stk').scrollIntoView({block:'center'
     } catch { res = null; }
     const ok = !!(res && res.ok), fe = !ok && res && res.field && f.elements[res.field];
     if (fe){ fe.setAttribute('aria-invalid', true); $('e-'+res.field).textContent = res.message; fe.focus(); }
-    msg.textContent = fe ? '' : (res && res.message) ||(ok ? '보냈어요. 평일 10:00~17:30 사이에 먼저 연락드려요.' : '보내지 못했어요. ' + FALLBACK);
+    msg.textContent = fe ? '' : (res && res.message) ||(ok ? '보냈어요. 평일 10:00~17:30 사이에 먼저 연락드려요. 주말·공휴일에 남기시면 다음 평일에 연락드려요.' : '보내지 못했어요. ' + FALLBACK);
     msg.classList.toggle('ok', ok);
-    sendBtn.textContent = ok ? '보냈어요' : sendT; if (ok) f.querySelector('[data-close]').focus(); sendBtn.disabled = ok; // 보낸 뒤에는 두 번 보내지 않게
+    sendBtn.removeAttribute('aria-busy'); sendBtn.textContent = ok ? '보냈어요' : sendT;
+    if (ok){ f.querySelector('[data-close]').focus(); sendBtn.disabled = true; } // 보낸 뒤에는 두 번 보내지 않게 · 실패하면 초점은 단추에 남음
     showMsg();
   });
 })();

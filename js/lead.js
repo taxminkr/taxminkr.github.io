@@ -103,7 +103,7 @@
       .then(function (r) { return r.text(); })
       .then(function (t) {
         t = String(t || '').trim();
-        if (t === 'ok' || t === 'dup' || t === 'held') return done({ ok: true, code: t, message: '접수됐어요. 평일 10:00~17:30 사이에 전화드릴게요. (' + tel + ')' });
+        if (t === 'ok' || t === 'dup' || t === 'held') return done({ ok: true, code: t, message: '접수됐어요. 평일 10:00~17:30 사이에, 주말·공휴일이면 다음 평일에 전화드릴게요. (' + tel + ')' });
         if (t === 'bad') return done({ ok: false, code: 'bad', field: 'tel', message: '휴대폰 번호를 다시 확인해 주세요. 예: 010-1234-5678' });
         return done({ ok: false, code: 'server', message: '보내지 못했어요. 잠시 뒤 다시 눌러 주시거나 ' + OTHER });
       })
