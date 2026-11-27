@@ -199,7 +199,7 @@ body.built .pre{display:none}
 .rc ul,.stk{list-style:none}
 .rc .sit li{display:block;font-size:13px;color:var(--ink-2);padding:2px 0 2px 12px;position:relative;line-height:1.5}
 .rc .sit li::before{content:"";position:absolute;left:0;top:.68em;width:5px;height:5px;border-radius:50%;background:var(--blue)}
-/* 내 기장료 쌓기: 기본 4만원에서 고른 것마다 한 줄(금액 + 까닭) */
+/* 내 기장료 쌓기: 기본 5만원에서 고른 것마다 한 줄(금액 + 까닭) */
 .stk-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:16px;padding-bottom:8px;border-bottom:1px solid var(--ink);font-size:14px;font-weight:700;color:var(--ink)}
 .stk-h small{font-size:12px;font-weight:500;color:var(--mute)}
 .stk li{display:grid;grid-template-columns:62px minmax(0,1fr);gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line)}
@@ -208,6 +208,7 @@ body.built .pre{display:none}
 .stk .w{display:block;font-size:12.5px;color:var(--sub);line-height:1.5;margin-top:1px}
 .stk li.q .a,.stk li.off .a{color:#B4BAC4;font-weight:500}
 .stk li.q .l{color:var(--ink-2);font-weight:500}
+.stk li.inc .a{color:var(--blue);font-size:13.5px}
 .stk li.q .w{color:var(--mute)}
 /* 누를 때 손맛(11/26 점검): 눌린 동안 살짝 작아짐 */
 :is(.go,.go2,.btn,.hd-btn,.mcta a,.ch,.done-go,.own button,.st-go,.bm-go,.sw,.pm):not(:disabled):active{scale:.97}
@@ -222,7 +223,7 @@ body.built .pre{display:none}
 .stk-t small{display:block;font-size:12px;font-weight:500;color:var(--mute)}
 .stk-t b{font-family:Manrope,"Pretendard Variable",sans-serif;font-size:36px;font-weight:700;color:var(--ink);letter-spacing:-.03em;line-height:1.05;border-bottom:3px double var(--ink);padding-bottom:2px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .stk-t b small{display:inline;font-family:var(--font);font-size:15px;font-weight:600;color:var(--ink);margin-left:2px}
-/* 한 줄 요약: 월 8만원 = 기본 4 + 매출 3 + 직원 1 (휴대폰 위 띠 · 넓은 화면 붙는 줄) */
+/* 한 줄 요약: 월 8만원 = 기본 5 + 매출 2 + 직원 1 (휴대폰 위 띠 · 넓은 화면 붙는 줄) */
 .sl-in{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
 .sl-t{flex:none;font-family:Manrope,"Pretendard Variable",sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
 .sl-t small{font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:0;margin-left:1px}
@@ -653,7 +654,7 @@ body:not(.built) .bar .go.line{display:none}
   <a class="x" href="index.html">나가기</a>
 </div><p class="sr" id="bslive" role="status" aria-live="polite"></p></header>
 
-<!-- 휴대폰에서만 보임: 내 기장료 한 줄(월 8만원 = 기본 4 + 매출 3 …, 누르면 아래로 펼쳐짐) + 단계 이름 막대 -->
+<!-- 휴대폰에서만 보임: 내 기장료 한 줄(월 8만원 = 기본 5 + 매출 2 …, 누르면 아래로 펼쳐짐) + 단계 이름 막대 -->
 <div class="me-wrap">
   <div class="pg" aria-hidden="true"><i class="pg-bar js-pgbar"></i></div>
   <div class="pg-t"><button type="button" class="wz-back" id="wzback" disabled><svg class="i" aria-hidden="true"><use href="#i-up"/></svg>이전</button><b class="js-pgp">0%</b><span class="js-pgm">설계를 시작해 볼까요?</span></div>
@@ -685,9 +686,9 @@ body:not(.built) .bar .go.line{display:none}
     <div class="cg-hd svc-hd"><p class="cg-k">내 기장 서비스</p><h2 class="cg-q">필요한 서비스만 켜 주세요</h2><p class="cg-d">더할 게 없으면 바로 설계 완료를 눌러도 돼요</p></div>
     <section class="board" aria-labelledby="bd-h">
       <div class="bd-hd"><h2 id="bd-h">내 기장 서비스</h2><span>필요한 것만 켜세요</span></div>
-      <div class="opt lock"><div class="o-t"><b><span>기본 4가지</span><button type="button" class="qi" data-qi="base"></button></b><span id="o-base-d">장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서까지</span></div><em class="o-p">4만원</em><span class="o-lk">늘 포함</span></div>
+      <div class="opt lock"><div class="o-t"><b><span>기본 4가지</span><button type="button" class="qi" data-qi="base"></button></b><span id="o-base-d">장부·부가세 신고·전담 담당자·세무사 검토 · 월별 매출 보고서 · 인건비 신고(직원 3명까지)</span></div><em class="o-p">5만원</em><span class="o-lk">늘 포함</span></div>
       <div class="opt auto" id="o-size" hidden><div class="o-t"><b><span id="o-size-t"></span></b><span>고른 형태·매출에 따라 저절로 붙어요</span></div><em class="o-p" id="o-size-p"></em><span class="o-lk">자동</span></div>
-      <div class="opt" id="opt-pay"><div class="o-t"><b><span id="ot-pay">인건비 신고 (4대보험 포함)</span><button type="button" class="qi" data-qi="pay"></button></b><span>직원 월급·4대보험 신고</span></div><em class="o-p" id="op-pay">+1만원</em><button type="button" class="sw" role="switch" aria-checked="false" data-o="pay" aria-labelledby="ot-pay"></button>
+      <div class="opt" id="opt-pay"><div class="o-t"><b><span id="ot-pay">인건비 신고 (4대보험 포함)</span><button type="button" class="qi" data-qi="pay"></button></b><span>직원이 있으면 켜 주세요 · 3명까지 추가 금액 없이</span></div><em class="o-p" id="op-pay">추가 금액 없음</em><button type="button" class="sw" role="switch" aria-checked="false" data-o="pay" aria-labelledby="ot-pay"></button>
         <div class="o-more" id="o-staff" hidden><span class="o-ml" id="staffl">직원 수</span><div class="step on" role="group" aria-labelledby="staffl"><button type="button" class="pm" data-v="dec" aria-label="직원 한 명 줄이기">−</button><output class="n" id="stepn" aria-live="polite">1명</output><button type="button" class="pm" data-v="inc" aria-label="직원 한 명 늘리기">+</button></div><p class="note" id="staffnote"></p></div></div>
       <div class="opt" id="opt-co"><div class="o-t"><b><span id="ot-co">공동사업장</span><button type="button" class="qi" data-qi="co"></button></b><span>대표가 둘 이상일 때</span></div><em class="o-p" id="op-co">+1만원</em><button type="button" class="sw" role="switch" aria-checked="false" data-o="co" aria-labelledby="ot-co"></button></div>
       <div class="opt" id="opt-cpa"><div class="o-t"><b><span id="ot-cpa">세무사가 직접 담당</span><button type="button" class="qi" data-qi="cpa"></button></b><span>세무사가 장부·신고를 직접</span></div><em class="o-p" id="op-cpa">+3만원</em><button type="button" class="sw" role="switch" aria-checked="false" data-o="cpa" aria-labelledby="ot-cpa"></button></div>
@@ -838,14 +839,14 @@ body:not(.built) .bar .go.line{display:none}
   </form>
 </dialog>
 
-<script src="js/svc-help.js?v=20261126d"></script>
+<script src="js/svc-help.js?v=20261127c"></script>
 <script>
 // ★ 기준표(초안) — 숫자·품목만 바꾸면 화면 전체가 따라 바뀜. 단위 만원/월, 부가세 별도.
-//   사용자 11/25: 모든 견적은 기본 4만원에서 시작 → 일반 개인 5 · 매출 큰 개인 7 · 법인 10.
-//   서비스 추가: 월별 매출 보고서 0원 · 인건비(4대보험 포함) 4명까지 1만원, 5명부터 인원에 따라 더함(상담 때 확정 — 금액 정해지면 여기)  · 공동사업장 1만원.
+//   사용자 11/27: 모든 견적은 기본 5만원에서 시작(인건비 신고 직원 3명까지 포함) → 일반 개인 5 · 매출 큰 개인 7 · 법인 10.
+//   서비스 추가: 월별 매출 보고서 0원 · 인건비(4대보험 포함) 3명까지 기본 포함 · 4명 1만원 · 5명부터 인원에 따라 더함(상담 때 확정 — 금액 정해지면 여기)  · 공동사업장 1만원.
 //   종합소득세·법인세 신고는 기본 포함이 아니라 '수수료 별도 · 신고 전 안내'.
-const START = 4;
-const SIZE = {lite:['일반 개인',0], std:['매출 큰 개인',3], corp:['법인',6]}; // 사업 규모 더하기(lite·std·corp = 메인 모델 소개의 택스민 라이트·택스민·택스민 법인)
+const START = 5;
+const SIZE = {lite:['일반 개인',0], std:['매출 큰 개인',2], corp:['법인',5]}; // 사업 규모 더하기(lite·std·corp = 메인 모델 소개의 택스민 라이트·택스민·택스민 법인)
 const TYPES = [['개인','개인사업자','b-person'],['법인','법인사업자','b-corp']];
 // [이름, 기본 매출 구간(억원), 아이콘, 법정 기준 묶음(LAW)] — IT 는 제조·건설과 같은 구간, '내 업종이 없어요'는 가장 일반적인 구간(5억)으로 보고 상담 때 확인
 const BIZ = [['음식점·카페',5,'b-food','m'],['도소매·쇼핑몰',9,'b-shop','w'],['서비스·프리랜서',3,'b-service','s'],['제조·건설',5,'b-make','m'],['IT·소프트웨어',5,'b-it','m'],['내 업종이 없어요',5,'b-q','m']];
@@ -853,7 +854,7 @@ const SALES = [['올해 시작',1],['1억 미만',1],['1억~3억',3],['3억~5억
 const SALES_LO = [0,0,1,3,5,10]; // 구간 아랫선(억원)
 const OPTS = [
   {k:'rep', t:'월별 매출 보고서', d:'매달 매출·매입 흐름을 한 장으로', p:0, ic:'o-rep', best:true},
-  {k:'pay', t:'인건비 신고 (4대보험 포함)', d:'직원 월급·4대보험 신고', p:1, ic:'o-pay', best:true},
+  {k:'pay', t:'인건비 신고 (4대보험 포함)', d:'직원 3명까지 기본 포함 · 4명은 1만원', p:1, ic:'o-pay', best:true},
   {k:'co',  t:'공동사업장', d:'대표가 둘 이상인 사업장', p:1, ic:'o-co', only:'개인'},
   {k:'cpa', t:'세무사 직접 담당', d:'담당자 대신 세무사가 장부·신고를 직접 맡아요', p:3, ic:'o-cpa'},
 ];
@@ -870,18 +871,18 @@ function calc(sel){
   if (SIZE[m][1]) lines.push(['사업 규모 · ' + SIZE[m][0], SIZE[m][1]]);
   const up = m==='corp' ? [0,2,4,4][sc] : m==='std' ? [0,0,2,2][sc] : 0;
   if (up) lines.push(['작년 매출 ' + SALES[sel.sales][0], up]);
-  OPTS.forEach(o=>{ if (sel.opt[o.k] && (!o.only || o.only===sel.type)) lines.push([o.t + (o.k==='pay' ? (sel.big ? ' · 5명 이상' : ' · 4명까지') : ''), o.p]); });
+  OPTS.forEach(o=>{ if (sel.opt[o.k] && (!o.only || o.only===sel.type)) lines.push([o.t + (o.k==='pay' ? (sel.big ? ' · 5명 이상' : ' · 4명') : ''), o.p]); });
   return {m, sc, up, lines, total: lines.reduce((s,l)=>s+l[1],0), ask: (m!=='lite' && (sc===3 || !!SALES[sel.sales][2])) || (!!sel.opt.pay && sel.big)};
 }
 // self-check
 // 매출 칸 번호: 0 올해 시작 · 1 1억 미만 · 2 1~3억 · 3 3~5억 · 4 5~10억 · 5 10억 이상
 const S = o=>Object.assign({type:'개인',biz:0,sales:2,opt:{},big:false,help:{}},o);
-console.assert(calc(S()).total===4 && calc(S({sales:0})).total===4 && calc(S({type:'법인'})).total===10 && calc(S({sales:4})).total===7, '일반 개인 4 · 법인 10 · 매출 큰 개인 7');
-console.assert(calc(S({opt:{rep:1,pay:1}})).total===5 && calc(S({opt:{rep:1,pay:1,co:1}})).total===6 && calc(S({opt:{cpa:1}})).total===7, 'BEST 둘 = 5 · 공동사업장 1 · 세무사 직접 담당 3');
+console.assert(calc(S()).total===5 && calc(S({sales:0})).total===5 && calc(S({type:'법인'})).total===10 && calc(S({sales:4})).total===7, '일반 개인 5 · 법인 10 · 매출 큰 개인 7');
+console.assert(calc(S({opt:{rep:1,pay:1}})).total===6 && calc(S({opt:{rep:1,pay:1,co:1}})).total===7 && calc(S({opt:{cpa:1}})).total===8, '직원 4명 1 · 공동사업장 1 · 세무사 직접 담당 3');
 console.assert(calc(S({type:'법인',opt:{co:1}})).total===10, '법인은 공동사업장 없음');
 console.assert(calc(S({opt:{pay:1},big:true})).ask && !calc(S({opt:{pay:1}})).ask, '인건비 5명 이상은 상담');
 console.assert(calc(S({sales:5})).total===9 && calc(S({sales:5})).ask && calc(S({type:'법인',biz:1,sales:5})).total===14 && !calc(S({sales:4})).ask, '10억 이상은 만원부터');
-console.assert(calc(S({biz:1,sales:3})).total===4 && calc(S({biz:1,sales:4})).total===7, '도소매 3~5억은 기본 구간 안, 5~10억은 넘음');
+console.assert(calc(S({biz:1,sales:3})).total===5 && calc(S({biz:1,sales:4})).total===7, '도소매 3~5억은 기본 구간 안, 5~10억은 넘음');
 console.assert(calc(S()).lines.length===1, '일반 개인은 사업 규모 줄 없음');
 console.assert(calc(S({biz:4,sales:4})).total===calc(S({biz:3,sales:4})).total && calc(S({biz:5,sales:4})).total===calc(S({biz:0,sales:4})).total, 'IT = 제조·건설 · 내 업종이 없어요 = 5억 구간');
 
@@ -889,7 +890,7 @@ console.assert(calc(S({biz:4,sales:4})).total===calc(S({biz:3,sales:4})).total &
 const blank = () => ({type:null, biz:null, sales:null, staff:null, co:null, cpa:null, help:{}});
 const sel = blank();
 const T = s => s.type || '개인';
-const toCalc = (s, b, x) => ({type:T(s), biz:b, sales:x, opt:{pay:s.staff>0, co:!!s.co, cpa:!!s.cpa}, big:s.staff>=5, help:s.help});
+const toCalc = (s, b, x) => ({type:T(s), biz:b, sales:x, opt:{pay:s.staff>=4, co:!!s.co, cpa:!!s.cpa}, big:s.staff>=5, help:s.help});
 // 업종·매출을 아직 안 골랐으면 가능한 경우 중 가장 낮은 금액을 '부터'로 보여 줌
 function est(s){
   const bs = s.biz==null ? BIZ.map((_,i)=>i) : [s.biz], xs = s.sales==null ? SALES.map((_,i)=>i) : [s.sales];
@@ -897,9 +898,10 @@ function est(s){
   const r = all.reduce((a,c)=> c.total<a.total ? c : a);
   return Object.assign({}, r, {ask: all.some(c=>c.ask || c.total!==r.total), open: s.biz==null || s.sales==null});
 }
-console.assert(est(blank()).total===4 && est(blank()).ask, '빈 시작 = 4만원부터');
+console.assert(est(blank()).total===5 && est(blank()).ask, '빈 시작 = 5만원부터');
 console.assert(est(Object.assign(blank(),{type:'법인'})).total===10 && est(Object.assign(blank(),{type:'법인'})).ask, '법인만 고르면 10만원부터');
-console.assert(est(Object.assign(blank(),{sales:0})).total===4 && !est(Object.assign(blank(),{sales:0})).ask, '올해 시작 개인은 업종과 상관없이 4만원');
+console.assert(est(Object.assign(blank(),{sales:0})).total===5 && !est(Object.assign(blank(),{sales:0})).ask, '올해 시작 개인은 업종과 상관없이 5만원');
+{ const E = n => est(Object.assign(blank(),{biz:0,sales:2,staff:n})); console.assert(E(0).total===5 && E(3).total===5 && !E(3).ask && E(4).total===6 && !E(4).ask && E(5).total===6 && E(5).ask, '직원 3명까지 기본 · 4명 +1 · 5명부터 상담'); }
 console.assert(est(Object.assign(blank(),{biz:0,sales:2,staff:2,cpa:true})).total===8, '음식 1~3억 + 직원 + 세무사 직접 = 8');
 
 // 억원 → '1억 5천만원'(표와 같은 꼴) / '4억 1,800만원'(모니터링 꼴)
@@ -967,8 +969,9 @@ function rows(r){
     else R.push({k:'up'+l[0], l:l[0], p:l[1]});
   });
   if (!r.open && r.m==='lite') R.push({k:'lite'+bn, l:bn + ' 기장료 기본 구간', v:'기본에 포함', nt:true});
-  if (sel.staff===0) R.push({k:'payoff', l:'인건비 신고', off:'직원이 없어 뺐어요'});
-  else if (sel.staff>0) R.push({k:'pay', l:'인건비 신고 · 4대보험 포함', p:opt('pay')[1], sub:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}${sel.staff>=5 ? ' · 5명부터 인원에 따라 더해짐(상담 때 확정)' : ''}`});
+  if (sel.staff===0) R.push({k:'payoff', l:'인건비 신고 · 직원이 생겨도 3명까지', v:'추가 금액 없음', nt:true});
+  else if (sel.staff>0 && sel.staff<4) R.push({k:'payin', l:`인건비 신고 · 직원 ${sel.staff}명`, v:'추가 금액 없음', nt:true});
+  else if (sel.staff>=4) R.push({k:'pay', l:'인건비 신고 · 4대보험 포함', p:opt('pay')[1], sub:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}${sel.staff>=5 ? ' · 5명부터 인원에 따라 더해짐(상담 때 확정)' : ' · 3명까지는 기본, 4명은 1만원 더해요'}`});
   if (T(sel)==='개인'){
     if (sel.co===false) R.push({k:'cooff', l:'공동사업장', off:'대표가 혼자라 뺐어요'});
     else if (sel.co) R.push({k:'co', l:'공동사업장 · 대표 둘 이상', p:opt('co')[1]});
@@ -980,7 +983,7 @@ function rows(r){
 
 // 내 기장료 쌓기: 고른 것마다 한 줄(금액 + 까닭). 금액은 위 rows() 줄을 고른 것별로 묶기만 함(새로 계산하지 않음)
 // c = 한 줄 요약에 쓰는 짧은 이름, q = 더하지 않는 줄(회색), off = 뺀 줄(취소선)
-const BASE_WHY = {개인:'장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서도 함께', 법인:'법인 장부·부가세 신고·전담 담당자·세무사 검토, 월별 매출 보고서도 함께'};
+const BASE_WHY = {개인:'장부·부가세 신고·전담 담당자·세무사 검토에 월별 매출 보고서·인건비 신고(직원 3명까지)도 함께', 법인:'법인 장부·부가세 신고·전담 담당자·세무사 검토에 월별 매출 보고서·인건비 신고(직원 3명까지)도 함께'};
 function stack(r, R){
   const corp = T(sel)==='법인', B = [], amt = f => R.filter(f).reduce((s,x)=>s+(x.p||0),0);
   B.push({k:'base', c:'기본', p:amt(x=>x.base), l:'기본', w:BASE_WHY[T(sel)]});
@@ -998,8 +1001,9 @@ function stack(r, R){
     B.push(Object.assign({k:'sales'+sel.sales+'-'+p, l: sel.sales ? '작년 매출 ' + SALES[sel.sales][0] : '올해 시작', w}, p ? {c:'매출', p} : {q:true}));
   }
   const hint = R.find(x=>x.hint); if (hint) B.push({k:'hint', hint:hint.hint});
-  if (sel.staff===0) B.push({k:'payoff', off:true, l:'인건비 신고', w:'직원이 없어 뺐어요'});
-  else if (sel.staff>0) B.push({k:'pay', c:'직원', p:amt(x=>x.k==='pay'), l:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}`, w:'매달 인건비 신고(4대보험 포함)' + (sel.staff>=5 ? ' · 5명부터 인원에 따라 더해져요(상담 때 확정)' : ' · 4명까지 같은 금액')});
+  // 3명까지는 금액 없이 '포함' 줄로 늘 보여 줌(inc) — 무료·0원 낱말은 광고 규정상 쓰지 않음
+  if (!(sel.staff>=4)) B.push(sel.staff>0 ? {k:'payin', inc:true, l:`직원 ${sel.staff}명 인건비 신고`, w:'4대보험 포함 · 3명까지 추가 금액 없이 해 드려요'} : {k:'payoff', inc:true, l:'인건비 신고', w:'직원이 생겨도 3명까지는 추가 금액 없이 해 드려요'});
+  else B.push({k:'pay', c:'직원', p:amt(x=>x.k==='pay'), l:`직원 ${sel.staff}명${sel.staff>=10?' 이상':''}`, w:'매달 인건비 신고(4대보험 포함)' + (sel.staff>=5 ? ' · 5명부터 인원에 따라 더해져요(상담 때 확정)' : ' · 3명까지 기본, 4명은 1만원 더해요')});
   if (!corp){
     if (sel.co===false) B.push({k:'cooff', off:true, l:'공동사업장', w:'혼자 운영이라 뺐어요'});
     else if (sel.co) B.push({k:'co', c:'공동', p:amt(x=>x.k==='co'), l:'공동사업장', w:'대표가 둘 이상 · 소득을 나눠 각자 신고해요'});
@@ -1009,10 +1013,10 @@ function stack(r, R){
   console.assert(B.reduce((s,b)=>s+(b.p||0),0)===r.total, '기장료 쌓기 합계 = 월 기장료');
   return B;
 }
-const QK = {base:'base', pay:'pay', payoff:'pay', co:'co', cooff:'co', cpa:'cpa', cpa0:'review'}; // 쌓기 줄 → '?' 설명(js/svc-help.js)
+const QK = {base:'base', pay:'pay', payin:'pay', payoff:'pay', co:'co', cooff:'co', cpa:'cpa', cpa0:'review'}; // 쌓기 줄 → '?' 설명(js/svc-help.js)
 const stackHTML = (B, prev) => B.map(b=> b.hint ? `<li class="hint">${b.hint}</li>`
-  : `<li class="${[b.q && 'q', b.off && 'off', prev && !prev.has(b.k) && 'new'].filter(Boolean).join(' ')}"><b class="a">${b.p ? (b.k==='base' ? '' : '+') + b.p + '만원' : '–'}</b><span><span class="l">${b.l}${QI.btn(QK[b.k] || '')}</span><span class="w">${b.w}</span></span></li>`).join('');
-// 한 줄 요약: 월 8만원 = 기본 4 + 매출 3 + 직원 1
+  : `<li class="${[b.q && 'q', b.inc && 'inc', b.off && 'off', prev && !prev.has(b.k) && 'new'].filter(Boolean).join(' ')}"><b class="a">${b.p ? (b.k==='base' ? '' : '+') + b.p + '만원' : b.inc ? '포함' : '–'}</b><span><span class="l">${b.l}${QI.btn(QK[b.k] || '')}</span><span class="w">${b.w}</span></span></li>`).join('');
+// 한 줄 요약: 월 8만원 = 기본 5 + 매출 2 + 직원 1
 const lineHTML = (B, prev) => { const c = B.filter(b=>b.p);
   return `<b class="sl-t">월 <span class="js-tot"></span></b><span class="sl-eq">=</span><span class="sl-c">`
     + c.map((b,i)=>(i ? '<i>+</i>' : '') + `<span class="cp${prev && !prev.has(b.k) ? ' hot' : ''}">${b.c} ${b.p}</span>`).join('')
@@ -1131,9 +1135,9 @@ function draw(what){
   $('stepn').textContent = sel.staff>0 ? `${sel.staff}명${sel.staff>=10?' 이상':''}` : '1명';
   document.querySelector('[data-v=dec]').disabled = !(sel.staff>1);
   document.querySelector('[data-v=inc]').disabled = sel.staff>=10;
-  $('op-pay').textContent = sel.staff>=5 ? `+${P('pay')}만원부터` : `+${P('pay')}만원`;
-  $('staffnote').textContent = sel.staff>=5 ? '5명부터는 근로기준법이 대부분 적용돼 노무 관리가 늘어요. 노무사 연결도 함께 안내해요.' : '';
-  $('o-base-d').textContent = (corp ? '법인 ' : '') + '장부·부가세·전담 담당자·세무사 검토';
+  $('op-pay').textContent = sel.staff>=5 ? `+${P('pay')}만원부터` : sel.staff>=4 ? `+${P('pay')}만원` : '추가 금액 없음';
+  $('staffnote').textContent = sel.staff>=5 ? '5명부터는 근로기준법이 대부분 적용돼 노무 관리가 늘어요. 노무사 연결도 함께 안내해요.' : sel.staff===4 ? '3명까지는 추가 금액이 없고, 4명은 월 1만원이 더해져요.' : '직원 3명까지는 추가 금액 없이 해 드려요.';
+  $('o-base-d').textContent = (corp ? '법인 ' : '') + '장부·부가세·전담 담당자·세무사 검토 · 월별 매출 보고서 · 인건비 신고(직원 3명까지)';
   { const add = r.lines.filter(l=> l[0].startsWith('사업 규모') || l[0].startsWith('작년 매출')).reduce((a,l)=>a+l[1],0);
     $('o-size').hidden = !add;
     $('o-size-t').textContent = r.m==='corp' ? '법인사업자' : (sel.biz!=null ? bizName(sel.biz) + ' 큰 매출 구간' : '매출이 큰 구간');

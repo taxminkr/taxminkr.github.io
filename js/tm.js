@@ -1,7 +1,7 @@
 /* 택스민 랜딩 동작: 출처 기록 · 전환 신호 · 첫 화면 시연(영상 + 3장면 자동 넘김) · 계산기 · 흐름띠 · 숫자 세기 ·
    전화 상담(페이지 안 폼) · 카톡(PC 안내) · 아래 고정 버튼.
    요금 규칙은 택스민 요금 등급표(개인사업자, 직전 연도 매출 기준)와 같다:
-   기본 월 5만(직원 3명 이하)·6만(4~5명) / 중간 월 7~8만 / 성실신고확인 월 12~15만 / 법인 월 10만부터 — 모두 부가세 별도.
+   기본 월 5만(직원 3명 이하)·6만(4명)·5명부터 상담 / 중간 월 7~8만 / 성실신고확인 월 12~15만 / 법인 월 10만부터 — 모두 부가세 별도.
    카톡은 쿼리 없는 채널 채팅 주소를 같은 탭에서 연다(앱 안 브라우저·구글 팝업 규정). PC 는 카카오 로그인이 필요해 안내 창을 먼저 보인다.
    움직임 줄이기 설정·검색 로봇·화면 캡처에서는 영상·자동 넘김·흐름띠·숫자 세기를 모두 하지 않는다(처음부터 다 보임).
    js-rv(등장 준비)·tm-off(상담 시간 밖)는 첫 그림 전에 js/early.js 가 붙인다. */
@@ -278,7 +278,7 @@
   var CK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.3 4.3L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var IND_G = { food: 'B', retail: 'A', svc: 'C', mfg: 'B', corp: 'X' };
   var IND_NAME = { food: '음식점·카페', retail: '도소매·쇼핑몰', svc: '서비스·프리랜서', mfg: '제조·건설·IT', corp: '법인' };
-  var EMP_NAME = { '0': '없음', '3': '1~3명', '5': '4~5명', '6': '6명 이상' };
+  var EMP_NAME = { '0': '없음', '3': '1~3명', '5': '4명', '6': '5명 이상' };
   var BAND = { A: { lo: '9억원', hi: '15억원', loS: '9억', hiS: '15억' }, B: { lo: '5억원', hi: '7억 5천만원', loS: '5억', hiS: '7.5억' }, C: { lo: '3억원', hi: '5억원', loS: '3억', hiS: '5억' } };
   var LAST = null, calcSent = false, calcStarted = false;
   var cdlg = $('#calc-dlg');
@@ -297,16 +297,15 @@
       if (S.rev) R.rev = revText(g, S.rev);
       if (S.emp) R.emp = EMP_NAME[S.emp];
       var t = S.rev === 'mid' ? 'P' : S.rev === 'hi' ? 'S' : 'L';
-      if (t === 'L' && S.emp === '6') { t = 'P'; R.why = '직원·알바가 6명 이상이면 중간 구간이에요.'; }
       R.from = !(S.rev && S.emp);
       if (t === 'L') { R.tier = '기본 구간'; if (S.emp === '5') { R.price = '월 6만원'; R.won = [60000]; } else { R.price = R.from ? '월 5만원부터' : '월 5만원'; R.won = [50000]; } }
       else if (t === 'P') { R.tier = '중간 구간'; R.price = '월 7~8만원'; R.won = [70000, 80000]; if (!R.why) R.why = '작년 매출이 ' + bb.lo + '을 넘으면 중간 구간이에요.'; }
       else { R.tier = '성실신고확인 구간'; R.price = '월 12~15만원'; R.won = [120000, 150000]; R.why = '작년 매출이 ' + bb.hi + ' 이상이면 성실신고확인 대상이라 이 구간이에요.'; }
-      /* 중간·성실 구간의 직원 수 상한은 아직 정하지 않음 → 6명 이상이면 상담 때 확정(규정 검수 11/4) */
+      /* 중간·성실 구간의 직원 수 상한은 아직 정하지 않음 → 5명 이상이면 상담 때 확정(규정 검수 11/4) */
       if (S.emp === '6') {
-        R.why = (R.why ? R.why + ' ' : '') + '직원이 많으면 인원에 따라 상담 때 확정해요.';
+        R.why = (R.why ? R.why + ' ' : '') + '직원이 5명 이상이면 인원에 따라 상담 때 확정해요.';
         /* 닫힌 범위(월 7~8만원)가 상한처럼 읽히지 않게 '부터'로(규정 검수 11/4 1회째) */
-        R.price = t === 'S' ? '월 12만원부터' : '월 7만원부터'; R.won = [t === 'S' ? 120000 : 70000]; R.from = true;
+        R.price = t === 'S' ? '월 12만원부터' : t === 'P' ? '월 7만원부터' : '월 6만원부터'; R.won = [t === 'S' ? 120000 : t === 'P' ? 70000 : 60000]; R.from = true;
       }
       R.done = !!(S.rev && S.emp);
       return R;
@@ -329,7 +328,7 @@
       var hint = !S.ind ? '업종부터 골라 주세요.' : R.corp ? '' : !S.rev ? '작년 매출을 고르면 더 정확해져요.' : !S.emp ? '직원 수를 고르면 확정돼요.' : '';
       var g0 = IND_G[S.ind], bb0 = BAND[g0];
       var base = !S.ind ? '' : R.corp ? '법인' : R.ind + ' · 작년 매출 ' + R.rev + ' · 직원·알바 ' + R.emp;
-      var chg = (S.ind && !R.corp && S.rev === 'lo' && (S.emp === '0' || S.emp === '3') && bb0) ? (S.emp === '0' ? '직원·알바가 생기거나 작년 매출이 ' + bb0.lo + '을 넘으면 달라져요' : '작년 매출이 ' + bb0.lo + '을 넘거나 직원이 4명 이상이면 달라져요') : '';
+      var chg = (S.ind && !R.corp && S.rev === 'lo' && (S.emp === '0' || S.emp === '3') && bb0) ? '작년 매출이 ' + bb0.lo + '을 넘거나 직원이 4명 이상이면 달라져요' : '';
       cres.innerHTML = '<p class="lbl">예상 기장료' + (R.tier ? ' · ' + esc(R.tier) : '') + '</p>' +
         '<p class="price num">' + esc(R.price) + '<small>부가세 별도</small></p>' +
         (S.ind ? '<p class="incl num">' + inclLine(R) + '</p>' : '') +
